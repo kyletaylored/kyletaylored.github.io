@@ -1,0 +1,76 @@
+---
+interface Props {
+	title?: string;
+}
+
+const { title = 'kyletaylor@lab' } = Astro.props;
+---
+
+<div class="terminal">
+	<div class="terminal-bar">
+		<span class="dot red"></span>
+		<span class="dot yellow"></span>
+		<span class="dot green"></span>
+		<span class="terminal-title">{title}</span>
+	</div>
+	<div class="terminal-body">
+		<slot />
+		<span class="cursor" aria-hidden="true"></span>
+	</div>
+</div>
+
+<style>
+	.terminal {
+		background: var(--color-black);
+		border: var(--border-thin) solid var(--color-border-dark);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		font-family: var(--font-mono);
+	}
+	.terminal-bar {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: 8px 12px;
+		background: var(--color-surface-dark);
+	}
+	.dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+	}
+	.dot.red {
+		background: var(--color-red);
+	}
+	.dot.yellow {
+		background: var(--color-yellow);
+	}
+	.dot.green {
+		background: var(--color-teal);
+	}
+	.terminal-title {
+		margin-left: 8px;
+		font-size: 12px;
+		color: var(--color-muted-light, var(--color-muted));
+	}
+	.terminal-body {
+		padding: 16px;
+		color: var(--color-bg);
+		font-size: 13px;
+		line-height: 1.6;
+		white-space: pre-wrap;
+	}
+	.cursor {
+		display: inline-block;
+		width: 8px;
+		height: 1em;
+		background: var(--color-teal);
+		vertical-align: text-bottom;
+		animation: blink 1s step-start infinite;
+	}
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
+	}
+</style>

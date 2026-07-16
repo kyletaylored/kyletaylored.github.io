@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/effects.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme {
+	--color-bg: var(--color-bg);
+	--color-ink: var(--color-black);
+	--color-teal: var(--color-teal);
+	--color-pink: var(--color-pink);
+	--color-yellow: var(--color-yellow);
+	--color-blue: var(--color-blue);
+	--color-red: var(--color-red);
+	--color-border: var(--color-border);
+	--color-border-dark: var(--color-border-dark);
+	--color-muted: var(--color-muted);
+	--color-surface: var(--color-surface);
+	--color-surface-dark: var(--color-surface-dark);
+
+	--font-display: var(--font-display);
+	--font-body: var(--font-body);
+	--font-mono: var(--font-mono);
+
+	--spacing-1: var(--space-1);
+	--spacing-2: var(--space-2);
+	--spacing-3: var(--space-3);
+	--spacing-4: var(--space-4);
+	--spacing-5: var(--space-5);
+	--spacing-6: var(--space-6);
+	--spacing-8: var(--space-8);
+	--spacing-10: var(--space-10);
+	--spacing-12: var(--space-12);
+	--spacing-16: var(--space-16);
+	--spacing-20: var(--space-20);
+	--spacing-24: var(--space-24);
+	--spacing-32: var(--space-32);
+
+	--radius-none: var(--radius-none);
+	--radius-sm: var(--radius-sm);
+	--radius-md: var(--radius-md);
+	--radius-lg: var(--radius-lg);
+	--radius-pill: var(--radius-pill);
+}
+
+/*
+ * shadcn/ui components (button, card, dialog, etc.) style themselves via
+ * these semantic --background/--primary/etc. variables. Rather than
+ * restyle every generated component individually, we point shadcn's
+ * semantic layer at our own design tokens so `bg-primary`, `bg-background`,
+ * `border-border`, etc. automatically resolve to the Memphis/Bauhaus
+ * palette above. No oklch shadcn default theme is used.
+ */
+@theme inline {
+	--color-background: var(--color-bg);
+	--color-foreground: var(--color-black);
+	--color-card: var(--color-white);
+	--color-card-foreground: var(--color-black);
+	--color-popover: var(--color-white);
+	--color-popover-foreground: var(--color-black);
+	--color-primary: var(--color-teal);
+	--color-primary-foreground: var(--color-black);
+	--color-secondary: var(--color-surface);
+	--color-secondary-foreground: var(--color-black);
+	--color-muted: var(--color-surface);
+	--color-muted-foreground: var(--color-muted);
+	--color-accent: var(--color-pink);
+	--color-accent-foreground: var(--color-white);
+	--color-destructive: var(--color-red);
+	--color-border: var(--color-border);
+	--color-input: var(--color-border);
+	--color-ring: var(--color-teal);
+	--radius-sm: var(--radius-sm);
+	--radius-md: var(--radius-md);
+	--radius-lg: var(--radius-lg);
+	--radius-xl: var(--radius-lg);
+}
+
+:root {
+	--radius: var(--radius-md);
+}

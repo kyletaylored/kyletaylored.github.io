@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Articles" description="Engineering journal — writeups, notes, and deep dives.">
+	<h1>Articles</h1>
+	<ul class="article-list">
+		{
+			articles.map((a) => (
+				<li>
+					<a href={`/articles/${a.id}/`}>
+						<h2>{a.data.title}</h2>
+						<p>{a.data.description}</p>
+						<p class="meta">
+							<span>{a.data.category}</span>
+							<span>&middot;</span>
+							<FormattedDate date={a.data.pubDate} />
+						</p>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.article-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.article-list li {
+		padding: 1.5em 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.article-list a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.meta {
+		color: var(--color-muted);
+		font-size: 0.9em;
+	}
+</style>

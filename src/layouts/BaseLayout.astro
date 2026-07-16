@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { CommandPalette } from '../components/CommandPalette';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: import('astro').ImageMetadata | string;
+	canonicalUrl?: string;
+	noindex?: boolean;
+	jsonLd?: Record<string, unknown>;
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	image,
+	canonicalUrl,
+	noindex = false,
+	jsonLd,
+} = Astro.props;
+
+const navEntries = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Projects', href: '/projects' },
+	{ label: 'Articles', href: '/articles' },
+	{ label: 'Lab', href: '/lab' },
+	{ label: 'About', href: '/about' },
+];
+
+const demoEntries = (await getCollection('projects'))
+	.filter((p) => p.data.links.demo)
+	.map((p) => ({ label: `Launch ${p.data.title}`, href: p.data.links.demo as string }));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={image}
+			canonicalUrl={canonicalUrl}
+			noindex={noindex}
+			jsonLd={jsonLd}
+		/>
+	</head>
+	<body>
+		<div data-pagefind-ignore>
+			<Header />
+		</div>
+		<main data-pagefind-body>
+			<slot />
+		</main>
+		<div data-pagefind-ignore>
+			<Footer />
+		</div>
+		<CommandPalette client:idle navEntries={navEntries} demoEntries={demoEntries} />
+	</body>
+</html>

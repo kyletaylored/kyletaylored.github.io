@@ -1,0 +1,185 @@
+media:
+  input: src/assets/uploads
+  output: /uploads
+
+content:
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/content/articles
+    format: mdx-frontmatter
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: description
+        type: text
+        required: true
+      - name: pubDate
+        type: date
+        required: true
+      - name: updatedDate
+        type: date
+      - name: heroImage
+        type: image
+      - name: category
+        type: string
+        required: true
+      - name: tags
+        type: string
+        list: true
+      - name: author
+        type: object
+        fields:
+          - { name: name, type: string }
+          - { name: role, type: string }
+          - { name: avatar, type: image }
+      - name: draft
+        type: boolean
+        default: false
+      - name: sourceUrl
+        type: string
+      - name: seo
+        type: object
+        fields:
+          - { name: metaTitle, type: string }
+          - { name: metaDescription, type: text }
+          - { name: ogImage, type: image }
+          - { name: canonicalUrl, type: string }
+          - { name: noindex, type: boolean, default: false }
+          - { name: jsonLd, type: code, language: json }
+      - name: body
+        type: rich-text
+
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/content/projects
+    format: mdx-frontmatter
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: summary
+        type: text
+        required: true
+      - name: heroImage
+        type: image
+      - name: pubDate
+        type: date
+        required: true
+      - name: updatedDate
+        type: date
+      - name: status
+        type: select
+        options: [active, archived, concept]
+        default: active
+      - name: tags
+        type: string
+        list: true
+      - name: links
+        type: object
+        fields:
+          - { name: caseStudy, type: string }
+          - { name: source, type: string }
+          - { name: demo, type: string }
+      - name: stack
+        type: string
+        list: true
+      - name: featured
+        type: boolean
+        default: false
+      - name: seo
+        type: object
+        fields:
+          - { name: metaTitle, type: string }
+          - { name: metaDescription, type: text }
+          - { name: ogImage, type: image }
+          - { name: canonicalUrl, type: string }
+          - { name: noindex, type: boolean, default: false }
+          - { name: jsonLd, type: code, language: json }
+      - name: body
+        type: rich-text
+
+  - name: lab
+    label: Lab
+    type: collection
+    path: src/content/lab
+    format: mdx-frontmatter
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: description
+        type: text
+        required: true
+      - name: pubDate
+        type: date
+        required: true
+      - name: heroImage
+        type: image
+      - name: labCategory
+        type: select
+        options: [experiments, tools, playground, ai, hardware]
+      - name: tags
+        type: string
+        list: true
+      - name: status
+        type: select
+        options: [wip, stable, archived]
+        default: wip
+      - name: demoUrl
+        type: string
+      - name: sourceUrl
+        type: string
+      - name: seo
+        type: object
+        fields:
+          - { name: metaTitle, type: string }
+          - { name: metaDescription, type: text }
+          - { name: ogImage, type: image }
+          - { name: canonicalUrl, type: string }
+          - { name: noindex, type: boolean, default: false }
+          - { name: jsonLd, type: code, language: json }
+      - name: body
+        type: rich-text
+
+  - name: pages
+    label: Pages
+    type: collection
+    path: src/content/pages
+    format: mdx-frontmatter
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: description
+        type: text
+        required: true
+      - name: seo
+        type: object
+        fields:
+          - { name: metaTitle, type: string }
+          - { name: metaDescription, type: text }
+          - { name: ogImage, type: image }
+          - { name: canonicalUrl, type: string }
+          - { name: noindex, type: boolean, default: false }
+          - { name: jsonLd, type: code, language: json }
+      - name: body
+        type: rich-text
+
+  - name: settings
+    label: Site Settings
+    type: file
+    path: src/data/site.json
+    fields:
+      - name: siteTitle
+        type: string
+      - name: siteDescription
+        type: text
+      - name: socialLinks
+        type: object
+        list: true
+        fields:
+          - { name: label, type: string }
+          - { name: url, type: string }

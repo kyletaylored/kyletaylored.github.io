@@ -1,0 +1,34 @@
+:root {
+  /* Brand colors */
+  --color-bg:      #FAF8F3;
+  --color-black:   #111111;
+  --color-teal:    #28D7E5;
+  --color-pink:    #F44D8A;
+  --color-yellow:  #FFD54A;
+  --color-blue:    #348BFF;
+  --color-red:     #F25A4C;
+
+  /* Neutrals */
+  --color-white:        #FFFFFF;
+  --color-border:       #E0DDDA;
+  --color-border-dark:  #2A2A2A;
+  --color-muted:        #6B6860;
+  --color-muted-light:  #A8A49F;
+  --color-surface:      #F0EDE8;
+  --color-surface-dark: #1A1A1A;
+
+  /* Semantic aliases */
+  --text-primary:       var(--color-black);
+  --text-secondary:     var(--color-muted);
+  --text-inverted:      var(--color-white);
+  --text-accent:        var(--color-teal);
+  --text-highlight:     var(--color-pink);
+
+  --bg-page:            var(--color-bg);
+  --bg-dark:            var(--color-black);
+  --bg-card:            var(--color-white);
+  --bg-icon:            var(--color-black);
+
+  --border-default:     var(--color-border);
+  --border-dark:        var(--color-border-dark);
+}

@@ -1,0 +1,23 @@
+---
+interface Props {
+	color?: string;
+	width?: string;
+	height?: string;
+	class?: string;
+}
+
+const { color = 'var(--color-pink)', width = '96px', height = '12px', class: className } = Astro.props;
+---
+
+<span
+	class:list={['decor-bar', className]}
+	style={{ width, height, background: color }}
+	aria-hidden="true"
+></span>
+
+<style>
+	.decor-bar {
+		display: inline-block;
+		transform: rotate(-8deg);
+	}
+</style>

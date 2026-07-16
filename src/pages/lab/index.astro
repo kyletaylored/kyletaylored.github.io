@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import LabLayout from '../../layouts/LabLayout.astro';
+
+const entries = await getCollection('lab');
+const categories = ['experiments', 'tools', 'playground', 'ai', 'hardware'] as const;
+const grouped = categories.map((cat) => ({
+	cat,
+	items: entries
+		.filter((e) => e.data.labCategory === cat)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+}));
+---
+
+<LabLayout title="Maker Lab" description="Experiments, tools, and playground builds.">
+	<Fragment slot="hero">
+		<h1>Maker Lab</h1>
+		<p>Experiments, tools, playground builds, AI tinkering, and hardware projects.</p>
+	</Fragment>
+
+	{
+		grouped
+			.filter((g) => g.items.length > 0)
+			.map((g) => (
+				<section>
+					<h2>{g.cat}</h2>
+					<ul class="lab-list">
+						{g.items.map((item) => (
+							<li>
+								<a href={`/lab/${item.id}/`}>
+									<h3>{item.data.title}</h3>
+									<p>{item.data.description}</p>
+									<span class="status">{item.data.status}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			))
+	}
+</LabLayout>
+
+<style>
+	.lab-list {
+		list-style: none;
+		margin: 0 0 2em 0;
+		padding: 0;
+	}
+	.lab-list a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.status {
+		font-size: 0.8em;
+		text-transform: uppercase;
+		color: var(--color-muted, #6b6860);
+	}
+</style>

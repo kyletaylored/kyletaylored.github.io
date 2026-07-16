@@ -1,0 +1,105 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+const { title, summary, heroImage, status, tags, links, stack, seo } = entry.data;
+---
+
+<BaseLayout
+	title={seo.metaTitle ?? title}
+	description={seo.metaDescription ?? summary}
+	image={seo.ogImage ?? heroImage}
+	canonicalUrl={seo.canonicalUrl}
+	noindex={seo.noindex}
+	jsonLd={seo.jsonLd}
+>
+	<article>
+		<div class="hero-image">
+			{
+				heroImage &&
+					(typeof heroImage === 'string' ? (
+						<img src={heroImage} alt="" />
+					) : (
+						<Picture formats={['avif', 'webp']} width={1200} height={600} src={heroImage} alt="" />
+					))
+			}
+		</div>
+		<header class="title">
+			<span class="status">{status}</span>
+			<h1>{title}</h1>
+			<p class="summary">{summary}</p>
+			<div class="stack">
+				{stack.map((s) => <span class="stack-badge">{s}</span>)}
+			</div>
+			<div class="tags">
+				{tags.map((tag) => <span class="tag">{tag}</span>)}
+			</div>
+			<div class="facets">
+				{links.caseStudy && <a href={links.caseStudy}>Read Case Study &rarr;</a>}
+				{
+					links.source && (
+						<a href={links.source} target="_blank" rel="noopener noreferrer">
+							View Source &rarr;
+						</a>
+					)
+				}
+				{
+					links.demo && (
+						<a href={links.demo} target="_blank" rel="noopener noreferrer">
+							Launch Demo &rarr;
+						</a>
+					)
+				}
+			</div>
+		</header>
+
+		<div class="prose">
+			<slot />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.hero-image img {
+		width: 100%;
+		border-radius: 12px;
+	}
+	.title {
+		margin: 1.5em 0;
+	}
+	.status {
+		text-transform: uppercase;
+		font-size: 0.8em;
+		letter-spacing: 0.08em;
+		color: var(--color-muted);
+	}
+	.summary {
+		color: var(--color-muted);
+		font-size: 1.2em;
+	}
+	.stack,
+	.tags {
+		display: flex;
+		gap: 0.5em;
+		flex-wrap: wrap;
+		margin: 0.5em 0;
+	}
+	.stack-badge,
+	.tag {
+		padding: 0.2em 0.7em;
+		border-radius: 999px;
+		background: var(--color-border);
+		font-size: 0.8em;
+	}
+	.facets {
+		display: flex;
+		gap: 1.5em;
+		margin-top: 1em;
+	}
+</style>

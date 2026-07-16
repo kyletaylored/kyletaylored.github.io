@@ -1,0 +1,136 @@
+---
+import { Picture } from 'astro:assets';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+interface Props {
+	entry: CollectionEntry<'articles'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, tags, author, sourceUrl, seo } =
+	entry.data;
+
+const wordCount = (entry.body ?? '').trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+const related = (await getCollection('articles'))
+	.filter((a) => a.id !== entry.id && !a.data.draft)
+	.filter((a) => a.data.category === category || a.data.tags.some((t) => tags.includes(t)))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+---
+
+<BaseLayout
+	title={seo.metaTitle ?? title}
+	description={seo.metaDescription ?? description}
+	image={seo.ogImage ?? heroImage}
+	canonicalUrl={seo.canonicalUrl}
+	noindex={seo.noindex}
+	jsonLd={seo.jsonLd}
+>
+	<article>
+		<div class="breadcrumb">
+			<a href="/articles">Articles</a> &rsaquo; <span>{category}</span>
+		</div>
+		<div class="hero-image">
+			{
+				heroImage &&
+					(typeof heroImage === 'string' ? (
+						<img src={heroImage} alt="" />
+					) : (
+						<Picture formats={['avif', 'webp']} width={1200} height={600} src={heroImage} alt="" />
+					))
+			}
+		</div>
+		<header class="title">
+			<h1>{title}</h1>
+			<p class="dek">{description}</p>
+			<div class="meta">
+				<span>{author.name}</span>
+				<span>&middot;</span>
+				<FormattedDate date={pubDate} />
+				{updatedDate && <span>(updated <FormattedDate date={updatedDate} />)</span>}
+				<span>&middot;</span>
+				<span>{readingTime} min read</span>
+			</div>
+			<div class="tags">
+				{tags.map((tag) => <span class="tag">{tag}</span>)}
+			</div>
+			{
+				sourceUrl && (
+					<a class="source-cta" href={sourceUrl} target="_blank" rel="noopener noreferrer">
+						View on GitHub &rarr;
+					</a>
+				)
+			}
+		</header>
+
+		<div class="prose">
+			<slot />
+		</div>
+
+		{
+			related.length > 0 && (
+				<aside class="related">
+					<h2>Related Articles</h2>
+					<ul>
+						{related.map((a) => (
+							<li>
+								<a href={`/articles/${a.id}/`}>{a.data.title}</a>
+							</li>
+						))}
+					</ul>
+				</aside>
+			)
+		}
+	</article>
+</BaseLayout>
+
+<style>
+	.breadcrumb {
+		margin-bottom: 1em;
+		color: var(--color-muted);
+		font-size: 0.9em;
+	}
+	.hero-image img {
+		width: 100%;
+		border-radius: 12px;
+	}
+	.title {
+		margin: 1.5em 0;
+	}
+	.dek {
+		color: var(--color-muted);
+		font-size: 1.2em;
+	}
+	.meta {
+		display: flex;
+		gap: 0.5em;
+		color: var(--color-muted);
+		font-size: 0.9em;
+		margin: 0.5em 0;
+	}
+	.tags {
+		display: flex;
+		gap: 0.5em;
+		flex-wrap: wrap;
+		margin: 0.5em 0;
+	}
+	.tag {
+		padding: 0.2em 0.7em;
+		border-radius: 999px;
+		background: var(--color-border);
+		font-size: 0.8em;
+	}
+	.source-cta {
+		display: inline-block;
+		margin-top: 0.5em;
+	}
+	.related {
+		margin-top: 3em;
+		padding-top: 1.5em;
+		border-top: 1px solid var(--color-border);
+	}
+</style>

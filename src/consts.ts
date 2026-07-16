@@ -1,5 +1,5 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+// Site-wide title/description live in src/data/site.json (CMS-editable via .pages.yml).
+import site from './data/site.json';
 
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = site.siteTitle;
+export const SITE_DESCRIPTION = site.siteDescription;

@@ -1,0 +1,21 @@
+---
+import ActivityItem from './ActivityItem.astro';
+
+interface ActivityEntry {
+	type: 'experiment' | 'git' | 'tool' | 'update' | 'article' | 'commit';
+	title: string;
+	description?: string;
+	time: string;
+	url?: string;
+}
+
+interface Props {
+	items: ActivityEntry[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="activity-feed">
+	{items.map((item) => <ActivityItem {...item} description={item.description ?? item.title} />)}
+</div>

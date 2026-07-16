@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Projects" description="Methodology, source, and live demos for everything I've built.">
+	<h1>Projects</h1>
+	<ul class="project-list">
+		{
+			projects.map((p) => (
+				<li>
+					<a href={`/projects/${p.id}/`}>
+						<h2>{p.data.title}</h2>
+						<p>{p.data.summary}</p>
+						<p class="meta">
+							<span>{p.data.status}</span>
+							{p.data.stack.map((s) => <span class="stack-badge">{s}</span>)}
+						</p>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.project-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1.5em;
+	}
+	.project-list li {
+		padding: 1.5em;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+	}
+	.project-list a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.meta {
+		display: flex;
+		gap: 0.5em;
+		color: var(--color-muted);
+		font-size: 0.9em;
+	}
+	.stack-badge {
+		padding: 0.1em 0.6em;
+		border-radius: 999px;
+		background: var(--color-border);
+	}
+</style>

@@ -1,0 +1,22 @@
+---
+interface Props {
+	color?: string;
+	size?: string;
+	class?: string;
+}
+
+const { color = 'var(--color-teal)', size = '48px', class: className } = Astro.props;
+---
+
+<span
+	class:list={['decor-circle', className]}
+	style={{ width: size, height: size, background: color }}
+	aria-hidden="true"
+></span>
+
+<style>
+	.decor-circle {
+		display: inline-block;
+		border-radius: 50%;
+	}
+</style>

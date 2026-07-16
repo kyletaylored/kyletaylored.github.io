@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<div class="lab" data-theme="lab">
+		<div class="lab-hero">
+			<slot name="hero" />
+		</div>
+		<div class="lab-separator"></div>
+		<div class="lab-content">
+			<slot />
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.lab-hero {
+		background: var(--color-black, #111111);
+		color: var(--color-bg, #faf8f3);
+		padding: 3em 1em;
+		margin: -3em -1em 0 -1em;
+	}
+	.lab-separator {
+		height: 4px;
+		background: var(--color-pink, #f44d8a);
+	}
+	.lab-content {
+		padding-top: 2em;
+		font-family: var(--font-mono, ui-monospace, monospace);
+	}
+</style>
