@@ -1,0 +1,25 @@
+<!-- @dsCard group="Components" viewport="700x80" name="SectionHeader" subtitle="• LABEL + View all → row" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style> body { margin: 0; background: var(--color-bg); padding: 24px; } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="SectionHeader.jsx"></script>
+<script type="text/babel">
+ReactDOM.render(
+  React.createElement('div', { style:{ display:'flex', flexDirection:'column', gap:16 }},
+    React.createElement(SectionHeader, { label:'EXPLORE THE LAB', linkText:'View all experiments' }),
+    React.createElement(SectionHeader, { label:'FEATURED EXPERIMENTS', linkText:'View all' }),
+    React.createElement(SectionHeader, { label:'LATEST TOOLS', linkText:'View all tools' }),
+  ),
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x200" subtitle="Semantic usage" name="Semantic Colors" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px; }
+  .rows { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .dot { width: 28px; height: 28px; border-radius: 4px; flex-shrink: 0; }
+  .name { font-size: 12px; font-weight: 600; width: 160px; font-family: var(--font-mono); }
+  .desc { font-size: 12px; color: #6B6860; }
+</style>
+</head>
+<body>
+<div class="rows">
+  <div class="row"><div class="dot" style="background:#28D7E5;"></div><div class="name">--text-accent</div><div class="desc">CTAs, highlights, logo mark, inline teal emphasis</div></div>
+  <div class="row"><div class="dot" style="background:#F44D8A;"></div><div class="name">--text-highlight</div><div class="desc">Inline pink emphasis ("AI systems,"), status dots</div></div>
+  <div class="row"><div class="dot" style="background:#F25A4C;"></div><div class="name">--color-red</div><div class="desc">Error states, warning tags, "New Experiment" label</div></div>
+  <div class="row"><div class="dot" style="background:#111111;"></div><div class="name">--bg-dark</div><div class="desc">Hero section bg, icon container bg, footer bg</div></div>
+  <div class="row"><div class="dot" style="background:#FAF8F3; border:1px solid #E0DDDA;"></div><div class="name">--bg-page</div><div class="desc">Page background — warm off-white, never pure white</div></div>
+</div>
+</body>
+</html>

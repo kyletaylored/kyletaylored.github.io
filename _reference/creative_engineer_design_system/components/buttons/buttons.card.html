@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x140" name="Buttons" subtitle="All variants and sizes" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  body { margin: 0; background: var(--color-bg); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .dark-row { background: #111; padding: 16px; display: flex; gap: 12px; align-items: center; }
+</style>
+</head>
+<body>
+<div class="row" id="r1"></div>
+<div class="dark-row" id="r2"></div>
+<script type="text/babel" src="Button.jsx"></script>
+<script type="text/babel">
+const { Button } = window.LabDS || {};
+ReactDOM.render(
+  React.createElement(React.Fragment, null,
+    React.createElement('div', { style: { display:'flex', gap:12, flexWrap:'wrap', padding:'0 0 12px' } },
+      React.createElement(Button, { label: 'Browse Experiments', variant:'primary', icon:'→' }),
+      React.createElement(Button, { label: 'View All Tools', variant:'secondary', icon:'›' }),
+      React.createElement(Button, { label: 'Ghost', variant:'ghost' }),
+      React.createElement(Button, { label: 'Small', variant:'primary', size:'sm' }),
+      React.createElement(Button, { label: 'Large', variant:'primary', size:'lg' }),
+      React.createElement(Button, { label: 'Disabled', variant:'primary', disabled: true }),
+    ),
+    React.createElement('div', { style: { background:'#111', padding:'16px', display:'flex', gap:12 } },
+      React.createElement(Button, { label: 'View on GitHub', variant:'dark', icon:'→' }),
+      React.createElement(Button, { label: 'Browse Experiments', variant:'dark-solid', icon:'→' }),
+    )
+  ),
+  document.body
+);
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- @dsCard group="Brand" viewport="700x120" subtitle="Border radius system" name="Radius & Borders" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); padding: 20px; font-family: var(--font-mono); }
+  .row { display: flex; gap: 20px; align-items: center; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 56px; height: 40px; background: #111; }
+  .lbl { font-size: 10px; color: #6B6860; text-align: center; }
+  .pill-ex { background: #28D7E5; color: #111; font-size: 11px; font-weight: 600; padding: 4px 12px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="item"><div class="box" style="border-radius:0;"></div><div class="lbl">Buttons<br>0px</div></div>
+  <div class="item"><div class="box" style="border-radius:4px;"></div><div class="lbl">Cards<br>4px</div></div>
+  <div class="item"><div class="box" style="border-radius:8px;"></div><div class="lbl">Icon boxes<br>8px</div></div>
+  <div class="item"><div class="box pill-ex" style="border-radius:999px;width:auto;height:auto;">webgl</div><div class="lbl">Tags<br>pill</div></div>
+  <div class="item" style="margin-left:auto;">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="width:120px;height:1px;background:#111;"></div>
+      <div style="font-size:10px;color:#6B6860;">1px solid — cards</div>
+      <div style="width:120px;height:2px;background:#111;margin-top:4px;"></div>
+      <div style="font-size:10px;color:#6B6860;">2px solid — buttons</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

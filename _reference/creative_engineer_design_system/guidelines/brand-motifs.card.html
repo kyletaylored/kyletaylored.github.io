@@ -1,0 +1,41 @@
+<!-- @dsCard group="Brand" viewport="700x180" subtitle="Blueprint / technical annotation style" name="Blueprint Motifs" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); padding: 24px; font-family: var(--font-mono); font-size: 11px; color: #111; }
+  .stage { position: relative; width: 650px; height: 130px; }
+  .annot { position: absolute; color: #6B6860; font-size: 10px; }
+  .dashed { position: absolute; border-top: 1px dashed #A8A49F; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <!-- Blueprint box -->
+  <div style="position:absolute;left:20px;top:20px;width:120px;height:72px;border:1px solid #111;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">COMPONENT</div>
+  <!-- Annotation lines -->
+  <div class="dashed" style="left:140px;top:32px;width:60px;"></div>
+  <div class="annot" style="left:204px;top:25px;">border-radius: 4px</div>
+  <div class="dashed" style="left:140px;top:56px;width:60px;"></div>
+  <div class="annot" style="left:204px;top:49px;">border: 1px solid #111</div>
+  <div class="dashed" style="left:140px;top:80px;width:60px;"></div>
+  <div class="annot" style="left:204px;top:73px;">padding: 16px 24px</div>
+
+  <!-- Measurement arrow -->
+  <div style="position:absolute;left:20px;top:100px;display:flex;align-items:center;gap:0;">
+    <div style="width:120px;border-top:1px solid #111;position:relative;">
+      <div style="position:absolute;left:-4px;top:-4px;font-size:8px;">◀</div>
+      <div style="position:absolute;right:-4px;top:-4px;font-size:8px;">▶</div>
+    </div>
+  </div>
+  <div class="annot" style="left:38px;top:108px;">120px</div>
+
+  <!-- Slash marks (progress in progress indicator) -->
+  <div style="position:absolute;right:24px;top:90px;display:flex;gap:4px;align-items:center;">
+    <div style="font-size:16px;color:#A8A49F;letter-spacing:2px;">/ / / /</div>
+    <div style="width:10px;height:10px;background:#FFD54A;"></div>
+  </div>
+</div>
+</body>
+</html>

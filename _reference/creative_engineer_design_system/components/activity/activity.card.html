@@ -1,0 +1,28 @@
+<!-- @dsCard group="Components" viewport="700x260" name="ActivityItem" subtitle="Color-coded lab feed rows" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style> body { margin: 0; background: var(--color-bg); padding: 24px; } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="ActivityItem.jsx"></script>
+<script type="text/babel">
+const items = [
+  { type:'experiment', description:'Added Neural Texture Synthesis', time:'2h ago' },
+  { type:'git',        description:'Pushed 3 commits to flow-fields', time:'5h ago' },
+  { type:'tool',       description:'Added QR Code Generator', time:'1d ago' },
+  { type:'update',     description:'Improved LLM Agent memory system', time:'2d ago' },
+  { type:'article',    description:'Building Reliable AI Agents', time:'2h ago' },
+];
+ReactDOM.render(
+  React.createElement('div', null, ...items.map((it, i) => React.createElement(ActivityItem, { key:i, ...it }))),
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>

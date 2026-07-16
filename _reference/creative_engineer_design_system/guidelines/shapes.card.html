@@ -1,0 +1,47 @@
+<!-- @dsCard group="Brand" viewport="700x200" subtitle="Memphis geometric shapes" name="Shapes & Decoration" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); padding: 20px; font-family: var(--font-mono); overflow: hidden; }
+  .stage { position: relative; height: 160px; }
+  .label { font-size: 10px; color: #A8A49F; position: absolute; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <!-- Circle -->
+  <div style="position:absolute;left:20px;top:20px;width:80px;height:80px;border-radius:50%;background:#F44D8A;"></div>
+  <div class="label" style="left:20px;top:108px;">Circle</div>
+
+  <!-- Triangle -->
+  <div style="position:absolute;left:130px;top:15px;width:0;height:0;border-left:45px solid transparent;border-right:45px solid transparent;border-bottom:78px solid #28D7E5;"></div>
+  <div class="label" style="left:140px;top:108px;">Triangle</div>
+
+  <!-- Rectangle diagonal -->
+  <div style="position:absolute;left:250px;top:30px;width:80px;height:24px;background:#FFD54A;transform:rotate(-20deg);"></div>
+  <div class="label" style="left:248px;top:108px;">Diagonal bar</div>
+
+  <!-- Dot grid -->
+  <div style="position:absolute;left:360px;top:16px;">
+    <svg width="80" height="80" viewBox="0 0 80 80"><pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#111" opacity="0.25"/></pattern><rect width="80" height="80" fill="url(#dots)"/></svg>
+  </div>
+  <div class="label" style="left:364px;top:108px;">Dot grid</div>
+
+  <!-- Crosshair -->
+  <div style="position:absolute;left:470px;top:36px;font-size:28px;color:#111;font-weight:300;line-height:1;">+</div>
+  <div class="label" style="left:468px;top:108px;">Crosshair</div>
+
+  <!-- Diamond -->
+  <div style="position:absolute;left:530px;top:44px;width:16px;height:16px;background:#348BFF;transform:rotate(45deg);"></div>
+  <div class="label" style="left:524px;top:108px;">Diamond</div>
+
+  <!-- Hazard stripe -->
+  <div style="position:absolute;left:580px;top:20px;width:80px;height:24px;overflow:hidden;border-radius:2px;">
+    <svg width="80" height="24"><defs><pattern id="haz" x="0" y="0" width="16" height="24" patternUnits="userSpaceOnUse"><polygon points="0,24 8,0 16,0 8,24" fill="#FFD54A"/><polygon points="8,24 16,0 24,0 16,24" fill="#111"/></pattern></defs><rect width="80" height="24" fill="url(#haz)"/></svg>
+  </div>
+  <div class="label" style="left:582px;top:108px;">Hazard</div>
+</div>
+</body>
+</html>

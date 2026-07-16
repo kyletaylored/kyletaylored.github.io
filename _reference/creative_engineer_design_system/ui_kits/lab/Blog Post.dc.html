@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0 0 24px; line-height: 1.75; font-size: 17px; color: #2A2A2A; }
+  h2 { margin: 48px 0 16px; font-size: 28px; font-weight: 700; line-height: 1.2; }
+  h3 { margin: 36px 0 12px; font-size: 20px; font-weight: 600; }
+  pre { margin: 0; }
+  code { font-family: 'Space Mono', monospace; font-size: 13px; }
+</style>
+</helmet>
+
+<!-- NAV -->
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:#111;position:sticky;top:0;z-index:100;">
+  <a href="#" style="display:flex;align-items:center;gap:10px;">
+    <div style="width:28px;height:28px;background:#28D7E5;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;">
+      <span style="font-size:14px;font-weight:700;color:#111;line-height:1;">K</span>
+    </div>
+    <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Experiments</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Tools</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Playground</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">AI</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Hardware</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">About</a>
+    <span style="color:#F44D8A;font-size:20px;line-height:1;cursor:pointer;">+</span>
+  </div>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<header style="background:#111;padding:64px 48px 56px;position:relative;overflow:hidden;">
+  <!-- Decorative shapes -->
+  <div style="position:absolute;right:80px;top:-30px;width:160px;height:160px;border-radius:50%;background:#28D7E5;opacity:0.12;"></div>
+  <div style="position:absolute;right:160px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:#F44D8A;opacity:0.10;"></div>
+  <div style="position:absolute;right:40px;top:40px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.2;"></div>
+  <div style="position:absolute;left:48px;bottom:20px;color:#333;font-size:16px;letter-spacing:6px;">/ / / /</div>
+
+  <div style="max-width:760px;margin:0 auto;position:relative;">
+    <!-- Breadcrumb -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;">
+      <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#6B6860;">Articles</a>
+      <span style="color:#444;">›</span>
+      <span style="font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">AI Agents</span>
+    </div>
+
+    <!-- Title -->
+    <h1 style="margin:0 0 24px;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;">Building Reliable<br>AI Agents</h1>
+    <p style="font-size:18px;color:#A8A49F;line-height:1.6;margin:0 0 36px;max-width:580px;">Lessons learned from building agents that don't fail — and what to do when they inevitably do.</p>
+
+    <!-- Meta row -->
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#111;">K</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#FAF8F3;">Kyle Taylor</div>
+          <div style="font-size:11px;color:#6B6860;">Creative Engineer</div>
+        </div>
+      </div>
+      <div style="width:1px;height:32px;background:#2A2A2A;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6B6860;">July 14, 2026</div>
+      <div style="width:1px;height:32px;background:#2A2A2A;"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6B6860;">8 min read</div>
+      <div style="display:flex;gap:6px;margin-left:auto;">
+        <span style="font-size:11px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">AI</span>
+        <span style="font-size:11px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">Agents</span>
+        <span style="font-size:11px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">Open Source</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Pink separator -->
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- ARTICLE BODY + SIDEBAR -->
+<div style="max-width:1200px;margin:0 auto;padding:64px 48px;display:grid;grid-template-columns:1fr 280px;gap:80px;align-items:start;">
+
+  <!-- Main content -->
+  <article>
+    <!-- Lead paragraph -->
+    <p style="font-size:20px;font-weight:500;line-height:1.65;color:#111;margin-bottom:32px;border-left:3px solid #28D7E5;padding-left:20px;">I've spent the last year building AI agents that actually ship to production. Not demos. Not toy projects. Real systems that run 24/7 and are allowed to fail gracefully — but not silently.</p>
+
+    <p>The promise of autonomous agents is obvious: give an LLM access to tools, let it reason through a problem, and get something useful back. In practice, this breaks in about twelve different ways before lunch.</p>
+
+    <p>Here's what I've learned the hard way.</p>
+
+    <h2>1. Agents need a hard timeout, not a soft one</h2>
+
+    <p>Every agent loop should have an absolute wall-clock limit. Not a "try to stop after N steps" limit — a hard kill. LLMs will happily spiral through tool calls indefinitely if you let them. I've seen agents make 200 consecutive calls to a search API because the result "wasn't quite right yet."</p>
+
+    <!-- Code block -->
+    <div style="background:#111;border-radius:4px;overflow:hidden;margin:32px 0;">
+      <div style="padding:10px 20px;background:#1A1A1A;border-bottom:1px solid #2A2A2A;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">agent.ts</span>
+        <div style="margin-left:auto;display:flex;gap:6px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#F25A4C;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#FFD54A;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#28D7E5;"></div>
+        </div>
+      </div>
+      <pre style="padding:24px;overflow-x:auto;"><code><span style="color:#6B6860;">// Hard timeout — never trust the model to stop itself</span>
+<span style="color:#28D7E5;">const</span> <span style="color:#FAF8F3;">result</span> = <span style="color:#28D7E5;">await</span> Promise.race([
+  <span style="color:#FAF8F3;">agent</span>.<span style="color:#F44D8A;">run</span>(task),
+  <span style="color:#FAF8F3;">timeout</span>(<span style="color:#FFD54A;">30_000</span>, <span style="color:#FAF8F3;">'Agent timed out'</span>)
+]);
+
+<span style="color:#6B6860;">// Never: while (!done) { await step() }</span></code></pre>
+    </div>
+
+    <h2>2. Tool errors are not agent errors</h2>
+
+    <p>If a tool fails — an API is down, a file doesn't exist, a query returns nothing — that's information the agent should receive, not a crash condition. Design every tool to return a typed result with an <code style="background:#F0EDE8;padding:2px 6px;border-radius:3px;font-size:14px;">error</code> field the model can reason about.</p>
+
+    <!-- Callout box -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px 24px;margin:32px 0;display:flex;gap:16px;align-items:flex-start;">
+      <div style="width:4px;background:#FFD54A;border-radius:2px;flex-shrink:0;align-self:stretch;"></div>
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;color:#111;">Rule of thumb</div>
+        <p style="margin:0;font-size:15px;color:#2A2A2A;line-height:1.6;">An agent that catches its own errors and adapts is more useful than one that requires perfect inputs. Build for imperfect inputs from day one.</p>
+      </div>
+    </div>
+
+    <h2>3. Memory is a first-class concern</h2>
+
+    <p>Short-term (in-context), long-term (vector store), and episodic (what happened last session) memory serve completely different purposes. Conflating them — shoving everything into the context window — is the fastest path to confused, contradictory agent behavior.</p>
+
+    <p>The pattern I've landed on: keep the context window lean and surgical, use a vector store for retrieved knowledge, and write structured summaries to a simple key-value store between sessions.</p>
+
+    <h3>The three-layer memory model</h3>
+
+    <!-- Diagram-style table -->
+    <div style="border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;margin:24px 0;font-size:13px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#111;color:#FAF8F3;">
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;border-right:1px solid #2A2A2A;">Layer</div>
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;border-right:1px solid #2A2A2A;">Storage</div>
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;">Use for</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #E0DDDA;">
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;font-weight:500;">Short-term</div>
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;color:#6B6860;font-family:'Space Mono',monospace;font-size:12px;">Context window</div>
+        <div style="padding:12px 16px;color:#6B6860;">Current task, recent tool calls</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #E0DDDA;background:#FDFCFA;">
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;font-weight:500;">Long-term</div>
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;color:#6B6860;font-family:'Space Mono',monospace;font-size:12px;">Vector store</div>
+        <div style="padding:12px 16px;color:#6B6860;">Domain knowledge, docs, history</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #E0DDDA;">
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;font-weight:500;">Episodic</div>
+        <div style="padding:12px 16px;border-right:1px solid #F0EDE8;color:#6B6860;font-family:'Space Mono',monospace;font-size:12px;">KV / SQLite</div>
+        <div style="padding:12px 16px;color:#6B6860;">Session summaries, user prefs</div>
+      </div>
+    </div>
+
+    <p>This isn't a new idea — it maps roughly to how humans work. The implementation details are where things get interesting, and where most tutorials stop too early.</p>
+
+    <!-- Article CTA / Continuation hint -->
+    <div style="margin-top:48px;padding-top:48px;border-top:1px solid #E0DDDA;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6B6860;margin-bottom:12px;">Continue reading</div>
+      <p style="font-size:15px;color:#6B6860;margin-bottom:20px;">This post is part of an ongoing series on building production AI systems. More coming soon.</p>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">VIEW ALL ARTICLES →</a>
+    </div>
+  </article>
+
+  <!-- Sidebar -->
+  <aside style="position:sticky;top:80px;display:flex;flex-direction:column;gap:32px;">
+
+    <!-- Table of contents -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:16px;">Contents</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#" style="font-size:13px;color:#28D7E5;display:flex;align-items:baseline;gap:8px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">01</span>
+          Hard timeouts
+        </a>
+        <a href="#" style="font-size:13px;color:#6B6860;display:flex;align-items:baseline;gap:8px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">02</span>
+          Tool error handling
+        </a>
+        <a href="#" style="font-size:13px;color:#6B6860;display:flex;align-items:baseline;gap:8px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">03</span>
+          Memory layers
+        </a>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:12px;">Tags</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">AI</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">Agents</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">TypeScript</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">Open Source</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">Production</span>
+      </div>
+    </div>
+
+    <!-- Related articles -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:12px;">Related</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <a href="#" style="padding:12px 0;border-bottom:1px solid #F0EDE8;display:block;">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:3px;line-height:1.4;">Optimizing Postgres for High Write Workloads</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">2 days ago</div>
+        </a>
+        <a href="#" style="padding:12px 0;border-bottom:1px solid #F0EDE8;display:block;">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:3px;line-height:1.4;">My 3D Printing Workflow: Idea to Print</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">5 days ago</div>
+        </a>
+        <a href="#" style="padding:12px 0;display:block;">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:3px;line-height:1.4;">RAG Strategies That Actually Work</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">1 week ago</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- GitHub CTA -->
+    <div style="background:#111;border-radius:4px;padding:20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-10px;top:-10px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.15;"></div>
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:6px;position:relative;">Open Source</div>
+      <div style="font-size:12px;color:#6B6860;margin-bottom:16px;position:relative;line-height:1.5;">The companion code for this series is on GitHub.</div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;border:1px solid #28D7E5;padding:8px 14px;border-radius:0;position:relative;">VIEW ON GITHUB →</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#111;padding:48px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:200px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:280px;top:-30px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.8;"></div>
+  <div style="position:absolute;right:160px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.9;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;">
+    <svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hz" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hz)"/></svg>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;position:relative;">
+    <div>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0 0 4px;">This is a work in progress.</p>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0;">Just like <span style="color:#28D7E5;">everything else.</span></p>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Built by Kyle Taylor</div>
+      <div style="font-size:12px;color:#6B6860;margin-bottom:8px;">Full stack developer, AI engineer, maker.</div>
+      <a href="#" style="font-size:12px;color:#28D7E5;display:inline-flex;align-items:center;gap:4px;">kyletaylored.com →</a>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>

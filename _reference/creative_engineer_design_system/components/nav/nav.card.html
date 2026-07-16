@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x56" name="Nav" subtitle="Top bar — dark bg, K mark, uppercase items" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style> body { margin: 0; } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel">
+const items = ['Experiments','Tools','Playground','AI','Hardware','About'].map(l => ({ label: l }));
+ReactDOM.render(
+  React.createElement(Nav, { items, active: 'Experiments' }),
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>
