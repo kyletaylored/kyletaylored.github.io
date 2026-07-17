@@ -5,13 +5,12 @@ Kyle Taylor's site — portfolio, engineering journal, and Maker Lab. Built with
 ## Project Structure
 
 ```text
-├── public/                  # Static assets (favicon, robots.txt, CNAME)
-├── scripts/                 # One-off/build-time scripts (WP migration, activity fetch)
+├── public/                  # Static assets (favicon, robots.txt, CNAME, uploads/ — Pages CMS media)
+├── scripts/                 # One-off/build-time scripts (WP migration, GitHub contribution fetch)
 ├── src/
-│   ├── assets/               # Images/fonts processed by Astro's asset pipeline
 │   ├── components/           # Astro/React components (ui/ = shadcn primitives, decor/ = Memphis shapes)
 │   ├── content/               # Content collections: articles, projects, lab, pages
-│   ├── data/                  # Site settings + build-time generated data (activity.json)
+│   ├── data/                  # Site settings + build-time generated data (contributions.json)
 │   ├── layouts/                # Page layouts (Base/Article/Project/Lab)
 │   ├── lib/                    # Shared utilities
 │   ├── pages/                  # Routes
@@ -35,7 +34,7 @@ All commands run from the root of the project:
 | `npm run build`          | Build the production site to `./dist/` (also builds the Pagefind search index)                          |
 | `npm run preview`        | Preview the production build locally                                                                    |
 | `npm run migrate:wp`     | One-time migration: pull posts from the WordPress REST API into `src/content/articles/`                 |
-| `npm run fetch:activity` | Build-time fetch of recent GitHub activity into `src/data/activity.json` (requires `GH_ACTIVITY_TOKEN`) |
+| `npm run fetch:activity` | Build-time fetch of the GitHub contribution calendar into `src/data/contributions.json` (requires `GH_ACTIVITY_TOKEN`) — powers the homepage's contribution heatmap |
 | `npm run astro ...`      | Run Astro CLI commands (`astro check`, `astro add`, ...)                                                |
 
 ### Local search
@@ -44,7 +43,7 @@ Global search (Pagefind) indexes the built `dist/` output, so it only works afte
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and deploys it to GitHub Pages at the custom domain `kyletaylored.com` (see `public/CNAME`). The workflow also runs the activity-fetch script when `GH_ACTIVITY_TOKEN` is configured as a repo secret.
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and deploys it to GitHub Pages at the custom domain `kyletaylored.com` (see `public/CNAME`). The workflow also runs the contribution-graph fetch script when `GH_ACTIVITY_TOKEN` is configured as a repo secret.
 
 ## Stack
 

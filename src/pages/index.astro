@@ -4,13 +4,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import TerminalWindow from '../components/lab/TerminalWindow.astro';
-import ActivityFeed from '../components/ActivityFeed.astro';
+import GitHubContributionGraph from '../components/GitHubContributionGraph.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Circle from '../components/decor/Circle.astro';
 import Triangle from '../components/decor/Triangle.astro';
 import Diamond from '../components/decor/Diamond.astro';
 import DotGrid from '../components/decor/DotGrid.astro';
-import { formatRelativeTime } from '../lib/format-relative-time';
 import site from '../data/site.json';
 
 const categories = [
@@ -28,14 +27,9 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 5);
 
-type RawActivity = { type: 'experiment' | 'git' | 'tool' | 'update' | 'article' | 'commit'; repo: string; title: string; url: string; date: string };
-let activity: { type: RawActivity['type']; title: string; description: string; time: string; url: string }[] = [];
-try {
-	const raw = ((await import('../data/activity.json')).default as RawActivity[]).slice(0, 4);
-	activity = raw.map((a) => ({ type: a.type, title: a.title, description: a.repo, time: formatRelativeTime(a.date), url: a.url }));
-} catch {
-	activity = [];
-}
+const contributionWeeks = (await import('../data/contributions.json')).default as {
+	days: { date: string; count: number }[];
+}[];
 ---
 
 <BaseLayout title={site.siteTitle} description={site.siteDescription}>
@@ -147,36 +141,28 @@ try {
 		)
 	}
 
-	<section class="mx-auto grid max-w-6xl gap-14 px-6 pb-12 md:grid-cols-2 md:px-12">
-		<div>
-			<SectionHeader label="Recent Activity" linkText={null} />
-			{
-				activity.length > 0 ? (
-					<ActivityFeed items={activity} />
-				) : (
-					<p class="text-sm text-muted">No activity yet — check back soon.</p>
-				)
-			}
-		</div>
+	<section class="mx-auto max-w-6xl px-6 pb-12 md:px-12">
+		<SectionHeader label="GitHub Activity" linkText={null} />
+		<GitHubContributionGraph weeks={contributionWeeks} profileUrl="https://github.com/kyletaylored" />
+	</section>
 
-		<div>
-			<SectionHeader label="Latest Articles" linkText="View all articles" linkHref="/articles" />
-			{
-				latestArticles.length > 0 ? (
-					<div class="flex flex-col">
-						{latestArticles.map((a) => (
-							<a href={`/articles/${a.id}/`} class="flex items-center justify-between gap-3 border-b border-surface py-2.5">
-								<span class="text-sm font-medium text-ink">{a.data.title}</span>
-								<span class="flex-shrink-0 font-mono text-xs text-muted-light">
-									<FormattedDate date={a.data.pubDate} />
-								</span>
-							</a>
-						))}
-					</div>
-				) : (
-					<p class="text-sm text-muted">No articles published yet.</p>
-				)
-			}
-		</div>
+	<section class="mx-auto max-w-6xl px-6 pb-12 md:px-12">
+		<SectionHeader label="Latest Articles" linkText="View all articles" linkHref="/articles" />
+		{
+			latestArticles.length > 0 ? (
+				<div class="flex flex-col">
+					{latestArticles.map((a) => (
+						<a href={`/articles/${a.id}/`} class="flex items-center justify-between gap-3 border-b border-surface py-2.5">
+							<span class="text-sm font-medium text-ink">{a.data.title}</span>
+							<span class="flex-shrink-0 font-mono text-xs text-muted-light">
+								<FormattedDate date={a.data.pubDate} />
+							</span>
+						</a>
+					))}
+				</div>
+			) : (
+				<p class="text-sm text-muted">No articles published yet.</p>
+			)
+		}
 	</section>
 </BaseLayout>

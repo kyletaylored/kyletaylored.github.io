@@ -1,83 +1,95 @@
 /**
- * Build-time fetch of recent GitHub activity for the homepage "Recent
- * Activity" timeline. Runs before `astro build` (see .github/workflows/deploy.yml)
- * so the timeline is baked into static HTML with zero client JS.
+ * Build-time fetch of the GitHub contribution calendar (the "colored
+ * squares" heatmap from a GitHub profile) for the homepage's GitHub
+ * Activity section. Runs before `astro build` (see .github/workflows/deploy.yml)
+ * so the graph is baked into static HTML with zero client JS.
  *
  * Requires a GH_ACTIVITY_TOKEN env var (a PAT with public read access) since
- * the auto-provided Actions GITHUB_TOKEN is scoped only to this repo and
- * can't list activity across other repos. If the token isn't set, this
- * script writes an empty activity.json rather than failing the build.
+ * the auto-provided Actions GITHUB_TOKEN can't query the GraphQL API on the
+ * user's behalf. If the token isn't set, this script writes an empty
+ * contributions.json rather than failing the build.
+ *
+ * Uses GitHub's GraphQL API because contribution calendar data has no REST
+ * equivalent — it's only exposed via `user.contributionsCollection`.
  */
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const GITHUB_USER = 'kyletaylored';
-const OUT_FILE = path.resolve(import.meta.dirname, '../src/data/activity.json');
+const OUT_FILE = path.resolve(import.meta.dirname, '../src/data/contributions.json');
 
-interface ActivityEntry {
-	type: 'git' | 'article' | 'tool' | 'commit';
-	repo: string;
-	title: string;
-	url: string;
+interface ContributionDay {
 	date: string;
+	count: number;
 }
 
-async function githubFetch(url: string, token: string) {
-	const res = await fetch(url, {
+interface ContributionWeek {
+	days: ContributionDay[];
+}
+
+const QUERY = `
+	query ($login: String!) {
+		user(login: $login) {
+			contributionsCollection {
+				contributionCalendar {
+					weeks {
+						contributionDays {
+							date
+							contributionCount
+						}
+					}
+				}
+			}
+		}
+	}
+`;
+
+async function fetchContributions(token: string): Promise<ContributionWeek[]> {
+	const res = await fetch('https://api.github.com/graphql', {
+		method: 'POST',
 		headers: {
 			Authorization: `Bearer ${token}`,
-			Accept: 'application/vnd.github+json',
+			'Content-Type': 'application/json',
 		},
+		body: JSON.stringify({ query: QUERY, variables: { login: GITHUB_USER } }),
 	});
-	if (!res.ok) throw new Error(`GitHub API request failed (${res.status}): ${url}`);
-	return res.json();
+	if (!res.ok) throw new Error(`GitHub GraphQL request failed (${res.status})`);
+
+	const json = (await res.json()) as {
+		data?: {
+			user?: {
+				contributionsCollection?: {
+					contributionCalendar?: {
+						weeks: Array<{ contributionDays: Array<{ date: string; contributionCount: number }> }>;
+					};
+				};
+			};
+		};
+		errors?: Array<{ message: string }>;
+	};
+	if (json.errors?.length) throw new Error(`GitHub GraphQL errors: ${json.errors.map((e) => e.message).join('; ')}`);
+
+	const weeks = json.data?.user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
+	return weeks.map((week) => ({
+		days: week.contributionDays.map((day) => ({ date: day.date, count: day.contributionCount })),
+	}));
 }
 
 async function main() {
 	const token = process.env.GH_ACTIVITY_TOKEN;
 
+	await mkdir(path.dirname(OUT_FILE), { recursive: true });
+
 	if (!token) {
-		console.warn('GH_ACTIVITY_TOKEN not set — writing empty activity.json.');
-		await mkdir(path.dirname(OUT_FILE), { recursive: true });
+		console.warn('GH_ACTIVITY_TOKEN not set — writing empty contributions.json.');
 		await writeFile(OUT_FILE, '[]\n', 'utf-8');
 		return;
 	}
 
-	const repos = (await githubFetch(
-		`https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&per_page=10`,
-		token,
-	)) as Array<{ name: string; full_name: string; html_url: string; pushed_at: string; fork: boolean }>;
-
-	const prs = (await githubFetch(
-		`https://api.github.com/search/issues?q=author:${GITHUB_USER}+is:pr+is:merged&sort=updated&order=desc&per_page=10`,
-		token,
-	)) as { items: Array<{ title: string; html_url: string; updated_at: string; repository_url: string }> };
-
-	const repoActivity: ActivityEntry[] = repos
-		.filter((r) => !r.fork)
-		.map((r) => ({
-			type: 'git',
-			repo: r.full_name,
-			title: `Pushed to ${r.name}`,
-			url: r.html_url,
-			date: r.pushed_at,
-		}));
-
-	const prActivity: ActivityEntry[] = prs.items.map((pr) => ({
-		type: 'commit',
-		repo: pr.repository_url.replace('https://api.github.com/repos/', ''),
-		title: pr.title,
-		url: pr.html_url,
-		date: pr.updated_at,
-	}));
-
-	const activity = [...repoActivity, ...prActivity]
-		.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
-		.slice(0, 20);
-
-	await mkdir(path.dirname(OUT_FILE), { recursive: true });
-	await writeFile(OUT_FILE, JSON.stringify(activity, null, 2) + '\n', 'utf-8');
-	console.log(`Wrote ${activity.length} activity entries to ${path.relative(process.cwd(), OUT_FILE)}`);
+	const weeks = await fetchContributions(token);
+	const totalDays = weeks.reduce((sum, week) => sum + week.days.length, 0);
+	await writeFile(OUT_FILE, JSON.stringify(weeks, null, 2) + '\n', 'utf-8');
+	console.log(`Wrote ${weeks.length} weeks (${totalDays} days) to ${path.relative(process.cwd(), OUT_FILE)}`);
 }
 
 main().catch((err) => {

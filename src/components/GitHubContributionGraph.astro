@@ -1,0 +1,74 @@
+---
+// GitHub's own contribution heatmap, re-skinned to the site's palette
+// instead of GitHub's green. Data comes from scripts/fetch-activity.ts
+// (GH_ACTIVITY_TOKEN-gated, see .env.example) — no client JS involved.
+interface ContributionDay {
+	date: string;
+	count: number;
+}
+
+interface ContributionWeek {
+	days: ContributionDay[];
+}
+
+interface Props {
+	weeks: ContributionWeek[];
+	profileUrl: string;
+}
+
+const { weeks, profileUrl } = Astro.props;
+
+const totalContributions = weeks.reduce((sum, week) => sum + week.days.reduce((s, d) => s + d.count, 0), 0);
+
+// 5 buckets (0 = no activity) using the same teal accent at increasing
+// opacity, matching the design system instead of GitHub's green scale.
+function levelFor(count: number): 0 | 1 | 2 | 3 | 4 {
+	if (count <= 0) return 0;
+	if (count <= 2) return 1;
+	if (count <= 5) return 2;
+	if (count <= 9) return 3;
+	return 4;
+}
+
+const levelColors = ['var(--color-surface)', 'color-mix(in srgb, var(--color-teal) 30%, var(--color-surface))', 'color-mix(in srgb, var(--color-teal) 55%, var(--color-surface))', 'color-mix(in srgb, var(--color-teal) 80%, var(--color-surface))', 'var(--color-teal)'];
+
+const monthLabels = weeks.map((week, i) => {
+	const first = week.days[0];
+	if (!first) return null;
+	const date = new Date(first.date);
+	const prevWeek = weeks[i - 1];
+	const prevMonth = prevWeek?.days[0] ? new Date(prevWeek.days[0].date).getMonth() : -1;
+	return date.getMonth() !== prevMonth ? date.toLocaleDateString('en-US', { month: 'short' }) : null;
+});
+---
+
+{
+	weeks.length > 0 ? (
+		<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
+			<div class="mb-2 flex items-baseline justify-between">
+				<span class="font-mono text-xs text-muted">{totalContributions} contributions in the last year</span>
+				<span class="text-xs text-teal">View on GitHub &rarr;</span>
+			</div>
+			<div class="overflow-x-auto">
+				<div class="mb-1 flex gap-[3px] font-mono text-[10px] text-muted-light">
+					{monthLabels.map((label) => (
+						<span class="w-[10px] flex-shrink-0">{label}</span>
+					))}
+				</div>
+				<div class="inline-grid grid-flow-col gap-[3px]" style={{ gridTemplateRows: 'repeat(7, 10px)' }}>
+					{weeks.map((week) =>
+						week.days.map((day) => (
+							<span
+								class="h-[10px] w-[10px] rounded-[2px]"
+								style={{ background: levelColors[levelFor(day.count)] }}
+								title={`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`}
+							/>
+						)),
+					)}
+				</div>
+			</div>
+		</a>
+	) : (
+		<p class="text-sm text-muted">No GitHub activity data yet — check back soon.</p>
+	)
+}
