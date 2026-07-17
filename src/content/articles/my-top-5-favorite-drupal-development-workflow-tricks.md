@@ -4,9 +4,6 @@ description: "When you’ve been working with any platform for a long time, you 
 pubDate: 2013-11-13
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 When you’ve been working with any platform for a long time, you start to build a relationship with that platform. For Drupal in particular, a lot of developers seem to take similar paths when it comes to building this relationship. At first, we’re struck with awe as we admire the sheer power of Drupal, and then we start marching up the roller coaster some of us would call the “learning curve”. We love it, we hate it, but most of all – we learn from it. After visiting the issue queue and StackOverflow for the millionth time, we start keeping a few tricks up our sleeves for the common “features” that Drupal sometimes throws at us.

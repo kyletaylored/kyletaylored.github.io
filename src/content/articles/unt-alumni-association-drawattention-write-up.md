@@ -4,9 +4,6 @@ description: "DrawAttention is a Denton-based startup co-founded by Kyle Taylor,
 pubDate: 2015-03-08
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 DrawAttention is a Denton-based startup co-founded by Kyle Taylor, a 2012 UNT alumnus, that creates whiteboard stickers for laptops and other devices. Though it’s such a simple idea, it has caught the attention of whiteboard enthusiasts and tech publication all over the world – not just because of that market potential and simple design, but also because of how they bootstrapped themselves into success starting with only $13, the price of a domain name.

@@ -4,9 +4,6 @@ description: "New Tech Event Model (blend with House of Genius model?)"
 pubDate: 2016-05-01
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 *   Participants

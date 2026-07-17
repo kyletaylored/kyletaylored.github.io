@@ -4,9 +4,6 @@ description: "http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-s
 pubDate: 2015-02-11
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 *   [http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/](http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/)

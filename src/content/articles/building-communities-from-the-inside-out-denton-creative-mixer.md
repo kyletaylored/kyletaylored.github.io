@@ -5,9 +5,6 @@ pubDate: 2013-05-14
 heroImage: "https://dev-kyletaylored-wp.pantheonsite.io/wp-content/uploads/2024/09/92d15df1986e96bb7d1528353527be34.jpeg"
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 **![](https://dev-kyletaylored-wp.pantheonsite.io/wp-content/uploads/2024/09/a80aa5fb03749d407fb4cec74d99d15f.jpeg)**

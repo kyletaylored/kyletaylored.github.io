@@ -4,9 +4,6 @@ description: "I’ve been moving my blog around for about the past 2 years becau
 pubDate: 2013-08-05
 category: "Uncategorized"
 tags: ["personal", "post", "published"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 ![](https://dev-kyletaylored-wp.pantheonsite.io/wp-content/uploads/2024/09/4f35a1a10963dd594b6e07824e9f1d4e.jpg)

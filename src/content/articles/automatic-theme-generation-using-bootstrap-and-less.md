@@ -4,9 +4,6 @@ description: "It’s known that theming in Drupal is not the easiest thing in th
 pubDate: 2015-10-14
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 It’s known that theming in Drupal is not the easiest thing in the world. There’s generally a lot of markup to deal with, specific hooks and JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time to build a new theme. Depending on the project, you are probably building a custom theme every 

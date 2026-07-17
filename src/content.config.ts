@@ -11,12 +11,6 @@ const seoSchema = z.object({
 	jsonLd: z.record(z.any()).optional(),
 });
 
-const authorSchema = z.object({
-	name: z.string().default('Kyle Taylor'),
-	role: z.string().default('Creative Engineer'),
-	avatar: z.string().optional(),
-});
-
 const articles = defineCollection({
 	loader: glob({ base: './src/content/articles', pattern: '**/*.{md,mdx}' }),
 	schema: ({ image }) =>
@@ -28,7 +22,6 @@ const articles = defineCollection({
 			heroImage: z.union([image(), z.string().url()]).optional(),
 			category: z.string(),
 			tags: z.array(z.string()).default([]),
-			author: authorSchema.default({}),
 			draft: z.boolean().default(false),
 			sourceUrl: z.string().url().optional(),
 			seo: seoSchema.default({}),

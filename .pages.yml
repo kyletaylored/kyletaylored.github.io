@@ -7,7 +7,7 @@ content:
     label: Articles
     type: collection
     path: src/content/articles
-    format: mdx-frontmatter
+    format: yaml-frontmatter
     fields:
       - name: title
         type: string
@@ -28,12 +28,6 @@ content:
       - name: tags
         type: string
         list: true
-      - name: author
-        type: object
-        fields:
-          - { name: name, type: string }
-          - { name: role, type: string }
-          - { name: avatar, type: image }
       - name: draft
         type: boolean
         default: false
@@ -55,7 +49,7 @@ content:
     label: Projects
     type: collection
     path: src/content/projects
-    format: mdx-frontmatter
+    format: yaml-frontmatter
     fields:
       - name: title
         type: string
@@ -106,7 +100,7 @@ content:
     label: Lab
     type: collection
     path: src/content/lab
-    format: mdx-frontmatter
+    format: yaml-frontmatter
     fields:
       - name: title
         type: string
@@ -151,7 +145,7 @@ content:
     label: Pages
     type: collection
     path: src/content/pages
-    format: mdx-frontmatter
+    format: yaml-frontmatter
     fields:
       - name: title
         type: string
@@ -175,6 +169,7 @@ content:
     label: Site Settings
     type: file
     path: src/data/site.json
+    format: json
     fields:
       - name: siteTitle
         type: string

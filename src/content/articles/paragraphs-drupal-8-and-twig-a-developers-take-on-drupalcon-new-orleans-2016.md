@@ -4,9 +4,6 @@ description: "Drupalcon New Orleans was the 3rd Drupalcon I’ve attended, and i
 pubDate: 2016-05-23
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 Drupalcon New Orleans was the 3rd Drupalcon I’ve attended, and it never ceases to amaze me how much Drupal has changed over the years, and how much time and effort the community has not just put into core and contrib, but also building out 3rd party tools, scripts, and methods that will benefit other agencies and freelancers as well. It really is a privilege to be a part of a community that is incredibly committed to the values of open source and always willing to share their experience along the way.

@@ -4,9 +4,6 @@ description: "It’s a tough life in the open source world. We have constant acc
 pubDate: 2013-07-18
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 It’s a tough life in the open source world. We have constant access to thousands of free repositories, tools, and systems… and we love it. It’s like a digital flea market, but everything is up for grabs and there isn’t a limit of how much you can carry (except your hard drive). But one of the hardest resources for us to find for free is server space for hosting the awesome things we build. We can use Github Pages for static site hosting, but you’re limited to only HTML/CSS/JS. In this particular case, we want to host things with a backend and a database, like Drupal. I’ll be going over a couple of the free platforms you can use to build your Drupal site on, and which one will give you the best performance and tools for the big ol’ price of nothing.

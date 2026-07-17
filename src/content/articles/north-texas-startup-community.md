@@ -4,9 +4,6 @@ description: "Startup Weekend Denton"
 pubDate: 2013-11-25
 category: "Uncategorized"
 tags: ["page", "post", "published"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 [Startup Weekend Denton](http://denton.startupweekend.org)

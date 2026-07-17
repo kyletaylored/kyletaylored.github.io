@@ -5,14 +5,14 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Button from '../components/Button.astro';
 import Circle from '../components/decor/Circle.astro';
 import Triangle from '../components/decor/Triangle.astro';
+import { AUTHOR_NAME } from '../consts';
 
 interface Props {
 	entry: CollectionEntry<'articles'>;
 }
 
 const { entry } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage, category, tags, author, sourceUrl, seo } =
-	entry.data;
+const { title, description, pubDate, updatedDate, heroImage, category, tags, sourceUrl, seo } = entry.data;
 
 const { Content, headings } = await render(entry);
 const toc = headings.filter((h) => h.depth === 2);
@@ -60,12 +60,9 @@ const related = (await getCollection('articles'))
 			<div class="flex flex-wrap items-center gap-4 md:gap-5">
 				<div class="flex items-center gap-2.5">
 					<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm bg-teal text-sm font-bold text-ink">
-						{author.name.charAt(0)}
+						{AUTHOR_NAME.charAt(0)}
 					</div>
-					<div>
-						<div class="text-sm font-semibold text-bg">{author.name}</div>
-						<div class="text-[11px] text-muted">{author.role}</div>
-					</div>
+					<div class="text-sm font-semibold text-bg">{AUTHOR_NAME}</div>
 				</div>
 				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
 				<div class="font-mono text-[11px] text-muted"><FormattedDate date={pubDate} /></div>

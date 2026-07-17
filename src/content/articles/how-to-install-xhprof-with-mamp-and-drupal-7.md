@@ -4,9 +4,6 @@ description: "At the very bottom, add"
 pubDate: 2016-04-06
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 1.  Use Homebrew

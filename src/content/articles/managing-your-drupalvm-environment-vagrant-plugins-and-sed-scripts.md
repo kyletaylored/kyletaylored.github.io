@@ -4,9 +4,6 @@ description: "In our last post, we talked about how great DrupalVM is by providi
 pubDate: 2018-01-02
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 In our last post, we talked about how great DrupalVM is by providing Drupal developers a robust development environment that can be used with multiple types of applications. And while the installation process is fairly straight forward, it can take some trial and error in updating your config.yml file for the perfect hosting environment. Are you managing multiple virtual machines for multiple client project? This can take up a significant amount of space on your computer’s resources (RAM and hard drive space). This post will walk you through how we addressed some of these common problems to optimize your DrupalVM environments.

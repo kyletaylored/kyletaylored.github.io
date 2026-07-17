@@ -4,9 +4,6 @@ description: "The hardest part of starting up is starting out."
 pubDate: 2015-11-05
 category: "Uncategorized"
 tags: ["post"]
-author:
-  name: Kyle Taylor
-  role: Creative Engineer
 seo: {}
 ---
 The hardest part of starting up is starting out.
