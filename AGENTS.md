@@ -1,3 +1,7 @@
+## Design system
+
+Before adding UI, check [`src/components/README.md`](./src/components/README.md) — it maps every pattern in the design comps (`_reference/creative_engineer_design_system/`) to the actual component that implements it, flags which comp-derived components (Badge, Card) exist but aren't wired up yet, and documents a real CSS cascade-layers gotcha (`global.css` tag selectors must live in `@layer base` or they silently beat Tailwind utilities).
+
 ## Development
 
 When starting the dev server, use background mode:

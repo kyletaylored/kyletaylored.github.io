@@ -1,122 +1,123 @@
 @import "./tokens.css";
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
-body {
-	font-family: var(--font-body);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: var(--color-bg);
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: var(--color-black);
-	font-size: var(--text-md);
-	line-height: var(--leading-relaxed);
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	font-family: var(--font-display);
-	color: var(--color-black);
-	line-height: var(--leading-tight);
-}
-h1 {
-	font-size: var(--text-5xl);
-}
-h2 {
-	font-size: var(--text-3xl);
-}
-h3 {
-	font-size: var(--text-2xl);
-}
-h4 {
-	font-size: var(--text-xl);
-}
-h5 {
-	font-size: var(--text-lg);
-}
-strong,
-b {
-	font-weight: var(--weight-bold);
-}
-a {
-	color: var(--color-teal);
-}
-a:hover {
-	color: var(--color-pink);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: var(--radius-lg);
-}
-code {
-	font-family: var(--font-mono);
-	padding: 2px 5px;
-	background-color: var(--color-surface);
-	border-radius: var(--radius-sm);
-}
-pre {
-	font-family: var(--font-mono);
-	padding: 1.5em;
-	border-radius: var(--radius-lg);
-	background-color: var(--color-surface);
-}
-pre > code {
-	all: unset;
-	font-family: var(--font-mono);
-}
-blockquote {
-	border-left: var(--border-thick) solid var(--color-teal);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: var(--text-lg);
-}
-hr {
-	border: none;
-	border-top: var(--border-thin) solid var(--color-border);
-}
-@media (max-width: 720px) {
-	body {
-		font-size: var(--text-base);
+/*
+ * IMPORTANT: these base element resets must live inside @layer base.
+ * Tailwind wraps its own utilities in CSS cascade layers (theme, base,
+ * components, utilities). Per the cascade-layers spec, unlayered CSS
+ * always wins over layered CSS regardless of selector specificity — so
+ * a plain, unlayered `a { color: ... }` or `h1 { color: ... }` rule here
+ * would silently beat EVERY `text-*` utility applied to an <a> or heading
+ * anywhere on the site (e.g. `text-bg` on a nav link inside the dark
+ * header), no matter how that utility class is written. Placing these
+ * rules in `@layer base` puts them in the same layer Tailwind uses for
+ * its own reset, so the (later) `utilities` layer still overrides them
+ * as expected.
+ */
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
 	}
-}
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px 1px 1px 1px);
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	white-space: nowrap;
+	body {
+		font-family: var(--font-body);
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		background: var(--color-bg);
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		color: var(--color-black);
+		font-size: var(--text-md);
+		line-height: var(--leading-relaxed);
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0 0 0.5rem 0;
+		font-family: var(--font-display);
+		color: var(--color-black);
+		line-height: var(--leading-tight);
+	}
+	h1 {
+		font-size: var(--text-5xl);
+	}
+	h2 {
+		font-size: var(--text-3xl);
+	}
+	h3 {
+		font-size: var(--text-2xl);
+	}
+	h4 {
+		font-size: var(--text-xl);
+	}
+	h5 {
+		font-size: var(--text-lg);
+	}
+	strong,
+	b {
+		font-weight: var(--weight-bold);
+	}
+	a {
+		color: var(--color-teal);
+	}
+	a:hover {
+		color: var(--color-pink);
+	}
+	p {
+		margin-bottom: 1em;
+	}
+	.prose p {
+		margin-bottom: 2em;
+	}
+	textarea {
+		width: 100%;
+		font-size: 16px;
+	}
+	input {
+		font-size: 16px;
+	}
+	table {
+		width: 100%;
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--radius-lg);
+	}
+	code {
+		font-family: var(--font-mono);
+		padding: 2px 5px;
+		background-color: var(--color-surface);
+		border-radius: var(--radius-sm);
+	}
+	pre {
+		font-family: var(--font-mono);
+		padding: 1.5em;
+		border-radius: var(--radius-lg);
+		background-color: var(--color-surface);
+	}
+	pre > code {
+		all: unset;
+		font-family: var(--font-mono);
+	}
+	blockquote {
+		border-left: var(--border-thick) solid var(--color-teal);
+		padding: 0 0 0 20px;
+		margin: 0;
+		font-size: var(--text-lg);
+	}
+	hr {
+		border: none;
+		border-top: var(--border-thin) solid var(--color-border);
+	}
+	@media (max-width: 720px) {
+		body {
+			font-size: var(--text-base);
+		}
+	}
 }
