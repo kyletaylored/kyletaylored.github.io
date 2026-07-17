@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="design_doc_mode" content="canvas">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #2A2A2A; font-family: 'Space Grotesk', sans-serif; padding: 48px; }
+  .label { font-family: 'Space Mono', monospace; font-size: 11px; color: #888; margin-bottom: 10px; letter-spacing: 0.06em; }
+  .size-note { font-family: 'Space Mono', monospace; font-size: 10px; color: #555; margin-top: 8px; }
+  .group { margin-bottom: 64px; }
+  h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin: 0 0 24px; display: flex; align-items: center; gap: 8px; }
+  h2::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:#F25A4C; }
+</style>
+</helmet>
+
+<!-- PAGE HEADER -->
+<div style="margin-bottom:56px;">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:10px;">CREATIVE ENGINEER DESIGN SYSTEM</div>
+  <div style="font-size:40px;font-weight:700;color:#FAF8F3;line-height:1.0;letter-spacing:-0.02em;">Social &amp; SEO Banners<span style="color:#F44D8A;">.</span></div>
+  <div style="font-size:14px;color:#888;margin-top:10px;">All sizes shown at display scale. Export at 1× for actual pixel dimensions.</div>
+</div>
+
+<!-- ─── OG / TWITTER CARD 1200×630 ─── -->
+<div class="group">
+  <h2>Open Graph · Twitter Card · Discord / Slack unfurl</h2>
+  <div class="label">1200 × 630px — Default variant</div>
+
+  <!-- Default dark OG -->
+  <div id="1a" style="width:600px;height:315px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+    <!-- Art layer -->
+    <div style="position:absolute;right:-30px;top:-40px;width:180px;height:180px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
+    <div style="position:absolute;right:80px;top:-20px;width:0;height:0;border-left:90px solid transparent;border-right:90px solid transparent;border-bottom:156px solid #28D7E5;z-index:0;"></div>
+    <div style="position:absolute;right:240px;bottom:10px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:1;"></div>
+    <div style="position:absolute;right:20px;bottom:30px;width:20px;height:20px;background:#348BFF;transform:rotate(45deg);z-index:2;"></div>
+    <div style="position:absolute;right:310px;top:14px;z-index:0;"><svg width="64" height="64"><defs><pattern id="dg_og1" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#444"/></pattern></defs><rect width="64" height="64" fill="url(#dg_og1)"/></svg></div>
+    <div style="position:absolute;right:18px;top:80px;font-size:20px;font-weight:200;color:#444;z-index:2;">+</div>
+    <div style="position:absolute;left:24px;bottom:18px;display:flex;align-items:center;gap:6px;z-index:2;"><span style="font-size:10px;color:#444;letter-spacing:5px;">/ / /</span><div style="width:6px;height:6px;background:#FFD54A;opacity:0.6;"></div></div>
+    <!-- Content -->
+    <div style="position:absolute;left:36px;top:36px;right:220px;z-index:3;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <div style="width:22px;height:22px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#111;">K</span></div>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+      </div>
+      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:12px;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span></div>
+      <div style="font-size:13px;color:#A8A49F;line-height:1.5;">Experiments, tools, and side projects.<br>Everything in progress.</div>
+    </div>
+    <!-- Pink bar -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+  </div>
+  <div class="size-note">1a · Dark hero · 1200×630 · @2x = save at 1200px wide</div>
+
+  <!-- Light variant -->
+  <div style="margin-top:16px;" class="label">Light variant — for contexts that invert</div>
+  <div id="1b" style="width:600px;height:315px;background:#FAF8F3;position:relative;overflow:hidden;border-radius:4px;border:1px solid #E0DDDA;">
+    <div style="position:absolute;right:-20px;top:-30px;width:150px;height:150px;border-radius:50%;background:#F44D8A;opacity:0.15;z-index:0;"></div>
+    <div style="position:absolute;right:70px;top:-10px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;opacity:0.12;z-index:0;"></div>
+    <div style="position:absolute;right:210px;bottom:0;width:80px;height:80px;border-radius:50%;background:#FFD54A;opacity:0.2;z-index:0;"></div>
+    <!-- dot grid -->
+    <div style="position:absolute;right:0;top:0;z-index:0;"><svg width="100" height="100"><defs><pattern id="dg_og2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#111" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(#dg_og2)"/></svg></div>
+    <div style="position:absolute;left:36px;top:36px;right:180px;z-index:2;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <div style="width:22px;height:22px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#111;">K</span></div>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#111;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+      </div>
+      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#111;margin-bottom:12px;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span></div>
+      <div style="font-size:13px;color:#6B6860;line-height:1.5;">Experiments, tools, and side projects.<br>Everything in progress.</div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+    <div style="position:absolute;left:24px;bottom:12px;display:flex;align-items:center;gap:4px;z-index:2;"><span style="font-size:9px;color:#C0BCB7;letter-spacing:4px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.5;"></div></div>
+  </div>
+  <div class="size-note">1b · Light · 1200×630</div>
+</div>
+
+<!-- ─── Article / Post OG ─── -->
+<div class="group">
+  <h2>Article / Post Open Graph</h2>
+  <div class="label">1200 × 630px — for blog posts and experiment pages</div>
+
+  <div id="2a" style="width:600px;height:315px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+    <!-- Subtle art — less dominant than homepage -->
+    <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:#28D7E5;opacity:0.15;z-index:0;"></div>
+    <div style="position:absolute;right:0;bottom:0;width:0;height:0;border-left:80px solid transparent;border-right:80px solid transparent;border-bottom:140px solid #F44D8A;opacity:0.1;z-index:0;"></div>
+    <!-- Category + title + meta -->
+    <div style="position:absolute;left:36px;top:36px;right:36px;z-index:2;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <div style="width:20px;height:20px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-weight:700;color:#111;">K</span></div>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV · ARTICLES</span>
+      </div>
+      <div style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:#F44D8A;color:#FFF;padding:3px 10px;border-radius:999px;margin-bottom:14px;">AI Agents</div>
+      <div style="font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:12px;">Building Reliable<br>AI Agents</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#111;">K</div>
+          <span style="font-size:11px;color:#A8A49F;">Kyle Taylor</span>
+        </div>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:#6B6860;">July 14, 2026 · 8 min read</span>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+  </div>
+  <div class="size-note">2a · Article OG · 1200×630 · swap category color and title per post</div>
+</div>
+
+<!-- ─── SQUARE 1080×1080 ─── -->
+<div class="group">
+  <h2>Square · Instagram · Threads · Some X posts</h2>
+  <div class="label">1080 × 1080px</div>
+
+  <div style="display:flex;gap:16px;align-items:flex-start;">
+    <!-- Homepage square -->
+    <div>
+      <div id="3a" style="width:320px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+        <div style="position:absolute;right:-24px;top:-24px;width:160px;height:160px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
+        <div style="position:absolute;right:64px;top:-16px;width:0;height:0;border-left:72px solid transparent;border-right:72px solid transparent;border-bottom:124px solid #28D7E5;z-index:0;"></div>
+        <div style="position:absolute;left:16px;bottom:-24px;width:100px;height:100px;border-radius:50%;background:#FFD54A;z-index:0;opacity:0.9;"></div>
+        <div style="position:absolute;right:16px;bottom:40px;width:14px;height:14px;background:#348BFF;transform:rotate(45deg);z-index:2;"></div>
+        <div style="position:absolute;right:200px;top:16px;"><svg width="50" height="50"><defs><pattern id="dg_sq1" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#444"/></pattern></defs><rect width="50" height="50" fill="url(#dg_sq1)"/></svg></div>
+        <div style="position:absolute;left:20px;top:140px;right:20px;z-index:3;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
+            <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+          </div>
+          <div style="font-size:28px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span><span style="color:#F44D8A;">•</span></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+      </div>
+      <div class="size-note">3a · Square Homepage · 1080×1080</div>
+    </div>
+
+    <!-- Article square -->
+    <div>
+      <div id="3b" style="width:320px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+        <div style="position:absolute;right:-16px;top:-16px;width:100px;height:100px;border-radius:50%;background:#28D7E5;opacity:0.2;z-index:0;"></div>
+        <div style="position:absolute;left:20px;top:20px;right:20px;z-index:2;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:20px;">
+            <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+          </div>
+          <div style="display:inline-block;font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:#F44D8A;color:#FFF;padding:2px 8px;border-radius:999px;margin-bottom:14px;">AI Agents</div>
+          <div style="font-size:26px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:16px;">Building<br>Reliable<br>AI Agents</div>
+          <div style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">8 min read · Jul 14, 2026</div>
+        </div>
+        <!-- Bottom art -->
+        <div style="position:absolute;right:-20px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.2;z-index:0;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+      </div>
+      <div class="size-note">3b · Square Article · 1080×1080</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── LINKEDIN BANNER 1584×396 ─── -->
+<div class="group">
+  <h2>LinkedIn Profile Banner</h2>
+  <div class="label">1584 × 396px</div>
+
+  <div id="4a" style="width:660px;height:165px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+    <div style="position:absolute;right:-16px;top:-20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
+    <div style="position:absolute;right:72px;top:-10px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #28D7E5;z-index:0;"></div>
+    <div style="position:absolute;right:200px;bottom:-20px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:0;"></div>
+    <div style="position:absolute;right:300px;top:12px;"><svg width="50" height="50"><defs><pattern id="dg_li" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#444"/></pattern></defs><rect width="50" height="50" fill="url(#dg_li)"/></svg></div>
+    <div style="position:absolute;left:32px;top:50%;transform:translateY(-50%);z-index:3;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:8px;">CREATIVE ENGINEER</div>
+      <div style="font-size:28px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:6px;">Kyle Taylor<span style="color:#F44D8A;">.</span></div>
+      <div style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">AI · Open Source · Hardware · Making</div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+    <div style="position:absolute;left:32px;bottom:10px;display:flex;align-items:center;gap:4px;z-index:2;"><span style="font-size:8px;color:#333;letter-spacing:4px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.4;"></div></div>
+  </div>
+  <div class="size-note">4a · LinkedIn banner · 1584×396</div>
+</div>
+
+<!-- ─── GITHUB SOCIAL PREVIEW 1280×640 ─── -->
+<div class="group">
+  <h2>GitHub Social Preview · Repository OG</h2>
+  <div class="label">1280 × 640px</div>
+
+  <div id="5a" style="width:640px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+    <!-- Left: terminal window feel -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:260px;background:#0D0D0D;border-right:1px solid #1E1E1E;z-index:1;">
+      <div style="padding:10px 14px;background:#1A1A1A;display:flex;align-items:center;gap:6px;border-bottom:1px solid #1E1E1E;">
+        <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+        <div style="width:8px;height:8px;border-radius:50%;background:#FFD54A;"></div>
+        <div style="width:8px;height:8px;border-radius:50%;background:#28D7E5;"></div>
+        <span style="margin-left:6px;font-family:'Space Mono',monospace;font-size:9px;color:#555;">kyletaylored/lab</span>
+      </div>
+      <div style="padding:14px;font-family:'Space Mono',monospace;font-size:9px;line-height:1.9;display:grid;grid-template-columns:auto 1fr;gap:0 10px;">
+        <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">git clone lab</span>
+        <span style="color:#28D7E5;">→</span><span style="color:#555;">Cloning...</span>
+        <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">npm run dev</span>
+        <span style="color:#28D7E5;">→</span><span style="color:#28D7E5;">Ready on :4321</span>
+        <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">_<span style="animation:blink 1s step-end infinite;"></span></span>
+      </div>
+    </div>
+    <!-- Right: info + art -->
+    <div style="position:absolute;right:-16px;top:-20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
+    <div style="position:absolute;right:60px;top:-10px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #28D7E5;z-index:0;"></div>
+    <div style="position:absolute;right:180px;bottom:10px;width:60px;height:60px;border-radius:50%;background:#FFD54A;z-index:0;opacity:0.9;"></div>
+    <div style="position:absolute;left:280px;top:50%;transform:translateY(-50%);right:20px;z-index:3;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+        <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
+        <span style="font-size:9px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+      </div>
+      <div style="font-size:26px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:10px;">The Lab<span style="color:#F44D8A;">.</span></div>
+      <div style="font-size:11px;color:#A8A49F;line-height:1.6;margin-bottom:14px;">Experiments, tools, and open source.<br>Everything in progress.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">TypeScript</span>
+        <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">Astro</span>
+        <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">AI</span>
+        <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">Open Source</span>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+  </div>
+  <div class="size-note">5a · GitHub Social Preview · 1280×640</div>
+</div>
+
+<!-- ─── EMAIL HEADER 600×200 ─── -->
+<div class="group">
+  <h2>Email / Newsletter Header</h2>
+  <div class="label">600 × 200px</div>
+
+  <div id="6a" style="width:600px;height:200px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
+    <div style="position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
+    <div style="position:absolute;right:80px;top:-10px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;z-index:0;"></div>
+    <div style="position:absolute;right:200px;bottom:-16px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:0;"></div>
+    <!-- Hazard stripe bottom -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:5px;overflow:hidden;z-index:4;"><svg width="100%" height="5" preserveAspectRatio="none"><defs><pattern id="hz_em" x="0" y="0" width="10" height="5" patternUnits="userSpaceOnUse"><polygon points="0,5 5,0 10,0 5,5" fill="#FFD54A"/><polygon points="5,5 10,0 15,0 10,5" fill="#1A1A1A"/></pattern></defs><rect width="100%" height="5" fill="url(#hz_em)"/></svg></div>
+    <div style="position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:3;right:200px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:20px;height:20px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-weight:700;color:#111;">K</span></div>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+      </div>
+      <div style="font-size:26px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Lab Notes<span style="color:#F44D8A;">.</span></div>
+      <div style="font-size:11px;color:#6B6860;margin-top:6px;font-family:'Space Mono',monospace;">Issue #12 · July 2026</div>
+    </div>
+  </div>
+  <div class="size-note">6a · Email header · 600×200 · swap issue number per send</div>
+</div>
+
+<!-- SPEC REFERENCE TABLE -->
+<div style="margin-top:16px;">
+  <h2>Quick Reference</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1200 × 630</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">OG / Twitter Card</div>
+      <div style="font-size:11px;color:#555;">Facebook, LinkedIn, X/Twitter, Slack, Discord</div>
+    </div>
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1080 × 1080</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Square Social</div>
+      <div style="font-size:11px;color:#555;">Instagram, Threads, some X posts</div>
+    </div>
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1584 × 396</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">LinkedIn Banner</div>
+      <div style="font-size:11px;color:#555;">Profile + company page header</div>
+    </div>
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1280 × 640</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">GitHub Social Preview</div>
+      <div style="font-size:11px;color:#555;">Repo OG image, 2:1 ratio</div>
+    </div>
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">600 × 200</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Email Header</div>
+      <div style="font-size:11px;color:#555;">Newsletter, transactional, announcement</div>
+    </div>
+    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#F44D8A;margin-bottom:4px;">og:image meta tag</div>
+      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Usage</div>
+      <div style="font-size:11px;color:#555;font-family:'Space Mono',monospace;">&lt;meta property="og:image" content="/og.png"&gt;</div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

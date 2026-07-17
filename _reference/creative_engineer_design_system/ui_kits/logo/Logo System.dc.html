@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="design_doc_mode" content="canvas">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1A1A1A; font-family: 'Space Grotesk', sans-serif; padding: 56px; }
+  h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin: 0 0 28px; display: flex; align-items: center; gap: 8px; }
+  h2::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:#F25A4C; }
+  .group { margin-bottom: 64px; }
+  .bg-dark  { background: #111; }
+  .bg-light { background: #FAF8F3; }
+  .bg-teal  { background: #28D7E5; }
+  .bg-mid   { background: #2A2A2A; }
+  .swatch { display:inline-flex; align-items:center; justify-content:center; border-radius:4px; }
+  .mono-label { font-family:'Space Mono',monospace; font-size:10px; color:#555; margin-top:8px; }
+</style>
+</helmet>
+
+<!-- PAGE TITLE -->
+<div style="margin-bottom:56px;">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:10px;">CREATIVE ENGINEER DESIGN SYSTEM</div>
+  <div style="font-size:40px;font-weight:700;color:#FAF8F3;line-height:1.0;letter-spacing:-0.02em;">Logo System<span style="color:#F44D8A;">.</span></div>
+  <div style="font-size:14px;color:#555;margin-top:10px;font-family:'Space Mono',monospace;">Mark · Wordmark · Favicon · App Icon · Usage</div>
+</div>
+
+<!-- ─── THE MARK ─── -->
+<div class="group">
+  <h2>The Mark — Construction</h2>
+  <div style="display:flex;gap:48px;align-items:flex-start;">
+
+    <!-- Anatomy -->
+    <div style="position:relative;width:200px;height:200px;">
+      <!-- Grid lines -->
+      <svg style="position:absolute;inset:0;" width="200" height="200">
+        <line x1="100" y1="0" x2="100" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="0" y1="100" x2="200" y2="100" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+        <!-- Margin lines -->
+        <rect x="20" y="20" width="160" height="160" fill="none" stroke="#2A2A2A" stroke-width="1"/>
+        <!-- Annotation arrows -->
+        <line x1="10" y1="20" x2="10" y2="180" stroke="#444" stroke-width="1"/>
+        <text x="4" y="104" fill="#555" font-size="8" font-family="Space Mono" transform="rotate(-90,10,104)">160px</text>
+        <line x1="20" y1="192" x2="180" y2="192" stroke="#444" stroke-width="1"/>
+        <text x="95" y="199" fill="#555" font-size="8" font-family="Space Mono" text-anchor="middle">160px</text>
+      </svg>
+      <!-- The mark at large size -->
+      <div style="position:absolute;left:20px;top:20px;width:160px;height:160px;background:#28D7E5;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:88px;font-weight:700;color:#111;line-height:1;font-family:'Space Grotesk',sans-serif;">K</span>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div style="padding-top:8px;">
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:320px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:12px;height:12px;background:#28D7E5;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Teal fill — #28D7E5</div><div style="font-size:11px;color:#555;line-height:1.5;">Always the primary brand color. Never substituted.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:12px;height:12px;background:#111;border:1px solid #333;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">K glyph — #111111</div><div style="font-size:11px;color:#555;line-height:1.5;">Space Grotesk 700. Never white — always black on teal.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:12px;height:12px;border:1px dashed #333;border-radius:3px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Corner radius — 7.5% of size</div><div style="font-size:11px;color:#555;line-height:1.5;">At 32px: 2px. At 64px: 5px. At 512px: 38px. Scales proportionally.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:12px;height:12px;border:1px dashed #28D7E5;border-radius:3px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Clear space — 25% of mark size</div><div style="font-size:11px;color:#555;line-height:1.5;">Minimum breathing room on all sides. No text or graphics inside this zone.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MARK SIZES ─── -->
+<div class="group">
+  <h2>Mark — All Sizes</h2>
+  <div style="display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;">
+    <!-- 512 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:120px;height:120px;background:#28D7E5;border-radius:9px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:66px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">512 × 512<br>App icon</div>
+    </div>
+    <!-- 180 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:90px;height:90px;background:#28D7E5;border-radius:7px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:50px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">180 × 180<br>Apple touch</div>
+    </div>
+    <!-- 64 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:64px;height:64px;background:#28D7E5;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:36px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">64 × 64<br>favicon.ico</div>
+    </div>
+    <!-- 32 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:18px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">32 × 32<br>favicon</div>
+    </div>
+    <!-- 16 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:16px;height:16px;background:#28D7E5;border-radius:1px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:10px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">16 × 16<br>favicon min</div>
+    </div>
+    <!-- 28 (nav) -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:15px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">28 × 28<br>Nav mark</div>
+    </div>
+    <!-- 20 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:20px;height:20px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:11px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">20 × 20<br>Inline small</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WORDMARK ─── -->
+<div class="group">
+  <h2>Wordmark — Mark + Type</h2>
+  <div style="display:flex;flex-direction:column;gap:20px;">
+
+    <!-- Full wordmark on dark -->
+    <div style="background:#111;padding:28px 36px;border-radius:4px;display:inline-flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;background:#28D7E5;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-size:20px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <span style="font-size:16px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+    </div>
+    <div class="mono-label">Full wordmark · dark bg · nav usage</div>
+
+    <!-- Full wordmark on light -->
+    <div style="background:#FAF8F3;padding:28px 36px;border-radius:4px;display:inline-flex;align-items:center;gap:12px;border:1px solid #E0DDDA;">
+      <div style="width:36px;height:36px;background:#28D7E5;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-size:20px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <span style="font-size:16px;font-weight:600;letter-spacing:0.1em;color:#111;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+    </div>
+    <div class="mono-label">Full wordmark · light bg</div>
+
+    <!-- Stacked / compact -->
+    <div style="background:#111;padding:28px 36px;border-radius:4px;display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:28px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span style="font-size:15px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.08em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR<span style="color:#28D7E5;">.DEV</span></span>
+      </div>
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;padding-left:38px;">Creative Engineer</div>
+    </div>
+    <div class="mono-label">Compact with tagline · footer / bio usage</div>
+
+    <!-- Slim nav variant -->
+    <div style="background:#111;padding:12px 20px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;height:56px;">
+      <div style="width:24px;height:24px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-size:12px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <span style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+    </div>
+    <div class="mono-label">Nav bar · 56px height</div>
+
+  </div>
+</div>
+
+<!-- ─── COLOR VARIANTS ─── -->
+<div class="group">
+  <h2>Mark — Color Variants</h2>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;">
+
+    <!-- Primary: teal on black bg -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:52px;height:52px;background:#28D7E5;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Primary<br>Dark bg</div>
+    </div>
+
+    <!-- On light bg -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#FAF8F3;border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid #E0DDDA;">
+        <div style="width:52px;height:52px;background:#28D7E5;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Primary<br>Light bg</div>
+    </div>
+
+    <!-- Pink variant (alt accent) -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:52px;height:52px;background:#F44D8A;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#FFF;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Alt: Pink<br>Avoid — use sparingly</div>
+    </div>
+
+    <!-- Monochrome white -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:52px;height:52px;background:#FAF8F3;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Mono: White<br>Print / emboss</div>
+    </div>
+
+    <!-- Monochrome black -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#FAF8F3;border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid #E0DDDA;">
+        <div style="width:52px;height:52px;background:#111;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#FAF8F3;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Mono: Black<br>Print / stamp</div>
+    </div>
+
+    <!-- Outline only -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="width:80px;height:80px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:52px;height:52px;border:2px solid #28D7E5;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:30px;font-weight:700;color:#28D7E5;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Outline<br>Ghosted / watermark</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── FAVICON SIMULATOR ─── -->
+<div class="group">
+  <h2>Favicon — Browser Context Simulation</h2>
+  <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- Browser tab sim -->
+    <div>
+      <div class="mono-label" style="margin-bottom:12px;">Browser tab</div>
+      <div style="background:#2A2A2A;border-radius:8px 8px 0 0;padding:0;overflow:hidden;width:240px;">
+        <div style="display:flex;align-items:center;gap:6px;padding:8px 12px;background:#3A3A3A;border-radius:8px 8px 0 0;">
+          <div style="width:16px;height:16px;background:#28D7E5;border-radius:1px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-size:10px;font-weight:700;color:#111;line-height:1;">K</span>
+          </div>
+          <span style="font-size:11px;color:#CCC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;">The Lab — kyletaylor.dev</span>
+          <span style="color:#888;font-size:12px;flex-shrink:0;">✕</span>
+        </div>
+        <div style="height:40px;background:#2A2A2A;border-top:2px solid #28D7E5;"></div>
+      </div>
+    </div>
+
+    <!-- Bookmark bar -->
+    <div>
+      <div class="mono-label" style="margin-bottom:12px;">Bookmark bar</div>
+      <div style="background:#2A2A2A;padding:8px 12px;border-radius:4px;display:flex;gap:16px;align-items:center;">
+        <div style="display:flex;align-items:center;gap:4px;">
+          <div style="width:16px;height:16px;background:#28D7E5;border-radius:1px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:10px;font-weight:700;color:#111;line-height:1;">K</span>
+          </div>
+          <span style="font-size:11px;color:#CCC;">Lab</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <div style="width:16px;height:16px;background:#555;border-radius:2px;"></div>
+          <span style="font-size:11px;color:#888;">GitHub</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <div style="width:16px;height:16px;background:#555;border-radius:2px;"></div>
+          <span style="font-size:11px;color:#888;">Figma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- iOS homescreen -->
+    <div>
+      <div class="mono-label" style="margin-bottom:12px;">iOS home screen (180×180)</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="width:76px;height:76px;background:#28D7E5;border-radius:17px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+          <span style="font-size:42px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+        <span style="font-size:10px;color:#CCC;">The Lab</span>
+      </div>
+    </div>
+
+    <!-- Android adaptive -->
+    <div>
+      <div class="mono-label" style="margin-bottom:12px;">Android adaptive icon</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="width:76px;height:76px;background:#28D7E5;border-radius:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+          <span style="font-size:42px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+        <span style="font-size:10px;color:#CCC;">The Lab</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── APP ICON WITH ART ─── -->
+<div class="group">
+  <h2>App Icon — Full Art Variant (512×512)</h2>
+  <div style="display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;">
+
+    <!-- Full art icon -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:160px;height:160px;background:#111;border-radius:36px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+        <!-- Memphis art bg -->
+        <div style="position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:#F44D8A;z-index:0;"></div>
+        <div style="position:absolute;right:30px;top:-10px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #28D7E5;z-index:0;opacity:0.6;"></div>
+        <div style="position:absolute;left:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:#FFD54A;z-index:0;opacity:0.8;"></div>
+        <!-- K mark centered -->
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;">
+          <div style="width:80px;height:80px;background:#28D7E5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:48px;font-weight:700;color:#111;line-height:1;">K</span>
+          </div>
+        </div>
+        <!-- Pink bottom bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F44D8A;z-index:3;"></div>
+      </div>
+      <div class="mono-label">Art icon · App stores<br>Product Hunt · press kit</div>
+    </div>
+
+    <!-- Clean icon -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:160px;height:160px;background:#28D7E5;border-radius:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+        <span style="font-size:96px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div class="mono-label">Clean · Teal fill<br>Preferred for App Store</div>
+    </div>
+
+    <!-- Dark icon -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:160px;height:160px;background:#111;border-radius:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,0.5);border:1px solid #222;">
+        <div style="width:100px;height:100px;background:#28D7E5;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:60px;font-weight:700;color:#111;line-height:1;">K</span>
+        </div>
+      </div>
+      <div class="mono-label">Dark bg variant<br>macOS / dark mode</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── DON'TS ─── -->
+<div class="group">
+  <h2>Usage Rules</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:4px;padding:16px;">
+      <div style="width:40px;height:40px;background:#28D7E5;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+        <span style="font-size:22px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#28D7E5;margin-bottom:4px;">✓ DO: Teal on any bg</div>
+      <div style="font-size:11px;color:#555;line-height:1.5;">The primary mark always uses #28D7E5 fill with #111 K.</div>
+    </div>
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:4px;padding:16px;">
+      <div style="width:40px;height:40px;background:#28D7E5;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;transform:scaleX(-1);">
+        <span style="font-size:22px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#F25A4C;margin-bottom:4px;">✕ DON'T: Flip or rotate</div>
+      <div style="font-size:11px;color:#555;line-height:1.5;">The K has directional weight. Never mirror, rotate, or skew.</div>
+    </div>
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:4px;padding:16px;">
+      <div style="width:40px;height:40px;background:linear-gradient(135deg,#28D7E5,#F44D8A);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+        <span style="font-size:22px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#F25A4C;margin-bottom:4px;">✕ DON'T: Gradient fill</div>
+      <div style="font-size:11px;color:#555;line-height:1.5;">Solid #28D7E5 only. No gradients, no patterns inside the mark.</div>
+    </div>
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:4px;padding:16px;">
+      <div style="width:40px;height:40px;background:#28D7E5;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;opacity:0.3;">
+        <span style="font-size:22px;font-weight:700;color:#111;line-height:1;">K</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#F25A4C;margin-bottom:4px;">✕ DON'T: Reduce opacity</div>
+      <div style="font-size:11px;color:#555;line-height:1.5;">Always full opacity. Use the outline variant for ghosted contexts instead.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SVG SOURCE -->
+<div class="group" style="margin-bottom:0;">
+  <h2>SVG Source — Copy Ready</h2>
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div>
+      <div class="mono-label" style="margin-bottom:8px;">Mark only (32×32, scale freely)</div>
+      <div style="background:#111;border-radius:4px;padding:16px;font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;line-height:1.8;white-space:pre-wrap;border:1px solid #1E1E1E;"><span style="color:#28D7E5;">&lt;svg</span> <span style="color:#FAF8F3;">width</span>=<span style="color:#FFD54A;">"32"</span> <span style="color:#FAF8F3;">height</span>=<span style="color:#FFD54A;">"32"</span> <span style="color:#FAF8F3;">viewBox</span>=<span style="color:#FFD54A;">"0 0 32 32"</span> <span style="color:#FAF8F3;">xmlns</span>=<span style="color:#FFD54A;">"http://www.w3.org/2000/svg"</span><span style="color:#28D7E5;">&gt;</span>
+  <span style="color:#28D7E5;">&lt;rect</span> <span style="color:#FAF8F3;">width</span>=<span style="color:#FFD54A;">"32"</span> <span style="color:#FAF8F3;">height</span>=<span style="color:#FFD54A;">"32"</span> <span style="color:#FAF8F3;">rx</span>=<span style="color:#FFD54A;">"3"</span> <span style="color:#FAF8F3;">fill</span>=<span style="color:#FFD54A;">"#28D7E5"</span><span style="color:#28D7E5;">/&gt;</span>
+  <span style="color:#28D7E5;">&lt;text</span> <span style="color:#FAF8F3;">x</span>=<span style="color:#FFD54A;">"50%"</span> <span style="color:#FAF8F3;">y</span>=<span style="color:#FFD54A;">"54%"</span> <span style="color:#FAF8F3;">dominant-baseline</span>=<span style="color:#FFD54A;">"middle"</span>
+    <span style="color:#FAF8F3;">text-anchor</span>=<span style="color:#FFD54A;">"middle"</span> <span style="color:#FAF8F3;">font-family</span>=<span style="color:#FFD54A;">"'Space Grotesk',sans-serif"</span>
+    <span style="color:#FAF8F3;">font-size</span>=<span style="color:#FFD54A;">"20"</span> <span style="color:#FAF8F3;">font-weight</span>=<span style="color:#FFD54A;">"700"</span> <span style="color:#FAF8F3;">fill</span>=<span style="color:#FFD54A;">"#111"</span><span style="color:#28D7E5;">&gt;</span>K<span style="color:#28D7E5;">&lt;/text&gt;</span>
+<span style="color:#28D7E5;">&lt;/svg&gt;</span></div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

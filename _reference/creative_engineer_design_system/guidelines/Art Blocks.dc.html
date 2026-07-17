@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  section { padding: 56px 64px; border-bottom: 1px solid #E0DDDA; }
+  h2 { margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+  h2::before { content:''; display:block; width:7px; height:7px; border-radius:50%; background:#F25A4C; flex-shrink:0; }
+  .sub { font-size: 13px; color: #6B6860; margin: 0 0 32px; }
+  .grid { display: grid; gap: 16px; }
+  .block-label { font-family: 'Space Mono', monospace; font-size: 10px; color: #A8A49F; margin-bottom: 8px; }
+  .block-name { font-size: 12px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .block-desc { font-size: 11px; color: #6B6860; line-height: 1.5; }
+  .card { background: #FFF; border: 1px solid #E0DDDA; border-radius: 4px; overflow: hidden; }
+  .card-preview { position: relative; }
+  .card-meta { padding: 14px 16px; border-top: 1px solid #F0EDE8; }
+  .usage { background: #111; border-radius: 4px; padding: 14px 16px; margin-top: 12px; font-family: 'Space Mono', monospace; font-size: 10px; color: #A8A49F; line-height: 1.7; }
+  .usage .k { color: #28D7E5; }
+  .usage .v { color: #FAF8F3; }
+</style>
+</helmet>
+
+<!-- HEADER -->
+<div style="background:#111;padding:56px 64px;position:relative;overflow:hidden;">
+  <!-- Art demo in the header itself -->
+  <div style="position:absolute;right:120px;top:-40px;width:200px;height:200px;border-radius:50%;background:#F44D8A;"></div>
+  <div style="position:absolute;right:60px;top:20px;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:208px solid #28D7E5;"></div>
+  <div style="position:absolute;right:380px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:#FFD54A;"></div>
+  <div style="position:absolute;right:300px;top:20px;width:20px;height:20px;background:#348BFF;transform:rotate(45deg);"></div>
+  <div style="position:absolute;left:64px;bottom:24px;color:#333;font-size:14px;letter-spacing:6px;">/ / / /</div>
+  <div style="position:absolute;left:200px;bottom:28px;width:10px;height:10px;background:#FFD54A;opacity:0.8;"></div>
+  <div style="position:absolute;right:500px;top:20px;"><svg width="80" height="80"><defs><pattern id="dg" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#444"/></pattern></defs><rect width="80" height="80" fill="url(#dg)"/></svg></div>
+  <div style="position:absolute;right:520px;bottom:30px;width:50px;height:18px;overflow:hidden;"><svg width="50" height="18"><defs><pattern id="hz0" x="0" y="0" width="14" height="18" patternUnits="userSpaceOnUse"><polygon points="0,18 7,0 14,0 7,18" fill="#FFD54A"/><polygon points="7,18 14,0 21,0 14,18" fill="#333"/></pattern></defs><rect width="50" height="18" fill="url(#hz0)"/></svg></div>
+  <div style="position:relative;max-width:800px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:16px;">DESIGN SYSTEM · CREATIVE ENGINEER</div>
+    <h1 style="margin:0 0 16px;font-size:56px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Art Blocks<span style="color:#F44D8A;">.</span></h1>
+    <p style="font-size:16px;color:#A8A49F;line-height:1.6;margin:0;max-width:520px;">Reusable Memphis / Bauhaus decorative elements. Drop any block into a section as an absolute-positioned overlay. Compose freely — more is more.</p>
+  </div>
+</div>
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- INDIVIDUAL SHAPES -->
+<section>
+  <h2>Individual Shapes</h2>
+  <p class="sub">The raw geometric vocabulary. Use large — these are scene-setters, not accents.</p>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:100px;height:100px;border-radius:50%;background:#F44D8A;"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Filled Circle — Pink</div>
+        <div class="block-desc">Hero element. Use at 100–220px. Position partially off-screen for drama.</div>
+        <div class="usage"><span class="k">width</span>: <span class="v">180px</span><br><span class="k">height</span>: <span class="v">180px</span><br><span class="k">border-radius</span>: <span class="v">50%</span><br><span class="k">background</span>: <span class="v">#F44D8A</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:104px solid #28D7E5;"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Triangle — Teal</div>
+        <div class="block-desc">Paired with circle. Use full-height of section. Can be rotated.</div>
+        <div class="usage"><span class="k">border-left</span>: <span class="v">80px solid transparent</span><br><span class="k">border-right</span>: <span class="v">80px solid transparent</span><br><span class="k">border-bottom</span>: <span class="v">138px solid #28D7E5</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:#FFD54A;"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Filled Circle — Yellow</div>
+        <div class="block-desc">Supporting element. Smaller than pink. Adds warmth to dark sections.</div>
+        <div class="usage"><span class="k">background</span>: <span class="v">#FFD54A</span><br><span class="k">border-radius</span>: <span class="v">50%</span><br><span class="k">width</span>: <span class="v">80–120px</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:60px;height:60px;border-radius:50%;border:3px solid #FAF8F3;"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Circle Outline — White</div>
+        <div class="block-desc">Ghostly ring. Use alongside filled shapes for depth.</div>
+        <div class="usage"><span class="k">border</span>: <span class="v">3px solid #FAF8F3</span><br><span class="k">border-radius</span>: <span class="v">50%</span><br><span class="k">background</span>: <span class="v">transparent</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:40px;height:40px;background:#348BFF;transform:rotate(45deg);"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Diamond — Blue</div>
+        <div class="block-desc">Small punctuation shape. Use 16–40px. Scatter 2–3 across a hero.</div>
+        <div class="usage"><span class="k">background</span>: <span class="v">#348BFF</span><br><span class="k">transform</span>: <span class="v">rotate(45deg)</span><br><span class="k">width / height</span>: <span class="v">24px</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:120px;height:20px;background:#28D7E5;transform:rotate(-30deg);"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Diagonal Bar — Teal</div>
+        <div class="block-desc">Slashing energy. Rotate –20° to –45°. Use in corners.</div>
+        <div class="usage"><span class="k">background</span>: <span class="v">#28D7E5</span><br><span class="k">transform</span>: <span class="v">rotate(-30deg)</span><br><span class="k">width</span>: <span class="v">120px; height: 16px</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:48px;font-weight:200;color:#FAF8F3;line-height:1;">+</div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Crosshair</div>
+        <div class="block-desc">Blueprint detail. Use at 24–48px. One or two max per section.</div>
+        <div class="usage"><span class="k">font-size</span>: <span class="v">36px</span><br><span class="k">font-weight</span>: <span class="v">200</span><br><span class="k">color</span>: <span class="v">#FAF8F3 or #333</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:140px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:16px;color:#555;letter-spacing:8px;font-family:'Space Mono',monospace;">/ / / /</div>
+        <div style="width:10px;height:10px;background:#FFD54A;margin-left:8px;"></div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Slash Marks + Square</div>
+        <div class="block-desc">Blueprint annotation. Always pair slashes with a small yellow square.</div>
+        <div class="usage"><span class="k">content</span>: <span class="v">"/ / / /"</span><br><span class="k">letter-spacing</span>: <span class="v">6–8px</span><br><span class="k">+ 10px yellow square</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PATTERN FILLS -->
+<section>
+  <h2>Pattern Fills</h2>
+  <p class="sub">SVG repeating patterns. Use as background fills inside absolutely-positioned divs.</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+
+    <div class="card">
+      <div class="card-preview" style="height:120px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <svg width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="dp1" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.8" fill="#555"/></pattern></defs><rect width="100" height="100" fill="url(#dp1)"/></svg>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Dot Grid — Dark</div>
+        <div class="block-desc">On dark hero sections. Use 80–160px square. Top-right corner placement.</div>
+        <div class="usage"><span class="k">pattern</span>: <span class="v">circle r=1.8 fill=#555</span><br><span class="k">spacing</span>: <span class="v">12×12px</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:120px;background:#FAF8F3;display:flex;align-items:center;justify-content:center;">
+        <svg width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="dp2" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#111" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(#dp2)"/></svg>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Dot Grid — Light</div>
+        <div class="block-desc">On light sections. Subtle — opacity 0.15. Use as background texture.</div>
+        <div class="usage"><span class="k">pattern</span>: <span class="v">circle r=1.5 fill=#111</span><br><span class="k">opacity</span>: <span class="v">0.15</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-preview" style="height:120px;background:#111;display:flex;align-items:center;justify-content:center;">
+        <div style="width:160px;height:32px;overflow:hidden;">
+          <svg width="160" height="32"><defs><pattern id="hz1" x="0" y="0" width="16" height="32" patternUnits="userSpaceOnUse"><polygon points="0,32 8,0 16,0 8,32" fill="#FFD54A"/><polygon points="8,32 16,0 24,0 16,32" fill="#222"/></pattern></defs><rect width="160" height="32" fill="url(#hz1)"/></svg>
+        </div>
+      </div>
+      <div class="card-meta">
+        <div class="block-name">Hazard Stripe — Yellow/Black</div>
+        <div class="block-desc">As a band between sections (4–6px) or a decorative corner block. Always full-width.</div>
+        <div class="usage"><span class="k">polygon A</span>: <span class="v">fill #FFD54A</span><br><span class="k">polygon B</span>: <span class="v">fill #111 or #222</span><br><span class="k">tile width</span>: <span class="v">16px</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPOSED ART PANELS -->
+<section>
+  <h2>Composed Art Panels</h2>
+  <p class="sub">Pre-composed multi-element blocks. Drop directly into a section as a positioned layer. These are the high-impact combinations.</p>
+  <div class="grid" style="grid-template-columns:1fr 1fr;">
+
+    <!-- Hero art -->
+    <div class="card">
+      <div class="card-meta" style="border-top:none;border-bottom:1px solid #F0EDE8;">
+        <div class="block-name">Hero Art — Circle + Triangle Cluster</div>
+        <div class="block-desc">The signature composition. Large pink circle partially clipped by edge, teal triangle overlapping, yellow circle below, dot grid top-right, diagonal bar, diamond, crosshair. Use in every dark hero section.</div>
+      </div>
+      <div class="card-preview" style="height:280px;background:#111;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-30px;top:-40px;width:180px;height:180px;border-radius:50%;background:#F44D8A;"></div>
+        <div style="position:absolute;right:80px;top:-10px;width:0;height:0;border-left:90px solid transparent;border-right:90px solid transparent;border-bottom:156px solid #28D7E5;"></div>
+        <div style="position:absolute;right:260px;bottom:20px;width:80px;height:80px;border-radius:50%;background:#FFD54A;"></div>
+        <div style="position:absolute;right:20px;top:100px;width:24px;height:24px;background:#348BFF;transform:rotate(45deg);"></div>
+        <div style="position:absolute;right:320px;top:20px;"><svg width="70" height="70"><defs><pattern id="dph" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#444"/></pattern></defs><rect width="70" height="70" fill="url(#dph)"/></svg></div>
+        <div style="position:absolute;right:20px;bottom:40px;font-size:28px;font-weight:200;color:#555;line-height:1;">+</div>
+        <div style="position:absolute;left:20px;bottom:20px;font-size:13px;color:#444;letter-spacing:6px;">/ / / /</div>
+        <div style="position:absolute;left:130px;bottom:24px;width:8px;height:8px;background:#FFD54A;opacity:0.7;"></div>
+        <div style="position:absolute;right:160px;bottom:20px;width:60px;height:60px;border-radius:50%;border:2px solid #333;"></div>
+        <div style="position:absolute;right:60px;bottom:60px;width:80px;height:18px;overflow:hidden;"><svg width="80" height="18"><defs><pattern id="hzh" x="0" y="0" width="14" height="18" patternUnits="userSpaceOnUse"><polygon points="0,18 7,0 14,0 7,18" fill="#FFD54A"/><polygon points="7,18 14,0 21,0 14,18" fill="#222"/></pattern></defs><rect width="80" height="18" fill="url(#hzh)"/></svg></div>
+        <div style="position:absolute;left:20px;top:20px;font-size:11px;color:#333;font-family:'Space Mono',monospace;">□ — ·</div>
+      </div>
+    </div>
+
+    <!-- Floating art panel -->
+    <div class="card">
+      <div class="card-meta" style="border-top:none;border-bottom:1px solid #F0EDE8;">
+        <div class="block-name">Floating Art Panel — Mid-Section</div>
+        <div class="block-desc">Goes between content columns in a 2-up layout (activity + tools). Teal triangle, pink circle, dot grid. Creates visual rhythm between sections without a full dark hero.</div>
+      </div>
+      <div class="card-preview" style="height:280px;background:#FAF8F3;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+        <div style="position:relative;width:180px;height:240px;">
+          <div style="position:absolute;left:20px;top:0;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;"></div>
+          <div style="position:absolute;left:60px;bottom:20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;"></div>
+          <div style="position:absolute;left:0;top:50px;"><svg width="50" height="50"><defs><pattern id="dpf" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#111" opacity="0.2"/></pattern></defs><rect width="50" height="50" fill="url(#dpf)"/></svg></div>
+          <div style="position:absolute;right:0;top:20px;width:14px;height:14px;background:#FFD54A;transform:rotate(45deg);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section banner art -->
+    <div class="card">
+      <div class="card-meta" style="border-top:none;border-bottom:1px solid #F0EDE8;">
+        <div class="block-name">Dark Banner Art — Footer / CTA Section</div>
+        <div class="block-desc">For dark (#111) footer or CTA bands. Pink circle lower-right, yellow triangle upper-right, hazard stripe at bottom edge. Diagonal yellow bar optional.</div>
+      </div>
+      <div class="card-preview" style="height:180px;background:#111;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-20px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:#F44D8A;"></div>
+        <div style="position:absolute;right:120px;top:-20px;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid #FFD54A;opacity:0.9;"></div>
+        <div style="position:absolute;right:240px;top:30px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.2;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hzf" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hzf)"/></svg></div>
+        <div style="position:absolute;left:24px;bottom:24px;font-size:11px;color:#333;letter-spacing:5px;">/ / /</div>
+        <div style="position:absolute;left:120px;bottom:27px;width:8px;height:8px;background:#FFD54A;opacity:0.6;"></div>
+      </div>
+    </div>
+
+    <!-- Light section art -->
+    <div class="card">
+      <div class="card-meta" style="border-top:none;border-bottom:1px solid #F0EDE8;">
+        <div class="block-name">Light Section Art — Dot Grid Scatter</div>
+        <div class="block-desc">For light (#FAF8F3) sections. Subtle dot grid plus small colored diamonds. Adds texture without competing with content. Right-edge only.</div>
+      </div>
+      <div class="card-preview" style="height:180px;background:#FAF8F3;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:0;top:0;"><svg width="120" height="180"><defs><pattern id="dpl" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#111" opacity="0.12"/></pattern></defs><rect width="120" height="180" fill="url(#dpl)"/></svg></div>
+        <div style="position:absolute;right:20px;top:30px;width:10px;height:10px;background:#F44D8A;transform:rotate(45deg);"></div>
+        <div style="position:absolute;right:60px;top:80px;width:8px;height:8px;background:#28D7E5;transform:rotate(45deg);"></div>
+        <div style="position:absolute;right:30px;bottom:40px;width:6px;height:6px;background:#FFD54A;transform:rotate(45deg);"></div>
+        <div style="position:absolute;right:80px;bottom:20px;font-size:20px;font-weight:200;color:#CCC;">+</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- USAGE RULES -->
+<section style="border-bottom:none;">
+  <h2>Composition Rules</h2>
+  <p class="sub">How to use these without making a mess.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#28D7E5;margin-bottom:8px;">01</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Go large or go home</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">Shapes should be 100–200px minimum. Small shapes read as mistakes. If a circle isn't making an impact, double its size.</div>
+    </div>
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#F44D8A;margin-bottom:8px;">02</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Clip at edges</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">Position circles and triangles so they bleed off the edge of the section. Fully contained shapes look like clip art. Partially hidden = intentional composition.</div>
+    </div>
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#FFD54A;margin-bottom:8px;">03</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Triangle behind, circle in front</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">The teal triangle always sits behind the pink circle (lower z-index). The circle overlaps the triangle. This is the canonical pairing.</div>
+    </div>
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#348BFF;margin-bottom:8px;">04</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Right side, always</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">Art compositions live on the right side of dark hero sections. Left side is reserved for text. The terminal window sits between text and art.</div>
+    </div>
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#F25A4C;margin-bottom:8px;">05</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Maximum 3 accent colors per scene</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">Pink + teal + yellow is the canonical hero trio. Don't mix all 6 palette colors in one composition — pick 3.</div>
+    </div>
+    <div style="padding:20px;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;">
+      <div style="font-size:32px;font-weight:700;color:#111;margin-bottom:8px;">06</div>
+      <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px;">Small details anchor the large shapes</div>
+      <div style="font-size:12px;color:#6B6860;line-height:1.6;">Always pair large shapes with micro-details: a crosshair, slash marks + yellow square, a dot grid, a diamond. These create the "blueprint" feel that makes the composition feel engineered, not random.</div>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+</body>
+</html>
