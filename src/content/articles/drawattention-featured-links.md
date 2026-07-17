@@ -2,8 +2,8 @@
 title: "DrawAttention Featured Links"
 description: "http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/"
 pubDate: 2015-02-11
-category: "Uncategorized"
-tags: ["post"]
+category: "Startups & Community"
+tags: ["drawattention", "press", "startup"]
 seo: {}
 ---
 *   [http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/](http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/)

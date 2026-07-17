@@ -2,8 +2,8 @@
 title: "3rd Annual Startup Weekend Denton"
 description: "The hardest part of starting up is starting out."
 pubDate: 2015-11-05
-category: "Uncategorized"
-tags: ["post"]
+category: "Startups & Community"
+tags: ["startup weekend", "denton", "entrepreneurship"]
 seo: {}
 ---
 The hardest part of starting up is starting out.

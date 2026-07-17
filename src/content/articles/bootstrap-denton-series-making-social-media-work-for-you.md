@@ -2,8 +2,8 @@
 title: "Bootstrap Denton Series: Making Social Media Work – for You"
 description: "Social media is an incredibly powerful tool to help you grow your business, advertise your mission, or even brand yourself as an individual. Think of it as a free and effective way to gain exposure, make connections, and attract new clients. Social media has become the technology version of word-of-mouth marketing, and by being a little creative and a bit personable, it can make a big impact on you or your organization."
 pubDate: 2015-09-08
-category: "Uncategorized"
-tags: ["post"]
+category: "Startups & Community"
+tags: ["marketing", "social media", "denton"]
 seo: {}
 ---
 Social media is an incredibly powerful tool to help you grow your business, advertise your mission, or even brand yourself as an individual. Think of it as a free and effective way to gain exposure, make connections, and attract new clients. Social media has become the technology version of word-of-mouth marketing, and by being a little creative and a bit personable, it can make a big impact on you or your organization.

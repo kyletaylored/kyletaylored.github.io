@@ -2,8 +2,8 @@
 title: "How to install XHProf with MAMP and Drupal 7"
 description: "At the very bottom, add"
 pubDate: 2016-04-06
-category: "Uncategorized"
-tags: ["post"]
+category: "Web Development"
+tags: ["drupal", "mamp", "performance", "profiling"]
 seo: {}
 ---
 1.  Use Homebrew

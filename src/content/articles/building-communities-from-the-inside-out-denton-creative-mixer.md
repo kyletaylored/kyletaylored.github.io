@@ -6,9 +6,8 @@ description: Last night I went to Oak Street Draft House where I had the chance
 pubDate: 2013-05-14
 updatedDate: 2026-07-17
 heroImage: /uploads/denton-creative-mixer-hero.jpeg
-category: Uncategorized
-tags:
-  - post
+category: "Startups & Community"
+tags: ["denton", "community", "maker space"]
 draft: false
 seo:
   noindex: false

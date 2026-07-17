@@ -2,8 +2,8 @@
 title: "North Texas Startup Community"
 description: "Startup Weekend Denton"
 pubDate: 2013-11-25
-category: "Uncategorized"
-tags: ["page", "post", "published"]
+category: "Startups & Community"
+tags: ["startup weekend", "denton", "north texas"]
 seo: {}
 ---
 [Startup Weekend Denton](http://denton.startupweekend.org)

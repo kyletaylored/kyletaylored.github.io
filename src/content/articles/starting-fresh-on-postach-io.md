@@ -2,8 +2,8 @@
 title: "Starting Fresh on Postach.io"
 description: "I’ve been moving my blog around for about the past 2 years because I could never find a platform that I just really enjoyed. I tried Wordpress, Drupal, Tumblr, and even Jekyll/Octopress, but I was just never very happy with any of them. So the search continued."
 pubDate: 2013-08-05
-category: "Uncategorized"
-tags: ["personal", "post", "published"]
+category: "Personal"
+tags: ["blogging", "writing", "personal"]
 seo: {}
 ---
 ![](/uploads/postachio-featured.jpg)

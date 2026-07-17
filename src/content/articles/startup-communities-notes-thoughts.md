@@ -2,8 +2,8 @@
 title: "Startup Communities: Notes & Thoughts"
 description: "New Tech Event Model (blend with House of Genius model?)"
 pubDate: 2016-05-01
-category: "Uncategorized"
-tags: ["post"]
+category: "Startups & Community"
+tags: ["startup communities", "notes"]
 seo: {}
 ---
 *   Participants
