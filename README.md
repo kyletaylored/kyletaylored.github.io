@@ -1,63 +1,51 @@
-# Astro Starter Kit: Blog
+# kyletaylored.github.io
 
-```sh
-npm create astro@latest -- --template blog
-```
+Kyle Taylor's site — portfolio, engineering journal, and Maker Lab. Built with Astro, Tailwind, and a Memphis/Bauhaus-inspired design system content-managed via [Pages CMS](https://pagescms.org).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
-├── public/
+├── public/                  # Static assets (favicon, robots.txt, CNAME)
+├── scripts/                 # One-off/build-time scripts (WP migration, activity fetch)
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+│   ├── assets/               # Images/fonts processed by Astro's asset pipeline
+│   ├── components/           # Astro/React components (ui/ = shadcn primitives, decor/ = Memphis shapes)
+│   ├── content/               # Content collections: articles, projects, lab, pages
+│   ├── data/                  # Site settings + build-time generated data (activity.json)
+│   ├── layouts/                # Page layouts (Base/Article/Project/Lab)
+│   ├── lib/                    # Shared utilities
+│   ├── pages/                  # Routes
+│   └── styles/                  # Design tokens + Tailwind entry point
+├── .pages.yml                # Pages CMS content schema
 ├── astro.config.mjs
-├── README.md
 ├── package.json
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Content lives in `src/content/` as Markdown/MDX and is edited either directly in Git or through Pages CMS (schema defined in `.pages.yml`). See [`src/content.config.ts`](./src/content.config.ts) for the zod schema each collection validates against.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Commands
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+All commands run from the root of the project:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command                  | Action                                                                                                  |
+| :----------------------- | :------------------------------------------------------------------------------------------------------ |
+| `npm install`            | Install dependencies                                                                                    |
+| `npm run dev`            | Start the local dev server at `localhost:4321`                                                          |
+| `npm run build`          | Build the production site to `./dist/` (also builds the Pagefind search index)                          |
+| `npm run preview`        | Preview the production build locally                                                                    |
+| `npm run migrate:wp`     | One-time migration: pull posts from the WordPress REST API into `src/content/articles/`                 |
+| `npm run fetch:activity` | Build-time fetch of recent GitHub activity into `src/data/activity.json` (requires `GH_ACTIVITY_TOKEN`) |
+| `npm run astro ...`      | Run Astro CLI commands (`astro check`, `astro add`, ...)                                                |
 
-## 🧞 Commands
+### Local search
 
-All commands are run from the root of the project, from a terminal:
+Global search (Pagefind) indexes the built `dist/` output, so it only works after `npm run build` — search results won't populate against `npm run dev`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Deployment
 
-## 👀 Want to learn more?
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and deploys it to GitHub Pages at the custom domain `kyletaylored.com` (see `public/CNAME`). The workflow also runs the activity-fetch script when `GH_ACTIVITY_TOKEN` is configured as a repo secret.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Stack
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Astro · React (islands only, e.g. command palette, mobile nav) · Tailwind CSS v4 · shadcn/ui (`@base-ui/react` primitives) · Pagefind · Pages CMS

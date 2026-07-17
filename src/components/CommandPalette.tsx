@@ -61,8 +61,16 @@ export function CommandPalette({ navEntries, demoEntries }: Props) {
 
 		(async () => {
 			try {
+				// Pagefind's index/module only exists after `npm run build` (it indexes
+				// the built dist/ output) — not during `npm run dev`. Routing the path
+				// through a variable keeps Vite's dev-time import analysis from trying
+				// to statically resolve it (which fails the whole module transform,
+				// bypassing this try/catch entirely); a real dynamic import with a
+				// non-literal specifier is left for the browser to resolve at runtime,
+				// where a 404 is just an ordinary rejected promise this catch handles.
+				const pagefindPath = '/pagefind/pagefind.js';
 				// @ts-expect-error - pagefind.js is generated at build time, not a real module
-				const pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+				const pagefind = await import(/* @vite-ignore */ pagefindPath);
 				const search = await pagefind.search(query);
 				const items = await Promise.all(search.results.slice(0, 8).map((r: any) => r.data()));
 				if (!cancelled) setResults(items);
