@@ -1,5 +1,5 @@
 media:
-  input: src/assets/uploads
+  input: public/uploads
   output: /uploads
 
 content:

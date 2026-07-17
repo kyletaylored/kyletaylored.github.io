@@ -13,13 +13,13 @@ draft: false
 seo:
   noindex: false
 ---
-![](../../assets/uploads/building-communities.jpeg)
+![](/uploads/building-communities.jpeg)
 
 Last night I went to Oak Street Draft House where I had the chance to join a  group of over 150 of the most creative and talented individuals in the city of Denton. This was an event put on by Heather Gregory and Tristan Bynum of the forthcoming [Maker Space Denton](https://www.facebook.com/makerspacedenton) that gave the crowd a chance to hear the success stories of local startups and some tips they’ve learned along the way. This was a great event that brought a lot of creative individuals together to network and talk about their own ideas for new businesses and startups. The Maker Space is a new collaborative workspace coming to Denton this fall that is aimed at providing space, tools, and resources to freelance designers, developers, artists, sculptors and other innovative individuals who don’t have enough capital to open their own shop, or just want to work in a synergetic environment. It’s great to see these two come out and ask individuals in the community what their needs are to be successful.
 
 Speakers from the [Denton Community Market](http://dentonmarket.org/) shared how they got started with just a group of people showing up to a basement room in city hall because they were interested in the concept and had things to share. Other local companies like [Pan Ector](http://www.panector.com/) and [Triple Threat Press](http://triplethreatpress.com/index.php) started in a garage or out of the local university and obtained resources through the Denton Chamber of Commerce and small business development center, which are ran for free by people like you and me. Even the local college, University of North Texas, started the Innovation Greenhouse which is partnering up with the city in ways to better benefit and help the community in their new business ventures.
 
-![](../../assets/uploads/denton-creative-mixer-hero.jpeg)
+![](/uploads/denton-creative-mixer-hero.jpeg)
 
 At the mixer, after the main set of speeches, Kevin Roden asked if anyone had any announcements. He then generously introduced me as bringing the first Startup Weekend to Denton this past January. I talked a little bit about our movement of building the startup and tech community like [CreateDenton.com](http://createdenton.com/), bringing in more events like Startup Weekend and hackathons, which led to talking about the open data movement coming to Denton that already started with the creation of [VoteDenton.org](http://votedenton.org/) using city GIS data. After I was done, I had multiple people come up to me to tell me they were interested in a hackathon, and what they were working on, even asking what my opinions were, and what they can do to get more involved. It was fantastic!
 

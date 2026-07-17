@@ -20,7 +20,7 @@ Obviously with the release of Drupal 8 late last year, and Drupalcon Los Angeles
 *   Lots of OOP, Symfony, and migration goodies.
 *   And the [advancement of BigPipe caching](https://dev.acquia.com/podcast/bigpipe-drupal-bigger-better-performance-free) in D8 is blowing us away (see graphic below).
 
-![](../../assets/uploads/drupal8-bigpipe-graphic.gif)
+![](/uploads/drupal8-bigpipe-graphic.gif)
 
 Of course, it’s not just new Drupal 8 sites that are being built, but migrations from Drupal 6 or 7, so a lot of effort has been going into core migration and the [Migration Tools](https://www.drupal.org/project/migrate_tools) module. With that, the underlying gist is – if you haven’t set sail to Drupal 8 yet, at least start helping build the bridge to get over there.
 

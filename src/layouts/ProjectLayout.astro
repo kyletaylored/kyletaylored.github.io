@@ -1,5 +1,4 @@
 ---
-import { Picture } from 'astro:assets';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Button from '../components/Button.astro';
@@ -161,11 +160,7 @@ const moreProjects = (await getCollection('projects'))
 						<span class="h-3 w-3 rounded-full bg-teal" />
 						<span class="ml-2 truncate font-mono text-[11px] text-muted">{title}</span>
 					</div>
-					{typeof heroImage === 'string' ? (
-						<img src={heroImage} alt="" class="w-full" />
-					) : (
-						<Picture formats={['avif', 'webp']} width={1200} height={640} src={heroImage} alt="" class="w-full" />
-					)}
+					<img src={heroImage} alt="" class="w-full" />
 				</div>
 			</section>
 		)

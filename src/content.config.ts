@@ -13,13 +13,13 @@ const seoSchema = z.object({
 
 const articles = defineCollection({
 	loader: glob({ base: './src/content/articles', pattern: '**/*.{md,mdx}' }),
-	schema: ({ image }) =>
+	schema: () =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			heroImage: z.union([image(), z.string().url()]).optional(),
+			heroImage: z.string().optional(),
 			category: z.string(),
 			tags: z.array(z.string()).default([]),
 			draft: z.boolean().default(false),
@@ -30,11 +30,11 @@ const articles = defineCollection({
 
 const projects = defineCollection({
 	loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
-	schema: ({ image }) =>
+	schema: () =>
 		z.object({
 			title: z.string(),
 			summary: z.string(),
-			heroImage: z.union([image(), z.string().url()]).optional(),
+			heroImage: z.string().optional(),
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			status: z.enum(['active', 'archived', 'concept']).default('active'),
@@ -80,12 +80,12 @@ const projects = defineCollection({
 
 const lab = defineCollection({
 	loader: glob({ base: './src/content/lab', pattern: '**/*.{md,mdx}' }),
-	schema: ({ image }) =>
+	schema: () =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
 			pubDate: z.coerce.date(),
-			heroImage: z.union([image(), z.string().url()]).optional(),
+			heroImage: z.string().optional(),
 			labCategory: z.enum(['experiments', 'tools', 'playground', 'ai', 'hardware']),
 			tags: z.array(z.string()).default([]),
 			status: z.enum(['wip', 'stable', 'archived']).default('wip'),

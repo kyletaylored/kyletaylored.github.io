@@ -1,5 +1,4 @@
 ---
-import { Picture } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
 
@@ -34,19 +33,7 @@ const pillColor = pillColors[hash % pillColors.length];
 	variant === 'featured' && (
 		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
 			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage &&
-					(typeof heroImage === 'string' ? (
-						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
-					) : (
-						<Picture
-							formats={['avif', 'webp']}
-							src={heroImage}
-							alt=""
-							width={800}
-							height={450}
-							class="absolute inset-0 h-full w-full object-cover"
-						/>
-					))}
+				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
 				<span class="absolute bottom-3 left-3.5 rounded-full bg-pink px-2.5 py-0.5 text-[10px] font-semibold text-white">
 					Featured
 				</span>
@@ -74,19 +61,7 @@ const pillColor = pillColors[hash % pillColors.length];
 	variant === 'compact' && (
 		<a href={`/articles/${entry.id}/`} class="grid flex-1 grid-cols-[140px_1fr] overflow-hidden rounded-md border border-border bg-white">
 			<div class={`relative overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage &&
-					(typeof heroImage === 'string' ? (
-						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
-					) : (
-						<Picture
-							formats={['avif', 'webp']}
-							src={heroImage}
-							alt=""
-							width={280}
-							height={200}
-							class="absolute inset-0 h-full w-full object-cover"
-						/>
-					))}
+				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
 			</div>
 			<div class="flex flex-col justify-center gap-1.5 px-4 py-3.5">
 				<div class="text-[10px] font-semibold tracking-wide text-teal uppercase">{category}</div>
@@ -107,19 +82,7 @@ const pillColor = pillColors[hash % pillColors.length];
 	variant === 'vertical' && (
 		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
 			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage &&
-					(typeof heroImage === 'string' ? (
-						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
-					) : (
-						<Picture
-							formats={['avif', 'webp']}
-							src={heroImage}
-							alt=""
-							width={600}
-							height={340}
-							class="absolute inset-0 h-full w-full object-cover"
-						/>
-					))}
+				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
 				<span class:list={['absolute bottom-2.5 left-3 rounded-full px-2 py-0.5 text-[10px] font-semibold', pillColor]}>
 					{category}
 				</span>
@@ -142,19 +105,7 @@ const pillColor = pillColors[hash % pillColors.length];
 	/* Large hero-style card with the image (or gradient) filling the whole card and text overlaid via a bottom gradient scrim. */
 	variant === 'overlay' && (
 		<a href={`/articles/${entry.id}/`} class={`relative block aspect-[16/7] overflow-hidden rounded-md bg-gradient-to-br ${gradient}`}>
-			{heroImage &&
-				(typeof heroImage === 'string' ? (
-					<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
-				) : (
-					<Picture
-						formats={['avif', 'webp']}
-						src={heroImage}
-						alt=""
-						width={1200}
-						height={525}
-						class="absolute inset-0 h-full w-full object-cover"
-					/>
-				))}
+			{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
 			<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 			<div class="absolute inset-x-0 bottom-0 p-7">
 				<div class="mb-2.5 flex items-center gap-2">

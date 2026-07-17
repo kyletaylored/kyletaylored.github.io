@@ -71,6 +71,26 @@ must be literal, not `var(--color-teal)`**, or you'll recreate the
 self-referential CSS cycle that caused the black-on-black text bug (see git
 history / commit `454d158` if you need the full explanation).
 
+## Media: why `heroImage`/`ogImage` are plain strings, not `astro:assets` `image()`
+
+`heroImage` (articles/projects/lab) and `seo.ogImage` are typed as plain
+`z.string().optional()` in `content.config.ts` — **not** the `image()`
+content-collection helper, and every place that renders one uses a plain
+`<img src={heroImage} />`, not `<Picture>`/`<Image>`. This is deliberate:
+Pages CMS's media picker (`.pages.yml`'s `media` config) always writes
+root-relative paths like `/uploads/foo.jpg` pointing at `public/uploads/`,
+because that's the one convention Pages CMS's own UI supports — it has no
+concept of Astro's relative-import-based `image()` schema. `image()` only
+accepts a path it can statically resolve to a file under `src/`, so a CMS
+write of `/uploads/foo.jpg` fails that schema outright (`ImageNotFound` at
+build time) the moment an editor uses the CMS's image field. Don't
+reintroduce `image()`/`Picture` for these fields, and don't move
+`public/uploads/` back into `src/assets/` — it'll silently break the next
+Pages CMS-authored image the moment someone (including future-you) adds
+one. The tradeoff: CMS-uploaded images skip Astro's build-time
+optimization (no automatic avif/webp/resize) — acceptable since Pages CMS
+is the actual authoring surface for this content, not a build script.
+
 ## One more gotcha worth knowing
 
 Any plain CSS in `src/styles/global.css` targeting a bare tag selector

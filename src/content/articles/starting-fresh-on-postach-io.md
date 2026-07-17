@@ -6,7 +6,7 @@ category: "Uncategorized"
 tags: ["personal", "post", "published"]
 seo: {}
 ---
-![](../../assets/uploads/postachio-featured.jpg)
+![](/uploads/postachio-featured.jpg)
 
 I’ve been moving my blog around for about the past 2 years because I could never find a platform that I just really enjoyed. I tried WordPress, Drupal, Tumblr, and even Jekyll/Octopress, but I was just never very happy with any of them. So the search continued.
 
