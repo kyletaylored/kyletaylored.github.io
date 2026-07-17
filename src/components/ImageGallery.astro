@@ -1,0 +1,102 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface GalleryImage {
+	src: ImageMetadata | string;
+	alt: string;
+	caption?: string;
+}
+
+interface Props {
+	images: GalleryImage[];
+	layout?: 'single' | 'two-up' | 'three-up' | 'editorial';
+	caption?: string;
+}
+
+const { images, layout = images.length === 1 ? 'single' : 'three-up', caption } = Astro.props;
+
+const gridClass = {
+	single: 'grid-cols-1',
+	'two-up': 'grid-cols-2',
+	'three-up': 'grid-cols-3',
+	editorial: 'grid-cols-[2fr_1fr]',
+}[layout];
+
+const aspect = {
+	single: 'aspect-video',
+	'two-up': 'aspect-[3/2]',
+	'three-up': 'aspect-[4/3]',
+	editorial: 'aspect-[3/2]',
+}[layout];
+---
+
+<figure class="not-prose my-10">
+	{
+		layout === 'editorial' ? (
+			<div class="grid grid-cols-[2fr_1fr] gap-2">
+				<div class="overflow-hidden rounded-md bg-surface">
+					{typeof images[0].src === 'string' ? (
+						<img src={images[0].src} alt={images[0].alt} class="aspect-[3/2] w-full object-cover" />
+					) : (
+						<Picture
+							formats={['avif', 'webp']}
+							src={images[0].src}
+							alt={images[0].alt}
+							width={800}
+							height={533}
+							class="aspect-[3/2] w-full object-cover"
+						/>
+					)}
+				</div>
+				<div class="flex flex-col gap-2">
+					{images.slice(1).map((img) =>
+						typeof img.src === 'string' ? (
+							<img src={img.src} alt={img.alt} class="flex-1 rounded-md bg-surface object-cover" style="min-height:80px" />
+						) : (
+							<Picture
+								formats={['avif', 'webp']}
+								src={img.src}
+								alt={img.alt}
+								width={400}
+								height={300}
+								class="flex-1 rounded-md bg-surface object-cover"
+								style="min-height:80px"
+							/>
+						),
+					)}
+				</div>
+			</div>
+		) : (
+			<div class:list={['grid gap-2', gridClass]}>
+				{images.map((img) => (
+					<div class:list={['overflow-hidden rounded-md bg-surface', aspect]}>
+						{typeof img.src === 'string' ? (
+							<img src={img.src} alt={img.alt} class="h-full w-full object-cover" />
+						) : (
+							<Picture
+								formats={['avif', 'webp']}
+								src={img.src}
+								alt={img.alt}
+								width={1200}
+								height={800}
+								class="h-full w-full object-cover"
+							/>
+						)}
+					</div>
+				))}
+			</div>
+		)
+	}
+
+	{
+		(caption || images.some((img) => img.caption)) && (
+			<figcaption class="mt-2.5 flex items-baseline gap-2">
+				<span class="mb-0.5 h-[3px] w-[3px] flex-shrink-0 rounded-full bg-red" />
+				<span class="text-xs italic text-muted">
+					{caption ?? images.map((img) => img.caption).filter(Boolean).join(' · ')}
+				</span>
+			</figcaption>
+		)
+	}
+</figure>

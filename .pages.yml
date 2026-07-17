@@ -84,6 +84,27 @@ content:
       - name: featured
         type: boolean
         default: false
+      - name: stats
+        type: object
+        fields:
+          - { name: stars, type: string }
+          - { name: forks, type: string }
+          - { name: lastCommit, type: string }
+          - { name: license, type: string }
+          - { name: version, type: string }
+      - name: features
+        type: object
+        list: true
+        fields:
+          - { name: icon, type: string }
+          - { name: title, type: string }
+          - { name: description, type: text }
+      - name: lessons
+        type: object
+        list: true
+        fields:
+          - { name: title, type: string }
+          - { name: description, type: text }
       - name: seo
         type: object
         fields:

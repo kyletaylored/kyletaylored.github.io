@@ -48,6 +48,32 @@ const projects = defineCollection({
 				.default({}),
 			stack: z.array(z.string()).default([]),
 			featured: z.boolean().default(false),
+			stats: z
+				.object({
+					stars: z.string().optional(),
+					forks: z.string().optional(),
+					lastCommit: z.string().optional(),
+					license: z.string().optional(),
+					version: z.string().optional(),
+				})
+				.optional(),
+			features: z
+				.array(
+					z.object({
+						icon: z.string().optional(),
+						title: z.string(),
+						description: z.string(),
+					}),
+				)
+				.default([]),
+			lessons: z
+				.array(
+					z.object({
+						title: z.string(),
+						description: z.string(),
+					}),
+				)
+				.default([]),
 			seo: seoSchema.default({}),
 		}),
 });

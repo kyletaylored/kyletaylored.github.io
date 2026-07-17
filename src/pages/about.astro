@@ -1,16 +1,347 @@
 ---
 import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Circle from '../components/decor/Circle.astro';
+import Triangle from '../components/decor/Triangle.astro';
+import Diamond from '../components/decor/Diamond.astro';
+import DotGrid from '../components/decor/DotGrid.astro';
 
 const entry = await getEntry('pages', 'about');
 if (!entry) throw new Error('Missing src/content/pages/about.mdx');
 const { Content } = await render(entry);
+
+// This page is bespoke (per _reference/.../ui_kits/lab/About.dc.html) rather
+// than data-driven — these sections aren't part of any content collection
+// schema. Edit the copy directly here. Title/description/SEO still come
+// from src/content/pages/about.mdx via Pages CMS.
+const whatIDo = [
+	{
+		label: 'Software',
+		icon: '>_',
+		mono: true,
+		desc: 'Full-stack apps, APIs, CLIs. TypeScript, Python, Rust. Ship first, refactor always.',
+		bg: 'bg-ink',
+		fg: 'text-bg',
+		iconColor: 'text-teal',
+		descColor: 'text-muted',
+	},
+	{
+		label: 'AI Systems',
+		icon: '◈',
+		desc: 'Agents, RAG pipelines, fine-tuned models. Production AI that actually runs reliably.',
+		bg: 'bg-pink',
+		fg: 'text-white',
+		iconColor: 'text-white',
+		descColor: 'text-white/70',
+	},
+	{
+		label: 'Hardware',
+		icon: '⬡',
+		desc: 'ESP32, Raspberry Pi, custom PCBs. If it blinks or moves, I want to build it.',
+		bg: 'bg-yellow',
+		fg: 'text-ink',
+		iconColor: 'text-ink',
+		descColor: 'text-ink/60',
+	},
+	{
+		label: 'Teaching',
+		icon: '✦',
+		desc: "Write-ups, talks, open source. If I figured it out, I'll document it. Everything in public.",
+		bg: 'bg-bg border-2 border-ink',
+		fg: 'text-ink',
+		iconColor: 'text-bg',
+		descColor: 'text-muted',
+	},
+];
+
+const timeline = [
+	{ year: '2015 →', title: 'Started coding', desc: 'Taught myself HTML in a browser, broke everything, kept going.', color: 'var(--color-teal)' },
+	{ year: '2018 →', title: 'First real job', desc: 'Shipped production code. Learned that "working locally" means nothing.', color: 'var(--color-pink)' },
+	{ year: '2021 →', title: 'Went deep on AI', desc: 'Built my first LLM pipeline. Realized agents were harder than the demos suggested.', color: 'var(--color-yellow)' },
+	{ year: 'NOW →', title: 'The Lab', desc: 'Building experiments, shipping tools, writing everything down.', color: null },
+];
+
+const howIWork = [
+	{ title: 'Build in public', desc: 'Share early, share often. Imperfect and shipped beats perfect and hidden.' },
+	{ title: 'Open source everything', desc: 'If I built it, you can see it, fork it, and make it better.' },
+	{ title: 'Experiments are the point', desc: 'Most of what I build here will never be "finished." That\'s fine.' },
+	{ title: 'Teach what you learn', desc: 'Write-ups, videos, talks. Knowledge compounds when shared.' },
+];
+
+const stack = [
+	{ label: 'Languages', color: 'text-teal', items: ['TypeScript', 'Python', 'Rust', 'C / C++'] },
+	{ label: 'Frameworks', color: 'text-pink', items: ['Astro', 'React', 'FastAPI', 'Hono'] },
+	{ label: 'AI / ML', color: 'text-yellow', items: ['Claude API', 'LangGraph', 'Chroma', 'Ollama'] },
+	{ label: 'Hardware', color: 'text-blue', items: ['ESP32', 'RPi', 'Arduino', 'KiCad'] },
+];
+
+const currentlyBuilding = [
+	{ title: 'Autonomous code review agent', tag: 'AI', border: 'border-teal' },
+	{ title: '6-axis robot arm (3D printed)', tag: 'Hardware', border: 'border-pink' },
+	{ title: 'Open source dev tools collection', tag: 'OSS', border: 'border-yellow' },
+];
 ---
 
 <BaseLayout title={entry.data.seo.metaTitle ?? entry.data.title} description={entry.data.description}>
-	<PageHeader title={entry.data.title} description={entry.data.description} />
-	<article class="prose mx-auto max-w-[760px] px-6 py-12 md:px-12">
-		<Content />
-	</article>
+	<section class="grid min-h-[560px] overflow-hidden bg-ink md:grid-cols-2">
+		<div class="relative z-[2] flex flex-col justify-center px-6 py-16 md:px-12 lg:py-20">
+			<div class="pointer-events-none absolute -bottom-10 -left-10 opacity-[0.08]">
+				<Circle color="var(--color-teal)" size="160px" />
+			</div>
+			<div class="relative text-xs font-semibold tracking-widest text-teal uppercase mb-6">Creative Engineer</div>
+			<h1 class="relative mb-6 text-6xl leading-[0.95] font-bold tracking-tighter text-bg md:text-7xl">
+				Kyle<br />Taylor<span class="text-pink">.</span>
+			</h1>
+			<p class="relative mb-9 max-w-sm text-base leading-relaxed text-muted-light">
+				I build software, AI systems, and physical things — then write about them. Everything I make is
+				open.
+			</p>
+			<div class="relative flex flex-wrap gap-2.5">
+				<Button href="/lab" variant="primary">See the Lab &rarr;</Button>
+				<Button href="https://github.com/kyletaylored" variant="dark" target="_blank" rel="noopener noreferrer">
+					GitHub &rsaquo;
+				</Button>
+			</div>
+		</div>
+
+		<div class="relative flex items-center justify-center overflow-hidden bg-[#0D0D0D] p-8 md:p-14">
+			<div class="pointer-events-none absolute -right-8 -top-8 h-44 w-44 rounded-full bg-pink opacity-15"></div>
+			<div class="pointer-events-none absolute bottom-5 left-5">
+				<Triangle color="var(--color-yellow)" size="86px" />
+			</div>
+			<div class="pointer-events-none absolute bottom-16 right-8 opacity-20">
+				<Diamond color="var(--color-blue)" size="40px" />
+			</div>
+			<div class="pointer-events-none absolute left-10 top-10 opacity-[0.07]">
+				<DotGrid width="60px" height="60px" />
+			</div>
+
+			<div class="relative z-[2] flex flex-col items-center">
+				<div class="flex h-40 w-40 items-center justify-center overflow-hidden rounded-md border-2 border-border-dark bg-surface-dark">
+					<svg width="100%" height="100%" viewBox="0 0 160 160">
+						<defs>
+							<pattern id="about-avatar-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+								<path d="M 16 0 L 0 0 0 16" fill="none" stroke="#2A2A2A" stroke-width="0.5" />
+							</pattern>
+						</defs>
+						<rect width="160" height="160" fill="#111" />
+						<rect width="160" height="160" fill="url(#about-avatar-grid)" />
+						<circle cx="80" cy="64" r="32" fill="none" stroke="#28D7E5" stroke-width="1" stroke-dasharray="4,3" />
+						<circle cx="80" cy="64" r="20" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" />
+						<rect x="44" y="104" width="72" height="48" rx="4" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" stroke-dasharray="4,3" />
+						<text x="80" y="133" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#28D7E5" opacity="0.5">PHOTO</text>
+						<line x1="20" y1="80" x2="140" y2="80" stroke="#2A2A2A" stroke-width="0.5" />
+					</svg>
+				</div>
+				<div class="w-[200px] border border-t-0 border-border-dark bg-[#0D0D0D] px-4.5 py-4 font-mono text-[11px] leading-loose">
+					<div class="grid grid-cols-[auto_1fr] gap-x-2.5">
+						<span class="text-teal">name</span><span class="text-bg">Kyle Taylor</span>
+						<span class="text-teal">role</span><span class="text-bg">Creative Engineer</span>
+						<span class="text-teal">based</span><span class="text-bg">Dallas–Fort Worth, TX</span>
+						<span class="text-teal">open</span><span class="text-bg">to: collab</span>
+					</div>
+					<div class="mt-2.5 flex gap-1.5">
+						<span class="h-2.5 w-2.5 rounded-full bg-teal"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-pink"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-yellow"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-blue"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-red"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="h-1 bg-pink"></div>
+
+	<section class="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[280px_1fr] md:px-12 md:py-20">
+		<div class="md:sticky md:top-20 md:self-start">
+			<div class="mb-5 flex items-center gap-2 text-xs font-bold tracking-wide text-red uppercase">
+				<span class="h-1.5 w-1.5 rounded-full bg-red"></span>A Bit About Me
+			</div>
+			<div class="relative rounded-md border border-dashed border-[#C0BCB7] bg-white p-5">
+				<div class="absolute -top-2 left-4 bg-bg px-1.5 font-mono text-[9px] tracking-wide text-muted-light">
+					BIO.TXT
+				</div>
+				<div class="grid grid-cols-[auto_1fr] gap-x-2.5 gap-y-1 font-mono text-[11px] leading-loose">
+					<span class="text-teal">name</span><span class="text-ink">Kyle Taylor</span>
+					<span class="text-teal">role</span><span class="text-ink">Creative Eng.</span>
+					<span class="text-teal">status</span><span class="text-pink">building</span>
+					<span class="text-teal">mood</span><span class="text-yellow">caffeinated</span>
+				</div>
+			</div>
+			<div class="mt-6 font-mono text-sm tracking-[6px] text-[#C0BCB7]">/ / / /</div>
+		</div>
+
+		<div class="prose max-w-[620px]">
+			<Content />
+			<blockquote class="m-0 rounded-r-md border-l-4 border-teal bg-white px-7 py-6">
+				<p class="mb-3 text-xl leading-snug font-semibold text-ink italic">
+					"Shipping beats perfecting. Documentation beats memory. Open beats closed."
+				</p>
+				<cite class="text-xs font-semibold tracking-wide text-muted-light uppercase not-italic">
+					&mdash; The rules I try to follow
+				</cite>
+			</blockquote>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-16 md:px-12 md:pb-20">
+		<div class="grid gap-12 md:grid-cols-[320px_1fr]">
+			<div>
+				<div class="mb-5 flex items-center gap-2 text-xs font-bold tracking-wide text-red uppercase">
+					<span class="h-1.5 w-1.5 rounded-full bg-red"></span>What I Do
+				</div>
+				<h2 class="text-5xl leading-[1.0] font-bold tracking-tight">
+					I make<br />things<span class="text-teal">.</span>
+				</h2>
+				<div class="mt-6 h-[3px] w-12 bg-pink"></div>
+			</div>
+			<div class="grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+				{
+					whatIDo.map((d) => (
+						<div class={`flex flex-col gap-4 p-8 ${d.bg}`}>
+							<div class="flex h-10 w-10 items-center justify-center rounded-md bg-black/10">
+								<span class={`text-lg ${d.iconColor}`}>{d.icon}</span>
+							</div>
+							<div>
+								<div class={`mb-2 text-sm font-bold ${d.fg}`}>{d.label}</div>
+								<div class={`text-[13px] leading-relaxed ${d.descColor}`}>{d.desc}</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
+		<div class="pointer-events-none absolute -right-20 -top-20 opacity-[0.07]">
+			<Circle color="var(--color-pink)" size="320px" />
+		</div>
+		<div class="mx-auto max-w-6xl">
+			<SectionHeader label="The Story So Far" linkText={null} />
+			<div class="grid grid-cols-2 gap-0.5 lg:grid-cols-4">
+				{
+					timeline.map((t) => (
+						<div class="bg-surface-dark p-7" style={{ borderTop: `3px solid ${t.color ?? 'var(--color-teal)'}` }}>
+							<div class="mb-3 font-mono text-[11px] text-teal">{t.year}</div>
+							<div class="mb-2.5 text-base font-bold text-bg">{t.title}</div>
+							<div class="text-[13px] leading-relaxed text-muted">{t.desc}</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16 md:px-12 md:py-20">
+		<div class="grid gap-16 md:grid-cols-2">
+			<div>
+				<SectionHeader label="How I Work" linkText={null} />
+				<div class="flex flex-col">
+					{
+						howIWork.map((item, i) => (
+							<div class="grid grid-cols-[28px_1fr] gap-4 border-b border-border py-5 last:border-b-0">
+								<div class="pt-0.5 font-mono text-[11px] text-muted-light">{String(i + 1).padStart(2, '0')}</div>
+								<div>
+									<div class="mb-1.5 text-base font-bold">{item.title}</div>
+									<div class="text-[13px] leading-relaxed text-muted">{item.desc}</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<div>
+				<SectionHeader label="Current Stack" linkText={null} />
+				<div class="grid grid-cols-2 gap-2">
+					{
+						stack.map((s) => (
+							<div class="rounded-md border border-border bg-white p-3.5">
+								<div class={`mb-1.5 text-[10px] font-bold tracking-wide uppercase ${s.color}`}>{s.label}</div>
+								<div class="text-[13px] leading-relaxed">
+									{s.items.map((item, i) => (
+										<>
+											{item}
+											{i < s.items.length - 1 && <br />}
+										</>
+									))}
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-16 md:px-12 md:pb-20">
+		<div class="grid gap-0.5 md:grid-cols-2">
+			<div class="relative overflow-hidden bg-ink p-8 md:p-10">
+				<div class="pointer-events-none absolute -bottom-5 -right-5 opacity-[0.08]">
+					<Circle color="var(--color-teal)" size="120px" />
+				</div>
+				<div class="relative mb-5 flex items-center gap-2 text-xs font-semibold tracking-wide text-teal uppercase">
+					<span class="h-1.5 w-1.5 rounded-full bg-red"></span>Currently Building
+				</div>
+				<div class="relative flex flex-col gap-3">
+					{
+						currentlyBuilding.map((item) => (
+							<div class={`flex items-center gap-3 rounded-md border-l-3 bg-surface-dark p-3 ${item.border}`}>
+								<div class="flex-1 text-sm font-medium text-bg">{item.title}</div>
+								<span class="whitespace-nowrap rounded-full border border-border-dark px-2 text-[10px] text-muted">
+									{item.tag}
+								</span>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="relative flex flex-col justify-between overflow-hidden bg-pink p-8 md:p-10">
+				<div class="pointer-events-none absolute -left-5 -top-5 h-24 w-24 rounded-full bg-white opacity-[0.08]"></div>
+				<div>
+					<div class="mb-5 text-xs font-semibold tracking-wide text-white/60 uppercase">Get In Touch</div>
+					<p class="mb-8 text-3xl leading-tight font-bold text-white">Let's build<br />something.</p>
+				</div>
+				<div class="relative flex flex-col gap-2.5">
+					<a
+						href="https://github.com/kyletaylored"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-3 border border-white/20 bg-white/10 px-4 py-3.5"
+					>
+						<span class="text-sm text-white">&#8853;</span>
+						<span class="text-sm font-semibold text-white">kyletaylored</span>
+						<span class="ml-auto text-xs text-white/50">GitHub &rarr;</span>
+					</a>
+					<a href="mailto:kyle@kyletaylor.dev" class="flex items-center gap-3 bg-white px-4 py-3.5">
+						<span class="text-sm text-pink">&#64;</span>
+						<span class="text-sm font-semibold text-ink">kyle@kyletaylor.dev</span>
+						<span class="ml-auto text-xs text-muted">Email &rarr;</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
+
+<style>
+	.prose :global(p) {
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--color-black);
+		margin: 0 0 20px;
+	}
+	.prose :global(p:first-of-type) {
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 1.45;
+		letter-spacing: -0.01em;
+		margin-bottom: 28px;
+	}
+</style>

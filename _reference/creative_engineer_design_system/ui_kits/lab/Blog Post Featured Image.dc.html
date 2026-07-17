@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0 0 24px; line-height: 1.75; font-size: 17px; color: #2A2A2A; }
+  h2 { margin: 48px 0 16px; font-size: 28px; font-weight: 700; line-height: 1.2; }
+  h3 { margin: 36px 0 12px; font-size: 20px; font-weight: 600; }
+  code { font-family: 'Space Mono', monospace; font-size: 14px; background: #F0EDE8; padding: 2px 6px; border-radius: 3px; }
+</style>
+</helmet>
+
+<!-- NAV -->
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:#111;position:sticky;top:0;z-index:100;">
+  <a href="#" style="display:flex;align-items:center;gap:10px;">
+    <div style="width:28px;height:28px;background:#28D7E5;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;">
+      <span style="font-size:14px;font-weight:700;color:#111;line-height:1;">K</span>
+    </div>
+    <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Experiments</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Tools</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">AI</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Hardware</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">About</a>
+    <span style="color:#F44D8A;font-size:20px;line-height:1;">+</span>
+  </div>
+</nav>
+
+<!-- FEATURED IMAGE HERO — full bleed with overlay -->
+<div style="position:relative;height:520px;overflow:hidden;">
+  <!-- Placeholder image: gradient + geometric shapes to simulate a real photo -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a0a1a 0%,#0d1b3e 40%,#1a0533 100%);"></div>
+  <!-- Memphis decoration inside hero image -->
+  <div style="position:absolute;right:10%;top:10%;width:200px;height:200px;border-radius:50%;background:#F44D8A;opacity:0.18;"></div>
+  <div style="position:absolute;left:30%;bottom:0;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:200px solid #28D7E5;opacity:0.12;"></div>
+  <div style="position:absolute;right:20%;bottom:15%;width:100px;height:100px;background:#FFD54A;opacity:0.14;transform:rotate(20deg);"></div>
+  <div style="position:absolute;left:8%;top:20%;">
+    <svg width="100" height="100"><defs><pattern id="dp" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#FFF" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(#dp)"/></svg>
+  </div>
+  <!-- Gradient overlay bottom-up for text legibility -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);"></div>
+  <!-- Image placeholder label -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:0.1em;text-transform:uppercase;">Featured image placeholder</div>
+
+  <!-- Annotation line — blueprint style -->
+  <div style="position:absolute;top:32px;left:48px;display:flex;align-items:center;gap:8px;">
+    <div style="width:24px;height:1px;background:rgba(255,255,255,0.3);"></div>
+    <span style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;">1920 × 1080</span>
+  </div>
+
+  <!-- Article meta overlaid on image -->
+  <div style="position:absolute;bottom:0;left:0;right:0;padding:48px 64px 40px;">
+    <!-- Breadcrumb -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+      <a href="#" style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Articles</a>
+      <span style="color:rgba(255,255,255,0.3);font-size:11px;">›</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">Hardware</span>
+    </div>
+    <h1 style="margin:0 0 20px;font-size:56px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;max-width:800px;text-wrap:pretty;">Building a Wi-Fi Controlled Rover with ESP32</h1>
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#111;flex-shrink:0;">K</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#FAF8F3;">Kyle Taylor</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);">Creative Engineer</div>
+        </div>
+      </div>
+      <div style="width:1px;height:28px;background:rgba(255,255,255,0.15);"></div>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);">July 16, 2026</span>
+      <div style="width:1px;height:28px;background:rgba(255,255,255,0.15);"></div>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);">12 min read</span>
+      <div style="display:flex;gap:6px;margin-left:auto;">
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:3px 10px;">esp32</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:3px 10px;">hardware</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:3px 10px;">robotics</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pink separator -->
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- ARTICLE BODY + SIDEBAR -->
+<div style="max-width:1200px;margin:0 auto;padding:64px 48px;display:grid;grid-template-columns:1fr 280px;gap:80px;align-items:start;">
+
+  <article>
+    <p style="font-size:20px;font-weight:500;line-height:1.65;color:#111;margin-bottom:32px;border-left:3px solid #28D7E5;padding-left:20px;">I've always wanted a rover. Not the Mars kind — the kind you build yourself, flash firmware onto at 2am, and watch drag itself across a desk because you got the motor polarity wrong.</p>
+
+    <p>This is a build log for my ESP32-based Wi-Fi rover. Full camera stream, real-time control via a web UI, OTA firmware updates, and enough duct tape in the architecture to keep it running indefinitely.</p>
+
+    <h2>Parts list</h2>
+
+    <!-- Parts table -->
+    <div style="border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;margin:0 0 32px;font-size:13px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;background:#111;color:#FAF8F3;">
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;border-right:1px solid #2A2A2A;">Part</div>
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;border-right:1px solid #2A2A2A;">Notes</div>
+        <div style="padding:10px 16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:11px;">~Cost</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;border-top:1px solid #E0DDDA;">
+        <div style="padding:10px 16px;font-weight:500;border-right:1px solid #F0EDE8;">ESP32-CAM</div>
+        <div style="padding:10px 16px;color:#6B6860;border-right:1px solid #F0EDE8;">Has onboard camera, Wi-Fi</div>
+        <div style="padding:10px 16px;color:#6B6860;">$6</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;border-top:1px solid #E0DDDA;background:#FDFCFA;">
+        <div style="padding:10px 16px;font-weight:500;border-right:1px solid #F0EDE8;">L298N Motor Driver</div>
+        <div style="padding:10px 16px;color:#6B6860;border-right:1px solid #F0EDE8;">Dual H-bridge, 5–35V</div>
+        <div style="padding:10px 16px;color:#6B6860;">$3</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;border-top:1px solid #E0DDDA;">
+        <div style="padding:10px 16px;font-weight:500;border-right:1px solid #F0EDE8;">TT Gear Motors × 4</div>
+        <div style="padding:10px 16px;color:#6B6860;border-right:1px solid #F0EDE8;">Yellow plastic, ~200 RPM</div>
+        <div style="padding:10px 16px;color:#6B6860;">$5</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 80px;border-top:1px solid #E0DDDA;background:#FDFCFA;">
+        <div style="padding:10px 16px;font-weight:500;border-right:1px solid #F0EDE8;">18650 Li-ion × 2</div>
+        <div style="padding:10px 16px;color:#6B6860;border-right:1px solid #F0EDE8;">7.4V nominal, with holder</div>
+        <div style="padding:10px 16px;color:#6B6860;">$8</div>
+      </div>
+    </div>
+
+    <h2>Wiring it up</h2>
+    <p>The ESP32-CAM doesn't have many free GPIO pins after the camera takes its share. I ended up using GPIO12, 13, 14, and 15 for motor direction control — which caused exactly the boot-loop issue you'd expect if you didn't pull GPIO12 low at startup.</p>
+
+    <!-- Code block -->
+    <div style="background:#111;border-radius:4px;overflow:hidden;margin:0 0 32px;">
+      <div style="padding:10px 20px;background:#1A1A1A;border-bottom:1px solid #2A2A2A;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">rover.ino</span>
+        <div style="margin-left:auto;display:flex;gap:6px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#F25A4C;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#FFD54A;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#28D7E5;"></div>
+        </div>
+      </div>
+      <pre style="padding:24px;overflow-x:auto;margin:0;"><code style="font-family:'Space Mono',monospace;font-size:12px;line-height:1.8;"><span style="color:#6B6860;">// Motor pins — GPIO12 needs pull-down at boot</span>
+<span style="color:#28D7E5;">#define</span> <span style="color:#FAF8F3;">MOTOR_A1</span> <span style="color:#FFD54A;">12</span>
+<span style="color:#28D7E5;">#define</span> <span style="color:#FAF8F3;">MOTOR_A2</span> <span style="color:#FFD54A;">13</span>
+<span style="color:#28D7E5;">#define</span> <span style="color:#FAF8F3;">MOTOR_B1</span> <span style="color:#FFD54A;">14</span>
+<span style="color:#28D7E5;">#define</span> <span style="color:#FAF8F3;">MOTOR_B2</span> <span style="color:#FFD54A;">15</span>
+
+<span style="color:#28D7E5;">void</span> <span style="color:#F44D8A;">forward</span>() {
+  digitalWrite(MOTOR_A1, <span style="color:#FFD54A;">HIGH</span>); digitalWrite(MOTOR_A2, <span style="color:#FFD54A;">LOW</span>);
+  digitalWrite(MOTOR_B1, <span style="color:#FFD54A;">HIGH</span>); digitalWrite(MOTOR_B2, <span style="color:#FFD54A;">LOW</span>);
+}</code></pre>
+    </div>
+
+    <!-- INLINE IMAGE — single full-width -->
+    <div style="margin:40px 0;">
+      <div style="background:#F0EDE8;border-radius:4px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- Blueprint-style image placeholder -->
+        <div style="position:absolute;inset:0;background:#E8E5E0;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="100%" height="100%" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid meet">
+            <defs><pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C8C5BF" stroke-width="0.5"/></pattern></defs>
+            <rect width="800" height="450" fill="#EAE7E2"/>
+            <rect width="800" height="450" fill="url(#grid)"/>
+            <!-- Rover outline -->
+            <rect x="280" y="150" width="240" height="150" rx="8" fill="none" stroke="#A8A49F" stroke-width="1.5" stroke-dasharray="6,3"/>
+            <circle cx="310" cy="170" r="24" fill="none" stroke="#A8A49F" stroke-width="1.5"/>
+            <circle cx="490" cy="170" r="24" fill="none" stroke="#A8A49F" stroke-width="1.5"/>
+            <circle cx="310" cy="280" r="24" fill="none" stroke="#A8A49F" stroke-width="1.5"/>
+            <circle cx="490" cy="280" r="24" fill="none" stroke="#A8A49F" stroke-width="1.5"/>
+            <!-- Camera lens -->
+            <circle cx="400" cy="225" r="20" fill="none" stroke="#28D7E5" stroke-width="1.5"/>
+            <circle cx="400" cy="225" r="8" fill="none" stroke="#28D7E5" stroke-width="1"/>
+            <!-- Annotation lines -->
+            <line x1="280" y1="130" x2="520" y2="130" stroke="#A8A49F" stroke-width="0.75"/>
+            <line x1="280" y1="125" x2="280" y2="135" stroke="#A8A49F" stroke-width="0.75"/>
+            <line x1="520" y1="125" x2="520" y2="135" stroke="#A8A49F" stroke-width="0.75"/>
+            <text x="400" y="120" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" fill="#A8A49F">240mm</text>
+            <text x="160" y="230" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" fill="#28D7E5" transform="rotate(-90,160,230)">ESP32 Rover v1.2</text>
+          </svg>
+        </div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:10px;">
+        <div style="width:3px;height:3px;border-radius:50%;background:#F25A4C;margin-bottom:2px;flex-shrink:0;"></div>
+        <p style="margin:0;font-size:12px;color:#6B6860;font-style:italic;">CAD diagram of the rover chassis — motors at each corner, ESP32-CAM centered.</p>
+      </div>
+    </div>
+
+    <h2>The web UI</h2>
+    <p>The control interface is served directly from the ESP32 — a single-page HTML file stored in SPIFFS. It uses a gamepad-style layout with arrow buttons and a live MJPEG stream in the corner. Touch events work on mobile, which was harder than it sounds.</p>
+
+    <!-- INLINE GALLERY — 3-up -->
+    <div style="margin:40px 0;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div style="background:#E8E5E0;border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533,#0d1b3e);opacity:0.6;"></div>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);text-align:center;position:relative;letter-spacing:0.06em;">WEB UI<br>SCREENSHOT</span>
+        </div>
+        <div style="background:#E8E5E0;border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#001a0d,#0a2a1a);opacity:0.6;"></div>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);text-align:center;position:relative;letter-spacing:0.06em;">WIRING<br>PHOTO</span>
+        </div>
+        <div style="background:#E8E5E0;border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1008,#2a1a00);opacity:0.6;"></div>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);text-align:center;position:relative;letter-spacing:0.06em;">FINISHED<br>ROVER</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:10px;">
+        <div style="width:3px;height:3px;border-radius:50%;background:#F25A4C;margin-bottom:2px;flex-shrink:0;"></div>
+        <p style="margin:0;font-size:12px;color:#6B6860;font-style:italic;">Left: web UI on mobile. Center: L298N motor driver wiring. Right: finished rover on the bench.</p>
+      </div>
+    </div>
+
+    <p>Lessons learned: power your motors separately from your microcontroller. Ground loops are real. A $0.10 capacitor across each motor terminal can save you hours of debugging phantom resets.</p>
+
+    <!-- Callout -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px 24px;margin:32px 0;display:flex;gap:16px;align-items:flex-start;">
+      <div style="width:4px;background:#FFD54A;border-radius:2px;flex-shrink:0;align-self:stretch;"></div>
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Lesson learned</div>
+        <p style="margin:0;font-size:15px;color:#2A2A2A;line-height:1.6;">A 100µF capacitor across each motor terminal eliminates most EMI-induced resets. Do this before debugging anything else.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding-top:48px;border-top:1px solid #E0DDDA;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6B6860;margin-bottom:12px;">Source code</div>
+      <p style="font-size:15px;color:#6B6860;margin-bottom:20px;">Full source on GitHub — MIT licensed. Clone, flash, break, fix, repeat.</p>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">VIEW ON GITHUB →</a>
+    </div>
+  </article>
+
+  <!-- Sidebar -->
+  <aside style="position:sticky;top:80px;display:flex;flex-direction:column;gap:32px;">
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:16px;">Contents</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#" style="font-size:13px;color:#28D7E5;display:flex;align-items:baseline;gap:8px;text-decoration:none;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">01</span>Parts list</a>
+        <a href="#" style="font-size:13px;color:#6B6860;display:flex;align-items:baseline;gap:8px;text-decoration:none;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">02</span>Wiring</a>
+        <a href="#" style="font-size:13px;color:#6B6860;display:flex;align-items:baseline;gap:8px;text-decoration:none;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">03</span>The web UI</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:12px;">Tags</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">esp32</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">hardware</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">firmware</span>
+        <span style="font-size:11px;border:1px solid #C0BCB7;border-radius:999px;padding:3px 10px;color:#6B6860;">robotics</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:12px;">Related</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <a href="#" style="padding:12px 0;border-bottom:1px solid #F0EDE8;display:block;text-decoration:none;">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:3px;line-height:1.4;">Building Reliable AI Agents</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">2 days ago</div>
+        </a>
+        <a href="#" style="padding:12px 0;display:block;text-decoration:none;">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:3px;line-height:1.4;">My 3D Printing Workflow</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">1 week ago</div>
+        </a>
+      </div>
+    </div>
+    <div style="background:#111;border-radius:4px;padding:20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-10px;top:-10px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.15;"></div>
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:6px;position:relative;">Open Source</div>
+      <div style="font-size:12px;color:#6B6860;margin-bottom:16px;position:relative;line-height:1.5;">All rover code is MIT licensed and on GitHub.</div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;border:1px solid #28D7E5;padding:8px 14px;position:relative;">VIEW ON GITHUB →</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#111;padding:48px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:200px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:160px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.9;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hz" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hz)"/></svg></div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;position:relative;">
+    <div>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0 0 4px;">This is a work in progress.</p>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0;">Just like <span style="color:#28D7E5;">everything else.</span></p>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Built by Kyle Taylor</div>
+      <div style="font-size:12px;color:#6B6860;">Creative Engineer · AI · Hardware · Open Source</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0 0 20px; line-height: 1.7; font-size: 16px; color: #2A2A2A; }
+</style>
+</helmet>
+
+<!-- NAV -->
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:#111;position:sticky;top:0;z-index:100;">
+  <a href="#" style="display:flex;align-items:center;gap:10px;">
+    <div style="width:28px;height:28px;background:#28D7E5;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;">
+      <span style="font-size:14px;font-weight:700;color:#111;line-height:1;">K</span>
+    </div>
+    <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;">Experiments</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Tools</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">AI</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Hardware</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">About</a>
+    <span style="color:#F44D8A;font-size:20px;line-height:1;">+</span>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<header style="background:#111;padding:64px 64px 0;position:relative;overflow:hidden;">
+  <!-- Decorative Memphis shapes -->
+  <div style="position:absolute;right:60px;top:-40px;width:220px;height:220px;border-radius:50%;background:#28D7E5;opacity:0.07;"></div>
+  <div style="position:absolute;right:200px;top:20px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:104px solid #FFD54A;opacity:0.1;"></div>
+  <div style="position:absolute;right:40px;bottom:120px;width:48px;height:48px;background:#F44D8A;opacity:0.18;transform:rotate(45deg);"></div>
+  <div style="position:absolute;left:64px;bottom:180px;color:#222;font-size:14px;letter-spacing:6px;">/ / / /</div>
+  <div style="position:absolute;left:200px;bottom:186px;width:10px;height:10px;background:#FFD54A;opacity:0.5;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;position:relative;">
+    <!-- Breadcrumb -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:28px;">
+      <a href="#" style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#6B6860;">Experiments</a>
+      <span style="color:#444;font-size:11px;">›</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">AI</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:80px;align-items:end;">
+      <!-- Left: title block -->
+      <div>
+        <!-- Status chip -->
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#1A1A1A;border:1px solid #2A2A2A;border-radius:999px;padding:5px 12px;margin-bottom:24px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#28D7E5;"></div>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;letter-spacing:0.08em;">ACTIVE EXPERIMENT</span>
+        </div>
+        <h1 style="margin:0 0 20px;font-size:68px;font-weight:700;line-height:0.95;letter-spacing:-0.03em;color:#FAF8F3;">LLM<br>Agent<br><span style="color:#28D7E5;">Framework</span></h1>
+        <p style="font-size:17px;color:#A8A49F;line-height:1.6;margin:0 0 36px;max-width:480px;">A minimal, composable framework for building autonomous AI agents with tool use, memory, and structured outputs. Built to be understood, not abstracted away.</p>
+        <!-- CTAs -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;padding-bottom:48px;">
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">VIEW ON GITHUB →</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;border:2px solid #444;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;border-radius:0;">LIVE DEMO ›</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;border:2px solid #444;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;border-radius:0;">READ WRITE-UP ›</a>
+        </div>
+      </div>
+
+      <!-- Right: stats card -->
+      <div style="background:#0D0D0D;border:1px solid #1E1E1E;border-radius:4px 4px 0 0;padding:28px;align-self:end;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6B6860;margin-bottom:20px;font-family:'Space Mono',monospace;">PROJECT STATS</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1E1E1E;">
+            <span style="font-size:12px;color:#6B6860;">Stars</span>
+            <span style="font-family:'Space Mono',monospace;font-size:14px;color:#FFD54A;font-weight:700;">1.2k ★</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1E1E1E;">
+            <span style="font-size:12px;color:#6B6860;">Forks</span>
+            <span style="font-family:'Space Mono',monospace;font-size:14px;color:#FAF8F3;">284</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1E1E1E;">
+            <span style="font-size:12px;color:#6B6860;">Last commit</span>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:#FAF8F3;">2d ago</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1E1E1E;">
+            <span style="font-size:12px;color:#6B6860;">License</span>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:#FAF8F3;">MIT</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+            <span style="font-size:12px;color:#6B6860;">Version</span>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:#28D7E5;">v0.4.2</span>
+          </div>
+        </div>
+        <!-- Tags -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #1E1E1E;">
+          <span style="font-size:10px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">TypeScript</span>
+          <span style="font-size:10px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">AI</span>
+          <span style="font-size:10px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">agents</span>
+          <span style="font-size:10px;color:#6B6860;border:1px solid #2A2A2A;border-radius:999px;padding:3px 10px;">open source</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Pink separator -->
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- SCREENSHOT / DEMO PREVIEW -->
+<section style="background:#1A1A1A;padding:48px 64px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <!-- Browser chrome -->
+    <div style="border-radius:8px;overflow:hidden;border:1px solid #2A2A2A;">
+      <div style="background:#0D0D0D;padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2A2A2A;">
+        <div style="display:flex;gap:6px;">
+          <div style="width:12px;height:12px;border-radius:50%;background:#F25A4C;"></div>
+          <div style="width:12px;height:12px;border-radius:50%;background:#FFD54A;"></div>
+          <div style="width:12px;height:12px;border-radius:50%;background:#28D7E5;"></div>
+        </div>
+        <div style="flex:1;background:#1A1A1A;border-radius:4px;padding:5px 12px;font-family:'Space Mono',monospace;font-size:11px;color:#555;">localhost:3000 — LLM Agent Framework</div>
+      </div>
+      <!-- App preview -->
+      <div style="background:#0D0D0D;display:grid;grid-template-columns:260px 1fr;min-height:380px;">
+        <!-- Sidebar -->
+        <div style="border-right:1px solid #1E1E1E;padding:20px 0;">
+          <div style="padding:0 16px 12px;font-family:'Space Mono',monospace;font-size:10px;color:#555;letter-spacing:0.08em;">AGENTS</div>
+          <div style="padding:10px 16px;background:#1A1A1A;border-left:2px solid #28D7E5;display:flex;align-items:center;gap:10px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#28D7E5;"></div>
+            <span style="font-size:12px;color:#FAF8F3;">code-review-agent</span>
+          </div>
+          <div style="padding:10px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#555;"></div>
+            <span style="font-size:12px;color:#6B6860;">research-agent</span>
+          </div>
+          <div style="padding:10px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#555;"></div>
+            <span style="font-size:12px;color:#6B6860;">data-pipeline-agent</span>
+          </div>
+          <div style="padding:16px 16px 0;margin-top:8px;border-top:1px solid #1E1E1E;">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#555;margin-bottom:10px;letter-spacing:0.08em;">TOOLS (4)</div>
+            <div style="font-size:11px;color:#6B6860;line-height:2;">search_web<br>read_file<br>run_code<br>send_message</div>
+          </div>
+        </div>
+        <!-- Main trace view -->
+        <div style="padding:24px;font-family:'Space Mono',monospace;font-size:12px;line-height:1.9;overflow:hidden;">
+          <div style="color:#6B6860;margin-bottom:8px;">— agent run #1,349 ·&nbsp;<span style="color:#28D7E5;">code-review-agent</span></div>
+          <div style="color:#FAF8F3;"><span style="color:#555;">[1]</span> think: <span style="color:#A8A49F;">reading PR diff, 247 lines changed</span></div>
+          <div style="color:#FAF8F3;"><span style="color:#555;">[2]</span> tool_call: <span style="color:#F44D8A;">read_file</span>(<span style="color:#FFD54A;">"src/agent.ts"</span>)</div>
+          <div style="color:#FAF8F3;padding-left:20px;color:#6B6860;">→ 312 lines · 2 functions</div>
+          <div style="color:#FAF8F3;"><span style="color:#555;">[3]</span> tool_call: <span style="color:#F44D8A;">run_code</span>(<span style="color:#FFD54A;">"run tests"</span>)</div>
+          <div style="color:#FAF8F3;padding-left:20px;color:#6B6860;">→ 48 passed · 0 failed · 1.2s</div>
+          <div style="color:#FAF8F3;"><span style="color:#555;">[4]</span> think: <span style="color:#A8A49F;">tests pass, checking for edge cases</span></div>
+          <div style="color:#FAF8F3;"><span style="color:#555;">[5]</span> respond: <span style="color:#28D7E5;">"LGTM. One suggestion on line 84..."</span></div>
+          <div style="margin-top:12px;display:flex;align-items:center;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#28D7E5;"></div>
+            <span style="color:#28D7E5;">completed in 4.2s · 3 tool calls · $0.0031</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT + SIDEBAR -->
+<div style="max-width:1200px;margin:0 auto;padding:64px 64px;display:grid;grid-template-columns:1fr 300px;gap:80px;align-items:start;">
+
+  <!-- Left: project content -->
+  <div>
+    <!-- Overview -->
+    <div style="margin-bottom:56px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">OVERVIEW</span>
+      </div>
+      <p style="font-size:18px;font-weight:500;line-height:1.65;color:#111;border-left:3px solid #28D7E5;padding-left:20px;margin-bottom:24px;">Most agent frameworks feel like flying a plane with a blanket over the instruments. I built this one so you can see exactly what's happening at every step.</p>
+      <p>LLM Agent Framework is a minimal TypeScript library for building AI agents that use tools, maintain memory across sessions, and produce structured outputs. The design goal was legibility — every layer is thin enough to read and understand without a docs tab open.</p>
+      <p>It supports Claude, GPT-4, and any OpenAI-compatible endpoint out of the box. Tool definitions are plain TypeScript functions with Zod schemas. Memory is pluggable — in-memory for development, vector store for production.</p>
+    </div>
+
+    <!-- Feature grid -->
+    <div style="margin-bottom:56px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">FEATURES</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#28D7E5;font-size:14px;">◈</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Tool use</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Define tools as typed TS functions. Schema validation via Zod. Parallel calls supported.</div></div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#F44D8A;font-size:14px;">◉</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Memory layers</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Short-term, long-term, and episodic. Plug in any vector store. Works offline with in-memory.</div></div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#FFD54A;font-size:14px;">⬡</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Structured output</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Zod schema → guaranteed JSON. No more parsing surprises in production.</div></div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#348BFF;font-size:14px;">↻</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Trace logging</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Every think/tool/respond step logged with timing and token cost. OpenTelemetry compatible.</div></div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#F25A4C;font-size:14px;">✕</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Hard timeouts</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Wall-clock kill switch built in. Agents can't run forever, and you'll know when they try.</div></div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#28D7E5;font-family:'Space Mono',monospace;font-size:11px;">&lt;/&gt;</span></div>
+          <div><div style="font-size:13px;font-weight:700;margin-bottom:4px;">Multi-model</div><div style="font-size:12px;color:#6B6860;line-height:1.5;">Claude, GPT-4, Mistral, Ollama. Swap models per-agent or mid-run.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code example -->
+    <div style="margin-bottom:56px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">QUICK START</span>
+      </div>
+      <div style="background:#111;border-radius:4px;overflow:hidden;">
+        <div style="padding:10px 20px;background:#1A1A1A;border-bottom:1px solid #2A2A2A;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">agent.ts</span>
+          <div style="margin-left:auto;display:flex;gap:6px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#F25A4C;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#FFD54A;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#28D7E5;"></div>
+          </div>
+        </div>
+        <pre style="padding:24px;overflow-x:auto;margin:0;"><code style="font-family:'Space Mono',monospace;font-size:12px;line-height:1.9;"><span style="color:#28D7E5;">import</span> { Agent, tool } <span style="color:#28D7E5;">from</span> <span style="color:#FFD54A;">'@kyletaylor/agent'</span>;
+
+<span style="color:#28D7E5;">const</span> <span style="color:#FAF8F3;">searchTool</span> = tool({
+  name: <span style="color:#FFD54A;">'search_web'</span>,
+  description: <span style="color:#FFD54A;">'Search the internet for information'</span>,
+  schema: z.object({ query: z.string() }),
+  run: <span style="color:#28D7E5;">async</span> ({ query }) => fetchResults(query),
+});
+
+<span style="color:#28D7E5;">const</span> <span style="color:#FAF8F3;">agent</span> = <span style="color:#28D7E5;">new</span> <span style="color:#F44D8A;">Agent</span>({
+  model: <span style="color:#FFD54A;">'claude-opus-4'</span>,
+  tools: [searchTool],
+  memory: <span style="color:#28D7E5;">new</span> VectorMemory(chromaClient),
+  timeout: <span style="color:#FFD54A;">30_000</span>,
+});
+
+<span style="color:#28D7E5;">const</span> result = <span style="color:#28D7E5;">await</span> agent.<span style="color:#F44D8A;">run</span>(<span style="color:#FFD54A;">'Research the latest in RAG techniques'</span>);
+<span style="color:#6B6860;">// { output: '...', steps: 4, tokens: 1249, cost: 0.0089 }</span></code></pre>
+      </div>
+    </div>
+
+    <!-- Lessons / process -->
+    <div style="margin-bottom:56px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">WHAT I LEARNED</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid #E0DDDA;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">01</span>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Context management is the real problem</div><p style="font-size:14px;margin:0;">Trimming context intelligently — not just truncating — is worth 10x the effort put into prompt engineering. Most agent failures are context failures.</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid #E0DDDA;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">02</span>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Observability is non-negotiable</div><p style="font-size:14px;margin:0;">If you can't see the trace, you can't debug it. Instrument everything from day one — cost, latency, tool calls, token usage.</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:16px;padding:20px 0;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">03</span>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Smaller models + better tools beat bigger models every time</div><p style="font-size:14px;margin:0;">A well-defined tool schema with a fast model consistently outperformed a frontier model with vague tool descriptions.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related articles -->
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;flex-shrink:0;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">RELATED WRITE-UPS</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:block;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;margin-bottom:8px;">Article</div>
+          <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:6px;line-height:1.4;">Building Reliable AI Agents</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">8 min read</div>
+        </a>
+        <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:block;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#F44D8A;margin-bottom:8px;">Article</div>
+          <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:6px;line-height:1.4;">RAG Strategies That Actually Work</div>
+          <div style="font-size:11px;color:#A8A49F;font-family:'Space Mono',monospace;">6 min read</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside style="position:sticky;top:80px;display:flex;flex-direction:column;gap:24px;">
+    <!-- Quick links -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:16px;">Links</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#FAF8F3;border:1px solid #E0DDDA;font-size:12px;font-weight:600;color:#111;border-radius:0;">
+          <span style="font-size:14px;">⊕</span> GitHub repo →
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#28D7E5;border:1px solid #28D7E5;font-size:12px;font-weight:600;color:#111;border-radius:0;">
+          <span style="font-size:14px;">▶</span> Live demo →
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#FAF8F3;border:1px solid #E0DDDA;font-size:12px;font-weight:600;color:#111;border-radius:0;">
+          <span style="font-size:14px;">✦</span> npm install →
+        </a>
+      </div>
+    </div>
+
+    <!-- Stack -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:14px;">Built with</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EDE8;">
+          <span style="font-size:12px;color:#111;">TypeScript</span>
+          <span style="font-size:10px;background:#28D7E5;color:#111;padding:2px 8px;border-radius:999px;font-weight:600;">Primary</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EDE8;">
+          <span style="font-size:12px;color:#111;">Zod</span>
+          <span style="font-size:10px;color:#6B6860;">Schema validation</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EDE8;">
+          <span style="font-size:12px;color:#111;">Vitest</span>
+          <span style="font-size:10px;color:#6B6860;">Testing</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EDE8;">
+          <span style="font-size:12px;color:#111;">Chroma</span>
+          <span style="font-size:10px;color:#6B6860;">Vector store</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;">
+          <span style="font-size:12px;color:#111;">OpenTelemetry</span>
+          <span style="font-size:10px;color:#6B6860;">Tracing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity -->
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:14px;">Recent activity</div>
+      <div style="display:flex;flex-direction:column;">
+        <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #F0EDE8;align-items:flex-start;">
+          <div style="width:20px;height:20px;background:#FFFAED;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#FFD54A;flex-shrink:0;">↑</div>
+          <div><div style="font-size:11px;font-weight:600;color:#FFD54A;">Pushed</div><div style="font-size:11px;color:#6B6860;">Add parallel tool calls</div></div>
+          <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9px;color:#A8A49F;white-space:nowrap;">2d ago</div>
+        </div>
+        <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #F0EDE8;align-items:flex-start;">
+          <div style="width:20px;height:20px;background:#EBF9FC;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#28D7E5;flex-shrink:0;">★</div>
+          <div><div style="font-size:11px;font-weight:600;color:#28D7E5;">Milestone</div><div style="font-size:11px;color:#6B6860;">1,000 stars ✦</div></div>
+          <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9px;color:#A8A49F;white-space:nowrap;">5d ago</div>
+        </div>
+        <div style="display:flex;gap:10px;padding:8px 0;align-items:flex-start;">
+          <div style="width:20px;height:20px;background:#FEF0EE;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#F25A4C;flex-shrink:0;">⬡</div>
+          <div><div style="font-size:11px;font-weight:600;color:#F25A4C;">Release</div><div style="font-size:11px;color:#6B6860;">v0.4.2 published</div></div>
+          <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9px;color:#A8A49F;white-space:nowrap;">1w ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other projects -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#111;margin-bottom:12px;">More projects</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+          <div style="width:28px;height:28px;background:#111;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#FFD54A;font-size:12px;">⬡</span></div>
+          <div><div style="font-size:12px;font-weight:600;color:#111;">ESP32 Rover</div><div style="font-size:10px;color:#6B6860;">Hardware</div></div>
+          <span style="margin-left:auto;font-size:12px;color:#A8A49F;">→</span>
+        </a>
+        <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+          <div style="width:28px;height:28px;background:#111;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#F44D8A;font-family:'Space Mono',monospace;font-size:10px;">&lt;/&gt;</span></div>
+          <div><div style="font-size:12px;font-weight:600;color:#111;">RAG Playground</div><div style="font-size:10px;color:#6B6860;">AI</div></div>
+          <span style="margin-left:auto;font-size:12px;color:#A8A49F;">→</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#111;padding:48px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:200px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:160px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.9;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hz" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hz)"/></svg></div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;position:relative;">
+    <div>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0 0 4px;">This is a work in progress.</p>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0;">Just like <span style="color:#28D7E5;">everything else.</span></p>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Built by Kyle Taylor</div>
+      <div style="font-size:12px;color:#6B6860;">Creative Engineer · AI · Hardware · Open Source</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>

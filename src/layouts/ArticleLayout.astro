@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -25,6 +26,14 @@ const related = (await getCollection('articles'))
 	.filter((a) => a.data.category === category || a.data.tags.some((t) => tags.includes(t)))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
+
+// When a heroImage is set, the header becomes a full-bleed featured-image
+// hero with a gradient overlay (per Blog Post Featured Image.dc.html)
+// instead of the plain dark band. Only the background layer differs — the
+// breadcrumb/title/meta content block below is shared by both variants.
+const headerClass = heroImage
+	? 'relative flex min-h-[420px] flex-col justify-end overflow-hidden px-6 pb-10 pt-14 md:min-h-[520px] md:px-12'
+	: 'relative overflow-hidden bg-ink px-6 py-14 md:px-12 md:py-16';
 ---
 
 <BaseLayout
@@ -35,19 +44,45 @@ const related = (await getCollection('articles'))
 	noindex={seo.noindex}
 	jsonLd={seo.jsonLd}
 >
-	<header class="relative overflow-hidden bg-ink px-6 py-14 md:px-12 md:py-16">
-		<div class="pointer-events-none absolute -top-8 right-10 hidden opacity-[0.12] md:block">
-			<Circle color="var(--color-teal)" size="160px" />
-		</div>
-		<div class="pointer-events-none absolute -bottom-10 right-40 hidden opacity-10 md:block">
-			<Circle color="var(--color-pink)" size="200px" />
-		</div>
-		<div class="pointer-events-none absolute right-10 top-10 hidden opacity-20 md:block">
-			<Triangle color="var(--color-yellow)" size="70px" />
-		</div>
-		<div class="pointer-events-none absolute left-6 bottom-5 hidden font-mono text-base tracking-[6px] text-border-dark md:block">/ / / /</div>
+	<header class={headerClass}>
+		{
+			heroImage ? (
+				<>
+					<div class="absolute inset-0">
+						{typeof heroImage === 'string' ? (
+							<img src={heroImage} alt="" class="h-full w-full object-cover" />
+						) : (
+							<Picture
+								formats={['avif', 'webp']}
+								width={1920}
+								height={1080}
+								src={heroImage}
+								alt=""
+								class="h-full w-full object-cover"
+							/>
+						)}
+					</div>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+				</>
+			) : (
+				<>
+					<div class="pointer-events-none absolute -top-8 right-10 hidden opacity-[0.12] md:block">
+						<Circle color="var(--color-teal)" size="160px" />
+					</div>
+					<div class="pointer-events-none absolute -bottom-10 right-40 hidden opacity-10 md:block">
+						<Circle color="var(--color-pink)" size="200px" />
+					</div>
+					<div class="pointer-events-none absolute right-10 top-10 hidden opacity-20 md:block">
+						<Triangle color="var(--color-yellow)" size="70px" />
+					</div>
+					<div class="pointer-events-none absolute left-6 bottom-5 hidden font-mono text-base tracking-[6px] text-border-dark md:block">
+						/ / / /
+					</div>
+				</>
+			)
+		}
 
-		<div class="relative mx-auto max-w-[760px]">
+		<div class="relative mx-auto w-full max-w-[760px]">
 			<div class="mb-6 flex items-center gap-2">
 				<a href="/articles" class="text-xs font-medium tracking-wide text-muted uppercase">Articles</a>
 				<span class="text-border-dark">&rsaquo;</span>

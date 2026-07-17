@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  a { color: inherit; text-decoration: none; }
+</style>
+</helmet>
+
+<!-- NAV -->
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:#111;position:sticky;top:0;z-index:100;">
+  <a href="#" style="display:flex;align-items:center;gap:10px;">
+    <div style="width:28px;height:28px;background:#28D7E5;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;">
+      <span style="font-size:14px;font-weight:700;color:#111;line-height:1;">K</span>
+    </div>
+    <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Experiments</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Tools</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Playground</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">AI</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Hardware</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;">About</a>
+    <span style="color:#F44D8A;font-size:20px;line-height:1;">+</span>
+  </div>
+</nav>
+
+<!-- HERO — split layout -->
+<section style="background:#111;min-height:560px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;">
+  <!-- Left: text -->
+  <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;">
+    <!-- Memphis shapes behind text -->
+    <div style="position:absolute;left:-40px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:#28D7E5;opacity:0.08;"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:24px;">CREATIVE ENGINEER</div>
+    <h1 style="margin:0 0 24px;font-size:64px;font-weight:700;line-height:0.95;letter-spacing:-0.03em;color:#FAF8F3;">Kyle<br>Taylor<span style="color:#F44D8A;">.</span></h1>
+    <p style="font-size:17px;color:#A8A49F;line-height:1.65;margin:0 0 36px;max-width:380px;">I build software, AI systems, and physical things — then write about them. Everything I make is open.</p>
+    <div style="display:flex;gap:10px;">
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:#28D7E5;border:2px solid #28D7E5;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">SEE THE LAB →</a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:transparent;border:2px solid #444;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;border-radius:0;">GITHUB ›</a>
+    </div>
+  </div>
+
+  <!-- Right: identity card -->
+  <div style="background:#0D0D0D;display:flex;align-items:center;justify-content:center;padding:60px;position:relative;overflow:hidden;">
+    <!-- Decorative shapes -->
+    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:#F44D8A;opacity:0.15;"></div>
+    <div style="position:absolute;left:20px;bottom:20px;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid #FFD54A;opacity:0.12;"></div>
+    <div style="position:absolute;right:30px;bottom:60px;width:40px;height:40px;background:#348BFF;opacity:0.2;transform:rotate(45deg);"></div>
+    <!-- Dot grid -->
+    <div style="position:absolute;left:40px;top:40px;"><svg width="60" height="60"><defs><pattern id="dp2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#FFF" opacity="0.07"/></pattern></defs><rect width="60" height="60" fill="url(#dp2)"/></svg></div>
+
+    <!-- Avatar placeholder -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2;">
+      <div style="width:160px;height:160px;border-radius:4px;background:#1A1A1A;border:2px solid #2A2A2A;display:flex;align-items:center;justify-content:center;margin-bottom:0;overflow:hidden;position:relative;">
+        <!-- Blueprint avatar -->
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <defs><pattern id="agrid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M 16 0 L 0 0 0 16" fill="none" stroke="#2A2A2A" stroke-width="0.5"/></pattern></defs>
+          <rect width="160" height="160" fill="#111"/>
+          <rect width="160" height="160" fill="url(#agrid)"/>
+          <circle cx="80" cy="64" r="32" fill="none" stroke="#28D7E5" stroke-width="1" stroke-dasharray="4,3"/>
+          <circle cx="80" cy="64" r="20" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75"/>
+          <rect x="44" y="104" width="72" height="48" rx="4" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" stroke-dasharray="4,3"/>
+          <text x="80" y="133" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#28D7E5" opacity="0.5">PHOTO</text>
+          <line x1="20" y1="80" x2="140" y2="80" stroke="#2A2A2A" stroke-width="0.5"/>
+          <text x="14" y="64" text-anchor="middle" font-family="Space Mono, monospace" font-size="7" fill="#333" transform="rotate(-90,14,64)">KT v1.0</text>
+        </svg>
+      </div>
+      <!-- Neofetch card -->
+      <div style="background:#0D0D0D;border:1px solid #1E1E1E;border-top:none;width:200px;padding:16px 18px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.9;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:0 10px;">
+          <span style="color:#28D7E5;">name</span><span style="color:#FAF8F3;">Kyle Taylor</span>
+          <span style="color:#28D7E5;">role</span><span style="color:#FAF8F3;">Creative Engineer</span>
+          <span style="color:#28D7E5;">based</span><span style="color:#FAF8F3;">The Internet</span>
+          <span style="color:#28D7E5;">open</span><span style="color:#FAF8F3;">to: collab</span>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:10px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#28D7E5;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#F44D8A;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#FFD54A;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#348BFF;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#F25A4C;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pink separator -->
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- PERSONAL BLURB -->
+<section style="padding:80px 64px;max-width:1296px;margin:0 auto;width:100%;display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:start;">
+  <!-- Left: label + decorative -->
+  <div style="position:sticky;top:80px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#F25A4C;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+      <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;"></div>A BIT ABOUT ME
+    </div>
+    <!-- Blueprint annotation box -->
+    <div style="border:1px dashed #C0BCB7;border-radius:4px;padding:20px;background:#FFF;position:relative;">
+      <div style="position:absolute;top:-8px;left:16px;background:#FAF8F3;padding:0 6px;font-family:'Space Mono',monospace;font-size:9px;color:#A8A49F;letter-spacing:0.08em;">BIO.TXT</div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.8;">
+        <span style="color:#28D7E5;">name</span><span style="color:#111;">Kyle Taylor</span>
+        <span style="color:#28D7E5;">role</span><span style="color:#111;">Creative Eng.</span>
+        <span style="color:#28D7E5;">status</span><span style="color:#F44D8A;">building</span>
+        <span style="color:#28D7E5;">mood</span><span style="color:#FFD54A;">caffeinated</span>
+      </div>
+    </div>
+    <!-- Slash marks decoration -->
+    <div style="margin-top:24px;color:#C0BCB7;font-size:14px;letter-spacing:6px;">/ / / /</div>
+  </div>
+
+  <!-- Right: long-form text -->
+  <div style="max-width:620px;">
+    <p style="font-size:24px;font-weight:600;line-height:1.45;color:#111;margin:0 0 28px;letter-spacing:-0.01em;">I've been making things since before I knew what to call it — taking apart electronics I shouldn't have, drawing floor plans for rooms I'd never build, writing small scripts to automate things that probably didn't need automating.</p>
+
+    <p style="font-size:17px;line-height:1.75;color:#2A2A2A;margin:0 0 20px;">At some point that turned into a career. I work across the full stack — software, AI systems, hardware — but I don't think of myself as a developer or an engineer in the traditional sense. The label I keep coming back to is <span style="color:#F44D8A;font-weight:600;">creative engineer</span>: someone who uses technical tools to make things that didn't exist before, and who cares as much about how something feels as how it works.</p>
+
+    <p style="font-size:17px;line-height:1.75;color:#2A2A2A;margin:0 0 20px;">Most of what I build lives here in the Lab — small experiments, useful tools, half-finished ideas that grew into something interesting. I publish everything. Not because it's all good, but because I think the process of making things is worth documenting. Shipping beats perfecting.</p>
+
+    <p style="font-size:17px;line-height:1.75;color:#2A2A2A;margin:0 0 36px;">When I'm not writing code I'm usually soldering something, reading about something I don't understand yet, or figuring out how to put a camera on a robot. If any of that sounds like your kind of thing — <a href="#" style="color:#28D7E5;text-decoration:underline;text-underline-offset:3px;">let's talk</a>.</p>
+
+    <!-- Pull quote -->
+    <blockquote style="margin:0;padding:24px 28px;border-left:4px solid #28D7E5;background:#FFF;border-radius:0 4px 4px 0;">
+      <p style="font-size:20px;font-weight:600;line-height:1.45;color:#111;margin:0 0 12px;font-style:italic;">"Shipping beats perfecting. Documentation beats memory. Open beats closed."</p>
+      <cite style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#A8A49F;font-style:normal;">— The rules I try to follow</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- WHAT I DO — bold editorial section -->
+<section style="padding:80px 64px;background:#FAF8F3;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#F25A4C;margin-bottom:20px;display:flex;align-items:center;gap:8px;"><div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;"></div>WHAT I DO</div>
+      <h2 style="margin:0;font-size:52px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;">I make<br>things<span style="color:#28D7E5;">.</span></h2>
+      <div style="margin-top:24px;width:48px;height:3px;background:#F44D8A;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+      <!-- Discipline tiles -->
+      <div style="background:#111;padding:32px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-16px;top:-16px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.12;"></div>
+        <div style="width:40px;height:40px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="color:#28D7E5;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;">&gt;_</span></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#FAF8F3;margin-bottom:8px;">Software</div>
+          <div style="font-size:13px;color:#6B6860;line-height:1.6;">Full-stack apps, APIs, CLIs. TypeScript, Python, Rust. Ship first, refactor always.</div>
+        </div>
+      </div>
+      <div style="background:#F44D8A;padding:32px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-16px;bottom:-16px;width:80px;height:80px;border-radius:50%;background:#FFF;opacity:0.1;"></div>
+        <div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="color:#FFF;font-size:18px;">◈</span></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#FFF;margin-bottom:8px;">AI Systems</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">Agents, RAG pipelines, fine-tuned models. Production AI that actually runs reliably.</div>
+        </div>
+      </div>
+      <div style="background:#FFD54A;padding:32px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;">
+        <div style="position:absolute;left:-10px;top:-10px;width:50px;height:50px;background:#111;opacity:0.06;transform:rotate(45deg);"></div>
+        <div style="width:40px;height:40px;background:rgba(0,0,0,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="color:#111;font-size:18px;">⬡</span></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:8px;">Hardware</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.55);line-height:1.6;">ESP32, Raspberry Pi, custom PCBs. If it blinks or moves, I want to build it.</div>
+        </div>
+      </div>
+      <div style="background:#FAF8F3;border:2px solid #111;padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <div style="width:40px;height:40px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="color:#FAF8F3;font-size:14px;">✦</span></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:8px;">Teaching</div>
+          <div style="font-size:13px;color:#6B6860;line-height:1.6;">Write-ups, talks, open source. If I figured it out, I'll document it. Everything in public.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE / STORY -->
+<section style="background:#111;padding:80px 64px;position:relative;overflow:hidden;">
+  <!-- Diagonal shape -->
+  <div style="position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:#F44D8A;opacity:0.07;"></div>
+  <div style="position:absolute;left:64px;bottom:40px;color:#222;font-size:18px;letter-spacing:8px;">/ / / / /</div>
+
+  <div style="max-width:1200px;margin:0 auto;position:relative;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:48px;">
+      <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FAF8F3;">THE STORY SO FAR</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+      <div style="background:#1A1A1A;padding:28px;border-top:3px solid #28D7E5;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#28D7E5;margin-bottom:12px;">2015 →</div>
+        <div style="font-size:16px;font-weight:700;color:#FAF8F3;margin-bottom:10px;">Started coding</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.6;">Taught myself HTML in a browser, broke everything, kept going.</div>
+      </div>
+      <div style="background:#1A1A1A;padding:28px;border-top:3px solid #F44D8A;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#F44D8A;margin-bottom:12px;">2018 →</div>
+        <div style="font-size:16px;font-weight:700;color:#FAF8F3;margin-bottom:10px;">First real job</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.6;">Shipped production code. Learned that "working locally" means nothing.</div>
+      </div>
+      <div style="background:#1A1A1A;padding:28px;border-top:3px solid #FFD54A;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFD54A;margin-bottom:12px;">2021 →</div>
+        <div style="font-size:16px;font-weight:700;color:#FAF8F3;margin-bottom:10px;">Went deep on AI</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.6;">Built my first LLM pipeline. Realized agents were harder than the demos suggested.</div>
+      </div>
+      <div style="background:#28D7E5;padding:28px;border-top:3px solid #FAF8F3;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(0,0,0,0.5);margin-bottom:12px;">NOW →</div>
+        <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:10px;">The Lab</div>
+        <div style="font-size:13px;color:rgba(0,0,0,0.6);line-height:1.6;">Building experiments, shipping tools, writing everything down.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES + TOOLS -->
+<section style="padding:80px 64px;background:#FAF8F3;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;">
+
+    <!-- Values -->
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:36px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">HOW I WORK</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="padding:20px 0;border-bottom:1px solid #E0DDDA;display:grid;grid-template-columns:28px 1fr;gap:16px;align-items:start;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">01</div>
+          <div><div style="font-size:16px;font-weight:700;margin-bottom:6px;">Build in public</div><div style="font-size:13px;color:#6B6860;line-height:1.6;">Share early, share often. Imperfect and shipped beats perfect and hidden.</div></div>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid #E0DDDA;display:grid;grid-template-columns:28px 1fr;gap:16px;align-items:start;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">02</div>
+          <div><div style="font-size:16px;font-weight:700;margin-bottom:6px;">Open source everything</div><div style="font-size:13px;color:#6B6860;line-height:1.6;">If I built it, you can see it, fork it, and make it better.</div></div>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid #E0DDDA;display:grid;grid-template-columns:28px 1fr;gap:16px;align-items:start;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">03</div>
+          <div><div style="font-size:16px;font-weight:700;margin-bottom:6px;">Experiments are the point</div><div style="font-size:13px;color:#6B6860;line-height:1.6;">Most of what I build here will never be "finished." That's fine.</div></div>
+        </div>
+        <div style="padding:20px 0;display:grid;grid-template-columns:28px 1fr;gap:16px;align-items:start;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;padding-top:2px;">04</div>
+          <div><div style="font-size:16px;font-weight:700;margin-bottom:6px;">Teach what you learn</div><div style="font-size:13px;color:#6B6860;line-height:1.6;">Write-ups, videos, talks. Knowledge compounds when shared.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack -->
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:36px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#F25A4C;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">CURRENT STACK</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;margin-bottom:6px;">Languages</div>
+          <div style="font-size:13px;color:#111;line-height:1.7;">TypeScript<br>Python<br>Rust<br>C / C++</div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F44D8A;margin-bottom:6px;">Frameworks</div>
+          <div style="font-size:13px;color:#111;line-height:1.7;">Astro<br>React<br>FastAPI<br>Hono</div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FFD54A;margin-bottom:6px;">AI / ML</div>
+          <div style="font-size:13px;color:#111;line-height:1.7;">Claude API<br>LangGraph<br>Chroma<br>Ollama</div>
+        </div>
+        <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#348BFF;margin-bottom:6px;">Hardware</div>
+          <div style="font-size:13px;color:#111;line-height:1.7;">ESP32<br>RPi<br>Arduino<br>KiCad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENTLY BUILDING + CONNECT -->
+<section style="background:#FAF8F3;padding:0 64px 80px;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+
+    <!-- Currently building -->
+    <div style="background:#111;padding:48px;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-20px;bottom:-20px;width:120px;height:120px;border-radius:50%;background:#28D7E5;opacity:0.08;"></div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:24px;display:flex;align-items:center;gap:8px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#F25A4C;animation:none;"></div>
+        CURRENTLY BUILDING
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;position:relative;">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#1A1A1A;border-radius:4px;border-left:3px solid #28D7E5;">
+          <div style="font-size:13px;font-weight:500;color:#FAF8F3;flex:1;">Autonomous code review agent</div>
+          <span style="font-size:10px;border:1px solid #333;border-radius:999px;padding:2px 8px;color:#6B6860;white-space:nowrap;">AI</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#1A1A1A;border-radius:4px;border-left:3px solid #F44D8A;">
+          <div style="font-size:13px;font-weight:500;color:#FAF8F3;flex:1;">6-axis robot arm (3D printed)</div>
+          <span style="font-size:10px;border:1px solid #333;border-radius:999px;padding:2px 8px;color:#6B6860;white-space:nowrap;">Hardware</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#1A1A1A;border-radius:4px;border-left:3px solid #FFD54A;">
+          <div style="font-size:13px;font-weight:500;color:#FAF8F3;flex:1;">Open source dev tools collection</div>
+          <span style="font-size:10px;border:1px solid #333;border-radius:999px;padding:2px 8px;color:#6B6860;white-space:nowrap;">OSS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connect -->
+    <div style="background:#F44D8A;padding:48px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:#FFF;opacity:0.08;"></div>
+      <div style="position:absolute;right:30px;bottom:30px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid rgba(255,255,255,0.1);"></div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:24px;">GET IN TOUCH</div>
+        <p style="font-size:32px;font-weight:700;color:#FFF;line-height:1.1;margin:0 0 32px;">Let's build<br>something.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;position:relative;">
+        <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,0.12);border-radius:0;border:1px solid rgba(255,255,255,0.2);">
+          <span style="font-size:14px;color:#FFF;">✦</span>
+          <span style="font-size:13px;font-weight:600;color:#FFF;">@kyletaylored</span>
+          <span style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.5);">Twitter / X →</span>
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,0.12);border-radius:0;border:1px solid rgba(255,255,255,0.2);">
+          <span style="font-size:14px;color:#FFF;">⊕</span>
+          <span style="font-size:13px;font-weight:600;color:#FFF;">kyletaylored</span>
+          <span style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.5);">GitHub →</span>
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#FFF;border-radius:0;">
+          <span style="font-size:14px;color:#F44D8A;">@</span>
+          <span style="font-size:13px;font-weight:600;color:#111;">kyle@kyletaylor.dev</span>
+          <span style="margin-left:auto;font-size:12px;color:#6B6860;">Email →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#111;padding:48px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:200px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:160px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.9;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hz" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hz)"/></svg></div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;position:relative;">
+    <div>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0 0 4px;">This is a work in progress.</p>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0;">Just like <span style="color:#28D7E5;">everything else.</span></p>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Built by Kyle Taylor</div>
+      <div style="font-size:12px;color:#6B6860;">Creative Engineer · AI · Hardware · Open Source</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>
