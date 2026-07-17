@@ -9,7 +9,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 interface Props {
 	title?: string;
 	description?: string;
-	image?: import('astro').ImageMetadata | string;
+	image?: string;
+	keywords?: string[];
 	canonicalUrl?: string;
 	noindex?: boolean;
 	jsonLd?: Record<string, unknown>;
@@ -19,6 +20,7 @@ const {
 	title = SITE_TITLE,
 	description = SITE_DESCRIPTION,
 	image,
+	keywords,
 	canonicalUrl,
 	noindex = false,
 	jsonLd,
@@ -44,6 +46,7 @@ const demoEntries = (await getCollection('projects'))
 			title={title}
 			description={description}
 			image={image}
+			keywords={keywords}
 			canonicalUrl={canonicalUrl}
 			noindex={noindex}
 			jsonLd={jsonLd}

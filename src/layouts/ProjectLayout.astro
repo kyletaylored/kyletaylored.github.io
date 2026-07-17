@@ -5,13 +5,14 @@ import Button from '../components/Button.astro';
 import Circle from '../components/decor/Circle.astro';
 import Triangle from '../components/decor/Triangle.astro';
 import Diamond from '../components/decor/Diamond.astro';
+import { AUTHOR_NAME } from '../consts';
 
 interface Props {
 	entry: CollectionEntry<'projects'>;
 }
 
 const { entry } = Astro.props;
-const { title, summary, heroImage, status, tags, links, stack, featured, stats, features, lessons, seo } =
+const { title, summary, heroImage, pubDate, status, tags, links, stack, featured, stats, features, lessons, seo } =
 	entry.data;
 
 const statusChip = {
@@ -29,15 +30,32 @@ const moreProjects = (await getCollection('projects'))
 	.filter((p) => p.id !== entry.id)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 2);
+
+// SEO fields are all derived from the fields already above unless an editor
+// fills in a manual override — see .pages.yml's "SEO (optional overrides)"
+// field group and components/README.md for the full rationale.
+const ogImage = seo.ogImage ?? heroImage ?? `/og/projects/${entry.id}.png`;
+const autoJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CreativeWork',
+	name: title,
+	description: summary,
+	datePublished: pubDate.toISOString(),
+	author: { '@type': 'Person', name: AUTHOR_NAME },
+	image: new URL(ogImage, Astro.site).toString(),
+	keywords: tags.join(', '),
+	...(links.demo && { url: links.demo }),
+};
 ---
 
 <BaseLayout
 	title={seo.metaTitle ?? title}
 	description={seo.metaDescription ?? summary}
-	image={seo.ogImage ?? heroImage}
+	image={ogImage}
+	keywords={tags}
 	canonicalUrl={seo.canonicalUrl}
 	noindex={seo.noindex}
-	jsonLd={seo.jsonLd}
+	jsonLd={seo.jsonLd ?? autoJsonLd}
 >
 	<header class="relative overflow-hidden bg-ink px-6 pt-14 md:px-12">
 		<div class="pointer-events-none absolute -top-10 right-16 hidden opacity-[0.07] md:block">

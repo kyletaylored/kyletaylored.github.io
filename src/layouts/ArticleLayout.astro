@@ -33,15 +33,32 @@ const related = (await getCollection('articles'))
 const headerClass = heroImage
 	? 'relative flex min-h-[420px] flex-col justify-end overflow-hidden px-6 pb-10 pt-14 md:min-h-[520px] md:px-12'
 	: 'relative overflow-hidden bg-ink px-6 py-14 md:px-12 md:py-16';
+
+// SEO fields are all derived from the fields already above unless an editor
+// fills in a manual override — see .pages.yml's "SEO (optional overrides)"
+// field group and components/README.md for the full rationale.
+const ogImage = seo.ogImage ?? heroImage ?? `/og/articles/${entry.id}.png`;
+const autoJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	datePublished: pubDate.toISOString(),
+	...(updatedDate && { dateModified: updatedDate.toISOString() }),
+	author: { '@type': 'Person', name: AUTHOR_NAME },
+	image: new URL(ogImage, Astro.site).toString(),
+	keywords: tags.join(', '),
+};
 ---
 
 <BaseLayout
 	title={seo.metaTitle ?? title}
 	description={seo.metaDescription ?? description}
-	image={seo.ogImage ?? heroImage}
+	image={ogImage}
+	keywords={tags}
 	canonicalUrl={seo.canonicalUrl}
 	noindex={seo.noindex}
-	jsonLd={seo.jsonLd}
+	jsonLd={seo.jsonLd ?? autoJsonLd}
 >
 	<header class={headerClass}>
 		{

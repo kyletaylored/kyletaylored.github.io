@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import LabLayout from '../../layouts/LabLayout.astro';
 import Button from '../../components/Button.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { AUTHOR_NAME } from '../../consts';
 
 export async function getStaticPaths() {
 	const entries = await getCollection('lab');
@@ -15,11 +16,33 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'lab'>;
 
 const entry = Astro.props;
-const { title, description, pubDate, labCategory, tags, status, demoUrl, sourceUrl, seo } = entry.data;
+const { title, description, pubDate, heroImage, labCategory, tags, status, demoUrl, sourceUrl, seo } = entry.data;
 const { Content } = await render(entry);
+
+// SEO fields are all derived from the fields already above unless an editor
+// fills in a manual override — see .pages.yml's "SEO (optional overrides)"
+// field group and components/README.md for the full rationale.
+const ogImage = seo.ogImage ?? heroImage ?? `/og/lab/${entry.id}.png`;
+const autoJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CreativeWork',
+	name: title,
+	description,
+	datePublished: pubDate.toISOString(),
+	author: { '@type': 'Person', name: AUTHOR_NAME },
+	image: new URL(ogImage, Astro.site).toString(),
+	keywords: tags.join(', '),
+	...(demoUrl && { url: demoUrl }),
+};
 ---
 
-<LabLayout title={seo.metaTitle ?? title} description={seo.metaDescription ?? description}>
+<LabLayout
+	title={seo.metaTitle ?? title}
+	description={seo.metaDescription ?? description}
+	image={ogImage}
+	keywords={tags}
+	jsonLd={seo.jsonLd ?? autoJsonLd}
+>
 	<Fragment slot="hero">
 		<div class="mb-4 text-xs font-semibold tracking-widest text-teal uppercase">{labCategory}</div>
 		<h1 class="mb-5 text-4xl leading-[1.05] font-bold tracking-tight text-bg md:text-5xl">{title}</h1>

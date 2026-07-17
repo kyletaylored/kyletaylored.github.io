@@ -10,39 +10,55 @@ content:
     format: yaml-frontmatter
     fields:
       - name: title
+        label: Title
         type: string
         required: true
       - name: description
+        label: Description
+        description: Shown in article listings and used as the SEO description unless overridden below.
         type: text
         required: true
       - name: pubDate
+        label: Publish Date
         type: date
         required: true
       - name: updatedDate
+        label: Updated Date
         type: date
       - name: heroImage
+        label: Featured Image
+        description: Shown as the article's hero and used as the share-card image unless overridden below. Falls back to a site default when left blank.
         type: image
       - name: category
+        label: Category
         type: string
         required: true
       - name: tags
+        label: Tags
+        description: Also used as SEO keywords automatically — no need to duplicate them elsewhere.
         type: string
         list: true
       - name: draft
+        label: Draft
+        description: Hide this article from listings and search engines until it's ready.
         type: boolean
         default: false
       - name: sourceUrl
+        label: Original Source URL
+        description: For migrated content — links back to where this was originally published.
         type: string
       - name: seo
+        label: SEO (optional overrides)
+        description: Everything here is auto-generated from the fields above — only fill these in if you need to override the default.
         type: object
         fields:
-          - { name: metaTitle, type: string }
-          - { name: metaDescription, type: text }
-          - { name: ogImage, type: image }
-          - { name: canonicalUrl, type: string }
-          - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, options: { format: json } }
+          - { name: metaTitle, label: SEO Title Override, type: string }
+          - { name: metaDescription, label: SEO Description Override, type: text }
+          - { name: ogImage, label: Share Image Override, type: image }
+          - { name: canonicalUrl, label: Canonical URL, type: string }
+          - { name: noindex, label: Hide from Search Engines, type: boolean, default: false }
       - name: body
+        label: Content
         type: rich-text
 
   - name: projects
@@ -52,69 +68,88 @@ content:
     format: yaml-frontmatter
     fields:
       - name: title
+        label: Title
         type: string
         required: true
       - name: summary
+        label: Summary
+        description: Shown in project listings and used as the SEO description unless overridden below.
         type: text
         required: true
       - name: heroImage
+        label: Featured Image
+        description: Shown as the project's screenshot/hero and used as the share-card image unless overridden below. Falls back to a site default when left blank.
         type: image
       - name: pubDate
+        label: Publish Date
         type: date
         required: true
       - name: updatedDate
+        label: Updated Date
         type: date
       - name: status
+        label: Status
         type: select
         options:
           values: [active, archived, concept]
         default: active
       - name: tags
+        label: Tags
+        description: Also used as SEO keywords automatically — no need to duplicate them elsewhere.
         type: string
         list: true
       - name: links
+        label: Links
         type: object
         fields:
-          - { name: caseStudy, type: string }
-          - { name: source, type: string }
-          - { name: demo, type: string }
+          - { name: caseStudy, label: Case Study URL, type: string }
+          - { name: source, label: Source Code URL, type: string }
+          - { name: demo, label: Live Demo URL, type: string }
       - name: stack
+        label: Tech Stack
         type: string
         list: true
       - name: featured
+        label: Featured Project
+        description: Show this project in the homepage's featured projects section.
         type: boolean
         default: false
       - name: stats
+        label: Stats
         type: object
         fields:
-          - { name: stars, type: string }
-          - { name: forks, type: string }
-          - { name: lastCommit, type: string }
-          - { name: license, type: string }
-          - { name: version, type: string }
+          - { name: stars, label: Stars, type: string }
+          - { name: forks, label: Forks, type: string }
+          - { name: lastCommit, label: Last Commit, type: string }
+          - { name: license, label: License, type: string }
+          - { name: version, label: Version, type: string }
       - name: features
+        label: Features
         type: object
         list: true
         fields:
-          - { name: icon, type: string }
-          - { name: title, type: string }
-          - { name: description, type: text }
+          - { name: icon, label: Icon, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Description, type: text }
       - name: lessons
+        label: What I Learned
         type: object
         list: true
         fields:
-          - { name: title, type: string }
-          - { name: description, type: text }
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Description, type: text }
       - name: seo
+        label: SEO (optional overrides)
+        description: Everything here is auto-generated from the fields above — only fill these in if you need to override the default.
         type: object
         fields:
-          - { name: metaTitle, type: string }
-          - { name: metaDescription, type: text }
-          - { name: ogImage, type: image }
-          - { name: canonicalUrl, type: string }
-          - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, options: { format: json } }
+          - { name: metaTitle, label: SEO Title Override, type: string }
+          - { name: metaDescription, label: SEO Description Override, type: text }
+          - { name: ogImage, label: Share Image Override, type: image }
+          - { name: canonicalUrl, label: Canonical URL, type: string }
+          - { name: noindex, label: Hide from Search Engines, type: boolean, default: false }
       - name: body
+        label: Content
         type: rich-text
 
   - name: lab
@@ -124,42 +159,56 @@ content:
     format: yaml-frontmatter
     fields:
       - name: title
+        label: Title
         type: string
         required: true
       - name: description
+        label: Description
+        description: Shown in Lab listings and used as the SEO description unless overridden below.
         type: text
         required: true
       - name: pubDate
+        label: Publish Date
         type: date
         required: true
       - name: heroImage
+        label: Featured Image
+        description: Used as the share-card image unless overridden below. Falls back to a site default when left blank.
         type: image
       - name: labCategory
+        label: Lab Category
         type: select
         options:
           values: [experiments, tools, playground, ai, hardware]
       - name: tags
+        label: Tags
+        description: Also used as SEO keywords automatically — no need to duplicate them elsewhere.
         type: string
         list: true
       - name: status
+        label: Status
         type: select
         options:
           values: [wip, stable, archived]
         default: wip
       - name: demoUrl
+        label: Demo URL
         type: string
       - name: sourceUrl
+        label: Source Code URL
         type: string
       - name: seo
+        label: SEO (optional overrides)
+        description: Everything here is auto-generated from the fields above — only fill these in if you need to override the default.
         type: object
         fields:
-          - { name: metaTitle, type: string }
-          - { name: metaDescription, type: text }
-          - { name: ogImage, type: image }
-          - { name: canonicalUrl, type: string }
-          - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, options: { format: json } }
+          - { name: metaTitle, label: SEO Title Override, type: string }
+          - { name: metaDescription, label: SEO Description Override, type: text }
+          - { name: ogImage, label: Share Image Override, type: image }
+          - { name: canonicalUrl, label: Canonical URL, type: string }
+          - { name: noindex, label: Hide from Search Engines, type: boolean, default: false }
       - name: body
+        label: Content
         type: rich-text
 
   - name: pages
@@ -169,21 +218,26 @@ content:
     format: yaml-frontmatter
     fields:
       - name: title
+        label: Title
         type: string
         required: true
       - name: description
+        label: Description
+        description: Used as the SEO description unless overridden below.
         type: text
         required: true
       - name: seo
+        label: SEO (optional overrides)
+        description: Everything here is auto-generated from the fields above — only fill these in if you need to override the default.
         type: object
         fields:
-          - { name: metaTitle, type: string }
-          - { name: metaDescription, type: text }
-          - { name: ogImage, type: image }
-          - { name: canonicalUrl, type: string }
-          - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, options: { format: json } }
+          - { name: metaTitle, label: SEO Title Override, type: string }
+          - { name: metaDescription, label: SEO Description Override, type: text }
+          - { name: ogImage, label: Share Image Override, type: image }
+          - { name: canonicalUrl, label: Canonical URL, type: string }
+          - { name: noindex, label: Hide from Search Engines, type: boolean, default: false }
       - name: body
+        label: Content
         type: rich-text
 
   - name: settings
@@ -193,23 +247,31 @@ content:
     format: json
     fields:
       - name: siteTitle
+        label: Site Title
         type: string
       - name: brandLabel
+        label: Brand Label (Header)
         type: string
       - name: siteDescription
+        label: Site Description
         type: text
       - name: footerTaglineLine1
+        label: Footer Tagline (Line 1)
         type: string
       - name: footerTaglineLine2Prefix
+        label: Footer Tagline (Line 2 Prefix)
         type: string
       - name: footerTaglineLine2Accent
+        label: Footer Tagline (Line 2 Accent)
         type: string
       - name: socialLinks
+        label: Social Links
         type: object
         list: true
         fields:
           - name: platform
+            label: Platform
             type: select
             options:
               values: [github, youtube, instagram, tiktok, linkedin]
-          - { name: url, type: string }
+          - { name: url, label: URL, type: string }

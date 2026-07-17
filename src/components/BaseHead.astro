@@ -10,12 +10,13 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	keywords?: string[];
 	canonicalUrl?: string;
 	noindex?: boolean;
 	jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, image, canonicalUrl, noindex = false, jsonLd } = Astro.props;
+const { title, description, image, keywords, canonicalUrl, noindex = false, jsonLd } = Astro.props;
 
 const canonicalURL = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = image ? new URL(image, Astro.url).toString() : undefined;
@@ -51,6 +52,7 @@ const defaultJsonLd = {
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
+{keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
 {noindex && <meta name="robots" content="noindex" />}
 
 <!-- Open Graph / Facebook -->
