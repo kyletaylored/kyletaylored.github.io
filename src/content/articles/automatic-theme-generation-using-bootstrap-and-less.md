@@ -1,12 +1,23 @@
 ---
-title: "Automatic Theme Generation using Bootstrap and LESS"
-description: "It’s known that theming in Drupal is not the easiest thing in the world. There’s generally a lot of markup to deal with, specific hooks and JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time to build a new theme. Depending on the project, you are probably building a custom theme every"
+title: Automatic Theme Generation using Bootstrap and LESS
+description: It’s known that theming in Drupal is not the easiest thing in the
+  world. There’s generally a lot of markup to deal with, specific hooks and
+  JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time
+  to build a new theme. Depending on the project, you are probably building a
+  custom theme every
 pubDate: 2015-10-14
-category: "Web Development"
-tags: ["drupal", "bootstrap", "theming", "less"]
-seo: {}
+updatedDate: 2026-07-17
+category: Web Development
+tags:
+  - drupal
+  - bootstrap
+  - theming
+  - less
+draft: false
+seo:
+  noindex: false
 ---
-It’s known that theming in Drupal is not the easiest thing in the world. There’s generally a lot of markup to deal with, specific hooks and JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time to build a new theme. Depending on the project, you are probably building a custom theme every 
+It’s known that theming in Drupal is not the easiest thing in the world. There’s generally a lot of markup to deal with, specific hooks and JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time to build a new theme. Depending on the project, you are probably building a custom theme every time.
 
 If you just need a new theme for your projects or client, what are your options? Well, you can build your own theme, you can buy a steam and got it, but what happens if you just need a theme that needs to change colors ever so slightly for mold see the clients. Well thats all you build automatic themes generation in using bootstrap and less. This gives us an easy way for clients to put in their own colors and generate a theme on the fly but makes it really easy to take a really nice looking themes and customize it on a first name basis.
 
