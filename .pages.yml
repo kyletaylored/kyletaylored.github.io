@@ -194,11 +194,22 @@ content:
     fields:
       - name: siteTitle
         type: string
+      - name: brandLabel
+        type: string
       - name: siteDescription
         type: text
+      - name: footerTaglineLine1
+        type: string
+      - name: footerTaglineLine2Prefix
+        type: string
+      - name: footerTaglineLine2Accent
+        type: string
       - name: socialLinks
         type: object
         list: true
         fields:
-          - { name: label, type: string }
+          - name: platform
+            type: select
+            options:
+              values: [github, youtube, instagram, tiktok, linkedin]
           - { name: url, type: string }

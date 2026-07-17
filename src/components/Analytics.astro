@@ -1,0 +1,58 @@
+---
+/**
+ * Google Tag Manager + Datadog RUM, wired from repo secrets at build time
+ * (see .github/workflows/deploy.yml) rather than through Pages CMS content
+ * — these are deployment/infra config, not editable site content. Each
+ * block no-ops (renders nothing) when its env vars aren't set, so local
+ * dev and PR builds work fine without them.
+ *
+ * To enable in production, add these as repo secrets:
+ *   GTM_ID                         e.g. GTM-XXXXXXX
+ *   DATADOG_RUM_APPLICATION_ID
+ *   DATADOG_RUM_CLIENT_TOKEN
+ *   DATADOG_RUM_SITE               defaults to datadoghq.com
+ *   DATADOG_RUM_SERVICE            defaults to "kyletaylored-website"
+ *
+ * These are read via `process.env` (Node, build-time only) rather than
+ * `import.meta.env.PUBLIC_*` — we don't need Vite's client-exposure
+ * mechanism since the values are just inlined once into the static HTML
+ * output, never referenced from client-side bundle code.
+ */
+const gtmId = process.env.GTM_ID;
+
+const datadogRum = process.env.DATADOG_RUM_APPLICATION_ID && process.env.DATADOG_RUM_CLIENT_TOKEN
+	? {
+			applicationId: process.env.DATADOG_RUM_APPLICATION_ID,
+			clientToken: process.env.DATADOG_RUM_CLIENT_TOKEN,
+			site: process.env.DATADOG_RUM_SITE || 'datadoghq.com',
+			service: process.env.DATADOG_RUM_SERVICE || 'kyletaylored-website',
+		}
+	: null;
+---
+
+{
+	gtmId && (
+		<script
+			set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
+		/>
+	)
+}
+
+{
+	datadogRum && (
+		<script
+			set:html={`(function(h,o,u,n,d){h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}};d=o.createElement(u);d.async=1;d.src=n;n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)})(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM');window.DD_RUM.onReady(function(){window.DD_RUM.init(${JSON.stringify(
+				{
+					...datadogRum,
+					env: process.env.DATADOG_RUM_ENV || 'production',
+					sessionSampleRate: 100,
+					sessionReplaySampleRate: 20,
+					trackUserInteractions: true,
+					trackResources: true,
+					trackLongTasks: true,
+					defaultPrivacyLevel: 'mask-user-input',
+				},
+			)});});`}
+		/>
+	)
+}

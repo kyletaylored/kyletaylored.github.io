@@ -32,6 +32,8 @@ before touching the component that implements it.
 | Image gallery (single / two-up / three-up / editorial hero+stack) | [`ImageGallery.astro`](./ImageGallery.astro) — takes `images`, an optional `layout`, and an optional shared `caption` | Not used in any real content yet (only comp-derived), but built and verified — import it inside an `.mdx` article body (MDX component imports don't work in plain `.md` files) |
 | Article featured-image hero (full-bleed image + gradient overlay + overlaid title/meta) | `ArticleLayout.astro` — conditional on `heroImage` being set; falls back to the plain dark header when absent | `/articles/[slug]` |
 | Project stats card, feature grid, "what I learned" list, screenshot preview (browser-chrome frame around `heroImage`) | `ProjectLayout.astro` — driven by the projects schema's optional `stats`/`features`/`lessons` fields | `/projects/[slug]` |
+| Article teaser cards — horizontal compact, featured, vertical grid, large overlay (`components/cards/ArticleCard.dc.html`) | [`ArticleTeaserCard.astro`](./ArticleTeaserCard.astro) — `variant="featured" \| "compact" \| "vertical" \| "overlay"`; falls back to a deterministic gradient + pill color (picked from the entry's slug) when no `heroImage` is set, so cards stay visually varied instead of all sharing one placeholder | `compact`+`featured`: `/lab` "Latest Writing". `vertical`: `/articles` index grid. `overlay`: built and available, not wired up anywhere yet (a natural fit for a future "post of the week" spot) |
+| Social icons (footer) | [`icons/SocialIcon.astro`](./icons/SocialIcon.astro) — one `platform` prop (`github`/`youtube`/`instagram`/`tiktok`/`linkedin`), inline SVG paths, `currentColor` fill | `Footer.astro`, driven by `site.json`'s `socialLinks` (each entry is `{ platform, url }`) |
 
 ## Built but **not yet used** — reach for these instead of re-inlining the pattern
 
@@ -51,6 +53,10 @@ before touching the component that implements it.
 | `ui/*.tsx` primitives beyond Button/Badge/Card/Command/Dialog/Sheet (`input.tsx`, `input-group.tsx`, `textarea.tsx`, `separator.tsx`) | Installed as part of the shadcn `command`/`sheet` dependency chain (Command's search input uses `InputGroup`), not directly used as standalone components yet. Fine to use if a future page needs a form input — just restyle away from shadcn's default `--primary`/`--radius` look the same way `button.tsx`/`badge.tsx` were (see `tokens.css`'s `@theme inline` block for how shadcn's semantic vars are pointed at our own tokens). |
 
 `about.astro` **is** a 1:1 comp implementation (`ui_kits/lab/About.dc.html`), just not a reusable component — it's a bespoke, one-off page. Its "What I Do" tiles, timeline, "How I Work" list, stack grid, and "Currently Building" items are hardcoded data arrays at the top of the file, not driven by any content collection (only the page's title/description/SEO and the long-form bio paragraphs come from `src/content/pages/about.mdx`). Edit the arrays directly in `about.astro` to update that content — there's no schema to extend.
+
+| Component | Why it exists |
+| --- | --- |
+| [`Analytics.astro`](./Analytics.astro) | GTM + Datadog RUM aren't in any comp — they're wired from repo secrets at **build time** (`.github/workflows/deploy.yml` → `process.env.GTM_ID` / `DATADOG_RUM_*`), not through Pages CMS content, since they're deployment config rather than editable site content. No-ops locally when the env vars are unset (see `.env.example`). Included via `BaseHead.astro`; the GTM `<noscript>` fallback lives in `BaseLayout.astro` right after `<body>`. |
 
 ## Design tokens (not components — referenced directly, not imported)
 

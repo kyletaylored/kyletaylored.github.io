@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; padding: 40px; display: flex; flex-direction: column; gap: 48px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A49F; font-family: 'Space Mono', monospace; margin-bottom: 16px; }
+  .img-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .img-label { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+</helmet>
+
+<!-- 1. Horizontal card — image left, text right -->
+<div>
+  <div class="section-label">Horizontal — image left</div>
+  <div style="display:flex;flex-direction:column;gap:1px;max-width:720px;">
+    <a href="#" style="display:grid;grid-template-columns:200px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:4/3;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533,#0d1b3e);"></div>
+        <div style="position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:#F44D8A;opacity:0.3;"></div>
+        <div class="img-placeholder"><span class="img-label">IMAGE</span></div>
+      </div>
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:8px;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">AI Agents</span>
+          <span style="color:#C0BCB7;font-size:10px;">·</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">8 min read</span>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#111;line-height:1.3;">Building Reliable AI Agents</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.5;">Lessons learned from building agents that don't fail — and what to do when they inevitably do.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">July 14, 2026</span>
+          <span style="font-size:13px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" style="display:grid;grid-template-columns:200px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:4/3;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#001a0d,#0a2a1a);"></div>
+        <div style="position:absolute;left:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.2;"></div>
+        <div class="img-placeholder"><span class="img-label">IMAGE</span></div>
+      </div>
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:8px;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#FFD54A;">Hardware</span>
+          <span style="color:#C0BCB7;font-size:10px;">·</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">12 min read</span>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#111;line-height:1.3;">Wi-Fi Rover with ESP32</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.5;">A build log for my ESP32-based rover. Full camera stream, real-time control, OTA updates.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">July 16, 2026</span>
+          <span style="font-size:13px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- 2. Vertical card — image top, 3-col grid -->
+<div>
+  <div class="section-label">Vertical — image top, 3-col grid</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;">
+    <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/9;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533,#0d1b3e);"></div>
+        <div style="position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:#F44D8A;opacity:0.25;"></div>
+        <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:5px;">
+          <span style="font-size:10px;background:#F44D8A;color:#FFF;padding:2px 8px;border-radius:999px;font-weight:600;">AI</span>
+        </div>
+        <div class="img-placeholder"><span class="img-label">FEATURED IMAGE</span></div>
+      </div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="font-size:14px;font-weight:700;color:#111;line-height:1.3;">Building Reliable AI Agents</div>
+        <div style="font-size:12px;color:#6B6860;line-height:1.5;flex:1;">Lessons learned from building agents that don't fail in production.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">8 min · Jul 14</span>
+          <span style="font-size:12px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/9;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#001a0d,#0a2a1a);"></div>
+        <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:5px;">
+          <span style="font-size:10px;background:#FFD54A;color:#111;padding:2px 8px;border-radius:999px;font-weight:600;">Hardware</span>
+        </div>
+        <div class="img-placeholder"><span class="img-label">FEATURED IMAGE</span></div>
+      </div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="font-size:14px;font-weight:700;color:#111;line-height:1.3;">Wi-Fi Rover with ESP32</div>
+        <div style="font-size:12px;color:#6B6860;line-height:1.5;flex:1;">A build log with full camera stream and OTA firmware updates.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">12 min · Jul 16</span>
+          <span style="font-size:12px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/9;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#050510,#0a0a1a);"></div>
+        <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:5px;">
+          <span style="font-size:10px;background:#28D7E5;color:#111;padding:2px 8px;border-radius:999px;font-weight:600;">Open Source</span>
+        </div>
+        <div class="img-placeholder"><span class="img-label">FEATURED IMAGE</span></div>
+      </div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="font-size:14px;font-weight:700;color:#111;line-height:1.3;">RAG Strategies That Work</div>
+        <div style="font-size:12px;color:#6B6860;line-height:1.5;flex:1;">Practical chunking and retrieval patterns for production RAG.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">6 min · Jul 10</span>
+          <span style="font-size:12px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- 3. Feature card — large hero with text overlay -->
+<div>
+  <div class="section-label">Feature card — large with overlay text</div>
+  <a href="#" style="display:block;position:relative;border-radius:4px;overflow:hidden;max-width:720px;text-decoration:none;aspect-ratio:16/7;">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533 0%,#0d1b3e 60%,#1a0020 100%);"></div>
+    <div style="position:absolute;right:40px;top:20px;width:120px;height:120px;border-radius:50%;background:#28D7E5;opacity:0.12;"></div>
+    <div style="position:absolute;right:100px;bottom:20px;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid #FFD54A;opacity:0.1;"></div>
+    <!-- Gradient overlay for text -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 60%,transparent 100%);"></div>
+    <div class="img-placeholder" style="opacity:0.15;"><span class="img-label">FEATURED IMAGE</span></div>
+    <!-- Content -->
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 32px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">AI Agents</span>
+        <span style="color:rgba(255,255,255,0.3);font-size:10px;">·</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);">8 min read</span>
+      </div>
+      <div style="font-size:22px;font-weight:700;color:#FAF8F3;line-height:1.2;margin-bottom:8px;">Building Reliable AI Agents</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;max-width:480px;">Lessons learned from building agents that don't fail in production — and what to do when they inevitably do.</div>
+      <div style="margin-top:14px;font-size:12px;color:#28D7E5;display:flex;align-items:center;gap:6px;">Read more →</div>
+    </div>
+  </a>
+</div>
+
+<!-- 4. Editorial — large + two vertical -->
+<div>
+  <div class="section-label">Editorial — featured + 2-col stack</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:900px;">
+    <!-- Featured left -->
+    <a href="#" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:3/2;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533,#0d1b3e);"></div>
+        <div style="position:absolute;right:-10px;top:-10px;width:80px;height:80px;border-radius:50%;background:#F44D8A;opacity:0.2;"></div>
+        <div style="position:absolute;bottom:10px;left:12px;">
+          <span style="font-size:10px;background:#F44D8A;color:#FFF;padding:2px 8px;border-radius:999px;font-weight:600;">Featured</span>
+        </div>
+        <div class="img-placeholder"><span class="img-label">IMAGE</span></div>
+      </div>
+      <div style="padding:20px;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:16px;font-weight:700;color:#111;line-height:1.3;">Building Reliable AI Agents</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.5;flex:1;">Lessons learned from building agents that don't fail — and what to do when they inevitably do.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">8 min · Jul 14</span>
+          <span style="font-size:13px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+    <!-- Right column: 2 stacked -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="#" style="display:grid;grid-template-columns:120px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#001a0d,#0a2a1a);"></div>
+          <div class="img-placeholder"><span class="img-label" style="font-size:8px;">IMG</span></div>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:6px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#FFD54A;">Hardware</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">Wi-Fi Rover with ESP32</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">12 min · Jul 16</div>
+        </div>
+      </a>
+      <a href="#" style="display:grid;grid-template-columns:120px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#050510,#0a0a1a);"></div>
+          <div class="img-placeholder"><span class="img-label" style="font-size:8px;">IMG</span></div>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:6px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;">Open Source</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">RAG Strategies That Work</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">6 min · Jul 10</div>
+        </div>
+      </a>
+      <a href="#" style="display:grid;grid-template-columns:120px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;text-decoration:none;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0820,#2a0a30);"></div>
+          <div class="img-placeholder"><span class="img-label" style="font-size:8px;">IMG</span></div>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:6px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#F44D8A;">AI</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">Fine-Tuning on a Budget</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">10 min · Jul 8</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

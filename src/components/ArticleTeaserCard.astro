@@ -1,0 +1,171 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	entry: CollectionEntry<'articles'>;
+	variant?: 'featured' | 'compact' | 'vertical' | 'overlay';
+}
+
+const { entry, variant = 'compact' } = Astro.props;
+const { title, description, pubDate, category, heroImage } = entry.data;
+
+const wordCount = (entry.body ?? '').trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+// Deterministic gradient + pill color (no real heroImage / no fixed category
+// color scheme) so teaser cards stay visually varied instead of all sharing
+// one placeholder.
+const gradients = [
+	'from-[#1a0533] to-[#0d1b3e]',
+	'from-[#001a0d] to-[#0a2a1a]',
+	'from-[#1a0820] to-[#2a0a30]',
+	'from-[#050510] to-[#0a0a1a]',
+	'from-[#1a1008] to-[#2a1a00]',
+];
+const pillColors = ['bg-pink text-white', 'bg-yellow text-ink', 'bg-teal text-ink', 'bg-blue text-white'];
+const hash = entry.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+const gradient = gradients[hash % gradients.length];
+const pillColor = pillColors[hash % pillColors.length];
+---
+
+{
+	variant === 'featured' && (
+		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
+			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
+				{heroImage &&
+					(typeof heroImage === 'string' ? (
+						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+					) : (
+						<Picture
+							formats={['avif', 'webp']}
+							src={heroImage}
+							alt=""
+							width={800}
+							height={450}
+							class="absolute inset-0 h-full w-full object-cover"
+						/>
+					))}
+				<span class="absolute bottom-3 left-3.5 rounded-full bg-pink px-2.5 py-0.5 text-[10px] font-semibold text-white">
+					Featured
+				</span>
+			</div>
+			<div class="flex flex-1 flex-col gap-2 p-5">
+				<div class="flex items-center gap-2">
+					<span class="text-[10px] font-semibold tracking-wide text-teal uppercase">{category}</span>
+					<span class="text-[10px] text-border-dark">&middot;</span>
+					<span class="font-mono text-[10px] text-muted-light">{readingTime} min read</span>
+				</div>
+				<div class="text-lg leading-snug font-bold text-ink">{title}</div>
+				<div class="flex-1 text-sm leading-snug text-muted">{description}</div>
+				<div class="mt-1 flex items-center justify-between">
+					<span class="font-mono text-[10px] text-muted-light">
+						<FormattedDate date={pubDate} />
+					</span>
+					<span class="text-sm text-ink">&rarr;</span>
+				</div>
+			</div>
+		</a>
+	)
+}
+
+{
+	variant === 'compact' && (
+		<a href={`/articles/${entry.id}/`} class="grid flex-1 grid-cols-[140px_1fr] overflow-hidden rounded-md border border-border bg-white">
+			<div class={`relative overflow-hidden bg-gradient-to-br ${gradient}`}>
+				{heroImage &&
+					(typeof heroImage === 'string' ? (
+						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+					) : (
+						<Picture
+							formats={['avif', 'webp']}
+							src={heroImage}
+							alt=""
+							width={280}
+							height={200}
+							class="absolute inset-0 h-full w-full object-cover"
+						/>
+					))}
+			</div>
+			<div class="flex flex-col justify-center gap-1.5 px-4 py-3.5">
+				<div class="text-[10px] font-semibold tracking-wide text-teal uppercase">{category}</div>
+				<div class="text-sm leading-tight font-bold text-ink">{title}</div>
+				<div class="flex items-center justify-between">
+					<span class="font-mono text-[10px] text-muted-light">
+						{readingTime} min &middot; <FormattedDate date={pubDate} />
+					</span>
+					<span class="text-xs text-ink">&rarr;</span>
+				</div>
+			</div>
+		</a>
+	)
+}
+
+{
+	/* Plain grid card: image top (16:9) with a category pill overlay, content below. Used for the articles index grid. */
+	variant === 'vertical' && (
+		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
+			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
+				{heroImage &&
+					(typeof heroImage === 'string' ? (
+						<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+					) : (
+						<Picture
+							formats={['avif', 'webp']}
+							src={heroImage}
+							alt=""
+							width={600}
+							height={340}
+							class="absolute inset-0 h-full w-full object-cover"
+						/>
+					))}
+				<span class:list={['absolute bottom-2.5 left-3 rounded-full px-2 py-0.5 text-[10px] font-semibold', pillColor]}>
+					{category}
+				</span>
+			</div>
+			<div class="flex flex-1 flex-col gap-2 p-4">
+				<div class="text-sm leading-snug font-bold text-ink">{title}</div>
+				<div class="flex-1 text-xs leading-relaxed text-muted">{description}</div>
+				<div class="mt-1 flex items-center justify-between">
+					<span class="font-mono text-[10px] text-muted-light">
+						{readingTime} min &middot; <FormattedDate date={pubDate} />
+					</span>
+					<span class="text-xs text-ink">&rarr;</span>
+				</div>
+			</div>
+		</a>
+	)
+}
+
+{
+	/* Large hero-style card with the image (or gradient) filling the whole card and text overlaid via a bottom gradient scrim. */
+	variant === 'overlay' && (
+		<a href={`/articles/${entry.id}/`} class={`relative block aspect-[16/7] overflow-hidden rounded-md bg-gradient-to-br ${gradient}`}>
+			{heroImage &&
+				(typeof heroImage === 'string' ? (
+					<img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+				) : (
+					<Picture
+						formats={['avif', 'webp']}
+						src={heroImage}
+						alt=""
+						width={1200}
+						height={525}
+						class="absolute inset-0 h-full w-full object-cover"
+					/>
+				))}
+			<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+			<div class="absolute inset-x-0 bottom-0 p-7">
+				<div class="mb-2.5 flex items-center gap-2">
+					<span class="text-[10px] font-semibold tracking-wide text-teal uppercase">{category}</span>
+					<span class="text-[10px] text-white/30">&middot;</span>
+					<span class="font-mono text-[10px] text-white/40">{readingTime} min read</span>
+				</div>
+				<div class="mb-2 text-xl leading-tight font-bold text-bg">{title}</div>
+				<div class="max-w-md text-sm leading-relaxed text-white/60">{description}</div>
+				<div class="mt-3.5 flex items-center gap-1.5 text-xs text-teal">Read more &rarr;</div>
+			</div>
+		</a>
+	)
+}

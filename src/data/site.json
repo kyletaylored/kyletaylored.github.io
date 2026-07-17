@@ -2,7 +2,14 @@
   "siteTitle": "Kyle Taylor — Creative Engineer",
   "brandLabel": "KYLETAYLORED.COM",
   "siteDescription": "Portfolio, engineering journal, and maker lab of Kyle Taylor: building interesting things, sharing everything, documenting the journey.",
+  "footerTaglineLine1": "This is a work in progress.",
+  "footerTaglineLine2Prefix": "Just like",
+  "footerTaglineLine2Accent": "everything else.",
   "socialLinks": [
-    { "label": "GitHub", "url": "https://github.com/kyletaylored" }
+    { "platform": "github", "url": "https://github.com/kyletaylored" },
+    { "platform": "youtube", "url": "#" },
+    { "platform": "instagram", "url": "#" },
+    { "platform": "tiktok", "url": "#" },
+    { "platform": "linkedin", "url": "#" }
   ]
 }

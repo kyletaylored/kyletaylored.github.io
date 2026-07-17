@@ -45,6 +45,13 @@ jobs:
           fi
 
       - name: Build with Astro
+        env:
+          GTM_ID: ${{ secrets.GTM_ID }}
+          DATADOG_RUM_APPLICATION_ID: ${{ secrets.DATADOG_RUM_APPLICATION_ID }}
+          DATADOG_RUM_CLIENT_TOKEN: ${{ secrets.DATADOG_RUM_CLIENT_TOKEN }}
+          DATADOG_RUM_SITE: ${{ secrets.DATADOG_RUM_SITE }}
+          DATADOG_RUM_SERVICE: ${{ secrets.DATADOG_RUM_SERVICE }}
+          DATADOG_RUM_ENV: production
         run: |
           npx astro build \
             --site "${{ steps.pages.outputs.origin }}" \

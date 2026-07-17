@@ -2,6 +2,7 @@
 import Circle from './decor/Circle.astro';
 import Triangle from './decor/Triangle.astro';
 import HazardStripe from './decor/HazardStripe.astro';
+import SocialIcon from './icons/SocialIcon.astro';
 import site from '../data/site.json';
 ---
 
@@ -21,9 +22,9 @@ import site from '../data/site.json';
 
 	<div class="relative mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
 		<div>
-			<p class="m-0 text-2xl leading-tight font-bold text-bg md:text-4xl">This is a work in progress.</p>
-			<p class="m-0 text-2xl leading-tight font-bold text-bg md:text-4xl">
-				Just like <span class="text-teal">everything else.</span>
+			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">{site.footerTaglineLine1}</p>
+			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">
+				{site.footerTaglineLine2Prefix} <span class="text-teal">{site.footerTaglineLine2Accent}</span>
 			</p>
 		</div>
 		<div class="text-left md:text-right">
@@ -42,9 +43,9 @@ import site from '../data/site.json';
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xs text-muted hover:text-teal"
+							class="text-muted transition-colors hover:text-teal"
 						>
-							{link.label}
+							<SocialIcon platform={link.platform} />
 						</a>
 					))
 				}

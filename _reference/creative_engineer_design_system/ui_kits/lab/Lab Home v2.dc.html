@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  a { color: inherit; text-decoration: none; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+</style>
+</helmet>
+
+<!-- NAV -->
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:#111;position:sticky;top:0;z-index:100;">
+  <a href="#" style="display:flex;align-items:center;gap:10px;">
+    <div style="width:28px;height:28px;background:#28D7E5;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;">
+      <span style="font-size:14px;font-weight:700;color:#111;line-height:1;">K</span>
+    </div>
+    <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;">Experiments</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Tools</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Playground</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">AI</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">Hardware</a>
+    <a href="#" style="font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:#FAF8F3;">About</a>
+    <span style="color:#F44D8A;font-size:20px;line-height:1;cursor:pointer;">+</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="background:#111;padding:80px 48px 60px;position:relative;overflow:hidden;min-height:480px;">
+  <div style="position:absolute;right:440px;top:40px;width:120px;height:120px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:360px;top:30px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;"></div>
+  <div style="position:absolute;right:520px;bottom:60px;width:60px;height:60px;border-radius:50%;background:#FFD54A;"></div>
+  <div style="position:absolute;right:200px;top:20px;width:32px;height:32px;background:#348BFF;transform:rotate(45deg);"></div>
+  <div style="position:absolute;right:140px;top:60px;color:#444;font-size:28px;font-weight:200;">+</div>
+  <div style="position:absolute;right:80px;bottom:80px;width:60px;height:60px;border-radius:50%;border:2px solid #444;"></div>
+  <div style="position:absolute;right:160px;top:16px;"><svg width="80" height="80"><defs><pattern id="d" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#444"/></pattern></defs><rect width="80" height="80" fill="url(#d)"/></svg></div>
+
+  <div style="display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;max-width:1200px;margin:0 auto;">
+    <div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:20px;">EXPERIMENT. BUILD. SHIP. REPEAT.</div>
+      <h1 style="margin:0 0 24px;font-size:72px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Welcome to<br>the <span style="color:#28D7E5;">Lab</span><span style="color:#F44D8A;">.</span></h1>
+      <p style="font-size:16px;color:#A8A49F;line-height:1.6;margin:0 0 36px;max-width:400px;">A playground for ideas, experiments, and side projects. Nothing here is perfect. Everything here is in progress.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">BROWSE EXPERIMENTS →</a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;border:2px solid #FAF8F3;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;border-radius:0;">VIEW ALL TOOLS ›</a>
+      </div>
+    </div>
+    <div style="background:#0D0D0D;border-radius:8px;overflow:hidden;border:1px solid #2A2A2A;">
+      <div style="padding:10px 16px;background:#1A1A1A;display:flex;align-items:center;gap:8px;">
+        <div style="width:12px;height:12px;border-radius:50%;background:#F25A4C;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#FFD54A;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#28D7E5;"></div>
+        <span style="margin-left:8px;font-family:'Space Mono',monospace;font-size:11px;color:#555;">~ lab</span>
+      </div>
+      <div style="padding:20px 24px;font-family:'Space Mono',monospace;font-size:12px;line-height:1.8;display:grid;grid-template-columns:auto 1fr;gap:0 16px;">
+        <span style="color:#28D7E5;">~ lab $</span><span style="color:#FAF8F3;">neofetch</span>
+        <span></span><span></span>
+        <span style="color:#28D7E5;">OS</span><span style="color:#FAF8F3;">Kyletaylor.dev OS</span>
+        <span style="color:#28D7E5;">Shell</span><span style="color:#FAF8F3;">zsh</span>
+        <span style="color:#28D7E5;">Editor</span><span style="color:#FAF8F3;">VS Code</span>
+        <span style="color:#28D7E5;">Lang</span><span style="color:#FAF8F3;">TypeScript</span>
+        <span style="color:#28D7E5;">Framework</span><span style="color:#FAF8F3;">Astro</span>
+        <span style="color:#28D7E5;">Location</span><span style="color:#FAF8F3;">The Lab</span>
+        <span></span><span></span>
+        <span style="color:#28D7E5;">~ lab $</span><span style="color:#FAF8F3;"><span style="animation:blink 1s step-end infinite;">_</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="height:4px;background:#F44D8A;"></div>
+
+<!-- EXPLORE THE LAB -->
+<section style="padding:60px 48px 0;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">EXPLORE THE LAB</span>
+    </div>
+    <a href="#" style="font-size:13px;color:#111;">View all experiments →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;">
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#28D7E5;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;">&gt;_</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">EXPERIMENTS</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Small projects, big ideas.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#FFD54A;font-size:16px;">✕</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">TOOLS</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Useful utilities.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#F44D8A;font-family:'Space Mono',monospace;font-size:12px;">&lt;/&gt;</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">PLAYGROUND</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Tinker and learn.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#28D7E5;font-size:16px;">◈</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">AI LAB</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Agents and models.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#FFD54A;font-size:16px;">⬡</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">HARDWARE</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Electronics, firmware.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#F44D8A;font-size:16px;">✦</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">ARTICLES</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Writing and write-ups.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED EXPERIMENTS + ACTIVITY -->
+<section style="padding:48px 48px 0;max-width:1296px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 320px;gap:48px;">
+
+  <!-- Featured experiments -->
+  <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">FEATURED EXPERIMENTS</span>
+      </div>
+      <a href="#" style="font-size:13px;color:#111;">View all →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative;">
+      <div style="background:#111;border-radius:4px;overflow:hidden;">
+        <div style="height:120px;background:linear-gradient(135deg,#1a0533,#0d1b3e);display:flex;align-items:center;justify-content:center;"><div style="width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#F44D8A,#348BFF);opacity:0.8;"></div></div>
+        <div style="padding:14px;">
+          <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Particle Field</div>
+          <div style="font-size:11px;color:#888;line-height:1.4;margin-bottom:8px;">WebGL with audio reactivity.</div>
+          <div style="display:flex;gap:5px;margin-bottom:8px;"><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">webgl</span><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">audio</span></div>
+          <div style="color:#FAF8F3;font-size:13px;">→</div>
+        </div>
+      </div>
+      <div style="background:#111;border-radius:4px;overflow:hidden;">
+        <div style="height:120px;background:linear-gradient(135deg,#001a0d,#0a2a1a);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#28D7E5;text-align:left;line-height:1.8;">ragSearch(q)<br><span style="color:#555;">→ chunks: 12</span><br><span style="color:#555;">→ score: 0.94</span></span></div>
+        <div style="padding:14px;">
+          <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">RAG Playground</div>
+          <div style="font-size:11px;color:#888;line-height:1.4;margin-bottom:8px;">Compare RAG strategies.</div>
+          <div style="display:flex;gap:5px;margin-bottom:8px;"><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">ai</span><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">rag</span></div>
+          <div style="color:#FAF8F3;font-size:13px;">→</div>
+        </div>
+      </div>
+      <div style="background:#111;border-radius:4px;overflow:hidden;">
+        <div style="height:120px;background:#0a0a1a;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#348BFF;line-height:1.7;">Agent.think(ctx)<br><span style="color:#28D7E5;">→ tool: search</span><br><span style="color:#FAF8F3;">→ respond()</span></span></div>
+        <div style="padding:14px;">
+          <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">LLM Agent</div>
+          <div style="font-size:11px;color:#888;line-height:1.4;margin-bottom:8px;">Autonomous agent with memory.</div>
+          <div style="display:flex;gap:5px;margin-bottom:8px;"><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">ai</span><span style="font-size:9px;color:#A8A49F;border:1px solid #333;border-radius:999px;padding:1px 6px;">agent</span></div>
+          <div style="color:#FAF8F3;font-size:13px;">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity feed -->
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">ACTIVITY</span>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F0EDE8;">
+        <div style="width:26px;height:26px;background:#FEF0EE;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#F25A4C;flex-shrink:0;">⬡</div>
+        <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:600;color:#F25A4C;">New Experiment</div><div style="font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Neural Texture Synthesis</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">2h</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F0EDE8;">
+        <div style="width:26px;height:26px;background:#FFFAED;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#FFD54A;flex-shrink:0;">↑</div>
+        <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:600;color:#FFD54A;">Git Push</div><div style="font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">3 commits to flow-fields</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">5h</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F0EDE8;">
+        <div style="width:26px;height:26px;background:#EBF9FC;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#28D7E5;flex-shrink:0;">⬛</div>
+        <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:600;color:#28D7E5;">New Tool</div><div style="font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">QR Code Generator</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">1d</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F0EDE8;">
+        <div style="width:26px;height:26px;background:#FEF0F5;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#F44D8A;flex-shrink:0;">↻</div>
+        <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:600;color:#F44D8A;">Updated</div><div style="font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">LLM Agent memory system</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">2d</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+        <div style="width:26px;height:26px;background:#EEF4FF;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#348BFF;flex-shrink:0;">✦</div>
+        <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:600;color:#348BFF;">Published</div><div style="font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Building Reliable AI Agents</div></div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;flex-shrink:0;">3d</div>
+      </div>
+    </div>
+    <a href="#" style="display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-size:12px;color:#111;">View full activity →</a>
+  </div>
+</section>
+
+<!-- LATEST WRITING — editorial layout with images -->
+<section style="padding:48px 48px 0;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">LATEST WRITING</span>
+    </div>
+    <a href="#" style="font-size:13px;color:#111;">View all articles →</a>
+  </div>
+
+  <!-- Editorial: featured large + 3 stacked right -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <!-- Featured left -->
+    <a href="#" style="display:flex;flex-direction:column;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/9;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0533,#0d1b3e);"></div>
+        <div style="position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.2;"></div>
+        <div style="position:absolute;left:20px;bottom:20px;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:52px solid #28D7E5;opacity:0.15;"></div>
+        <div style="position:absolute;bottom:12px;left:14px;">
+          <span style="font-size:10px;background:#F44D8A;color:#FFF;padding:2px 8px;border-radius:999px;font-weight:600;">Featured</span>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:0.08em;text-transform:uppercase;">Featured image</span></div>
+      </div>
+      <div style="padding:20px;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#28D7E5;">AI Agents</span>
+          <span style="color:#C0BCB7;font-size:10px;">·</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">8 min read</span>
+        </div>
+        <div style="font-size:18px;font-weight:700;color:#111;line-height:1.25;">Building Reliable AI Agents</div>
+        <div style="font-size:13px;color:#6B6860;line-height:1.55;flex:1;">Lessons learned from building agents that don't fail — and what to do when they inevitably do.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">July 14, 2026</span>
+          <span style="font-size:14px;color:#111;">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Right: 3 compact horizontal cards -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="#" style="display:grid;grid-template-columns:140px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;flex:1;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#001a0d,#0a2a1a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;">IMAGE</span></div>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#FFD54A;">Hardware</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">Wi-Fi Rover with ESP32</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">12 min · Jul 16</span>
+            <span style="font-size:12px;color:#111;">→</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" style="display:grid;grid-template-columns:140px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;flex:1;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#050510,#0a0a1a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;">IMAGE</span></div>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#28D7E5;">Open Source</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">RAG Strategies That Work</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">6 min · Jul 10</span>
+            <span style="font-size:12px;color:#111;">→</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" style="display:grid;grid-template-columns:140px 1fr;background:#FFF;border:1px solid #E0DDDA;border-radius:4px;overflow:hidden;flex:1;">
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a0820,#2a0a30);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;">IMAGE</span></div>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:#F44D8A;">AI</div>
+          <div style="font-size:13px;font-weight:700;color:#111;line-height:1.3;">Fine-Tuning on a Budget</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#A8A49F;">10 min · Jul 8</span>
+            <span style="font-size:12px;color:#111;">→</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section style="padding:48px 48px 0;max-width:1296px;margin:0 auto;width:100%;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">LATEST TOOLS</span>
+    </div>
+    <a href="#" style="font-size:13px;color:#111;">View all tools →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="width:34px;height:34px;background:#111;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:4px;flex-shrink:0;">
+        <div style="background:#28D7E5;border-radius:1px;"></div><div style="background:#F44D8A;border-radius:1px;"></div>
+        <div style="background:#FFD54A;border-radius:1px;"></div><div style="background:#348BFF;border-radius:1px;"></div>
+      </div>
+      <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;color:#111;margin-bottom:1px;">JSON Diff</div><div style="font-size:11px;color:#6B6860;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Compare JSON documents.</div></div>
+      <button style="font-size:10px;font-weight:600;padding:5px 12px;background:transparent;border:1px solid #E0DDDA;border-radius:0;cursor:pointer;color:#111;white-space:nowrap;flex-shrink:0;">Open</button>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="width:34px;height:34px;background:#111;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:4px;flex-shrink:0;">
+        <div style="background:#F44D8A;border-radius:1px;"></div><div style="background:#28D7E5;border-radius:1px;"></div>
+        <div style="background:#348BFF;border-radius:1px;"></div><div style="background:#FFD54A;border-radius:1px;"></div>
+      </div>
+      <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;color:#111;margin-bottom:1px;">Regex Lab</div><div style="font-size:11px;color:#6B6860;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Build and test regex.</div></div>
+      <button style="font-size:10px;font-weight:600;padding:5px 12px;background:transparent;border:1px solid #E0DDDA;border-radius:0;cursor:pointer;color:#111;white-space:nowrap;flex-shrink:0;">Open</button>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="width:34px;height:34px;background:#111;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:4px;flex-shrink:0;">
+        <div style="background:#FFD54A;border-radius:1px;"></div><div style="background:#F44D8A;border-radius:1px;"></div>
+        <div style="background:#28D7E5;border-radius:1px;"></div><div style="background:#348BFF;border-radius:1px;"></div>
+      </div>
+      <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;color:#111;margin-bottom:1px;">Color Palette</div><div style="font-size:11px;color:#6B6860;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Extract color palettes.</div></div>
+      <button style="font-size:10px;font-weight:600;padding:5px 12px;background:transparent;border:1px solid #E0DDDA;border-radius:0;cursor:pointer;color:#111;white-space:nowrap;flex-shrink:0;">Open</button>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <div style="width:34px;height:34px;background:#111;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:4px;flex-shrink:0;">
+        <div style="background:#348BFF;border-radius:1px;"></div><div style="background:#28D7E5;border-radius:1px;"></div>
+        <div style="background:#F44D8A;border-radius:1px;"></div><div style="background:#FFD54A;border-radius:1px;"></div>
+      </div>
+      <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;color:#111;margin-bottom:1px;">QR Generator</div><div style="font-size:11px;color:#6B6860;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Generate custom QR codes.</div></div>
+      <button style="font-size:10px;font-weight:600;padding:5px 12px;background:transparent;border:1px solid #E0DDDA;border-radius:0;cursor:pointer;color:#111;white-space:nowrap;flex-shrink:0;">Open</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="margin-top:60px;background:#111;padding:48px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:200px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+  <div style="position:absolute;right:280px;top:-30px;width:60px;height:60px;border-radius:50%;background:#28D7E5;opacity:0.8;"></div>
+  <div style="position:absolute;right:160px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #FFD54A;opacity:0.9;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hz" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hz)"/></svg></div>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;position:relative;">
+    <div>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0 0 4px;">This is a work in progress.</p>
+      <p style="font-size:36px;font-weight:700;color:#FAF8F3;line-height:1.15;margin:0;">Just like <span style="color:#28D7E5;">everything else.</span></p>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:13px;font-weight:600;color:#FAF8F3;margin-bottom:4px;">Built by Kyle Taylor</div>
+      <div style="font-size:12px;color:#6B6860;">Creative Engineer · AI · Hardware · Open Source</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+</body>
+</html>
