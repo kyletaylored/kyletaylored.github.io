@@ -273,5 +273,5 @@ content:
             label: Platform
             type: select
             options:
-              values: [github, youtube, instagram, tiktok, linkedin]
+              values: [github, youtube, instagram, threads, tiktok, linkedin]
           - { name: url, label: URL, type: string }

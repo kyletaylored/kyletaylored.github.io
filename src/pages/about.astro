@@ -7,6 +7,7 @@ import Circle from '../components/decor/Circle.astro';
 import Triangle from '../components/decor/Triangle.astro';
 import Diamond from '../components/decor/Diamond.astro';
 import DotGrid from '../components/decor/DotGrid.astro';
+import { currentlyBuilding } from '../data/currently-building';
 
 const entry = await getEntry('pages', 'about');
 if (!entry) throw new Error('Missing src/content/pages/about.mdx');
@@ -77,11 +78,6 @@ const stack = [
 	{ label: 'Hardware', color: 'text-blue', items: ['ESP32', 'RPi', 'Arduino', 'KiCad'] },
 ];
 
-const currentlyBuilding = [
-	{ title: 'Autonomous code review agent', tag: 'AI', border: 'border-teal' },
-	{ title: '6-axis robot arm (3D printed)', tag: 'Hardware', border: 'border-pink' },
-	{ title: 'Open source dev tools collection', tag: 'OSS', border: 'border-yellow' },
-];
 ---
 
 <BaseLayout title={entry.data.seo.metaTitle ?? entry.data.title} description={entry.data.description}>
