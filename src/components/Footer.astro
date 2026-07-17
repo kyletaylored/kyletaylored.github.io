@@ -1,38 +1,54 @@
 ---
+import Circle from './decor/Circle.astro';
+import Triangle from './decor/Triangle.astro';
+import HazardStripe from './decor/HazardStripe.astro';
 import site from '../data/site.json';
-const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Kyle Taylor. All rights reserved.
-	<div class="social-links">
-		{
-			site.socialLinks.map((link) => (
-				<a href={link.url} target="_blank" rel="noopener noreferrer">
-					{link.label}
-				</a>
-			))
-		}
+<footer class="relative overflow-hidden bg-ink px-6 py-8 md:px-12 md:py-12">
+	<div class="pointer-events-none absolute -bottom-5 right-[120px] opacity-90 md:right-[200px]">
+		<Circle color="var(--color-pink)" size="80px" />
+	</div>
+	<div class="pointer-events-none absolute -top-8 right-[180px] hidden opacity-80 md:right-[280px] md:block">
+		<Circle color="var(--color-teal)" size="60px" />
+	</div>
+	<div class="pointer-events-none absolute right-[100px] top-5 hidden opacity-90 md:right-[160px] md:block">
+		<Triangle color="var(--color-yellow)" size="70px" />
+	</div>
+	<div class="absolute inset-x-0 bottom-0">
+		<HazardStripe height="6px" />
+	</div>
+
+	<div class="relative mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
+		<div>
+			<p class="m-0 text-2xl leading-tight font-bold text-bg md:text-4xl">This is a work in progress.</p>
+			<p class="m-0 text-2xl leading-tight font-bold text-bg md:text-4xl">
+				Just like <span class="text-teal">everything else.</span>
+			</p>
+		</div>
+		<div class="text-left md:text-right">
+			<div class="mb-1 text-sm font-semibold text-bg">Built by Kyle Taylor</div>
+			<div class="mb-2 text-xs text-muted">Creative Engineer, AI enthusiast, maker.</div>
+			<a
+				href="https://kyletaylored.com"
+				class="mb-4 inline-flex items-center gap-1 text-xs text-teal hover:underline"
+			>
+				kyletaylored.com &rarr;
+			</a>
+			<div class="flex gap-4 md:justify-end">
+				{
+					site.socialLinks.map((link) => (
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xs text-muted hover:text-teal"
+						>
+							{link.label}
+						</a>
+					))
+				}
+			</div>
+		</div>
 	</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: var(--color-surface);
-		color: var(--color-muted);
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: var(--color-muted);
-	}
-	.social-links a:hover {
-		color: var(--color-black);
-	}
-</style>

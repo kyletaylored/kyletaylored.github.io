@@ -1,8 +1,10 @@
 ---
-import { Picture } from 'astro:assets';
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Button from '../components/Button.astro';
+import Circle from '../components/decor/Circle.astro';
+import Triangle from '../components/decor/Triangle.astro';
 
 interface Props {
 	entry: CollectionEntry<'articles'>;
@@ -11,6 +13,9 @@ interface Props {
 const { entry } = Astro.props;
 const { title, description, pubDate, updatedDate, heroImage, category, tags, author, sourceUrl, seo } =
 	entry.data;
+
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2);
 
 const wordCount = (entry.body ?? '').trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
@@ -30,107 +35,185 @@ const related = (await getCollection('articles'))
 	noindex={seo.noindex}
 	jsonLd={seo.jsonLd}
 >
-	<article>
-		<div class="breadcrumb">
-			<a href="/articles">Articles</a> &rsaquo; <span>{category}</span>
+	<header class="relative overflow-hidden bg-ink px-6 py-14 md:px-12 md:py-16">
+		<div class="pointer-events-none absolute -top-8 right-10 hidden opacity-[0.12] md:block">
+			<Circle color="var(--color-teal)" size="160px" />
 		</div>
-		<div class="hero-image">
-			{
-				heroImage &&
-					(typeof heroImage === 'string' ? (
-						<img src={heroImage} alt="" />
-					) : (
-						<Picture formats={['avif', 'webp']} width={1200} height={600} src={heroImage} alt="" />
-					))
-			}
+		<div class="pointer-events-none absolute -bottom-10 right-40 hidden opacity-10 md:block">
+			<Circle color="var(--color-pink)" size="200px" />
 		</div>
-		<header class="title">
-			<h1>{title}</h1>
-			<p class="dek">{description}</p>
-			<div class="meta">
-				<span>{author.name}</span>
-				<span>&middot;</span>
-				<FormattedDate date={pubDate} />
-				{updatedDate && <span>(updated <FormattedDate date={updatedDate} />)</span>}
-				<span>&middot;</span>
-				<span>{readingTime} min read</span>
-			</div>
-			<div class="tags">
-				{tags.map((tag) => <span class="tag">{tag}</span>)}
-			</div>
-			{
-				sourceUrl && (
-					<a class="source-cta" href={sourceUrl} target="_blank" rel="noopener noreferrer">
-						View on GitHub &rarr;
-					</a>
-				)
-			}
-		</header>
+		<div class="pointer-events-none absolute right-10 top-10 hidden opacity-20 md:block">
+			<Triangle color="var(--color-yellow)" size="70px" />
+		</div>
+		<div class="pointer-events-none absolute left-6 bottom-5 hidden font-mono text-base tracking-[6px] text-border-dark md:block">/ / / /</div>
 
-		<div class="prose">
-			<slot />
-		</div>
+		<div class="relative mx-auto max-w-[760px]">
+			<div class="mb-6 flex items-center gap-2">
+				<a href="/articles" class="text-xs font-medium tracking-wide text-muted uppercase">Articles</a>
+				<span class="text-border-dark">&rsaquo;</span>
+				<span class="text-xs font-medium tracking-wide text-teal uppercase">{category}</span>
+			</div>
 
+			<h1 class="mb-6 text-4xl leading-[1.05] font-bold tracking-tight text-bg md:text-5xl">{title}</h1>
+			<p class="mb-9 max-w-[580px] text-lg leading-relaxed text-muted-light">{description}</p>
+
+			<div class="flex flex-wrap items-center gap-4 md:gap-5">
+				<div class="flex items-center gap-2.5">
+					<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm bg-teal text-sm font-bold text-ink">
+						{author.name.charAt(0)}
+					</div>
+					<div>
+						<div class="text-sm font-semibold text-bg">{author.name}</div>
+						<div class="text-[11px] text-muted">{author.role}</div>
+					</div>
+				</div>
+				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
+				<div class="font-mono text-[11px] text-muted"><FormattedDate date={pubDate} /></div>
+				{
+					updatedDate && (
+						<div class="font-mono text-[11px] text-muted">
+							updated <FormattedDate date={updatedDate} />
+						</div>
+					)
+				}
+				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
+				<div class="font-mono text-[11px] text-muted">{readingTime} min read</div>
+				<div class="flex flex-wrap gap-1.5 sm:ml-auto">
+					{
+						tags.map((tag) => (
+							<span class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted">
+								{tag}
+							</span>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="h-1 bg-pink"></div>
+
+	<div class="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:px-12 md:py-16 lg:grid-cols-[1fr_280px] lg:items-start lg:gap-20">
 		{
-			related.length > 0 && (
-				<aside class="related">
-					<h2>Related Articles</h2>
-					<ul>
-						{related.map((a) => (
-							<li>
-								<a href={`/articles/${a.id}/`}>{a.data.title}</a>
-							</li>
+			toc.length > 0 && (
+				<div class="rounded-md border border-border bg-white p-4 lg:hidden">
+					<div class="mb-2.5 text-[11px] font-bold tracking-wide text-ink uppercase">Contents</div>
+					<div class="flex flex-col gap-1.5">
+						{toc.map((h, i) => (
+							<a href={`#${h.slug}`} class="flex items-baseline gap-2 text-xs text-muted">
+								<span class="font-mono text-[9px] text-muted-light">{String(i + 1).padStart(2, '0')}</span>
+								{h.text}
+							</a>
 						))}
-					</ul>
-				</aside>
+					</div>
+				</div>
 			)
 		}
-	</article>
+
+		<article class="prose min-w-0">
+			<Content />
+
+			<div class="mt-12 border-t border-border pt-12">
+				<div class="mb-3 text-xs font-bold tracking-widest text-muted uppercase">Continue reading</div>
+				<p class="mb-5 text-sm text-muted">More articles and notes are on the way.</p>
+				<Button href="/articles" variant="primary">View All Articles &rarr;</Button>
+			</div>
+		</article>
+
+		<aside class="hidden flex-col gap-8 lg:sticky lg:top-20 lg:flex">
+			{
+				toc.length > 0 && (
+					<div class="rounded-md border border-border bg-white p-5">
+						<div class="mb-4 text-[11px] font-bold tracking-wide text-ink uppercase">Contents</div>
+						<div class="flex flex-col gap-2">
+							{toc.map((h, i) => (
+								<a href={`#${h.slug}`} class="flex items-baseline gap-2 text-sm text-muted hover:text-teal">
+									<span class="font-mono text-[10px] text-muted-light">{String(i + 1).padStart(2, '0')}</span>
+									{h.text}
+								</a>
+							))}
+						</div>
+					</div>
+				)
+			}
+
+			<div>
+				<div class="mb-3 text-[11px] font-bold tracking-wide text-ink uppercase">Tags</div>
+				<div class="flex flex-wrap gap-1.5">
+					{
+						tags.map((tag) => (
+							<span class="rounded-full border border-border px-2.5 py-0.5 text-[11px] text-muted">{tag}</span>
+						))
+					}
+				</div>
+			</div>
+
+			{
+				related.length > 0 && (
+					<div>
+						<div class="mb-3 text-[11px] font-bold tracking-wide text-ink uppercase">Related</div>
+						<div class="flex flex-col">
+							{related.map((a) => (
+								<a href={`/articles/${a.id}/`} class="block border-b border-surface py-3 last:border-b-0">
+									<div class="mb-0.5 text-sm leading-snug font-medium text-ink">{a.data.title}</div>
+									<div class="font-mono text-[11px] text-muted-light">
+										<FormattedDate date={a.data.pubDate} />
+									</div>
+								</a>
+							))}
+						</div>
+					</div>
+				)
+			}
+
+			{
+				sourceUrl && (
+					<div class="relative overflow-hidden rounded-md bg-ink p-5">
+						<div class="pointer-events-none absolute -right-2.5 -top-2.5 h-14 w-14 rounded-full bg-teal opacity-15" />
+						<div class="relative mb-1.5 text-sm font-semibold text-bg">Open Source</div>
+						<div class="relative mb-4 text-xs leading-relaxed text-muted">
+							The companion code for this post is on GitHub.
+						</div>
+						<a
+							href={sourceUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="relative inline-flex items-center gap-1.5 border border-teal px-3.5 py-2 text-[11px] font-bold tracking-wide text-teal uppercase"
+						>
+							View on GitHub &rarr;
+						</a>
+					</div>
+				)
+			}
+		</aside>
+	</div>
 </BaseLayout>
 
 <style>
-	.breadcrumb {
-		margin-bottom: 1em;
-		color: var(--color-muted);
-		font-size: 0.9em;
+	.prose :global(p) {
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--color-black);
+		margin: 0 0 24px;
 	}
-	.hero-image img {
-		width: 100%;
-		border-radius: 12px;
+	.prose :global(h2) {
+		margin: 48px 0 16px;
+		font-size: 28px;
+		font-weight: 700;
+		line-height: 1.2;
 	}
-	.title {
-		margin: 1.5em 0;
+	.prose :global(h3) {
+		margin: 36px 0 12px;
+		font-size: 20px;
+		font-weight: 600;
 	}
-	.dek {
-		color: var(--color-muted);
-		font-size: 1.2em;
+	.prose :global(code) {
+		font-family: var(--font-mono);
+		font-size: 13px;
 	}
-	.meta {
-		display: flex;
-		gap: 0.5em;
-		color: var(--color-muted);
-		font-size: 0.9em;
-		margin: 0.5em 0;
-	}
-	.tags {
-		display: flex;
-		gap: 0.5em;
-		flex-wrap: wrap;
-		margin: 0.5em 0;
-	}
-	.tag {
-		padding: 0.2em 0.7em;
-		border-radius: 999px;
-		background: var(--color-border);
-		font-size: 0.8em;
-	}
-	.source-cta {
-		display: inline-block;
-		margin-top: 0.5em;
-	}
-	.related {
-		margin-top: 3em;
-		padding-top: 1.5em;
-		border-top: 1px solid var(--color-border);
+	.prose :global(a) {
+		text-decoration: underline;
+		text-decoration-color: var(--color-border);
+		text-underline-offset: 2px;
 	}
 </style>

@@ -10,30 +10,13 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="lab" data-theme="lab">
-		<div class="lab-hero">
+	<header class="relative overflow-hidden bg-ink px-6 py-14 md:px-12 md:py-16">
+		<div class="relative mx-auto max-w-[760px]">
 			<slot name="hero" />
 		</div>
-		<div class="lab-separator"></div>
-		<div class="lab-content">
-			<slot />
-		</div>
+	</header>
+	<div class="h-1 bg-pink"></div>
+	<div class="mx-auto max-w-[760px] px-6 py-12 md:px-12">
+		<slot />
 	</div>
 </BaseLayout>
-
-<style>
-	.lab-hero {
-		background: var(--color-black, #111111);
-		color: var(--color-bg, #faf8f3);
-		padding: 3em 1em;
-		margin: -3em -1em 0 -1em;
-	}
-	.lab-separator {
-		height: 4px;
-		background: var(--color-pink, #f44d8a);
-	}
-	.lab-content {
-		padding-top: 2em;
-		font-family: var(--font-mono, ui-monospace, monospace);
-	}
-</style>

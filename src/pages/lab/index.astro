@@ -1,58 +1,237 @@
 ---
 import { getCollection } from 'astro:content';
-import LabLayout from '../../layouts/LabLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import TerminalWindow from '../../components/lab/TerminalWindow.astro';
+import ActivityFeed from '../../components/ActivityFeed.astro';
+import Circle from '../../components/decor/Circle.astro';
+import Triangle from '../../components/decor/Triangle.astro';
+import Diamond from '../../components/decor/Diamond.astro';
+import DotGrid from '../../components/decor/DotGrid.astro';
+import { formatRelativeTime } from '../../lib/format-relative-time';
 
 const entries = await getCollection('lab');
-const categories = ['experiments', 'tools', 'playground', 'ai', 'hardware'] as const;
-const grouped = categories.map((cat) => ({
-	cat,
-	items: entries
-		.filter((e) => e.data.labCategory === cat)
-		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
-}));
+
+const categories = [
+	{
+		key: 'experiments',
+		label: 'Experiments',
+		desc: 'Small projects, big ideas, zero pressure.',
+		icon: '>_',
+		mono: true,
+		color: 'var(--color-teal)',
+	},
+	{
+		key: 'tools',
+		label: 'Tools',
+		desc: 'Useful utilities and developer tools.',
+		icon: '✕',
+		color: 'var(--color-yellow)',
+	},
+	{
+		key: 'playground',
+		label: 'Playground',
+		desc: 'Code, tinker, break things, learn.',
+		icon: '</>',
+		mono: true,
+		color: 'var(--color-pink)',
+	},
+	{
+		key: 'ai',
+		label: 'AI Lab',
+		desc: 'Exploring AI models, agents, and systems.',
+		icon: '◈',
+		color: 'var(--color-blue)',
+	},
+	{
+		key: 'hardware',
+		label: 'Hardware',
+		desc: 'Electronics, firmware, and embedded fun.',
+		icon: '⬡',
+		color: 'var(--color-red)',
+	},
+] as const;
+
+const featured = [...entries].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 5);
+const tools = entries
+	.filter((e) => e.data.labCategory === 'tools')
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 4);
+
+type RawActivity = { type: 'experiment' | 'git' | 'tool' | 'update' | 'article' | 'commit'; repo: string; title: string; url: string; date: string };
+let activity: { type: RawActivity['type']; title: string; description: string; time: string; url: string }[] = [];
+try {
+	const raw = ((await import('../../data/activity.json')).default as RawActivity[]).slice(0, 4);
+	activity = raw.map((a) => ({ type: a.type, title: a.title, description: a.repo, time: formatRelativeTime(a.date), url: a.url }));
+} catch {
+	activity = [];
+}
 ---
 
-<LabLayout title="Maker Lab" description="Experiments, tools, and playground builds.">
-	<Fragment slot="hero">
-		<h1>Maker Lab</h1>
-		<p>Experiments, tools, playground builds, AI tinkering, and hardware projects.</p>
-	</Fragment>
+<BaseLayout title="Maker Lab" description="A playground for ideas, experiments, and side projects.">
+	<section class="relative -mt-0 overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
+		<div class="pointer-events-none absolute right-[440px] top-10 hidden opacity-90 lg:block">
+			<Circle color="var(--color-pink)" size="120px" />
+		</div>
+		<div class="pointer-events-none absolute right-[520px] bottom-16 hidden lg:block">
+			<Circle color="var(--color-yellow)" size="60px" />
+		</div>
+		<div class="pointer-events-none absolute right-[360px] top-8 hidden lg:block">
+			<Triangle color="var(--color-teal)" size="90px" />
+		</div>
+		<div class="pointer-events-none absolute right-[200px] top-5 hidden lg:block">
+			<Diamond color="var(--color-blue)" size="32px" />
+		</div>
+		<div class="pointer-events-none absolute right-[160px] top-4 hidden lg:block">
+			<DotGrid width="80px" height="80px" />
+		</div>
+		<div class="pointer-events-none absolute left-6 bottom-6 hidden font-mono text-lg tracking-[6px] text-border-dark md:block">/ / / /</div>
+
+		<div class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1fr_420px] lg:gap-16">
+			<div>
+				<div class="mb-5 text-xs font-semibold tracking-widest text-teal uppercase">
+					Experiment. Build. Ship. Repeat.
+				</div>
+				<h1 class="mb-6 text-5xl leading-[1.0] font-bold tracking-tight text-bg md:text-7xl">
+					Welcome to<br />the <span class="text-teal">Lab</span><span class="text-pink">.</span>
+				</h1>
+				<p class="mb-3 max-w-md text-base leading-relaxed text-muted-light">
+					A playground for ideas, experiments, and side projects. Nothing here is perfect.
+				</p>
+				<p class="mb-9 font-medium text-teal">Everything here is in progress.</p>
+				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+					<Button href="/lab#explore" variant="primary">Browse Experiments &rarr;</Button>
+					<Button href="/lab#explore" variant="dark">View All Tools &rsaquo;</Button>
+				</div>
+			</div>
+
+			<TerminalWindow title="~ lab">
+				<span class="text-teal">~ lab $</span> neofetch
+				{'\n\n'}
+				<span class="text-teal">OS</span>          Kyletaylor.dev OS
+				{'\n'}
+				<span class="text-teal">Shell</span>       zsh
+				{'\n'}
+				<span class="text-teal">Editor</span>      VS Code
+				{'\n'}
+				<span class="text-teal">Lang</span>        TypeScript
+				{'\n'}
+				<span class="text-teal">Framework</span>   Astro
+				{'\n'}
+				<span class="text-teal">Uptime</span>      24/7
+				{'\n'}
+				<span class="text-teal">Location</span>    The Lab
+				{'\n\n'}
+				<span class="text-teal">~ lab $</span>
+			</TerminalWindow>
+		</div>
+	</section>
+
+	<div class="h-1 bg-pink"></div>
+
+	<section id="explore" class="mx-auto max-w-6xl px-6 py-12 md:px-12">
+		<SectionHeader label="Explore the Lab" linkText="View all experiments" linkHref="/lab" />
+		<div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+			{
+				categories.map((cat) => (
+					<a
+						href={`/lab#${cat.key}`}
+						class="flex cursor-pointer flex-col gap-3 rounded-md border border-border bg-white p-5 transition-colors hover:border-teal"
+					>
+						<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-ink">
+							<span
+								class:list={['text-lg font-bold', cat.mono && 'font-mono']}
+								style={{ color: cat.color }}
+							>
+								{cat.icon}
+							</span>
+						</div>
+						<div>
+							<div class="mb-1.5 text-xs font-bold tracking-wide uppercase">{cat.label}</div>
+							<div class="text-xs leading-relaxed text-muted">{cat.desc}</div>
+						</div>
+						<div class="mt-auto text-base">&rarr;</div>
+					</a>
+				))
+			}
+		</div>
+	</section>
 
 	{
-		grouped
-			.filter((g) => g.items.length > 0)
-			.map((g) => (
-				<section>
-					<h2>{g.cat}</h2>
-					<ul class="lab-list">
-						{g.items.map((item) => (
-							<li>
-								<a href={`/lab/${item.id}/`}>
-									<h3>{item.data.title}</h3>
-									<p>{item.data.description}</p>
-									<span class="status">{item.data.status}</span>
-								</a>
-							</li>
-						))}
-					</ul>
-				</section>
-			))
+		featured.length > 0 && (
+			<section class="mx-auto max-w-6xl px-6 pb-12 md:px-12">
+				<SectionHeader label="Featured Experiments" linkText="View all" linkHref="/lab" />
+				<div class="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 lg:grid-cols-5">
+					{featured.map((item) => (
+						<a href={`/lab/${item.id}/`} class="block w-[180px] flex-shrink-0 overflow-hidden rounded-md bg-ink sm:w-auto">
+							<div class="flex h-[140px] items-center justify-center bg-gradient-to-br from-[#1a0533] to-[#0d1b3e]">
+								<div class="h-14 w-14 rounded-full opacity-80" style="background:radial-gradient(circle,var(--color-pink),var(--color-blue))" />
+							</div>
+							<div class="p-3.5">
+								<div class="mb-1 text-sm font-semibold text-bg">{item.data.title}</div>
+								<div class="mb-2.5 text-[11px] leading-snug text-muted-light">{item.data.description}</div>
+								<div class="mb-2.5 flex flex-wrap gap-1.5">
+									{item.data.tags.slice(0, 2).map((tag) => (
+										<span class="rounded-full border border-border-dark px-2 py-0.5 text-[10px] text-muted-light">
+											{tag}
+										</span>
+									))}
+								</div>
+								<div class="text-sm text-bg">&rarr;</div>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+		)
 	}
-</LabLayout>
 
-<style>
-	.lab-list {
-		list-style: none;
-		margin: 0 0 2em 0;
-		padding: 0;
-	}
-	.lab-list a {
-		text-decoration: none;
-		color: inherit;
-	}
-	.status {
-		font-size: 0.8em;
-		text-transform: uppercase;
-		color: var(--color-muted, #6b6860);
-	}
-</style>
+	<section class="mx-auto grid max-w-6xl gap-14 px-6 pb-12 md:grid-cols-2 md:px-12">
+		<div>
+			<SectionHeader label="Latest Lab Activity" linkText={null} />
+			{
+				activity.length > 0 ? (
+					<ActivityFeed items={activity} />
+				) : (
+					<p class="text-sm text-muted">No activity yet — check back soon.</p>
+				)
+			}
+			<a href="/" class="mt-4 inline-flex items-center gap-1 text-sm text-ink hover:text-teal">
+				View full activity &rarr;
+			</a>
+		</div>
+
+		<div>
+			<SectionHeader label="Latest Tools" linkText="View all tools" linkHref="/lab" />
+			{
+				tools.length > 0 ? (
+					<div class="flex flex-col gap-2">
+						{tools.map((tool) => (
+							<div class="flex items-center gap-3.5 rounded-md border border-border bg-white p-3.5">
+								<div class="grid h-9 w-9 flex-shrink-0 grid-cols-2 gap-0.5 rounded-md bg-ink p-1.5">
+									<div class="rounded-[1px] bg-teal" />
+									<div class="rounded-[1px] bg-pink" />
+									<div class="rounded-[1px] bg-yellow" />
+									<div class="rounded-[1px] bg-blue" />
+								</div>
+								<div class="flex-1">
+									<div class="mb-0.5 text-sm font-semibold">{tool.data.title}</div>
+									<div class="text-[11px] text-muted">{tool.data.description}</div>
+								</div>
+								<a
+									href={`/lab/${tool.id}/`}
+									class="flex-shrink-0 border border-border px-3.5 py-1.5 text-[11px] font-semibold whitespace-nowrap"
+								>
+									Open
+								</a>
+							</div>
+						))}
+					</div>
+				) : (
+					<p class="text-sm text-muted">No tools published yet.</p>
+				)
+			}
+		</div>
+	</section>
+</BaseLayout>

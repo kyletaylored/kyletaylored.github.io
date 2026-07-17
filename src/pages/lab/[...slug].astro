@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import LabLayout from '../../layouts/LabLayout.astro';
+import Button from '../../components/Button.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
@@ -20,20 +21,20 @@ const { Content } = await render(entry);
 
 <LabLayout title={seo.metaTitle ?? title} description={seo.metaDescription ?? description}>
 	<Fragment slot="hero">
-		<span class="lab-category">{labCategory}</span>
-		<h1>{title}</h1>
-		<p>{description}</p>
-		<div class="meta">
-			<FormattedDate date={pubDate} />
-			<span>&middot;</span>
-			<span>{status}</span>
+		<div class="mb-4 text-xs font-semibold tracking-widest text-teal uppercase">{labCategory}</div>
+		<h1 class="mb-5 text-4xl leading-[1.05] font-bold tracking-tight text-bg md:text-5xl">{title}</h1>
+		<p class="mb-6 max-w-[580px] text-lg leading-relaxed text-muted-light">{description}</p>
+		<div class="mb-6 flex flex-wrap items-center gap-4">
+			<div class="font-mono text-[11px] text-muted"><FormattedDate date={pubDate} /></div>
+			<div class="h-8 w-px bg-border-dark"></div>
+			<div class="font-mono text-[11px] text-muted uppercase">{status}</div>
 		</div>
-		<div class="tags">
-			{tags.map((tag) => <span class="tag">{tag}</span>)}
+		<div class="mb-7 flex flex-wrap gap-1.5">
+			{tags.map((tag) => <span class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted">{tag}</span>)}
 		</div>
-		<div class="facets">
-			{demoUrl && <a href={demoUrl} target="_blank" rel="noopener noreferrer">Launch Demo &rarr;</a>}
-			{sourceUrl && <a href={sourceUrl} target="_blank" rel="noopener noreferrer">View Source &rarr;</a>}
+		<div class="flex flex-wrap gap-3">
+			{demoUrl && <Button href={demoUrl} variant="primary" target="_blank" rel="noopener noreferrer">Launch Demo &rarr;</Button>}
+			{sourceUrl && <Button href={sourceUrl} variant="dark" target="_blank" rel="noopener noreferrer">View Source &rarr;</Button>}
 		</div>
 	</Fragment>
 
@@ -41,36 +42,3 @@ const { Content } = await render(entry);
 		<Content />
 	</div>
 </LabLayout>
-
-<style>
-	.lab-category {
-		text-transform: uppercase;
-		font-size: 0.8em;
-		letter-spacing: 0.08em;
-	}
-	.meta {
-		display: flex;
-		gap: 0.5em;
-		margin: 0.5em 0;
-	}
-	.tags {
-		display: flex;
-		gap: 0.5em;
-		flex-wrap: wrap;
-		margin: 0.5em 0;
-	}
-	.tag {
-		padding: 0.2em 0.7em;
-		border-radius: 999px;
-		border: 1px solid currentColor;
-		font-size: 0.8em;
-	}
-	.facets {
-		display: flex;
-		gap: 1.5em;
-		margin-top: 1em;
-	}
-	.facets a {
-		color: inherit;
-	}
-</style>

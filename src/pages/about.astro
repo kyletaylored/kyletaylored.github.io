@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const entry = await getEntry('pages', 'about');
 if (!entry) throw new Error('Missing src/content/pages/about.mdx');
@@ -8,8 +9,8 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={entry.data.seo.metaTitle ?? entry.data.title} description={entry.data.description}>
-	<article class="prose">
-		<h1>{entry.data.title}</h1>
+	<PageHeader title={entry.data.title} description={entry.data.description} />
+	<article class="prose mx-auto max-w-[760px] px-6 py-12 md:px-12">
 		<Content />
 	</article>
 </BaseLayout>

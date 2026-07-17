@@ -1,11 +1,8 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
 import { MobileNav } from './MobileNav';
 import site from '../data/site.json';
 
 const navLinks = [
-	{ label: 'Home', href: '/' },
 	{ label: 'Projects', href: '/projects' },
 	{ label: 'Articles', href: '/articles' },
 	{ label: 'Lab', href: '/lab' },
@@ -13,98 +10,38 @@ const navLinks = [
 ];
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/projects">Projects</HeaderLink>
-			<HeaderLink href="/articles">Articles</HeaderLink>
-			<HeaderLink href="/lab">Lab</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+<header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-ink px-6 md:px-12">
+	<a href="/" class="flex items-center gap-2.5">
+		<div class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm bg-teal">
+			<span class="text-sm leading-none font-bold text-ink">K</span>
 		</div>
-		<div class="social-links">
-			{
-				site.socialLinks.map((link) => (
-					<a href={link.url} target="_blank" rel="noopener noreferrer">
-						{link.label}
-					</a>
-				))
-			}
-		</div>
+		<span class="hidden text-xs font-semibold tracking-widest text-bg uppercase sm:inline">
+			{site.brandLabel}
+		</span>
+	</a>
+
+	<nav class="hidden items-center gap-8 md:flex">
+		{
+			navLinks.map((link) => (
+				<a
+					href={link.href}
+					class="text-xs font-medium tracking-wide text-bg uppercase transition-colors hover:text-teal"
+				>
+					{link.label}
+				</a>
+			))
+		}
 		<button
 			type="button"
-			class="command-trigger"
+			class="font-mono text-xs text-muted transition-colors hover:text-teal"
 			aria-label="Open command palette"
 			onclick="window.dispatchEvent(new CustomEvent('open-command-palette'))"
 		>
-			<span aria-hidden="true">&#8984;K</span>
+			&#8984;K
 		</button>
-		<div class="mobile-nav">
-			<MobileNav links={navLinks} client:media="(max-width: 767px)" />
-		</div>
 	</nav>
-</header>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: var(--color-bg);
-		border-bottom: var(--border-thin) solid var(--color-border);
-		font-family: var(--font-display);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--color-black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--color-teal);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	.mobile-nav {
-		display: none;
-	}
-	.command-trigger {
-		font-family: var(--font-mono);
-		font-size: 0.85em;
-		padding: 0.4em 0.7em;
-		border: var(--border-thin) solid var(--color-border);
-		border-radius: var(--radius-sm);
-		background: var(--color-surface);
-		color: var(--color-muted);
-		cursor: pointer;
-	}
-	.command-trigger:hover {
-		border-color: var(--color-teal);
-		color: var(--color-black);
-	}
-	@media (max-width: 767px) {
-		.social-links,
-		.internal-links {
-			display: none;
-		}
-		.mobile-nav {
-			display: block;
-		}
-	}
-</style>
+	<div class="md:hidden">
+		<MobileNav links={navLinks} client:media="(max-width: 767px)" />
+	</div>
+</header>

@@ -1,5 +1,4 @@
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
 
 interface NavLink {
 	label: string;
@@ -11,16 +10,22 @@ export function MobileNav({ links }: { links: NavLink[] }) {
 		<Sheet>
 			<SheetTrigger
 				render={
-					<Button variant="ghost" size="icon" aria-label="Open menu" className="md:hidden">
-						<span aria-hidden="true">&#9776;</span>
-					</Button>
+					<button type="button" aria-label="Open menu" className="flex flex-col gap-1 p-1">
+						<span className="h-[1.5px] w-[18px] bg-bg" />
+						<span className="h-[1.5px] w-[18px] bg-bg" />
+						<span className="h-[1.5px] w-[12px] bg-bg" />
+					</button>
 				}
 			/>
-			<SheetContent side="right">
+			<SheetContent side="right" className="bg-ink">
 				<SheetTitle className="sr-only">Navigation</SheetTitle>
-				<nav className="flex flex-col gap-4 p-6">
+				<nav className="flex flex-col gap-6 p-8">
 					{links.map((link) => (
-						<a key={link.href} href={link.href} className="font-display text-lg text-ink">
+						<a
+							key={link.href}
+							href={link.href}
+							className="font-display text-lg font-semibold text-bg uppercase tracking-wide"
+						>
 							{link.label}
 						</a>
 					))}
