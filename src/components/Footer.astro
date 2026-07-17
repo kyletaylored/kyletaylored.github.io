@@ -6,6 +6,13 @@ import SocialIcon from './icons/SocialIcon.astro';
 import site from '../data/site.json';
 
 const currentYear = new Date().getFullYear();
+
+const footerNavLinks = [
+	{ label: 'Projects', href: '/projects' },
+	{ label: 'Articles', href: '/articles' },
+	{ label: 'Lab', href: '/lab' },
+	{ label: 'About', href: '/about' },
+];
 ---
 
 <footer class="relative overflow-hidden bg-ink px-6 py-8 md:px-12 md:py-12">
@@ -22,18 +29,27 @@ const currentYear = new Date().getFullYear();
 		<HazardStripe height="6px" />
 	</div>
 
-	<div class="relative mx-auto max-w-6xl">
-		<div class="mb-8 md:mb-10">
+	<div class="relative mx-auto grid max-w-6xl gap-8 text-center md:grid-cols-3 md:items-start md:gap-6 md:text-left">
+		<div>
 			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">{site.footerTaglineLine1}</p>
 			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">
 				{site.footerTaglineLine2Prefix} <span class="text-teal">{site.footerTaglineLine2Accent}</span>
 			</p>
 		</div>
-		<div class="flex flex-col items-center gap-3 text-center">
+		<div class="flex flex-col items-center gap-2 md:items-center md:text-center">
 			<div class="text-sm font-semibold text-bg">Built by Kyle Taylor</div>
-			<a href="https://kyletaylored.com" class="inline-flex items-center gap-1 text-xs text-teal hover:underline">
-				kyletaylored.com &rarr;
-			</a>
+			<div class="text-xs text-muted">&copy; {currentYear} Kyle Taylor</div>
+		</div>
+		<div class="flex flex-col items-center gap-4 md:items-end">
+			<nav class="flex flex-wrap justify-center gap-x-4 gap-y-1.5 md:justify-end">
+				{
+					footerNavLinks.map((link) => (
+						<a href={link.href} class="text-xs text-muted transition-colors hover:text-teal">
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
 			<div class="flex gap-4">
 				{
 					site.socialLinks.map((link) => (
@@ -48,7 +64,6 @@ const currentYear = new Date().getFullYear();
 					))
 				}
 			</div>
-			<div class="text-xs text-muted">&copy; {currentYear} Kyle Taylor</div>
 		</div>
 	</div>
 </footer>
