@@ -92,6 +92,22 @@ one. The tradeoff: CMS-uploaded images skip Astro's build-time
 optimization (no automatic avif/webp/resize) — acceptable since Pages CMS
 is the actual authoring surface for this content, not a build script.
 
+## `/lab` index: one unified tagged grid, not per-category sections
+
+`src/pages/lab/index.astro` used to stack a separate `<section>` per
+`labCategory` value — looked fine with lots of content, but with only 1-2
+entries in some categories it left large empty gaps between sections. It's
+now one grid (`#lab-cards`) of every lab entry, each card showing a colored
+category tag, with filter pills (`#lab-grid`'s button row) and the "Explore
+the Lab" tiles both driving the same client-side filter via a shared
+`data-lab-filter` attribute — clicking either updates the URL hash and
+re-filters `[data-lab-card]` elements by `data-category`. This is the one
+plain `<script>` (not a `client:idle` React island) outside the Command
+Palette/mobile nav on the whole site — it's simple enough (attribute-based
+show/hide, no state library) that reaching for React would be overkill, but
+if you're adding another filterable listing elsewhere, this is the pattern
+to copy rather than reinventing it as a component.
+
 ## One more gotcha worth knowing
 
 Any plain CSS in `src/styles/global.css` targeting a bare tag selector
