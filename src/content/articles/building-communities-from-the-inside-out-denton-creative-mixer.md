@@ -1,13 +1,19 @@
 ---
-title: "Building communities from the inside out – Denton Creative Mixer"
-description: "Last night I went to Oak Street Draft House where I had the chance to join a group of over 150 of the most creative and talented individuals in the city of Denton. This was an event put on by Heather Gregory and Tristan Bynum of the forthcoming Maker Space Denton that gave the crowd a chance to hear the success stories of local startups and some tips they’ve learned along the way. This was a great event that brought a lot of creative individuals together to network and talk about their own ideas for new businesses and startups. The Maker Space is a new collaborative workspace coming to Denton this fall that is aimed at providing space, tools, and resources to freelance designers, developers, artists, sculptors and other innovative individuals who don’t have enough capital to open their own shop, or just want to work in a synergetic environment. It’s great to see these two come out and ask individuals in the community what their needs are to be successful."
+title: Building communities from the inside out – Denton Creative Mixer
+description: Last night I went to Oak Street Draft House where I had the chance
+  to join a group of over 150 of the most creative and talented individuals in
+  the city of Denton.
 pubDate: 2013-05-14
-heroImage: "../../assets/uploads/denton-creative-mixer-hero.jpeg"
-category: "Uncategorized"
-tags: ["post"]
-seo: {}
+updatedDate: 2026-07-17
+heroImage: /uploads/denton-creative-mixer-hero.jpeg
+category: Uncategorized
+tags:
+  - post
+draft: false
+seo:
+  noindex: false
 ---
-**![](../../assets/uploads/building-communities.jpeg)**
+![](../../assets/uploads/building-communities.jpeg)
 
 Last night I went to Oak Street Draft House where I had the chance to join a  group of over 150 of the most creative and talented individuals in the city of Denton. This was an event put on by Heather Gregory and Tristan Bynum of the forthcoming [Maker Space Denton](https://www.facebook.com/makerspacedenton) that gave the crowd a chance to hear the success stories of local startups and some tips they’ve learned along the way. This was a great event that brought a lot of creative individuals together to network and talk about their own ideas for new businesses and startups. The Maker Space is a new collaborative workspace coming to Denton this fall that is aimed at providing space, tools, and resources to freelance designers, developers, artists, sculptors and other innovative individuals who don’t have enough capital to open their own shop, or just want to work in a synergetic environment. It’s great to see these two come out and ask individuals in the community what their needs are to be successful.
 
