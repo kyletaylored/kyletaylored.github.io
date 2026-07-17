@@ -56,7 +56,7 @@ before touching the component that implements it.
 
 | Component | Why it exists |
 | --- | --- |
-| [`Analytics.astro`](./Analytics.astro) | GTM + Datadog RUM aren't in any comp — they're wired from repo secrets at **build time** (`.github/workflows/deploy.yml` → `process.env.GTM_ID` / `DATADOG_RUM_*`), not through Pages CMS content, since they're deployment config rather than editable site content. No-ops locally when the env vars are unset (see `.env.example`). Included via `BaseHead.astro`; the GTM `<noscript>` fallback lives in `BaseLayout.astro` right after `<body>`. |
+| [`Analytics.astro`](./Analytics.astro) | GTM + Datadog RUM aren't in any comp — they're wired from repo secrets at **build time** (`.github/workflows/deploy.yml` → `process.env.GTM_ID` / `DATADOG_RUM_*`), not through Pages CMS content, since they're deployment config rather than editable site content. No-ops locally when the env vars are unset (see `.env.example`). Included via `BaseHead.astro`; the GTM `<noscript>` fallback lives in `BaseLayout.astro` right after `<body>`. RUM uses the real `@datadog/browser-rum` + `@datadog/browser-rum-react` SDKs (not the CDN async snippet) — **two separate `<script>` tags are required**: one `define:vars` script that only sets `window.__DD_RUM_CONFIG__` (Astro skips Vite/module bundling for any script using `define:vars`, so `import` statements silently don't work inside it — this bit us once), and a second plain `<script>` (no `define:vars`) that Vite *does* bundle, which imports the SDK and reads that global. Don't merge them back into one script. |
 
 ## Design tokens (not components — referenced directly, not imported)
 

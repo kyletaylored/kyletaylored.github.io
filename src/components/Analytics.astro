@@ -12,20 +12,36 @@
  *   DATADOG_RUM_CLIENT_TOKEN
  *   DATADOG_RUM_SITE               defaults to datadoghq.com
  *   DATADOG_RUM_SERVICE            defaults to "kyletaylored-website"
+ *   DATADOG_RUM_ENV                defaults to "production"
+ *   DATADOG_RUM_VERSION            e.g. a git SHA or release tag — must
+ *                                  match the sourcemap upload's release
+ *                                  version (astro.config.mjs's
+ *                                  @datadog/vite-plugin config) for
+ *                                  Error Tracking to symbolicate stack
+ *                                  traces against real source.
  *
- * These are read via `process.env` (Node, build-time only) rather than
- * `import.meta.env.PUBLIC_*` — we don't need Vite's client-exposure
- * mechanism since the values are just inlined once into the static HTML
- * output, never referenced from client-side bundle code.
+ * GTM_ID is read via `process.env` (Node, build-time only) since it's just
+ * inlined once into the static HTML. RUM is different: it's the actual
+ * `@datadog/browser-rum` SDK (+ `@datadog/browser-rum-react` for our React
+ * islands), imported and bundled by Vite like any other client script —
+ * `define:vars` hands the build-time config into that bundle.
  */
 const gtmId = process.env.GTM_ID;
 
-const datadogRum = process.env.DATADOG_RUM_APPLICATION_ID && process.env.DATADOG_RUM_CLIENT_TOKEN
+const datadogRumConfig = process.env.DATADOG_RUM_APPLICATION_ID && process.env.DATADOG_RUM_CLIENT_TOKEN
 	? {
 			applicationId: process.env.DATADOG_RUM_APPLICATION_ID,
 			clientToken: process.env.DATADOG_RUM_CLIENT_TOKEN,
 			site: process.env.DATADOG_RUM_SITE || 'datadoghq.com',
 			service: process.env.DATADOG_RUM_SERVICE || 'kyletaylored-website',
+			env: process.env.DATADOG_RUM_ENV || 'production',
+			version: process.env.DATADOG_RUM_VERSION || undefined,
+			sessionSampleRate: 100,
+			sessionReplaySampleRate: 20,
+			trackResources: true,
+			trackUserInteractions: true,
+			trackLongTasks: true,
+			defaultPrivacyLevel: 'mask-user-input',
 		}
 	: null;
 ---
@@ -39,20 +55,33 @@ const datadogRum = process.env.DATADOG_RUM_APPLICATION_ID && process.env.DATADOG
 }
 
 {
-	datadogRum && (
-		<script
-			set:html={`(function(h,o,u,n,d){h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}};d=o.createElement(u);d.async=1;d.src=n;n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)})(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM');window.DD_RUM.onReady(function(){window.DD_RUM.init(${JSON.stringify(
-				{
-					...datadogRum,
-					env: process.env.DATADOG_RUM_ENV || 'production',
-					sessionSampleRate: 100,
-					sessionReplaySampleRate: 20,
-					trackUserInteractions: true,
-					trackResources: true,
-					trackLongTasks: true,
-					defaultPrivacyLevel: 'mask-user-input',
-				},
-			)});});`}
-		/>
+	datadogRumConfig && (
+		<>
+			{/*
+				define:vars forces Astro to skip Vite/module bundling for this
+				script (it becomes a plain inline script with the vars inlined as
+				literal JS) — so `import` statements don't work inside it. Split
+				config injection (this script) from the actual SDK import (the
+				next script, which Vite *does* bundle) rather than combining them.
+			*/}
+			<script define:vars={{ datadogRumConfig }} is:inline>
+				window.__DD_RUM_CONFIG__ = datadogRumConfig;
+			</script>
+			<script>
+				import { datadogRum } from '@datadog/browser-rum';
+				import { reactPlugin } from '@datadog/browser-rum-react';
+
+				const config = (window as typeof window & { __DD_RUM_CONFIG__?: Record<string, unknown> })
+					.__DD_RUM_CONFIG__;
+
+				if (config) {
+					datadogRum.init({
+						...config,
+						// No client-side router — this is a fully static multi-page site.
+						plugins: [reactPlugin({ router: false })],
+					} as Parameters<typeof datadogRum.init>[0]);
+				}
+			</script>
+		</>
 	)
 }
