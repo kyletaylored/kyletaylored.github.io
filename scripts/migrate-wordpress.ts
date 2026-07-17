@@ -5,7 +5,10 @@
  * post into src/content/articles/. Re-runnable: always overwrites the
  * corresponding <slug>.mdx deterministically, so any manual edits made to a
  * previously migrated file will be clobbered on re-run — this is a one-time
- * migration aid, not a sync pipeline.
+ * migration aid, not a sync pipeline. This includes heroImage/inline image
+ * URLs: they're written as remote WP URLs here, then localized by hand into
+ * src/assets/uploads/ afterward (see .pages.yml's media config) — a re-run
+ * will overwrite those local paths back to remote URLs.
  *
  * Usage: npm run migrate:wp
  */

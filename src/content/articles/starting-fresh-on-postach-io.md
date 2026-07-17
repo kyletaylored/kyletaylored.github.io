@@ -6,7 +6,7 @@ category: "Uncategorized"
 tags: ["personal", "post", "published"]
 seo: {}
 ---
-![](https://dev-kyletaylored-wp.pantheonsite.io/wp-content/uploads/2024/09/4f35a1a10963dd594b6e07824e9f1d4e.jpg)
+![](../../assets/uploads/postachio-featured.jpg)
 
 I’ve been moving my blog around for about the past 2 years because I could never find a platform that I just really enjoyed. I tried WordPress, Drupal, Tumblr, and even Jekyll/Octopress, but I was just never very happy with any of them. So the search continued.
 
