@@ -47,7 +47,7 @@ content:
           - { name: ogImage, type: image }
           - { name: canonicalUrl, type: string }
           - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, language: json }
+          - { name: jsonLd, type: code, options: { format: json } }
       - name: body
         type: rich-text
 
@@ -72,7 +72,8 @@ content:
         type: date
       - name: status
         type: select
-        options: [active, archived, concept]
+        options:
+          values: [active, archived, concept]
         default: active
       - name: tags
         type: string
@@ -97,7 +98,7 @@ content:
           - { name: ogImage, type: image }
           - { name: canonicalUrl, type: string }
           - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, language: json }
+          - { name: jsonLd, type: code, options: { format: json } }
       - name: body
         type: rich-text
 
@@ -120,13 +121,15 @@ content:
         type: image
       - name: labCategory
         type: select
-        options: [experiments, tools, playground, ai, hardware]
+        options:
+          values: [experiments, tools, playground, ai, hardware]
       - name: tags
         type: string
         list: true
       - name: status
         type: select
-        options: [wip, stable, archived]
+        options:
+          values: [wip, stable, archived]
         default: wip
       - name: demoUrl
         type: string
@@ -140,7 +143,7 @@ content:
           - { name: ogImage, type: image }
           - { name: canonicalUrl, type: string }
           - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, language: json }
+          - { name: jsonLd, type: code, options: { format: json } }
       - name: body
         type: rich-text
 
@@ -164,7 +167,7 @@ content:
           - { name: ogImage, type: image }
           - { name: canonicalUrl, type: string }
           - { name: noindex, type: boolean, default: false }
-          - { name: jsonLd, type: code, language: json }
+          - { name: jsonLd, type: code, options: { format: json } }
       - name: body
         type: rich-text
 

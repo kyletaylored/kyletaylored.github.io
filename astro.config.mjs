@@ -13,6 +13,12 @@ export default defineConfig({
     integrations: [mdx(), sitemap(), react()],
     vite: {
         plugins: [tailwindcss()],
+        build: {
+            sourcemap: true,
+        },
+        css: {
+            devSourcemap: true,
+        },
     },
     fonts: [
         {
