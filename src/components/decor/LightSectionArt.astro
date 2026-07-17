@@ -1,0 +1,29 @@
+---
+// "Light Section Art — Dot Grid Scatter" from guidelines/Art Blocks.dc.html
+// — "for light (#FAF8F3) sections. Subtle dot grid plus small colored
+// diamonds. Adds texture without competing with content. Right-edge only."
+// Drop directly into a `position: relative; overflow: hidden` light
+// section — sized for a section at least ~180px tall.
+import Diamond from './Diamond.astro';
+---
+
+<div class="pointer-events-none absolute right-0 top-0 hidden opacity-[0.12] md:block">
+	<svg width="120" height="180" aria-hidden="true">
+		<defs>
+			<pattern id="light-section-art-dots" width="10" height="10" patternUnits="userSpaceOnUse">
+				<circle cx="2" cy="2" r="1.4" fill="var(--color-ink)" />
+			</pattern>
+		</defs>
+		<rect width="120" height="180" fill="url(#light-section-art-dots)" />
+	</svg>
+</div>
+<div class="pointer-events-none absolute right-5 top-[30px] hidden md:block">
+	<Diamond color="var(--color-pink)" size="10px" />
+</div>
+<div class="pointer-events-none absolute right-[60px] top-20 hidden md:block">
+	<Diamond color="var(--color-teal)" size="8px" />
+</div>
+<div class="pointer-events-none absolute bottom-10 right-[30px] hidden md:block">
+	<Diamond color="var(--color-yellow)" size="6px" />
+</div>
+<div class="pointer-events-none absolute bottom-5 right-20 hidden text-xl font-extralight leading-none text-border md:block">+</div>

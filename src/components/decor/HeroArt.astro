@@ -1,0 +1,38 @@
+---
+// The canonical "Hero Art — Circle + Triangle Cluster" composition from
+// guidelines/Art Blocks.dc.html — "the signature composition... use in
+// every dark hero section." One fixed arrangement (pink + teal + yellow,
+// the canonical hero trio, per that guideline's composition rule 05), not
+// a per-page configurable prop set — render this directly inside a
+// `position: relative; overflow: hidden` dark hero section.
+import Circle from './Circle.astro';
+import Triangle from './Triangle.astro';
+import Diamond from './Diamond.astro';
+import DotGrid from './DotGrid.astro';
+import HazardStripe from './HazardStripe.astro';
+---
+
+<div class="pointer-events-none absolute -right-[30px] -top-10 hidden opacity-90 md:block">
+	<Circle color="var(--color-pink)" size="180px" />
+</div>
+<div class="pointer-events-none absolute right-20 -top-2.5 hidden opacity-90 md:block">
+	<Triangle color="var(--color-teal)" size="170px" />
+</div>
+<div class="pointer-events-none absolute right-[260px] bottom-5 hidden opacity-90 md:block">
+	<Circle color="var(--color-yellow)" size="80px" />
+</div>
+<div class="pointer-events-none absolute right-5 top-[100px] hidden opacity-90 md:block">
+	<Diamond color="var(--color-blue)" size="24px" />
+</div>
+<div class="pointer-events-none absolute right-20 top-5 hidden opacity-90 md:block">
+	<DotGrid width="70px" height="70px" />
+</div>
+<div class="pointer-events-none absolute right-5 bottom-10 hidden text-[28px] font-extralight leading-none text-border-dark md:block">+</div>
+<div class="pointer-events-none absolute left-5 bottom-5 hidden items-center gap-2 font-mono text-[13px] tracking-[6px] text-border-dark md:flex">
+	/ / / /
+	<span class="h-2 w-2 flex-shrink-0 bg-yellow opacity-70"></span>
+</div>
+<div class="pointer-events-none absolute right-40 bottom-5 hidden h-[60px] w-[60px] rounded-full border-2 border-border-dark md:block"></div>
+<div class="pointer-events-none absolute right-[60px] bottom-[60px] hidden overflow-hidden opacity-90 md:block">
+	<HazardStripe width="80px" height="18px" />
+</div>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import LightSectionArt from '../../components/decor/LightSectionArt.astro';
 
 const projects = (await getCollection('projects')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -14,8 +15,9 @@ const projects = (await getCollection('projects')).sort(
 		title="Projects"
 		description="Methodology, source code, and live demos for everything I've built."
 	/>
-	<div class="mx-auto max-w-6xl px-6 py-12 md:px-12">
-		<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="relative mx-auto max-w-6xl overflow-hidden px-6 py-12 md:px-12">
+		<LightSectionArt />
+		<div class="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 			{
 				projects.map((p) => (
 					<a

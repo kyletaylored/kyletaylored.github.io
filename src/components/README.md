@@ -28,7 +28,10 @@ before touching the component that implements it.
 | GitHub contribution heatmap | [`GitHubContributionGraph.astro`](./GitHubContributionGraph.astro) — renders the same weeks×days grid as a GitHub profile, re-skinned to the site's teal accent instead of GitHub's green. Data comes from `scripts/fetch-activity.ts` (`src/data/contributions.json`, `GH_ACTIVITY_TOKEN`-gated, no-ops to an empty state when unset) | homepage only. Replaces the old text-based Activity Feed there (raw "pushed to X" / merged-PR titles read as noise rather than signal); the `/lab` index dropped its Activity section entirely rather than replacing it. |
 | Terminal window (Lab hero) | [`lab/TerminalWindow.astro`](./lab/TerminalWindow.astro) — CSS-only blinking cursor, no JS | homepage hero, `/lab` hero |
 | Footer CTA banner + hazard stripe | [`Footer.astro`](./Footer.astro) (uses `decor/HazardStripe.astro` + `decor/Circle.astro`/`Triangle.astro`) | global, via `BaseLayout` |
-| Decorative shapes — circle, triangle, diamond, dot grid | [`decor/Circle.astro`](./decor/Circle.astro), [`decor/Triangle.astro`](./decor/Triangle.astro), [`decor/Diamond.astro`](./decor/Diamond.astro), [`decor/DotGrid.astro`](./decor/DotGrid.astro) | dark hero/header bands: `ArticleLayout`, `ProjectLayout`, `about.astro`, homepage, `/lab`, `Footer.astro` |
+| Decorative shapes — circle, triangle, diamond, dot grid | [`decor/Circle.astro`](./decor/Circle.astro), [`decor/Triangle.astro`](./decor/Triangle.astro), [`decor/Diamond.astro`](./decor/Diamond.astro), [`decor/DotGrid.astro`](./decor/DotGrid.astro) | dark hero/header bands: `ArticleLayout`, `ProjectLayout`, `about.astro`, `Footer.astro` — plus composed into the 3 components below |
+| Hero art (`guidelines/Art Blocks.dc.html`'s "Hero Art — Circle + Triangle Cluster") | [`decor/HeroArt.astro`](./decor/HeroArt.astro) — one fixed composition (pink circle, teal triangle, yellow circle, blue diamond, dot grid, crosshair, slash-marks, hazard-stripe block), not prop-configurable | homepage hero, `/lab` hero. **Not** used on `about.astro`'s hero (a bespoke split avatar-panel layout the fixed composition would clash with) or `ArticleLayout`/`ProjectLayout`'s no-`heroImage` headers (shorter, intentionally low-opacity — HeroArt's shapes assume a ~500px+ tall section) — those three keep their own hand-placed `Circle`/`Triangle`/`Diamond` combinations. |
+| Floating art panel (mid-section, from the same guideline) | [`decor/FloatingArtPanel.astro`](./decor/FloatingArtPanel.astro) — smaller triangle+circle+diamond, `hidden md:block` (nothing to break up on a stacked mobile layout) | homepage, as the middle column between "GitHub Activity" and "Latest Articles" |
+| Light-section art (dot-grid + diamond scatter, right-edge only) | [`decor/LightSectionArt.astro`](./decor/LightSectionArt.astro) | `/projects` index, `/articles` index, `/lab`'s "Everything in the Lab" section — all three were flat/undecorated before this |
 | Image gallery (single / two-up / three-up / editorial hero+stack) | [`ImageGallery.astro`](./ImageGallery.astro) — takes `images`, an optional `layout`, and an optional shared `caption` | Not used in any real content yet (only comp-derived), but built and verified — import it inside an `.mdx` article body (MDX component imports don't work in plain `.md` files) |
 | Article featured-image hero (full-bleed image + gradient overlay + overlaid title/meta) | `ArticleLayout.astro` — conditional on `heroImage` being set; falls back to the plain dark header when absent | `/articles/[slug]` |
 | Project stats card, feature grid, "what I learned" list, screenshot preview (browser-chrome frame around `heroImage`) | `ProjectLayout.astro` — driven by the projects schema's optional `stats`/`features`/`lessons` fields | `/projects/[slug]` |
@@ -41,7 +44,7 @@ before touching the component that implements it.
 | --- | --- | --- |
 | Tags & Badges (default outline, colored solid) | [`ui/badge.tsx`](./ui/badge.tsx) — has `teal`/`pink`/`yellow`/`blue` variants added on top of shadcn's defaults specifically for this | **Not used anywhere.** Every tag/status pill across the site (`ArticleLayout`, `ProjectLayout`, lab pages, all three index pages) is a hand-written `<span class="rounded-full border ...">` instead. These should be migrated to `<Badge variant="...">` — the hand-rolled spans work but duplicate styling that already exists as a component. |
 | Cards (experiment/tool card, 48px icon box + label + arrow) | [`ui/card.tsx`](./ui/card.tsx) | **Not used anywhere.** Every card grid (`/lab` category + featured cards, homepage featured projects, `/projects` index) is a hand-written `<a class="rounded-md border ...">` instead of `<Card>`. Same situation as Badge — works, but duplicates the component. |
-| Decorative patterns — hazard stripe (used ✓ via Footer), slash-marks (`/ / / /`), crosshair (`+`) | [`decor/HazardStripe.astro`](./decor/HazardStripe.astro) (used), [`decor/CrosshairMark.astro`](./decor/CrosshairMark.astro) (unused), [`decor/DiagonalBar.astro`](./decor/DiagonalBar.astro) (unused) | The slash-marks (`/ / / /`) and `+` glyph seen in dark hero bands are currently hand-written text (`<div class="... tracking-[6px] ...">/ / / /</div>`), not the `CrosshairMark`/`DiagonalBar` components. |
+| Decorative patterns — hazard stripe (used ✓ via Footer + HeroArt), slash-marks (`/ / / /`), crosshair (`+`) | [`decor/HazardStripe.astro`](./decor/HazardStripe.astro) (used), [`decor/CrosshairMark.astro`](./decor/CrosshairMark.astro) (unused), [`decor/DiagonalBar.astro`](./decor/DiagonalBar.astro) (unused) | Still true even after adding `HeroArt.astro`: its slash-marks and `+` are hand-written text/spans inline in the component, not `CrosshairMark`/`DiagonalBar`. `CrosshairMark.astro` actually draws something different from the guideline's spec — a circled crosshair/scope icon — where the guideline (and every real usage on the site) wants a bare `+` glyph (`font-weight: 200`), so it wasn't a fit even for the new component. `DiagonalBar.astro` is hardcoded to `rotate(-8deg)` with no way to override it, and the guideline's Hero Art composition wants one at `-30deg` — rather than add a `rotate` prop for a single caller, `HeroArt` left the diagonal bar (and the tiny "□ — ·" blueprint annotation) out entirely as a deliberate simplification; it's a minor fidelity gap versus the full guideline composition, not a bug. |
 | Activity Feed row (text list: icon + type label + description + relative time) | [`ActivityItem.astro`](./ActivityItem.astro) + [`ActivityFeed.astro`](./ActivityFeed.astro) (list wrapper) | **Not used anywhere** — replaced on the homepage by [`GitHubContributionGraph.astro`](./GitHubContributionGraph.astro) (see above) and dropped outright on `/lab`. Kept in the tree deliberately as a reference implementation, not because it's about to be wired back in — if a future feed-like need comes up (e.g. a real multi-source timeline), this is a working starting point. |
 
 **If you're touching tags, cards, or those two decor patterns:** prefer wiring up the existing component over adding another inline variant — it's a small, contained refactor (component already exists and is styled; it's just not imported anywhere yet).
@@ -92,6 +95,34 @@ one. The tradeoff: CMS-uploaded images skip Astro's build-time
 optimization (no automatic avif/webp/resize) — acceptable since Pages CMS
 is the actual authoring surface for this content, not a build script.
 
+## OG/share images: satori + resvg, not astro-og-canvas
+
+`src/pages/og/[...slug].png.ts` generates the fallback share image for any
+article/project/lab entry without a `heroImage`/`seo.ogImage` (see the
+media gotcha above). It used to use `astro-og-canvas`, which was replaced
+because its layout model (one title block + one description block over a
+background) can't reproduce `ui_kits/banners/Social Banners.dc.html`'s real
+layout — brand row, category pill, byline + date/read-time row, decorative
+shapes, pink accent bar. It's now a direct `satori` → `@resvg/resvg-js`
+pipeline (the same pattern Astro's own docs recommend for dynamic OG
+images), with fonts fetched from Fontsource's API at build time (same
+approach `astro-og-canvas` used internally, so it's a proven pattern here).
+
+Two satori quirks that cost real debugging time, worth knowing before
+touching this file:
+- **Every container needs an explicit `display: 'flex'`.** Satori has no
+  concept of default block layout — a `div` with children but no
+  `display` set won't lay them out at all.
+- **The CSS "triangle via transparent borders" trick does not render in
+  satori.** It silently produces a plain rectangle instead of a triangle.
+  Use a `transform: rotate(45deg)` square (a diamond) for corner accents
+  instead — verified working, see the bottom-right decoration in the OG
+  template.
+- Flex children default to `align-items: stretch` down a `flexDirection:
+  column` parent, same as real CSS — a pill/badge-shaped element needs an
+  explicit `alignSelf: 'flex-start'` or it stretches to the parent's full
+  width instead of hugging its own content.
+
 ## `/lab` index: one unified tagged grid, not per-category sections
 
 `src/pages/lab/index.astro` used to stack a separate `<section>` per
@@ -107,6 +138,26 @@ Palette/mobile nav on the whole site — it's simple enough (attribute-based
 show/hide, no state library) that reaching for React would be overkill, but
 if you're adding another filterable listing elsewhere, this is the pattern
 to copy rather than reinventing it as a component.
+
+## Art Blocks composition rules
+
+`guidelines/Art Blocks.dc.html` specs 6 rules for composing decorative
+shapes — worth knowing if you're placing `Circle`/`Triangle`/`Diamond`/
+`DotGrid` by hand instead of reaching for `HeroArt`/`FloatingArtPanel`/
+`LightSectionArt`:
+
+1. **Go large** — 100–200px minimum. Small shapes read as mistakes.
+2. **Clip at edges** — position circles/triangles so they bleed off the
+   section edge (negative offsets). Fully-contained shapes look like clip art.
+3. **Triangle behind, circle in front** — the teal triangle sits at a lower
+   z-index than the pink circle; the circle overlaps it. Canonical pairing.
+4. **Right side, always** — art lives on the right side of dark hero
+   sections; left side is text.
+5. **Max 3 accent colors per scene** — pink + teal + yellow is the
+   canonical hero trio. Don't mix all 6 palette colors into one composition.
+6. **Small details anchor large shapes** — pair big shapes with a
+   micro-detail (crosshair, slash-marks + yellow square, dot grid, diamond)
+   for the "blueprint" feel.
 
 ## One more gotcha worth knowing
 

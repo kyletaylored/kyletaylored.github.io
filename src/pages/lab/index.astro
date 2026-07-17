@@ -4,10 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
 import TerminalWindow from '../../components/lab/TerminalWindow.astro';
 import ArticleTeaserCard from '../../components/ArticleTeaserCard.astro';
-import Circle from '../../components/decor/Circle.astro';
-import Triangle from '../../components/decor/Triangle.astro';
-import Diamond from '../../components/decor/Diamond.astro';
-import DotGrid from '../../components/decor/DotGrid.astro';
+import HeroArt from '../../components/decor/HeroArt.astro';
+import LightSectionArt from '../../components/decor/LightSectionArt.astro';
 
 const entries = await getCollection('lab');
 
@@ -35,22 +33,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 
 <BaseLayout title="Maker Lab" description="A playground for ideas, experiments, and side projects.">
 	<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
-		<div class="pointer-events-none absolute right-[440px] top-10 hidden opacity-90 lg:block">
-			<Circle color="var(--color-pink)" size="120px" />
-		</div>
-		<div class="pointer-events-none absolute right-[520px] bottom-16 hidden lg:block">
-			<Circle color="var(--color-yellow)" size="60px" />
-		</div>
-		<div class="pointer-events-none absolute right-[360px] top-8 hidden lg:block">
-			<Triangle color="var(--color-teal)" size="90px" />
-		</div>
-		<div class="pointer-events-none absolute right-[200px] top-5 hidden lg:block">
-			<Diamond color="var(--color-blue)" size="32px" />
-		</div>
-		<div class="pointer-events-none absolute right-[160px] top-4 hidden lg:block">
-			<DotGrid width="80px" height="80px" />
-		</div>
-		<div class="pointer-events-none absolute left-6 bottom-6 hidden font-mono text-lg tracking-[6px] text-border-dark md:block">/ / / /</div>
+		<HeroArt />
 
 		<div class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1fr_420px] lg:gap-16">
 			<div>
@@ -145,10 +128,11 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 		</div>
 	</section>
 
-	<section id="lab-grid" class="mx-auto max-w-6xl px-6 pt-10 md:px-12">
+	<section id="lab-grid" class="relative mx-auto max-w-6xl overflow-hidden px-6 pt-10 md:px-12">
+		<LightSectionArt />
 		<SectionHeader label="Everything in the Lab" linkText={null} />
 
-		<div class="mb-5 flex flex-wrap gap-2">
+		<div class="relative mb-5 flex flex-wrap gap-2">
 			<button
 				type="button"
 				data-lab-filter="all"
@@ -169,7 +153,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 			}
 		</div>
 
-		<div id="lab-cards" class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+		<div id="lab-cards" class="relative grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
 			{
 				allEntries.map((item) => {
 					const cat = categoryByKey[item.data.labCategory];
