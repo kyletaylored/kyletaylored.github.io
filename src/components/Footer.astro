@@ -4,6 +4,8 @@ import Triangle from './decor/Triangle.astro';
 import HazardStripe from './decor/HazardStripe.astro';
 import SocialIcon from './icons/SocialIcon.astro';
 import site from '../data/site.json';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="relative overflow-hidden bg-ink px-6 py-8 md:px-12 md:py-12">
@@ -20,36 +22,33 @@ import site from '../data/site.json';
 		<HazardStripe height="6px" />
 	</div>
 
-	<div class="relative mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
-		<div>
+	<div class="relative mx-auto max-w-6xl">
+		<div class="mb-8 md:mb-10">
 			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">{site.footerTaglineLine1}</p>
 			<p class="m-0 text-base leading-snug font-bold text-bg md:text-lg">
 				{site.footerTaglineLine2Prefix} <span class="text-teal">{site.footerTaglineLine2Accent}</span>
 			</p>
 		</div>
-		<div class="text-left md:text-right">
-			<div class="mb-1 text-sm font-semibold text-bg">Built by Kyle Taylor</div>
-			<div class="mb-2 text-xs text-muted">Creative Engineer, AI enthusiast, maker.</div>
-			<a
-				href="https://kyletaylored.com"
-				class="mb-4 inline-flex items-center gap-1 text-xs text-teal hover:underline"
-			>
+		<div class="flex flex-col items-center gap-3 text-center">
+			<div class="text-sm font-semibold text-bg">Built by Kyle Taylor</div>
+			<a href="https://kyletaylored.com" class="inline-flex items-center gap-1 text-xs text-teal hover:underline">
 				kyletaylored.com &rarr;
 			</a>
-			<div class="flex gap-4 md:justify-end">
+			<div class="flex gap-4">
 				{
 					site.socialLinks.map((link) => (
 						<a
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-muted transition-colors hover:text-teal"
+							class="text-bg transition-colors hover:text-teal"
 						>
 							<SocialIcon platform={link.platform} />
 						</a>
 					))
 				}
 			</div>
+			<div class="text-xs text-muted">&copy; {currentYear} Kyle Taylor</div>
 		</div>
 	</div>
 </footer>

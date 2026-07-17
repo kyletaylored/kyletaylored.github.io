@@ -6,7 +6,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Button from '../components/Button.astro';
 import Circle from '../components/decor/Circle.astro';
 import Triangle from '../components/decor/Triangle.astro';
-import { AUTHOR_NAME } from '../consts';
+import { AUTHOR_GRAVATAR_HASH, AUTHOR_NAME } from '../consts';
 
 interface Props {
 	entry: CollectionEntry<'articles'>;
@@ -94,9 +94,13 @@ const headerClass = heroImage
 
 			<div class="flex flex-wrap items-center gap-4 md:gap-5">
 				<div class="flex items-center gap-2.5">
-					<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm bg-teal text-sm font-bold text-ink">
-						{AUTHOR_NAME.charAt(0)}
-					</div>
+					<img
+						src={`https://www.gravatar.com/avatar/${AUTHOR_GRAVATAR_HASH}?s=64&d=identicon`}
+						alt=""
+						width="32"
+						height="32"
+						class="h-8 w-8 flex-shrink-0 rounded-sm"
+					/>
 					<div class="text-sm font-semibold text-bg">{AUTHOR_NAME}</div>
 				</div>
 				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>

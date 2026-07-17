@@ -7,3 +7,4 @@ export const SITE_DESCRIPTION = site.siteDescription;
 // Every piece of content on this site is authored by the same person —
 // there's no per-entry author field in the content schema.
 export const AUTHOR_NAME = 'Kyle Taylor';
+export const AUTHOR_GRAVATAR_HASH = 'c42e5a148b2134b8024ee33e2e3ff9d76222d96e1d4927164d8afe0ffcb4003e';

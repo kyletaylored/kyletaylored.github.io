@@ -1,15 +1,30 @@
 {
-  "siteTitle": "Kyle Taylor — Creative Engineer",
+  "siteTitle": "Kyle Taylor — Solutions Guy",
   "brandLabel": "KYLETAYLORED.COM",
-  "siteDescription": "Portfolio, engineering journal, and maker lab of Kyle Taylor: building interesting things, sharing everything, documenting the journey.",
+  "siteDescription": "Portfolio, engineering journal, and maker lab of Kyle Taylor: building weird stuff while sharing it on the internet.",
   "footerTaglineLine1": "This is a work in progress.",
   "footerTaglineLine2Prefix": "Just like",
   "footerTaglineLine2Accent": "everything else.",
   "socialLinks": [
-    { "platform": "github", "url": "https://github.com/kyletaylored" },
-    { "platform": "youtube", "url": "#" },
-    { "platform": "instagram", "url": "#" },
-    { "platform": "tiktok", "url": "#" },
-    { "platform": "linkedin", "url": "#" }
+    {
+      "platform": "github",
+      "url": "https://github.com/kyletaylored"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://youtube.com/@kyletaylored"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/kyle.of.none"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://tiktok.com/@kyle.of.none"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com/in/kyletaylored"
+    }
   ]
 }
