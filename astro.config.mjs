@@ -39,7 +39,15 @@ if (process.env.DATADOG_API_KEY) {
 // https://astro.build/config
 export default defineConfig({
     site: SITE_URL,
-    integrations: [mdx(), sitemap(), react()],
+    integrations: [
+        mdx(),
+        sitemap({
+            // /design/* are private export utilities (see /design/banners),
+            // not real site content — keep them out of the sitemap.
+            filter: (page) => !page.includes('/design/'),
+        }),
+        react(),
+    ],
     vite: {
         plugins: vitePlugins,
         build: {

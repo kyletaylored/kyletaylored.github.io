@@ -1,0 +1,164 @@
+---
+// Private, unlinked utility page — NOT real site content. Renders the
+// static (non-per-page) assets from
+// ui_kits/banners/Social Banners.dc.html at true pixel size using real
+// site content, so they can be screenshotted/exported by hand for manual
+// upload to LinkedIn/GitHub/an email tool. Excluded from the sitemap
+// (astro.config.mjs's sitemap filter) and from Pagefind (data-pagefind-ignore
+// below) since it's not something visitors should ever land on or search
+// for. Not linked from any nav — reach it by typing the URL directly.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import site from '../../data/site.json';
+
+const [latestArticle] = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const readingTime = latestArticle
+	? Math.max(1, Math.round((latestArticle.body ?? '').trim().split(/\s+/).filter(Boolean).length / 200))
+	: 1;
+---
+
+<BaseLayout title="Banner Export" description="Private banner export utility." noindex={true}>
+	<div data-pagefind-ignore class="px-6 py-12 md:px-12">
+		<div class="mx-auto mb-12 max-w-3xl">
+			<h1 class="mb-2 text-2xl font-bold text-ink">Banner Export</h1>
+			<p class="text-sm text-muted">
+				Real-pixel-size static banners (LinkedIn profile, GitHub social preview, email header, square social
+				crops) — screenshot each block below at 100% browser zoom and crop to its labeled dimensions. Not
+				linked anywhere; not in the sitemap.
+			</p>
+		</div>
+
+		<div class="mx-auto flex max-w-[1600px] flex-col gap-16">
+			<div>
+				<div class="mb-3 font-mono text-xs text-muted">1584 × 396 — LinkedIn profile banner</div>
+				<div class="relative flex h-[396px] w-[1584px] items-center overflow-hidden bg-ink px-16">
+					<div class="pointer-events-none absolute -right-4 -top-5 h-[120px] w-[120px] rounded-full bg-pink"></div>
+					<div class="pointer-events-none absolute right-[72px] -top-2.5 opacity-90">
+						<svg width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
+							<polygon points="50,0 100,100 0,100" fill="var(--color-teal)"></polygon>
+						</svg>
+					</div>
+					<div class="pointer-events-none absolute right-[200px] bottom-5 h-20 w-20 rounded-full bg-yellow"></div>
+					<div class="relative">
+						<div class="mb-2 text-xs font-semibold tracking-widest text-teal uppercase">
+							{site.brandLabel}
+						</div>
+						<div class="mb-1.5 text-4xl font-bold tracking-tight text-bg">
+							{site.siteTitle}<span class="text-pink">.</span>
+						</div>
+						<div class="font-mono text-sm text-muted-light">kyletaylored.com</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div class="mb-3 font-mono text-xs text-muted">1280 × 640 — GitHub repository social preview</div>
+				<div class="relative flex h-[640px] w-[1280px] overflow-hidden bg-ink">
+					<div class="flex w-[520px] flex-col border-r border-border-dark bg-[#0D0D0D]">
+						<div class="flex items-center gap-1.5 border-b border-border-dark bg-[#1A1A1A] px-7 py-5">
+							<span class="h-3 w-3 rounded-full bg-red"></span>
+							<span class="h-3 w-3 rounded-full bg-yellow"></span>
+							<span class="h-3 w-3 rounded-full bg-teal"></span>
+							<span class="ml-3 font-mono text-sm text-muted">kyletaylored/kyletaylored.github.io</span>
+						</div>
+						<div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 p-7 font-mono text-sm leading-loose">
+							<span class="text-teal">$</span><span class="text-bg">git clone kyletaylored.github.io</span>
+							<span class="text-teal">→</span><span class="text-muted">Cloning...</span>
+							<span class="text-teal">$</span><span class="text-bg">npm run dev</span>
+							<span class="text-teal">→</span><span class="text-teal">Ready on :4321</span>
+						</div>
+					</div>
+					<div class="relative flex flex-1 flex-col justify-center px-12">
+						<div class="pointer-events-none absolute -right-5 -top-5 h-[120px] w-[120px] rounded-full bg-pink"></div>
+						<div class="mb-4 flex items-center gap-2">
+							<div class="flex h-5 w-5 items-center justify-center rounded-sm bg-teal text-xs font-bold text-ink">K</div>
+							<span class="font-mono text-xs tracking-wide text-muted uppercase">kyletaylored.com</span>
+						</div>
+						<div class="mb-3 text-3xl font-bold text-bg">
+							{site.brandLabel}<span class="text-pink">.</span>
+						</div>
+						<p class="mb-4 max-w-[380px] text-sm leading-relaxed text-muted-light">{site.siteDescription}</p>
+						<div class="flex flex-wrap gap-1.5">
+							{['TypeScript', 'Astro', 'AI', 'Open Source'].map((tag) => (
+								<span class="rounded-full border border-border-dark px-2.5 py-0.5 text-xs text-muted-light">{tag}</span>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div class="mb-3 font-mono text-xs text-muted">600 × 200 — Email header template</div>
+				<div class="relative flex h-[200px] w-[600px] items-center overflow-hidden bg-ink px-9">
+					<div class="pointer-events-none absolute -right-5 -top-5 h-[140px] w-[140px] rounded-full bg-pink"></div>
+					<div class="pointer-events-none absolute bottom-0 left-0 right-0">
+						<svg width="100%" height="5" preserveAspectRatio="none" aria-hidden="true">
+							<defs>
+								<pattern id="banner-email-hazard" x="0" y="0" width="10" height="5" patternUnits="userSpaceOnUse">
+									<polygon points="0,5 5,0 10,0 5,5" fill="var(--color-yellow)"></polygon>
+									<polygon points="5,5 10,0 15,0 10,5" fill="#1A1A1A"></polygon>
+								</pattern>
+							</defs>
+							<rect width="100%" height="5" fill="url(#banner-email-hazard)"></rect>
+						</svg>
+					</div>
+					<div class="relative">
+						<div class="mb-2 flex items-center gap-2">
+							<div class="flex h-5 w-5 items-center justify-center rounded-sm bg-teal text-xs font-bold text-ink">K</div>
+							<span class="text-xs font-semibold tracking-widest text-bg uppercase">{site.brandLabel}</span>
+						</div>
+						<div class="text-2xl font-bold text-bg">Lab Notes<span class="text-pink">.</span></div>
+						<div class="mt-1.5 font-mono text-xs text-muted">Issue # — replace per send</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex flex-wrap gap-10">
+				<div>
+					<div class="mb-3 font-mono text-xs text-muted">1080 × 1080 — Square social (homepage)</div>
+					<div class="relative flex h-[1080px] w-[1080px] flex-col justify-end overflow-hidden bg-ink p-14">
+						<div class="pointer-events-none absolute -right-10 -top-10 h-[400px] w-[400px] rounded-full bg-pink"></div>
+						<div class="pointer-events-none absolute right-[140px] -top-5 opacity-90">
+							<svg width="220" height="220" viewBox="0 0 100 100" aria-hidden="true">
+								<polygon points="50,0 100,100 0,100" fill="var(--color-teal)"></polygon>
+							</svg>
+						</div>
+						<div class="pointer-events-none absolute right-[60px] bottom-[260px] h-[160px] w-[160px] rounded-full bg-yellow"></div>
+						<div class="relative">
+							<div class="mb-4 flex items-center gap-2.5">
+								<div class="flex h-9 w-9 items-center justify-center rounded-md bg-teal text-lg font-bold text-ink">K</div>
+								<span class="text-lg font-semibold tracking-widest text-bg uppercase">{site.brandLabel}</span>
+							</div>
+							<div class="text-6xl leading-[1.05] font-bold text-bg">
+								Hi, I'm <span class="text-teal">Kyle</span><span class="text-pink">.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{
+					latestArticle && (
+						<div>
+							<div class="mb-3 font-mono text-xs text-muted">1080 × 1080 — Square social (article)</div>
+							<div class="relative flex h-[1080px] w-[1080px] flex-col justify-end overflow-hidden bg-ink p-14">
+								<div class="pointer-events-none absolute -right-10 -top-10 h-[320px] w-[320px] rounded-full bg-teal opacity-25" />
+								<div class="relative">
+									<div class="mb-5 inline-block rounded-full bg-pink px-5 py-2 text-lg font-semibold uppercase text-white">
+										{latestArticle.data.category}
+									</div>
+									<div class="mb-6 text-6xl leading-[1.05] font-bold text-bg">{latestArticle.data.title}</div>
+									<div class="font-mono text-lg text-muted">
+										{readingTime} min read · {latestArticle.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+									</div>
+								</div>
+							</div>
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</BaseLayout>

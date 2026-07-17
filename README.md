@@ -41,6 +41,15 @@ All commands run from the root of the project:
 
 Global search (Pagefind) indexes the built `dist/` output, so it only works after `npm run build` — search results won't populate against `npm run dev`.
 
+### Banner export utility
+
+`/design/banners` renders the static social/profile banners (LinkedIn
+profile banner, GitHub repo social preview, email header, square social
+crops) at true pixel size for manual screenshot/export — see
+`ui_kits/banners/Social Banners.dc.html` for the source specs. It's
+intentionally not linked from any nav and excluded from both the sitemap
+and Pagefind's index.
+
 ## Deployment
 
 Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and deploys it to GitHub Pages at the custom domain `kyletaylored.com` (see `public/CNAME`). The workflow also runs the contribution-graph fetch script when `GH_ACTIVITY_TOKEN` is configured as a repo secret.
