@@ -32,24 +32,40 @@ function levelFor(count: number): 0 | 1 | 2 | 3 | 4 {
 
 const levelColors = ['var(--color-surface)', 'color-mix(in srgb, var(--color-teal) 30%, var(--color-surface))', 'color-mix(in srgb, var(--color-teal) 55%, var(--color-surface))', 'color-mix(in srgb, var(--color-teal) 80%, var(--color-surface))', 'var(--color-teal)'];
 
-const monthLabels = weeks.map((week, i) => {
-	const first = week.days[0];
-	if (!first) return null;
-	const date = new Date(first.date);
-	const prevWeek = weeks[i - 1];
-	const prevMonth = prevWeek?.days[0] ? new Date(prevWeek.days[0].date).getMonth() : -1;
-	return date.getMonth() !== prevMonth ? date.toLocaleDateString('en-US', { month: 'short' }) : null;
-});
+function monthLabelsFor(weekSet: ContributionWeek[]) {
+	return weekSet.map((week, i) => {
+		const first = week.days[0];
+		if (!first) return null;
+		const date = new Date(first.date);
+		const prevWeek = weekSet[i - 1];
+		const prevMonth = prevWeek?.days[0] ? new Date(prevWeek.days[0].date).getMonth() : -1;
+		return date.getMonth() !== prevMonth ? date.toLocaleDateString('en-US', { month: 'short' }) : null;
+	});
+}
+
+const monthLabels = monthLabelsFor(weeks);
+
+// The full 52-week grid needs ~676px minimum (52 * 13px columns) — doesn't
+// fit any real mobile viewport even with horizontal scroll, and a
+// scroll-to-see gesture is a poor fit for a homepage glance. Mobile gets a
+// condensed ~4-month slice instead, sized to fit any device width with no
+// scrolling required.
+const MOBILE_WEEKS = 16;
+const recentWeeks = weeks.slice(-MOBILE_WEEKS);
+const recentMonthLabels = monthLabelsFor(recentWeeks);
+const recentContributions = recentWeeks.reduce((sum, week) => sum + week.days.reduce((s, d) => s + d.count, 0), 0);
 ---
 
 {
 	weeks.length > 0 ? (
 		<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
 			<div class="mb-2 flex items-baseline justify-between">
-				<span class="font-mono text-xs text-muted">{totalContributions} contributions in the last year</span>
+				<span class="hidden font-mono text-xs text-muted md:inline">{totalContributions} contributions in the last year</span>
+				<span class="font-mono text-xs text-muted md:hidden">{recentContributions} contributions in the last 4 months</span>
 				<span class="text-xs text-teal">View on GitHub &rarr;</span>
 			</div>
-			<div class="overflow-x-auto">
+
+			<div class="hidden overflow-x-auto md:block">
 				<div class="mb-1 flex gap-[3px] font-mono text-[10px] text-muted-light">
 					{monthLabels.map((label) => (
 						<span class="w-[10px] flex-shrink-0">{label}</span>
@@ -57,6 +73,25 @@ const monthLabels = weeks.map((week, i) => {
 				</div>
 				<div class="inline-grid grid-flow-col gap-[3px]" style={{ gridTemplateRows: 'repeat(7, 10px)' }}>
 					{weeks.map((week) =>
+						week.days.map((day) => (
+							<span
+								class="h-[10px] w-[10px] rounded-[2px]"
+								style={{ background: levelColors[levelFor(day.count)] }}
+								title={`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`}
+							/>
+						)),
+					)}
+				</div>
+			</div>
+
+			<div class="md:hidden">
+				<div class="mb-1 flex gap-[3px] font-mono text-[10px] text-muted-light">
+					{recentMonthLabels.map((label) => (
+						<span class="w-[10px] flex-shrink-0">{label}</span>
+					))}
+				</div>
+				<div class="inline-grid grid-flow-col gap-[3px]" style={{ gridTemplateRows: 'repeat(7, 10px)' }}>
+					{recentWeeks.map((week) =>
 						week.days.map((day) => (
 							<span
 								class="h-[10px] w-[10px] rounded-[2px]"
