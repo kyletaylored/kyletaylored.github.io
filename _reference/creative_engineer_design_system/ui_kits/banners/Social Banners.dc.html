@@ -12,10 +12,10 @@
 <meta name="design_doc_mode" content="canvas">
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; background: #2A2A2A; font-family: 'Space Grotesk', sans-serif; padding: 48px; }
-  .label { font-family: 'Space Mono', monospace; font-size: 11px; color: #888; margin-bottom: 10px; letter-spacing: 0.06em; }
-  .size-note { font-family: 'Space Mono', monospace; font-size: 10px; color: #555; margin-top: 8px; }
-  .group { margin-bottom: 64px; }
+  body { margin: 0; background: #1E1E1E; font-family: 'Space Grotesk', sans-serif; padding: 56px; }
+  .label { font-family: 'Space Mono', monospace; font-size: 11px; color: #666; margin-bottom: 10px; letter-spacing: 0.06em; }
+  .size-note { font-family: 'Space Mono', monospace; font-size: 10px; color: #444; margin-top: 8px; }
+  .group { margin-bottom: 72px; }
   h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin: 0 0 24px; display: flex; align-items: center; gap: 8px; }
   h2::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:#F25A4C; }
 </style>
@@ -25,7 +25,7 @@
 <div style="margin-bottom:56px;">
   <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:10px;">CREATIVE ENGINEER DESIGN SYSTEM</div>
   <div style="font-size:40px;font-weight:700;color:#FAF8F3;line-height:1.0;letter-spacing:-0.02em;">Social &amp; SEO Banners<span style="color:#F44D8A;">.</span></div>
-  <div style="font-size:14px;color:#888;margin-top:10px;">All sizes shown at display scale. Export at 1× for actual pixel dimensions.</div>
+  <div style="font-size:14px;color:#555;margin-top:10px;">All sizes shown at display scale. Tweaks panel: art style + accent color.</div>
 </div>
 
 <!-- ─── OG / TWITTER CARD 1200×630 ─── -->
@@ -33,104 +33,167 @@
   <h2>Open Graph · Twitter Card · Discord / Slack unfurl</h2>
   <div class="label">1200 × 630px — Default variant</div>
 
-  <!-- Default dark OG -->
   <div id="1a" style="width:600px;height:315px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-    <!-- Art layer -->
-    <div style="position:absolute;right:-30px;top:-40px;width:180px;height:180px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
-    <div style="position:absolute;right:80px;top:-20px;width:0;height:0;border-left:90px solid transparent;border-right:90px solid transparent;border-bottom:156px solid #28D7E5;z-index:0;"></div>
-    <div style="position:absolute;right:240px;bottom:10px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:1;"></div>
-    <div style="position:absolute;right:20px;bottom:30px;width:20px;height:20px;background:#348BFF;transform:rotate(45deg);z-index:2;"></div>
-    <div style="position:absolute;right:310px;top:14px;z-index:0;"><svg width="64" height="64"><defs><pattern id="dg_og1" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#444"/></pattern></defs><rect width="64" height="64" fill="url(#dg_og1)"/></svg></div>
-    <div style="position:absolute;right:18px;top:80px;font-size:20px;font-weight:200;color:#444;z-index:2;">+</div>
-    <div style="position:absolute;left:24px;bottom:18px;display:flex;align-items:center;gap:6px;z-index:2;"><span style="font-size:10px;color:#444;letter-spacing:5px;">/ / /</span><div style="width:6px;height:6px;background:#FFD54A;opacity:0.6;"></div></div>
+    <!-- REBELLIOUS ART: shapes across the WHOLE canvas, not just top-right -->
+    <!-- Top-left: big yellow circle bleeding off corner -->
+    <div style="position:absolute;left:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:#FFD54A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Outline ring over yellow circle -->
+    <div style="position:absolute;left:20px;top:20px;width:80px;height:80px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);z-index:2;"></div>
+    <!-- Diagonal teal bar slashing top-left to center -->
+    <div style="position:absolute;left:-20px;top:60px;width:220px;height:10px;background:#28D7E5;transform:rotate(-18deg);transform-origin:left center;z-index:3;opacity:{{ artOpacity }};"></div>
+    <!-- Small blue diamond — top center -->
+    <div style="position:absolute;left:46%;top:18px;width:16px;height:16px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Crosshair — center-right area -->
+    <div style="position:absolute;right:180px;top:50%;transform:translateY(-50%);font-size:36px;font-weight:200;color:#333;line-height:1;z-index:2;">+</div>
+    <!-- Dot grid — right half -->
+    <div style="position:absolute;right:20px;top:20px;z-index:0;"><svg width="140" height="120"><defs><pattern id="dg_og1" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#333"/></pattern></defs><rect width="140" height="120" fill="url(#dg_og1)"/></svg></div>
+    <!-- Pink circle — bottom-right, large, clips corner -->
+    <div style="position:absolute;right:-50px;bottom:-50px;width:200px;height:200px;border-radius:50%;background:#F44D8A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Teal triangle — bottom center, pointing up -->
+    <div style="position:absolute;left:38%;bottom:-10px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #28D7E5;z-index:2;opacity:0.6;"></div>
+    <!-- Diagonal yellow accent bar — bottom left, slanted -->
+    <div style="position:absolute;left:20px;bottom:40px;width:80px;height:8px;background:#FFD54A;transform:rotate(-25deg);z-index:3;opacity:0.8;"></div>
+    <!-- Small pink diamond — mid-left -->
+    <div style="position:absolute;left:8px;top:48%;width:10px;height:10px;background:#F44D8A;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Hazard stripe strip — vertical left edge -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:6px;overflow:hidden;z-index:4;"><svg width="6" height="315" preserveAspectRatio="none"><defs><pattern id="hvl" x="0" y="0" width="6" height="12" patternUnits="userSpaceOnUse"><polygon points="0,12 6,0 6,0 0,12" fill="#FFD54A" opacity="0.4"/><polygon points="0,0 6,0 6,6 0,6" fill="#333"/></pattern></defs><rect width="6" height="315" fill="url(#hvl)"/></svg></div>
+    <!-- Slash marks — top right -->
+    <div style="position:absolute;right:24px;top:20px;display:flex;align-items:center;gap:4px;z-index:3;"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#444;letter-spacing:4px;">/ / / /</span><div style="width:6px;height:6px;background:#FFD54A;opacity:0.6;"></div></div>
+    <!-- Blueprint annotation line -->
+    <div style="position:absolute;left:36px;bottom:28px;z-index:3;"><svg width="80" height="20"><line x1="0" y1="10" x2="70" y2="10" stroke="#333" stroke-width="1"/><circle cx="0" cy="10" r="2" fill="#28D7E5"/><circle cx="70" cy="10" r="2" fill="#28D7E5"/><text x="35" y="8" fill="#444" font-size="7" font-family="Space Mono" text-anchor="middle">1200px</text></svg></div>
     <!-- Content -->
-    <div style="position:absolute;left:36px;top:36px;right:220px;z-index:3;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+    <div style="position:absolute;left:52px;top:44px;right:200px;z-index:5;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
         <div style="width:22px;height:22px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#111;">K</span></div>
         <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
       </div>
-      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:12px;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span></div>
+      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:12px;">Welcome to<br>the <span style="color:{{ accent }};">Lab.</span></div>
       <div style="font-size:13px;color:#A8A49F;line-height:1.5;">Experiments, tools, and side projects.<br>Everything in progress.</div>
     </div>
     <!-- Pink bar -->
-    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:6;"></div>
   </div>
-  <div class="size-note">1a · Dark hero · 1200×630 · @2x = save at 1200px wide</div>
+  <div class="size-note">1a · Dark hero · 1200×630</div>
 
-  <!-- Light variant -->
-  <div style="margin-top:16px;" class="label">Light variant — for contexts that invert</div>
+  <div style="margin-top:20px;" class="label">Light variant</div>
   <div id="1b" style="width:600px;height:315px;background:#FAF8F3;position:relative;overflow:hidden;border-radius:4px;border:1px solid #E0DDDA;">
-    <div style="position:absolute;right:-20px;top:-30px;width:150px;height:150px;border-radius:50%;background:#F44D8A;opacity:0.15;z-index:0;"></div>
-    <div style="position:absolute;right:70px;top:-10px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;opacity:0.12;z-index:0;"></div>
-    <div style="position:absolute;right:210px;bottom:0;width:80px;height:80px;border-radius:50%;background:#FFD54A;opacity:0.2;z-index:0;"></div>
-    <!-- dot grid -->
-    <div style="position:absolute;right:0;top:0;z-index:0;"><svg width="100" height="100"><defs><pattern id="dg_og2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#111" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(#dg_og2)"/></svg></div>
-    <div style="position:absolute;left:36px;top:36px;right:180px;z-index:2;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+    <!-- Top-right: teal circle clipping off -->
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:#28D7E5;opacity:0.2;z-index:0;"></div>
+    <!-- Diagonal pink bar top-right corner -->
+    <div style="position:absolute;right:-10px;top:30px;width:160px;height:8px;background:#F44D8A;transform:rotate(20deg);transform-origin:right center;z-index:1;opacity:0.5;"></div>
+    <!-- Dot grid — full right panel -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:160px;z-index:0;"><svg width="160" height="315"><defs><pattern id="dg_og2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#111" opacity="0.1"/></pattern></defs><rect width="160" height="315" fill="url(#dg_og2)"/></svg></div>
+    <!-- Yellow circle — bottom-left -->
+    <div style="position:absolute;left:-20px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#FFD54A;opacity:0.35;z-index:0;"></div>
+    <!-- Outline circle mid-right -->
+    <div style="position:absolute;right:60px;top:40%;width:60px;height:60px;border-radius:50%;border:2px solid #E0DDDA;z-index:1;"></div>
+    <!-- Crosshair top-left -->
+    <div style="position:absolute;left:28px;top:28px;font-size:28px;font-weight:200;color:#DDD;z-index:2;">+</div>
+    <!-- Tiny scattered diamonds -->
+    <div style="position:absolute;left:140px;top:28px;width:8px;height:8px;background:#F44D8A;transform:rotate(45deg);z-index:2;opacity:0.7;"></div>
+    <div style="position:absolute;right:28px;bottom:44px;width:6px;height:6px;background:#FFD54A;transform:rotate(45deg);z-index:2;opacity:0.8;"></div>
+    <!-- Slash marks bottom-right -->
+    <div style="position:absolute;right:20px;bottom:18px;display:flex;align-items:center;gap:3px;z-index:2;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#C0BCB7;letter-spacing:3px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.5;"></div></div>
+    <div style="position:absolute;left:36px;top:52px;right:180px;z-index:3;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
         <div style="width:22px;height:22px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#111;">K</span></div>
         <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#111;text-transform:uppercase;">KYLETAYLOR.DEV</span>
       </div>
-      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#111;margin-bottom:12px;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span></div>
+      <div style="font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#111;margin-bottom:12px;">Welcome to<br>the <span style="color:{{ accent }};">Lab.</span></div>
       <div style="font-size:13px;color:#6B6860;line-height:1.5;">Experiments, tools, and side projects.<br>Everything in progress.</div>
     </div>
     <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
-    <div style="position:absolute;left:24px;bottom:12px;display:flex;align-items:center;gap:4px;z-index:2;"><span style="font-size:9px;color:#C0BCB7;letter-spacing:4px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.5;"></div></div>
   </div>
   <div class="size-note">1b · Light · 1200×630</div>
 </div>
 
-<!-- ─── Article / Post OG ─── -->
+<!-- ─── Article OG ─── -->
 <div class="group">
   <h2>Article / Post Open Graph</h2>
-  <div class="label">1200 × 630px — for blog posts and experiment pages</div>
+  <div class="label">1200 × 630px</div>
 
   <div id="2a" style="width:600px;height:315px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-    <!-- Subtle art — less dominant than homepage -->
-    <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:#28D7E5;opacity:0.15;z-index:0;"></div>
-    <div style="position:absolute;right:0;bottom:0;width:0;height:0;border-left:80px solid transparent;border-right:80px solid transparent;border-bottom:140px solid #F44D8A;opacity:0.1;z-index:0;"></div>
-    <!-- Category + title + meta -->
-    <div style="position:absolute;left:36px;top:36px;right:36px;z-index:2;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+    <!-- Left accent column with hazard stripe -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:8px;overflow:hidden;z-index:2;"><svg width="8" height="315" preserveAspectRatio="none"><defs><pattern id="hva" x="0" y="0" width="8" height="16" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#F44D8A"/><rect y="8" width="8" height="8" fill="#111"/></pattern></defs><rect width="8" height="315" fill="url(#hva)"/></svg></div>
+    <!-- Large teal circle — right side, bleeds off -->
+    <div style="position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:#28D7E5;opacity:0.12;z-index:0;"></div>
+    <!-- Outline ring inside teal -->
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;border:2px solid rgba(40,215,229,0.2);z-index:1;"></div>
+    <!-- Diagonal pink slash across top -->
+    <div style="position:absolute;left:180px;top:-4px;width:300px;height:6px;background:#F44D8A;transform:rotate(-3deg);z-index:1;opacity:0.5;"></div>
+    <!-- Yellow diamond — top-right quadrant -->
+    <div style="position:absolute;right:80px;top:30px;width:14px;height:14px;background:#FFD54A;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Dot grid — bottom-right -->
+    <div style="position:absolute;right:0;bottom:0;z-index:0;"><svg width="120" height="100"><defs><pattern id="dg_art" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#333"/></pattern></defs><rect width="120" height="100" fill="url(#dg_art)"/></svg></div>
+    <!-- Crosshair bottom-right -->
+    <div style="position:absolute;right:32px;bottom:32px;font-size:28px;font-weight:200;color:#333;z-index:2;">+</div>
+    <!-- Small scattered squares -->
+    <div style="position:absolute;right:140px;bottom:20px;width:8px;height:8px;background:#28D7E5;opacity:0.4;z-index:2;"></div>
+    <div style="position:absolute;right:110px;bottom:40px;width:5px;height:5px;background:#FFD54A;opacity:0.6;z-index:2;"></div>
+    <!-- Content -->
+    <div style="position:absolute;left:28px;top:32px;right:36px;z-index:4;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
         <div style="width:20px;height:20px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-weight:700;color:#111;">K</span></div>
         <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV · ARTICLES</span>
       </div>
-      <div style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:#F44D8A;color:#FFF;padding:3px 10px;border-radius:999px;margin-bottom:14px;">AI Agents</div>
-      <div style="font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:12px;">Building Reliable<br>AI Agents</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#F44D8A;"></div>
+        <span style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F44D8A;">AI Agents</span>
+      </div>
+      <div style="font-size:32px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:14px;">Building Reliable<br>AI Agents</div>
       <div style="display:flex;align-items:center;gap:16px;">
         <div style="display:flex;align-items:center;gap:6px;">
           <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#111;">K</div>
           <span style="font-size:11px;color:#A8A49F;">Kyle Taylor</span>
         </div>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;color:#6B6860;">July 14, 2026 · 8 min read</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:#555;">July 14, 2026 · 8 min read</span>
       </div>
     </div>
-    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:6;"></div>
   </div>
-  <div class="size-note">2a · Article OG · 1200×630 · swap category color and title per post</div>
+  <div class="size-note">2a · Article OG · 1200×630</div>
 </div>
 
 <!-- ─── SQUARE 1080×1080 ─── -->
 <div class="group">
-  <h2>Square · Instagram · Threads · Some X posts</h2>
+  <h2>Square · Instagram · Threads</h2>
   <div class="label">1080 × 1080px</div>
 
   <div style="display:flex;gap:16px;align-items:flex-start;">
-    <!-- Homepage square -->
+    <!-- Homepage square — full Memphis explosion -->
     <div>
       <div id="3a" style="width:320px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-        <div style="position:absolute;right:-24px;top:-24px;width:160px;height:160px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
-        <div style="position:absolute;right:64px;top:-16px;width:0;height:0;border-left:72px solid transparent;border-right:72px solid transparent;border-bottom:124px solid #28D7E5;z-index:0;"></div>
-        <div style="position:absolute;left:16px;bottom:-24px;width:100px;height:100px;border-radius:50%;background:#FFD54A;z-index:0;opacity:0.9;"></div>
-        <div style="position:absolute;right:16px;bottom:40px;width:14px;height:14px;background:#348BFF;transform:rotate(45deg);z-index:2;"></div>
-        <div style="position:absolute;right:200px;top:16px;"><svg width="50" height="50"><defs><pattern id="dg_sq1" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#444"/></pattern></defs><rect width="50" height="50" fill="url(#dg_sq1)"/></svg></div>
-        <div style="position:absolute;left:20px;top:140px;right:20px;z-index:3;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
+        <!-- Top-left: yellow circle clipping -->
+        <div style="position:absolute;left:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:#FFD54A;z-index:1;opacity:{{ artOpacity }};"></div>
+        <!-- Outline ring over yellow -->
+        <div style="position:absolute;left:10px;top:10px;width:80px;height:80px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);z-index:2;"></div>
+        <!-- Pink circle — bottom right clipping -->
+        <div style="position:absolute;right:-40px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:#F44D8A;z-index:1;opacity:{{ artOpacity }};"></div>
+        <!-- Teal triangle — center pointing up-left -->
+        <div style="position:absolute;left:80px;top:60px;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid #28D7E5;z-index:2;opacity:0.7;transform:rotate(-15deg);"></div>
+        <!-- Diagonal teal bar — mid slash -->
+        <div style="position:absolute;left:-10px;top:160px;width:180px;height:8px;background:#28D7E5;transform:rotate(-20deg);z-index:3;opacity:0.6;"></div>
+        <!-- Small blue diamond -->
+        <div style="position:absolute;right:60px;top:40px;width:12px;height:12px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+        <!-- Tiny pink diamond -->
+        <div style="position:absolute;left:40px;bottom:80px;width:8px;height:8px;background:#F44D8A;transform:rotate(45deg);z-index:3;"></div>
+        <!-- Dot grid — top right quadrant -->
+        <div style="position:absolute;right:0;top:0;z-index:0;"><svg width="80" height="80"><defs><pattern id="dg_sq1" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#333"/></pattern></defs><rect width="80" height="80" fill="url(#dg_sq1)"/></svg></div>
+        <!-- Crosshair center-right -->
+        <div style="position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:200;color:#333;z-index:3;">+</div>
+        <!-- Hazard strip — horizontal mid-banner -->
+        <div style="position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:5px;overflow:hidden;z-index:0;opacity:0.25;"><svg width="320" height="5" preserveAspectRatio="none"><defs><pattern id="hzs" x="0" y="0" width="10" height="5" patternUnits="userSpaceOnUse"><polygon points="0,5 5,0 10,0 5,5" fill="#FFD54A"/><polygon points="5,5 10,0 15,0 10,5" fill="#222"/></pattern></defs><rect width="320" height="5" fill="url(#hzs)"/></svg></div>
+        <!-- Slash marks top-right -->
+        <div style="position:absolute;right:16px;top:20px;display:flex;align-items:center;gap:3px;z-index:3;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#444;letter-spacing:3px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.5;"></div></div>
+        <!-- Content — lower half -->
+        <div style="position:absolute;left:20px;bottom:20px;right:60px;z-index:4;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
             <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
-            <span style="font-size:9px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
+            <span style="font-size:9px;font-weight:600;letter-spacing:0.08em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
           </div>
-          <div style="font-size:28px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Welcome to<br>the <span style="color:#28D7E5;">Lab.</span><span style="color:#F44D8A;">•</span></div>
+          <div style="font-size:26px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Welcome to<br>the <span style="color:{{ accent }};">Lab.</span><span style="color:#F44D8A;"> •</span></div>
         </div>
-        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:5;"></div>
       </div>
       <div class="size-note">3a · Square Homepage · 1080×1080</div>
     </div>
@@ -138,19 +201,34 @@
     <!-- Article square -->
     <div>
       <div id="3b" style="width:320px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-        <div style="position:absolute;right:-16px;top:-16px;width:100px;height:100px;border-radius:50%;background:#28D7E5;opacity:0.2;z-index:0;"></div>
-        <div style="position:absolute;left:20px;top:20px;right:20px;z-index:2;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:20px;">
+        <!-- Full-width diagonal band top -->
+        <div style="position:absolute;left:-40px;top:52px;width:420px;height:10px;background:#F44D8A;transform:rotate(-6deg);z-index:1;opacity:0.7;"></div>
+        <!-- Teal circle top-right -->
+        <div style="position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:#28D7E5;z-index:0;opacity:{{ artOpacity }};"></div>
+        <!-- Outline ring -->
+        <div style="position:absolute;right:10px;top:10px;width:60px;height:60px;border-radius:50%;border:1.5px solid rgba(40,215,229,0.3);z-index:2;"></div>
+        <!-- Yellow triangle — bottom-left -->
+        <div style="position:absolute;left:-10px;bottom:-10px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #FFD54A;z-index:1;opacity:0.7;"></div>
+        <!-- Dot grid — center -->
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;"><svg width="100" height="100"><defs><pattern id="dg_sq2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2A2A2A"/></pattern></defs><rect width="100" height="100" fill="url(#dg_sq2)"/></svg></div>
+        <!-- Blue diamonds scattered -->
+        <div style="position:absolute;left:24px;top:100px;width:10px;height:10px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+        <div style="position:absolute;right:44px;bottom:80px;width:7px;height:7px;background:#348BFF;transform:rotate(45deg);z-index:3;opacity:0.7;"></div>
+        <!-- Crosshair -->
+        <div style="position:absolute;left:50%;top:30px;font-size:22px;font-weight:200;color:#2A2A2A;z-index:2;transform:translateX(-50%);">+</div>
+        <div style="position:absolute;left:20px;top:76px;right:20px;z-index:4;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
             <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
             <span style="font-size:9px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV</span>
           </div>
-          <div style="display:inline-block;font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:#F44D8A;color:#FFF;padding:2px 8px;border-radius:999px;margin-bottom:14px;">AI Agents</div>
-          <div style="font-size:26px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:16px;">Building<br>Reliable<br>AI Agents</div>
-          <div style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">8 min read · Jul 14, 2026</div>
+          <div style="display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;">
+            <div style="width:5px;height:5px;border-radius:50%;background:#F44D8A;"></div>
+            <span style="font-size:9px;font-weight:700;color:#F44D8A;letter-spacing:0.08em;text-transform:uppercase;">AI Agents</span>
+          </div>
+          <div style="font-size:24px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:14px;">Building<br>Reliable<br>AI Agents</div>
+          <div style="font-size:10px;color:#555;font-family:'Space Mono',monospace;">8 min read · Jul 14, 2026</div>
         </div>
-        <!-- Bottom art -->
-        <div style="position:absolute;right:-20px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.2;z-index:0;"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:5;"></div>
       </div>
       <div class="size-note">3b · Square Article · 1080×1080</div>
     </div>
@@ -160,32 +238,50 @@
 <!-- ─── LINKEDIN BANNER 1584×396 ─── -->
 <div class="group">
   <h2>LinkedIn Profile Banner</h2>
-  <div class="label">1584 × 396px</div>
+  <div class="label">1584 × 396px — shapes spread across the full width</div>
 
   <div id="4a" style="width:660px;height:165px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-    <div style="position:absolute;right:-16px;top:-20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
-    <div style="position:absolute;right:72px;top:-10px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #28D7E5;z-index:0;"></div>
-    <div style="position:absolute;right:200px;bottom:-20px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:0;"></div>
-    <div style="position:absolute;right:300px;top:12px;"><svg width="50" height="50"><defs><pattern id="dg_li" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#444"/></pattern></defs><rect width="50" height="50" fill="url(#dg_li)"/></svg></div>
-    <div style="position:absolute;left:32px;top:50%;transform:translateY(-50%);z-index:3;">
-      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:8px;">CREATIVE ENGINEER</div>
-      <div style="font-size:28px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:6px;">Kyle Taylor<span style="color:#F44D8A;">.</span></div>
-      <div style="font-size:11px;color:#6B6860;font-family:'Space Mono',monospace;">AI · Open Source · Hardware · Making</div>
+    <!-- Far left: yellow circle clipping -->
+    <div style="position:absolute;left:-20px;bottom:-20px;width:100px;height:100px;border-radius:50%;background:#FFD54A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Diagonal teal bar — left to center -->
+    <div style="position:absolute;left:-20px;top:30px;width:260px;height:7px;background:#28D7E5;transform:rotate(-10deg);transform-origin:left;z-index:2;opacity:0.7;"></div>
+    <!-- Dot grid — left quadrant background -->
+    <div style="position:absolute;left:80px;top:0;z-index:0;"><svg width="120" height="165"><defs><pattern id="dg_li" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#333"/></pattern></defs><rect width="120" height="165" fill="url(#dg_li)"/></svg></div>
+    <!-- Blue diamond — top center -->
+    <div style="position:absolute;left:48%;top:14px;width:12px;height:12px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Crosshair — right of center -->
+    <div style="position:absolute;left:56%;top:50%;transform:translateY(-50%);font-size:30px;font-weight:200;color:#2A2A2A;z-index:2;">+</div>
+    <!-- Hazard stripe band — vertical mid-section -->
+    <div style="position:absolute;left:46%;top:0;bottom:0;width:8px;overflow:hidden;z-index:0;opacity:0.3;"><svg width="8" height="165" preserveAspectRatio="none"><defs><pattern id="hvli" x="0" y="0" width="8" height="16" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#FFD54A"/><rect y="8" width="8" height="8" fill="#222"/></pattern></defs><rect width="8" height="165" fill="url(#hvli)"/></svg></div>
+    <!-- Teal triangle — right area -->
+    <div style="position:absolute;right:130px;top:-10px;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86px solid #28D7E5;z-index:1;opacity:0.5;"></div>
+    <!-- Pink circle — far right bleeding off -->
+    <div style="position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:#F44D8A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Outline ring right -->
+    <div style="position:absolute;right:30px;bottom:20px;width:50px;height:50px;border-radius:50%;border:1.5px solid #2A2A2A;z-index:2;"></div>
+    <!-- Small pink diamond right -->
+    <div style="position:absolute;right:48px;top:20px;width:8px;height:8px;background:#F44D8A;transform:rotate(45deg);z-index:3;opacity:0.7;"></div>
+    <!-- Slash marks -->
+    <div style="position:absolute;right:20px;bottom:16px;display:flex;align-items:center;gap:3px;z-index:3;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#333;letter-spacing:3px;">/ / /</span><div style="width:4px;height:4px;background:#FFD54A;opacity:0.4;"></div></div>
+    <!-- Content -->
+    <div style="position:absolute;left:32px;top:50%;transform:translateY(-50%);z-index:4;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:6px;">CREATIVE ENGINEER</div>
+      <div style="font-size:28px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:5px;">Kyle Taylor<span style="color:#F44D8A;">.</span></div>
+      <div style="font-size:10px;color:#6B6860;font-family:'Space Mono',monospace;">AI · Open Source · Hardware · Making</div>
     </div>
-    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
-    <div style="position:absolute;left:32px;bottom:10px;display:flex;align-items:center;gap:4px;z-index:2;"><span style="font-size:8px;color:#333;letter-spacing:4px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.4;"></div></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:5;"></div>
   </div>
   <div class="size-note">4a · LinkedIn banner · 1584×396</div>
 </div>
 
 <!-- ─── GITHUB SOCIAL PREVIEW 1280×640 ─── -->
 <div class="group">
-  <h2>GitHub Social Preview · Repository OG</h2>
+  <h2>GitHub Social Preview</h2>
   <div class="label">1280 × 640px</div>
 
   <div id="5a" style="width:640px;height:320px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-    <!-- Left: terminal window feel -->
-    <div style="position:absolute;left:0;top:0;bottom:0;width:260px;background:#0D0D0D;border-right:1px solid #1E1E1E;z-index:1;">
+    <!-- Terminal panel -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:260px;background:#0D0D0D;border-right:1px solid #1E1E1E;z-index:2;">
       <div style="padding:10px 14px;background:#1A1A1A;display:flex;align-items:center;gap:6px;border-bottom:1px solid #1E1E1E;">
         <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
         <div style="width:8px;height:8px;border-radius:50%;background:#FFD54A;"></div>
@@ -197,28 +293,42 @@
         <span style="color:#28D7E5;">→</span><span style="color:#555;">Cloning...</span>
         <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">npm run dev</span>
         <span style="color:#28D7E5;">→</span><span style="color:#28D7E5;">Ready on :4321</span>
-        <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">_<span style="animation:blink 1s step-end infinite;"></span></span>
+        <span style="color:#28D7E5;">$</span><span style="color:#FAF8F3;">_</span>
       </div>
     </div>
-    <!-- Right: info + art -->
-    <div style="position:absolute;right:-16px;top:-20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
-    <div style="position:absolute;right:60px;top:-10px;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #28D7E5;z-index:0;"></div>
-    <div style="position:absolute;right:180px;bottom:10px;width:60px;height:60px;border-radius:50%;background:#FFD54A;z-index:0;opacity:0.9;"></div>
-    <div style="position:absolute;left:280px;top:50%;transform:translateY(-50%);right:20px;z-index:3;">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+    <!-- ART: right panel — more spread out, less clustered -->
+    <!-- Yellow bar diagonal — far top right bleeding -->
+    <div style="position:absolute;right:-20px;top:20px;width:200px;height:8px;background:#FFD54A;transform:rotate(20deg);transform-origin:right;z-index:1;opacity:0.8;"></div>
+    <!-- Pink circle — upper right -->
+    <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Teal triangle — mid right, pointing left -->
+    <div style="position:absolute;right:60px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:44px solid transparent;border-bottom:44px solid transparent;border-right:76px solid #28D7E5;z-index:2;opacity:0.5;"></div>
+    <!-- Yellow circle — bottom left of right panel -->
+    <div style="position:absolute;left:260px;bottom:-20px;width:70px;height:70px;border-radius:50%;background:#FFD54A;z-index:1;opacity:0.7;"></div>
+    <!-- Dot grid — right panel center -->
+    <div style="position:absolute;left:300px;top:60px;z-index:0;"><svg width="80" height="80"><defs><pattern id="dg_gh" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#2A2A2A"/></pattern></defs><rect width="80" height="80" fill="url(#dg_gh)"/></svg></div>
+    <!-- Blue diamond -->
+    <div style="position:absolute;left:340px;bottom:44px;width:10px;height:10px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Crosshair far right -->
+    <div style="position:absolute;right:24px;bottom:36px;font-size:22px;font-weight:200;color:#2A2A2A;z-index:3;">+</div>
+    <!-- Slash marks bottom -->
+    <div style="position:absolute;left:276px;bottom:16px;display:flex;align-items:center;gap:3px;z-index:3;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#333;letter-spacing:3px;">/ /</span><div style="width:4px;height:4px;background:#FFD54A;opacity:0.5;"></div></div>
+    <!-- Content -->
+    <div style="position:absolute;left:278px;top:50%;transform:translateY(-56%);right:16px;z-index:4;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:14px;">
         <div style="width:18px;height:18px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:700;color:#111;">K</span></div>
         <span style="font-size:9px;font-weight:600;letter-spacing:0.08em;color:#6B6860;text-transform:uppercase;">KYLETAYLOR.DEV</span>
       </div>
-      <div style="font-size:26px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:10px;">The Lab<span style="color:#F44D8A;">.</span></div>
-      <div style="font-size:11px;color:#A8A49F;line-height:1.6;margin-bottom:14px;">Experiments, tools, and open source.<br>Everything in progress.</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <div style="font-size:24px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;margin-bottom:10px;">The Lab<span style="color:#F44D8A;">.</span></div>
+      <div style="font-size:11px;color:#A8A49F;line-height:1.6;margin-bottom:12px;">Experiments, tools, and open source.<br>Everything in progress.</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;">
         <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">TypeScript</span>
         <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">Astro</span>
         <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">AI</span>
         <span style="font-size:9px;color:#A8A49F;border:1px solid #2A2A2A;border-radius:999px;padding:1px 7px;">Open Source</span>
       </div>
     </div>
-    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:4;"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#F44D8A;z-index:5;"></div>
   </div>
   <div class="size-note">5a · GitHub Social Preview · 1280×640</div>
 </div>
@@ -229,60 +339,80 @@
   <div class="label">600 × 200px</div>
 
   <div id="6a" style="width:600px;height:200px;background:#111;position:relative;overflow:hidden;border-radius:4px;">
-    <div style="position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;background:#F44D8A;z-index:1;"></div>
-    <div style="position:absolute;right:80px;top:-10px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid #28D7E5;z-index:0;"></div>
-    <div style="position:absolute;right:200px;bottom:-16px;width:80px;height:80px;border-radius:50%;background:#FFD54A;z-index:0;"></div>
+    <!-- Big yellow circle — top-left corner -->
+    <div style="position:absolute;left:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:#FFD54A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Diagonal teal bar across the top -->
+    <div style="position:absolute;left:-10px;top:36px;width:340px;height:7px;background:#28D7E5;transform:rotate(-8deg);transform-origin:left;z-index:2;opacity:0.6;"></div>
+    <!-- Pink circle — right side clipping -->
+    <div style="position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:#F44D8A;z-index:1;opacity:{{ artOpacity }};"></div>
+    <!-- Teal triangle — far right top -->
+    <div style="position:absolute;right:60px;top:-10px;width:0;height:0;border-left:44px solid transparent;border-right:44px solid transparent;border-bottom:76px solid #28D7E5;z-index:2;opacity:0.5;"></div>
+    <!-- Outline ring — mid right -->
+    <div style="position:absolute;right:90px;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:2px solid #222;z-index:2;"></div>
+    <!-- Blue diamond top-right quadrant -->
+    <div style="position:absolute;right:180px;top:16px;width:10px;height:10px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+    <!-- Dot grid strip — right third -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:80px;z-index:0;"><svg width="80" height="200"><defs><pattern id="dg_em" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2A2A2A"/></pattern></defs><rect width="80" height="200" fill="url(#dg_em)"/></svg></div>
+    <!-- Slash marks + crosshair -->
+    <div style="position:absolute;left:44%;bottom:18px;display:flex;align-items:center;gap:6px;z-index:3;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#333;letter-spacing:4px;">/ / /</span><div style="width:5px;height:5px;background:#FFD54A;opacity:0.4;"></div></div>
     <!-- Hazard stripe bottom -->
     <div style="position:absolute;bottom:0;left:0;right:0;height:5px;overflow:hidden;z-index:4;"><svg width="100%" height="5" preserveAspectRatio="none"><defs><pattern id="hz_em" x="0" y="0" width="10" height="5" patternUnits="userSpaceOnUse"><polygon points="0,5 5,0 10,0 5,5" fill="#FFD54A"/><polygon points="5,5 10,0 15,0 10,5" fill="#1A1A1A"/></pattern></defs><rect width="100%" height="5" fill="url(#hz_em)"/></svg></div>
-    <div style="position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:3;right:200px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+    <!-- Content -->
+    <div style="position:absolute;left:48px;top:50%;transform:translateY(-50%);z-index:4;right:200px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
         <div style="width:20px;height:20px;background:#28D7E5;border-radius:2px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;font-weight:700;color:#111;">K</span></div>
         <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:#FAF8F3;text-transform:uppercase;">KYLETAYLOR.DEV</span>
       </div>
       <div style="font-size:26px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;">Lab Notes<span style="color:#F44D8A;">.</span></div>
-      <div style="font-size:11px;color:#6B6860;margin-top:6px;font-family:'Space Mono',monospace;">Issue #12 · July 2026</div>
+      <div style="font-size:10px;color:#555;margin-top:5px;font-family:'Space Mono',monospace;">Issue #12 · July 2026</div>
     </div>
   </div>
-  <div class="size-note">6a · Email header · 600×200 · swap issue number per send</div>
+  <div class="size-note">6a · Email header · 600×200</div>
 </div>
 
-<!-- SPEC REFERENCE TABLE -->
-<div style="margin-top:16px;">
+<!-- SPEC TABLE -->
+<div>
   <h2>Quick Reference</h2>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1200 × 630</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">OG / Twitter Card</div>
-      <div style="font-size:11px;color:#555;">Facebook, LinkedIn, X/Twitter, Slack, Discord</div>
-    </div>
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1080 × 1080</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Square Social</div>
-      <div style="font-size:11px;color:#555;">Instagram, Threads, some X posts</div>
-    </div>
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1584 × 396</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">LinkedIn Banner</div>
-      <div style="font-size:11px;color:#555;">Profile + company page header</div>
-    </div>
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1280 × 640</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">GitHub Social Preview</div>
-      <div style="font-size:11px;color:#555;">Repo OG image, 2:1 ratio</div>
-    </div>
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">600 × 200</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Email Header</div>
-      <div style="font-size:11px;color:#555;">Newsletter, transactional, announcement</div>
-    </div>
-    <div style="background:#1A1A1A;border-radius:4px;padding:14px 16px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;color:#F44D8A;margin-bottom:4px;">og:image meta tag</div>
-      <div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Usage</div>
-      <div style="font-size:11px;color:#555;font-family:'Space Mono',monospace;">&lt;meta property="og:image" content="/og.png"&gt;</div>
-    </div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1200 × 630</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">OG / Twitter Card</div><div style="font-size:11px;color:#555;">Facebook, LinkedIn, X, Slack, Discord</div></div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1080 × 1080</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Square Social</div><div style="font-size:11px;color:#555;">Instagram, Threads, some X posts</div></div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1584 × 396</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">LinkedIn Banner</div><div style="font-size:11px;color:#555;">Profile + company page header</div></div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">1280 × 640</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">GitHub Social Preview</div><div style="font-size:11px;color:#555;">Repo OG image, 2:1 ratio</div></div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#28D7E5;margin-bottom:4px;">600 × 200</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Email Header</div><div style="font-size:11px;color:#555;">Newsletter, transactional, announcement</div></div>
+    <div style="background:#111;border-radius:4px;padding:14px 16px;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:#F44D8A;margin-bottom:4px;">og:image meta tag</div><div style="font-size:12px;font-weight:600;color:#FAF8F3;margin-bottom:2px;">Usage</div><div style="font-size:11px;color:#555;font-family:'Space Mono',monospace;">&lt;meta property="og:image" content="/og.png"&gt;</div></div>
   </div>
 </div>
 
 </x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 800, &quot;height&quot;: 600 },
+  &quot;artStyle&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Explosive&quot;, &quot;Blueprint&quot;, &quot;Minimal&quot;],
+    &quot;default&quot;: &quot;Explosive&quot;,
+    &quot;section&quot;: &quot;Art&quot;
+  },
+  &quot;accentColor&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Teal&quot;, &quot;Pink&quot;, &quot;Yellow&quot;, &quot;Blue&quot;],
+    &quot;default&quot;: &quot;Teal&quot;,
+    &quot;section&quot;: &quot;Art&quot;
+  }
+}">
+
+class Component extends DCLogic {
+  renderVals() {
+    const style = this.props.artStyle ?? 'Explosive';
+    const accentKey = this.props.accentColor ?? 'Teal';
+    const accentMap = { Teal: '#28D7E5', Pink: '#F44D8A', Yellow: '#FFD54A', Blue: '#348BFF' };
+    const opacityMap = { Explosive: '1', Blueprint: '0.4', Minimal: '0.6' };
+    return {
+      accent: accentMap[accentKey] ?? '#28D7E5',
+      artOpacity: opacityMap[style] ?? '1',
+    };
+  }
+}
+
+</script>
 </body>
 </html>
