@@ -1,6 +1,6 @@
 ---
 title: "Radioactivity – Popularity by Decay"
-description: "Radioactivity is an awesome Drupal module that gives you a \"hotness\" metric for content, basically popularity or trend by the number of views the content receives. Based on how a lot of the other popularity-based modules work, such as FiveStar and Rate that requires user interaction, Radioactivity will give you the most organic results. This method works great if you publish a lot of content that is aimed for public consumption, magazines or media publishing sites like Popular Science and the Bravo TV network."
+description: "A look at Radioactivity, a Drupal module that ranks content by organic \"hotness\" instead of explicit user votes."
 pubDate: 2013-04-13
 category: "Web Development"
 tags: ["drupal", "modules", "content strategy"]

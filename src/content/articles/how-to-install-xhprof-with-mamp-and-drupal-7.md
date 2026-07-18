@@ -1,6 +1,6 @@
 ---
 title: "How to install XHProf with MAMP and Drupal 7"
-description: "At the very bottom, add"
+description: "A quick walkthrough for installing and enabling XHProf profiling in a MAMP + Drupal 7 local environment."
 pubDate: 2016-04-06
 category: "Web Development"
 tags: ["drupal", "mamp", "performance", "profiling"]

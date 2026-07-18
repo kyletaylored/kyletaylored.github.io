@@ -1,10 +1,6 @@
 ---
 title: Automatic Theme Generation using Bootstrap and LESS
-description: It’s known that theming in Drupal is not the easiest thing in the
-  world. There’s generally a lot of markup to deal with, specific hooks and
-  JavaScript behaviors can be confusing, and honestly – it’s takes a ton of time
-  to build a new theme. Depending on the project, you are probably building a
-  custom theme every
+description: "Using Bootstrap and LESS to automatically generate Drupal themes, cutting down the time it takes to build one from scratch."
 pubDate: 2015-10-14
 updatedDate: 2026-07-17
 category: Web Development

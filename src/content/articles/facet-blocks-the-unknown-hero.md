@@ -1,6 +1,6 @@
 ---
 title: "Facet Blocks – The Unknown Hero"
-description: "If you have ever worked with Search API, Facet API, and Solr, you know how awesome and powerful these tools are, especially when combined with Views. Unfortunately the way it works, sometimes you’re forced to build some things a little bit differently to get around some of these pitfalls. Unfortunately, I haven’t seen one piece of documentation on the Facet Block views plugin, and it took me awhile to figure out that the hell it was there for, so I’m sharing my research with the people of the internet."
+description: "A look at the little-documented Facet Block views plugin in Drupal's Search API, and why it's worth knowing about."
 pubDate: 2013-04-11
 category: "Web Development"
 tags: ["drupal", "search api", "solr", "views"]

@@ -1,6 +1,6 @@
 ---
 title: "North Texas Startup Initiative"
-description: "This is a compiled list of questions and thoughts about various aspects of the North Texas startup community, and how we can get more engagement from the cities, local businesses, and community. In the larger picture, how can we empower and support entrepreneurs to build their startups right here in North Texas."
+description: "Questions and ideas on how North Texas cities, businesses, and universities can better support local entrepreneurs."
 pubDate: 2013-03-31
 category: "Startups & Community"
 tags: ["north texas", "economic development", "entrepreneurship"]

@@ -1,6 +1,6 @@
 ---
 title: "North Texas Startup Community"
-description: "Startup Weekend Denton"
+description: "A rundown of North Texas startup resources — Startup Weekend Denton, Startup Digest Dallas, and BigDOCC."
 pubDate: 2013-11-25
 category: "Startups & Community"
 tags: ["startup weekend", "denton", "north texas"]

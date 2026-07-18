@@ -1,6 +1,6 @@
 ---
 title: "Startup Communities: Notes & Thoughts"
-description: "New Tech Event Model (blend with House of Genius model?)"
+description: "Notes on what makes a startup community work — who should lead it, and the role of government and universities."
 pubDate: 2016-05-01
 category: "Startups & Community"
 tags: ["startup communities", "notes"]

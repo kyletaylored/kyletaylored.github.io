@@ -15,9 +15,11 @@ content:
         required: true
       - name: description
         label: Description
-        description: Shown in article listings and used as the SEO description unless overridden below.
+        description: 1-2 sentences — shown in article listings and used as the SEO description unless overridden below. Long descriptions break the article header and teaser cards.
         type: text
         required: true
+        options:
+          maxlength: 160
       - name: pubDate
         label: Publish Date
         type: date
@@ -73,9 +75,11 @@ content:
         required: true
       - name: summary
         label: Summary
-        description: Shown in project listings and used as the SEO description unless overridden below.
+        description: 1-2 sentences — shown in project listings and used as the SEO description unless overridden below. Long summaries break the project header and teaser cards.
         type: text
         required: true
+        options:
+          maxlength: 160
       - name: heroImage
         label: Featured Image
         description: Shown as the project's screenshot/hero and used as the share-card image unless overridden below. Falls back to a site default when left blank.
@@ -164,9 +168,11 @@ content:
         required: true
       - name: description
         label: Description
-        description: Shown in Lab listings and used as the SEO description unless overridden below.
+        description: 1-2 sentences — shown in Lab listings and used as the SEO description unless overridden below. Long descriptions break the entry header and teaser cards.
         type: text
         required: true
+        options:
+          maxlength: 160
       - name: pubDate
         label: Publish Date
         type: date

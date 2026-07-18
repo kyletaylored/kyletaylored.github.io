@@ -1,6 +1,6 @@
 ---
 title: "DrawAttention Featured Links"
-description: "http://www.geekwire.com/2015/ultimate-bootstrappers-how-two-guys-sold-thousands-of-laptop-whiteboards-with-13-of-capital/"
+description: "A roundup of press coverage on DrawAttention, from GeekWire and Business Insider to Gizmodo and SlashGear."
 pubDate: 2015-02-11
 category: "Startups & Community"
 tags: ["drawattention", "press", "startup"]

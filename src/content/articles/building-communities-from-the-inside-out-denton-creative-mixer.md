@@ -1,8 +1,6 @@
 ---
 title: Building communities from the inside out – Denton Creative Mixer
-description: Last night I went to Oak Street Draft House where I had the chance
-  to join a group of over 150 of the most creative and talented individuals in
-  the city of Denton.
+description: "Notes from the Denton Creative Mixer, where 150+ local creatives and entrepreneurs gathered to swap startup stories."
 pubDate: 2013-05-14
 updatedDate: 2026-07-17
 heroImage: /uploads/denton-creative-mixer-hero.jpeg

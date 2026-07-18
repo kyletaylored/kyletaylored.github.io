@@ -1,6 +1,6 @@
 ---
 title: "Fighting Field Labels with Display Suite Extras"
-description: "If you are a site builder or themer in Drupal, you might have a similar situation happen to you. You obtain a set of requirements for a content type, create all the necessary fields with semantic labels, and start building the displays and views. Great! Life is good. Now your project manager waltzes over to your desk to deliver an updated set of wireframes, and before you even get halfway down the page, you feel a breeze as you notice a person-shaped cloud of dust where your project manager just stood. You look at the document and see that on some displays, you will find a field label with a colon and some… without. Of course, you appropriately let out a lion of a roar that echoes throughout the office, because not only do you have you remove that colon from specific labels, but some of the labels even have different names depending on the display by dpm-ing the crap of the field template."
+description: "How to selectively hide or rename Drupal field labels per display using Display Suite Extras."
 pubDate: 2013-05-09
 category: "Web Development"
 tags: ["drupal", "display suite", "theming"]

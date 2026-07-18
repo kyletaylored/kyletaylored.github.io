@@ -1,6 +1,6 @@
 ---
 title: "The Golden Toolbox – Drupal Hosting Platform Features"
-description: "In my last post, I gave an unbiased look to compare a series of load tests, performance, and hosting features of some of the most popular Drupal hosting platforms from Acquia, Pantheon, OpenShift, and AWS, to get you the best bang for your buck with free Drupal hosting. In this article, I’d like to go a bit further and explore the types of tools and features that each platform also offers for free, and why. Of course, this is going to require more criticism than the last article because this isn’t analytics, but it’s also the internet and expressing opinions is what we do here! So let’s get started."
+description: "A closer look at the extra tools and features Drupal hosting platforms like Acquia, Pantheon, and AWS throw in for free."
 pubDate: 2013-08-09
 category: "Web Development"
 tags: ["drupal", "hosting", "platforms"]
