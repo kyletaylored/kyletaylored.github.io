@@ -1,0 +1,133 @@
+---
+// "Parallax Section" from components/Parallax Section.dc.html — a
+// full-bleed decorative art layer that drifts vertically (independent of
+// the fixed content layer) as the section crosses the viewport. 4
+// variants matching the comp: dark hero, light, split (2-col with a
+// dedicated art panel), teal (inverted palette). Reuses the exact same
+// `decor/*` shape components as every other art composition on the site —
+// `dark`/`light` reuse the already-canonical HeroArt/LightSectionArt
+// compositions outright rather than re-drawing them.
+import HeroArt from './decor/HeroArt.astro';
+import LightSectionArt from './decor/LightSectionArt.astro';
+import Circle from './decor/Circle.astro';
+import Triangle from './decor/Triangle.astro';
+import Diamond from './decor/Diamond.astro';
+import DotGrid from './decor/DotGrid.astro';
+import HazardStripe from './decor/HazardStripe.astro';
+
+interface Props {
+	variant: 'dark' | 'light' | 'split' | 'teal';
+	eyebrow?: string;
+	class?: string;
+}
+
+const { variant, eyebrow, class: className } = Astro.props;
+
+const bg = { dark: 'bg-ink', light: 'bg-bg', split: 'bg-ink', teal: 'bg-teal' }[variant];
+const textColor = variant === 'light' ? 'text-ink' : variant === 'teal' ? 'text-ink' : 'text-bg';
+---
+
+<section
+	data-parallax-section
+	class:list={['relative overflow-hidden px-6 py-16 md:px-12 md:py-20', bg, textColor, className]}
+>
+	{
+		variant === 'split' ? (
+			<div class="relative z-10 mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:gap-16">
+				<div>
+					{eyebrow && <div class="mb-5 text-xs font-semibold tracking-widest text-teal uppercase">{eyebrow}</div>}
+					<slot name="heading" />
+					<slot />
+				</div>
+				<div class="parallax-art relative hidden overflow-hidden border-l border-border-dark pl-10 md:block">
+					<div class="pointer-events-none absolute -top-10 -right-10 opacity-90">
+						<Circle color="var(--color-pink)" size="160px" />
+					</div>
+					<div class="pointer-events-none absolute top-10 left-10 opacity-80">
+						<Triangle color="var(--color-teal)" size="120px" />
+					</div>
+					<div class="pointer-events-none absolute right-16 bottom-10 opacity-90">
+						<Diamond color="var(--color-yellow)" size="20px" />
+					</div>
+					<div class="pointer-events-none absolute top-0 right-0 opacity-20">
+						<DotGrid width="100px" height="140px" />
+					</div>
+					<div class="pointer-events-none absolute bottom-16 left-16 overflow-hidden opacity-70">
+						<HazardStripe width="70px" height="14px" />
+					</div>
+				</div>
+			</div>
+		) : (
+			<>
+				<div class="parallax-art pointer-events-none absolute inset-0">
+					{variant === 'dark' && <HeroArt />}
+					{variant === 'light' && <LightSectionArt />}
+					{variant === 'teal' && (
+						<>
+							<div class="absolute -top-10 -right-[30px] hidden opacity-30 md:block">
+								<Circle color="var(--color-ink)" size="180px" />
+							</div>
+							<div class="absolute top-[-10px] right-20 hidden opacity-25 md:block">
+								<Triangle color="var(--color-pink)" size="170px" />
+							</div>
+							<div class="absolute right-[260px] bottom-5 hidden opacity-30 md:block">
+								<Circle color="var(--color-pink)" size="80px" />
+							</div>
+							<div class="absolute top-[100px] right-5 hidden opacity-30 md:block">
+								<Diamond color="var(--color-ink)" size="24px" />
+							</div>
+							<div class="absolute top-5 right-20 hidden opacity-20 md:block">
+								<DotGrid width="70px" height="70px" color="var(--color-ink)" />
+							</div>
+						</>
+					)}
+				</div>
+				<div class="relative z-10 mx-auto max-w-6xl">
+					{eyebrow && <div class="mb-5 text-xs font-semibold tracking-widest text-teal uppercase">{eyebrow}</div>}
+					<slot name="heading" />
+					<slot />
+				</div>
+			</>
+		)
+	}
+</section>
+
+<script>
+	// Scroll-linked parallax for every `[data-parallax-section]` on the
+	// page, driven off one shared rAF-throttled listener (Astro dedupes
+	// this inline script across multiple ParallaxSection instances, so N
+	// sections still cost one listener). Respects prefers-reduced-motion
+	// by never attaching the listener at all, rather than gating inside
+	// the per-frame callback — the comp this ports from doesn't handle
+	// reduced motion; this closes that gap.
+	const sections = document.querySelectorAll<HTMLElement>('[data-parallax-section]');
+
+	if (sections.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		let ticking = false;
+
+		const update = () => {
+			const vh = window.innerHeight;
+			sections.forEach((section) => {
+				const art = section.querySelector<HTMLElement>('.parallax-art');
+				if (!art) return;
+				const rect = section.getBoundingClientRect();
+				const progress = (vh - rect.top) / (vh + rect.height);
+				art.style.transform = `translateY(${(progress - 0.5) * 80}px)`;
+			});
+			ticking = false;
+		};
+
+		window.addEventListener(
+			'scroll',
+			() => {
+				if (!ticking) {
+					requestAnimationFrame(update);
+					ticking = true;
+				}
+			},
+			{ passive: true },
+		);
+
+		update();
+	}
+</script>

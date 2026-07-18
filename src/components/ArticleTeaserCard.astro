@@ -3,12 +3,31 @@ import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
 
 interface Props {
-	entry: CollectionEntry<'articles'>;
+	// Broadened beyond 'articles' since the fallback path below is generic
+	// across collections.
+	entry: CollectionEntry<'articles' | 'projects' | 'lab'>;
 	variant?: 'featured' | 'compact' | 'vertical' | 'overlay';
 }
 
 const { entry, variant = 'compact' } = Astro.props;
-const { title, description, pubDate, category, heroImage } = entry.data;
+const { title, pubDate, heroImage, seo } = entry.data;
+
+// `description`/`category` are articles-schema field names — normalize the
+// other two collections onto the same two slots here: projects has
+// `summary` (no `category`, so its `status` enum stands in), lab has
+// `description` already but `labCategory` instead of `category`.
+const description = entry.collection === 'projects' ? entry.data.summary : entry.data.description;
+const category =
+	entry.collection === 'projects' ? entry.data.status : entry.collection === 'lab' ? entry.data.labCategory : entry.data.category;
+
+// Same fallback chain already used for <head> og:image tags
+// (ArticleLayout.astro, ProjectLayout.astro, lab/[...slug].astro): a
+// manual override, then the entry's own hero image, then the generated
+// satori/resvg card (src/pages/og/[...slug].png.ts) — always resolves to
+// a real image, so cards never fall back to a bare gradient placeholder.
+const ogFallback = seo.ogImage ?? heroImage ?? `/og/${entry.collection}/${entry.id}.png`;
+
+const hrefBase = entry.collection === 'articles' ? 'articles' : entry.collection === 'projects' ? 'projects' : 'lab';
 
 const wordCount = (entry.body ?? '').trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
@@ -31,10 +50,10 @@ const pillColor = pillColors[hash % pillColors.length];
 
 {
 	variant === 'featured' && (
-		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
+		<a href={`/${hrefBase}/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
 			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
-				<span class="absolute bottom-3 left-3.5 rounded-full bg-pink px-2.5 py-0.5 text-[10px] font-semibold text-white">
+				<img src={ogFallback} alt="" class="absolute inset-0 h-full w-full object-cover" />
+				<span class="absolute top-3 right-3.5 rounded-full bg-pink px-2.5 py-0.5 text-[10px] font-semibold text-white">
 					Featured
 				</span>
 			</div>
@@ -59,11 +78,15 @@ const pillColor = pillColors[hash % pillColors.length];
 
 {
 	variant === 'compact' && (
-		<a href={`/articles/${entry.id}/`} class="grid flex-1 grid-cols-[140px_1fr] overflow-hidden rounded-md border border-border bg-white">
-			<div class={`relative overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
+		<a href={`/${hrefBase}/${entry.id}/`} class="flex flex-1 overflow-hidden rounded-md border border-border bg-white">
+			{/* Fixed 96x96 square — not sized off the grid row (which stretched to
+			match the text column's height and let landscape OG images spill past
+			a too-short box) — so the thumbnail is always a true, contained square
+			regardless of how much text sits next to it. */}
+			<div class={`relative aspect-square w-24 flex-shrink-0 overflow-hidden bg-gradient-to-br ${gradient}`}>
+				<img src={ogFallback} alt="" class="absolute inset-0 h-full w-full object-cover" />
 			</div>
-			<div class="flex flex-col justify-center gap-1.5 px-4 py-3.5">
+			<div class="flex min-w-0 flex-1 flex-col justify-center gap-1.5 px-4 py-3.5">
 				<div class="text-[10px] font-semibold tracking-wide text-teal uppercase">{category}</div>
 				<div class="text-sm leading-tight font-bold text-ink">{title}</div>
 				<div class="flex items-center justify-between">
@@ -80,9 +103,9 @@ const pillColor = pillColors[hash % pillColors.length];
 {
 	/* Plain grid card: image top (16:9) with a category pill overlay, content below. Used for the articles index grid. */
 	variant === 'vertical' && (
-		<a href={`/articles/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
+		<a href={`/${hrefBase}/${entry.id}/`} class="flex flex-col overflow-hidden rounded-md border border-border bg-white">
 			<div class={`relative aspect-video overflow-hidden bg-gradient-to-br ${gradient}`}>
-				{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
+				<img src={ogFallback} alt="" class="absolute inset-0 h-full w-full object-cover" />
 				<span class:list={['absolute bottom-2.5 left-3 rounded-full px-2 py-0.5 text-[10px] font-semibold', pillColor]}>
 					{category}
 				</span>
@@ -104,8 +127,8 @@ const pillColor = pillColors[hash % pillColors.length];
 {
 	/* Large hero-style card with the image (or gradient) filling the whole card and text overlaid via a bottom gradient scrim. */
 	variant === 'overlay' && (
-		<a href={`/articles/${entry.id}/`} class={`relative block aspect-[16/7] overflow-hidden rounded-md bg-gradient-to-br ${gradient}`}>
-			{heroImage && <img src={heroImage} alt="" class="absolute inset-0 h-full w-full object-cover" />}
+		<a href={`/${hrefBase}/${entry.id}/`} class={`relative block aspect-[16/7] overflow-hidden rounded-md bg-gradient-to-br ${gradient}`}>
+			<img src={ogFallback} alt="" class="absolute inset-0 h-full w-full object-cover" />
 			<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 			<div class="absolute inset-x-0 bottom-0 p-7">
 				<div class="mb-2.5 flex items-center gap-2">

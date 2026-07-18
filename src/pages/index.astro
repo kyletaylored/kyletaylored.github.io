@@ -5,8 +5,8 @@ import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import TerminalWindow from '../components/lab/TerminalWindow.astro';
 import GitHubContributionGraph from '../components/GitHubContributionGraph.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import HeroArt from '../components/decor/HeroArt.astro';
+import ArticleTeaserCard from '../components/ArticleTeaserCard.astro';
+import ParallaxSection from '../components/ParallaxSection.astro';
 import FloatingArtPanel from '../components/decor/FloatingArtPanel.astro';
 import site from '../data/site.json';
 
@@ -31,17 +31,15 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 ---
 
 <BaseLayout title={site.siteTitle} description={site.siteDescription}>
-	<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
-		<HeroArt />
+	<ParallaxSection variant="dark" eyebrow="Build weird things.">
+		<Fragment slot="heading">
+			<h1 class="mb-6 text-5xl leading-[1.0] font-bold tracking-tight text-bg md:text-7xl">
+				Hi, I'm <span class="text-teal">Kyle</span><span class="text-pink">.</span>
+			</h1>
+		</Fragment>
 
-		<div class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1fr_420px] lg:gap-16">
+		<div class="grid items-center gap-10 lg:grid-cols-[1fr_420px] lg:gap-16">
 			<div>
-				<div class="mb-5 text-xs font-semibold tracking-widest text-teal uppercase">
-					Build weird things.
-				</div>
-				<h1 class="mb-6 text-5xl leading-[1.0] font-bold tracking-tight text-bg md:text-7xl">
-					Hi, I'm <span class="text-teal">Kyle</span><span class="text-pink">.</span>
-				</h1>
 				<p class="mb-3 max-w-md text-base leading-relaxed text-muted-light">
 					A technical guy with ADHD coming up with super weird projects and tinkering with everything in my Lab.
 				</p>
@@ -49,6 +47,13 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 					<Button href="/projects" variant="primary">Browse Projects &rarr;</Button>
 					<Button href="/lab" variant="dark">Visit the Lab &rsaquo;</Button>
+				</div>
+
+				<div class="mt-6 flex max-w-sm items-start gap-3">
+					<div class="w-[2px] flex-shrink-0 self-stretch rounded-full bg-teal opacity-40"></div>
+					<p class="text-sm leading-relaxed text-muted italic">
+						most of what's here started as a distraction from something else I was supposed to be doing.
+					</p>
 				</div>
 			</div>
 
@@ -61,14 +66,16 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 				{'\n'}
 				<span class="text-teal">Stack</span>      Pancakes, Waffles, and Legos
 				{'\n'}
-				<span class="text-teal">Focus</span>      None
+				<span class="text-teal">Location</span>   West Coast, US
+				{'\n'}
+				<span class="text-teal">Focus</span>      AI &middot; Hardware &middot; Open Source
 				{'\n'}
 				<span class="text-teal">Status</span>     Building something
 				{'\n\n'}
 				<span class="text-teal">~ $</span>
 			</TerminalWindow>
 		</div>
-	</section>
+	</ParallaxSection>
 
 	<div class="h-1 bg-pink"></div>
 
@@ -97,34 +104,57 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 		</div>
 	</section>
 
+	<section class="mx-auto max-w-6xl px-6 py-12 md:px-12">
+		<SectionHeader label="From the Lab" linkText={null} />
+		<div class="grid grid-cols-1 gap-2 sm:grid-cols-[2fr_1fr_1fr_1fr] sm:h-[280px]">
+			<div class="flex aspect-[4/3] items-center justify-center border border-dashed border-border bg-surface p-4 text-center sm:aspect-auto sm:h-full">
+				<span class="font-mono text-[11px] text-muted">Add: workshop bench photo</span>
+			</div>
+			<div class="flex aspect-[4/3] items-center justify-center border border-dashed border-border bg-surface p-4 text-center sm:aspect-auto sm:h-full">
+				<span class="font-mono text-[11px] text-muted">Add: hardware / circuit close-up</span>
+			</div>
+			<div class="flex aspect-[4/3] items-center justify-center border border-dashed border-border bg-surface p-4 text-center sm:aspect-auto sm:h-full">
+				<span class="font-mono text-[11px] text-muted">Add: build-in-progress shot</span>
+			</div>
+			<div class="flex flex-col justify-between bg-ink p-5">
+				<div class="text-3xl leading-none font-bold text-teal">&ldquo;</div>
+				<p class="text-sm leading-relaxed text-bg italic">
+					The best tools are the ones you built because nothing else did what you needed.
+				</p>
+				<div class="text-[10px] font-semibold tracking-wide text-muted-light uppercase">&mdash; K.T.</div>
+			</div>
+		</div>
+	</section>
+
+	<ParallaxSection variant="split" eyebrow="Always Building">
+		<Fragment slot="heading">
+			<h2 class="mb-5 text-4xl leading-[1.05] font-bold tracking-tight text-bg">
+				New experiments,<br />every week.
+			</h2>
+		</Fragment>
+		<p class="mb-8 max-w-sm text-base leading-relaxed text-muted-light">
+			The Lab is where half-finished ideas go to become something real &mdash; software, hardware, and
+			everything in between. New builds land there before anywhere else.
+		</p>
+		<Button href="/lab" variant="dark">Explore the Lab &rarr;</Button>
+	</ParallaxSection>
+
 	{
 		featuredProjects.length > 0 && (
-			<section class="mx-auto max-w-6xl px-6 pb-12 md:px-12">
+			<section class="mx-auto max-w-6xl px-6 py-12 md:px-12">
 				<SectionHeader label="Featured Projects" linkText="View all projects" linkHref="/projects" />
 				<div class="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 lg:grid-cols-5">
 					{featuredProjects.map((p) => (
-						<a href={`/projects/${p.id}/`} class="block w-[180px] flex-shrink-0 overflow-hidden rounded-md bg-ink sm:w-auto">
-							<div class="flex h-[140px] items-center justify-center bg-gradient-to-br from-[#1a0533] to-[#0d1b3e]">
-								<div class="h-14 w-14 rounded-full opacity-80" style="background:radial-gradient(circle,var(--color-teal),var(--color-blue))" />
-							</div>
-							<div class="p-3.5">
-								<div class="mb-1 text-sm font-semibold text-bg">{p.data.title}</div>
-								<div class="mb-2.5 text-[11px] leading-snug text-muted-light">{p.data.summary}</div>
-								<div class="mb-2.5 flex flex-wrap gap-1.5">
-									{p.data.stack.slice(0, 2).map((s) => (
-										<span class="rounded-full border border-border-dark px-2 py-0.5 text-[10px] text-muted-light">{s}</span>
-									))}
-								</div>
-								<div class="text-sm text-bg">&rarr;</div>
-							</div>
-						</a>
+						<div class="w-[220px] flex-shrink-0 sm:w-auto">
+							<ArticleTeaserCard entry={p} variant="featured" />
+						</div>
 					))}
 				</div>
 			</section>
 		)
 	}
 
-	<section class="mx-auto grid max-w-6xl gap-4 px-6 pb-12 md:px-12 lg:grid-cols-[1fr_140px_1fr]">
+	<section class="mx-auto grid max-w-6xl gap-4 px-6 py-12 md:px-12 lg:grid-cols-[1fr_140px_1fr]">
 		<div>
 			<SectionHeader label="GitHub Activity" linkText={null} />
 			<GitHubContributionGraph weeks={contributionWeeks} profileUrl="https://github.com/kyletaylored" />
@@ -136,14 +166,9 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 			<SectionHeader label="Latest Articles" linkText="View all articles" linkHref="/articles" />
 			{
 				latestArticles.length > 0 ? (
-					<div class="flex flex-col">
+					<div class="flex flex-col gap-3">
 						{latestArticles.map((a) => (
-							<a href={`/articles/${a.id}/`} class="flex items-center justify-between gap-3 border-b border-surface py-2.5">
-								<span class="text-sm font-medium text-ink">{a.data.title}</span>
-								<span class="flex-shrink-0 font-mono text-xs text-muted-light">
-									<FormattedDate date={a.data.pubDate} />
-								</span>
-							</a>
+							<ArticleTeaserCard entry={a} variant="compact" />
 						))}
 					</div>
 				) : (

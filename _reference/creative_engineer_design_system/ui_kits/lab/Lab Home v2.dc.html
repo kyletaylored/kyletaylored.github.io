@@ -14,6 +14,8 @@
   body { margin: 0; background: #FAF8F3; font-family: 'Space Grotesk', sans-serif; color: #111; }
   a { color: inherit; text-decoration: none; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.75)} }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 </style>
 </helmet>
 
@@ -85,6 +87,11 @@
         <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;border-radius:0;">BROWSE EXPERIMENTS →</a>
         <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:transparent;border:2px solid #FAF8F3;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;border-radius:0;">VIEW ALL TOOLS ›</a>
       </div>
+      <!-- Personal aside -->
+      <div style="margin-top:24px;display:flex;align-items:flex-start;gap:12px;max-width:380px;">
+        <div style="width:2px;background:#28D7E5;opacity:0.4;flex-shrink:0;align-self:stretch;border-radius:1px;"></div>
+        <p style="font-size:13px;color:#6B6860;line-height:1.65;margin:0;font-style:italic;">most things here started as a weekend obsession. the good ones never really finished.</p>
+      </div>
     </div>
     <!-- Terminal -->
     <div style="background:#0D0D0D;border-radius:8px;overflow:hidden;border:1px solid #2A2A2A;position:relative;z-index:4;">
@@ -104,7 +111,8 @@
         <span style="color:#28D7E5;">Runtime</span><span style="color:#FAF8F3;">Node.js</span>
         <span style="color:#28D7E5;">Framework</span><span style="color:#FAF8F3;">Astro</span>
         <span style="color:#28D7E5;">Uptime</span><span style="color:#FAF8F3;">24/7</span>
-        <span style="color:#28D7E5;">Location</span><span style="color:#FAF8F3;">The Lab</span>
+        <span style="color:#28D7E5;">Location</span><span style="color:#FAF8F3;">West Coast, US</span>
+        <span style="color:#28D7E5;">Focus</span><span style="color:#FAF8F3;">AI · Hardware · Open Source</span>
         <span></span><span></span>
         <!-- Color swatches row -->
         <span></span>
@@ -135,36 +143,76 @@
     </div>
     <a href="#" style="font-size:13px;color:#111;">View all experiments →</a>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
     <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
       <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#28D7E5;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;">&gt;_</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">EXPERIMENTS</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Small projects, big ideas, zero pressure.</div></div>
-      <div style="margin-top:auto;font-size:15px;">→</div>
-    </div>
-    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
-      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#FFD54A;font-size:20px;">✕</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">TOOLS</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Useful utilities and developer tools.</div></div>
-      <div style="margin-top:auto;font-size:15px;">→</div>
-    </div>
-    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
-      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#F44D8A;font-family:'Space Mono',monospace;font-size:12px;">&lt;/&gt;</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">PLAYGROUND</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Code, tinker, break things, learn.</div></div>
-      <div style="margin-top:auto;font-size:15px;">→</div>
-    </div>
-    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
-      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#28D7E5;font-size:18px;">◈</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">AI LAB</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Exploring AI models, agents, and systems.</div></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">SOFTWARE</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Tools, experiments, and code that does something useful.</div></div>
       <div style="margin-top:auto;font-size:15px;">→</div>
     </div>
     <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
       <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#FFD54A;font-size:18px;">⬡</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">HARDWARE</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Electronics, firmware, and embedded fun.</div></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">HARDWARE</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Electronics, firmware, ESP32s, and things that blink.</div></div>
+      <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
+      <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#F44D8A;font-size:18px;">◧</span></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">MAKING</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">3D printing, woodworking, paintball mods, and whatever else.</div></div>
       <div style="margin-top:auto;font-size:15px;">→</div>
     </div>
     <div style="background:#FFF;border:1px solid #E0DDDA;border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:12px;cursor:pointer;">
       <div style="width:44px;height:44px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="color:#F44D8A;font-size:18px;">✦</span></div>
-      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">GRAPHICS</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Visual experiments and simulations.</div></div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;">ARTICLES</div><div style="font-size:11px;color:#6B6860;line-height:1.5;">Write-ups on what I built, broke, and learned from.</div></div>
       <div style="margin-top:auto;font-size:15px;">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP — "From the Lab" -->
+<section style="padding:40px 0 0;max-width:100%;overflow:hidden;">
+  <x-import component-from-global-scope="image-slot" from="../../image-slot.js" hint-size="100%,300px">
+  </x-import>
+  <div style="padding:0 48px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-top:0;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:8px;height:8px;border-radius:50%;background:#F25A4C;"></div>
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">FROM THE LAB</span>
+      </div>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;">drag your own photos in</span>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;height:280px;">
+      <!-- Large hero photo left -->
+      <div style="position:relative;border-radius:4px;overflow:hidden;">
+        <image-slot id="lab-photo-1" shape="rect"
+          src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80"
+          credit="Photo by ThisisEngineering on Unsplash"
+          credit-href="https://unsplash.com/@thisisengineering"
+          placeholder="Workshop / build in progress" style="width:100%;height:100%;"></image-slot>
+        <div style="position:absolute;bottom:12px;left:14px;font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.7);pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,0.6);">the bench</div>
+      </div>
+      <!-- Circuit / hardware closeup -->
+      <div style="position:relative;border-radius:4px;overflow:hidden;">
+        <image-slot id="lab-photo-2" shape="rect"
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80"
+          credit="Photo by Alexandre Debiève on Unsplash"
+          credit-href="https://unsplash.com/@alexkixa"
+          placeholder="Hardware / circuit / prototype" style="width:100%;height:100%;"></image-slot>
+      </div>
+      <!-- 3D print / make -->
+      <div style="position:relative;border-radius:4px;overflow:hidden;">
+        <image-slot id="lab-photo-3" shape="rect"
+          src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=500&q=80"
+          credit="Photo by Opt Lasers on Unsplash"
+          credit-href="https://unsplash.com/@optlasers"
+          placeholder="3D print / something you made" style="width:100%;height:100%;"></image-slot>
+      </div>
+      <div style="position:relative;border-radius:4px;overflow:hidden;background:#111;">
+        <!-- Last slot is a text card — a quote or micro-thought -->
+        <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="font-size:28px;font-weight:700;color:#28D7E5;line-height:1;">"</div>
+          <div style="font-size:13px;color:#FAF8F3;line-height:1.6;font-style:italic;">The best tools are the ones you built because nothing else did what you needed.</div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6860;">— K.T.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -270,6 +318,26 @@
         <div style="width:28px;height:28px;background:#FEF0F5;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#F44D8A;flex-shrink:0;">↻</div>
         <div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:600;color:#F44D8A;margin-bottom:1px;">Experiment Updated</div><div style="font-size:13px;color:#111;">Improved LLM Agent memory system</div></div>
         <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A8A49F;white-space:nowrap;flex-shrink:0;">2d ago</div>
+      </div>
+    </div>
+    <!-- Contribution heatmap -->
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #F0EDE8;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#A8A49F;">182 contributions · last 6 months</span>
+        <div style="display:flex;align-items:center;gap:3px;">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:#C0BCB7;">less</span>
+          <div style="width:8px;height:8px;background:#28D7E5;opacity:0.12;border-radius:1px;"></div>
+          <div style="width:8px;height:8px;background:#28D7E5;opacity:0.3;border-radius:1px;"></div>
+          <div style="width:8px;height:8px;background:#28D7E5;opacity:0.55;border-radius:1px;"></div>
+          <div style="width:8px;height:8px;background:#28D7E5;opacity:0.8;border-radius:1px;"></div>
+          <div style="width:8px;height:8px;background:#28D7E5;border-radius:1px;"></div>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:#C0BCB7;">more</span>
+        </div>
+      </div>
+      <svg width="338" height="91" viewBox="0 0 338 91" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="0" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="0" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="0" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="0" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="0" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="0" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="13" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="13" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="13" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="13" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="13" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="13" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="13" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="26" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="26" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="26" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="26" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="26" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="26" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="26" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="39" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="39" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="52" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="52" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="52" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="52" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="52" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="52" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="52" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="65" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="65" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="65" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="65" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="65" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="65" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="65" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="78" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="78" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="78" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="78" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="78" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="78" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="78" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="91" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="91" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="104" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="104" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="104" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="104" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="104" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="104" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="104" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="117" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="117" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="117" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="117" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="117" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="117" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="117" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="130" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="130" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="130" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="130" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="130" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="130" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="130" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="143" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="143" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="143" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="143" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="143" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="143" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="143" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="156" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="156" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="156" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="156" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="156" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="156" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="156" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="169" y="0" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="169" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="169" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="169" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="169" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="169" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="169" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="182" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="182" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="182" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="182" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="182" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="182" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="182" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="195" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="195" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="195" y="26" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="195" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="195" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="195" y="65" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="195" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="208" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="208" y="13" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="208" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="208" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="208" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="208" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="208" y="78" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="221" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="221" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="221" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="221" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="221" y="52" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="221" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="221" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="234" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="234" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="234" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="234" y="39" width="11" height="11" rx="1" fill="#F0EDE8"/><rect x="234" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="234" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="234" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="247" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="247" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="247" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="247" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="247" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="247" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="247" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="260" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="260" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="260" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="260" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="260" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="260" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="260" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="273" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="273" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="273" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="273" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="273" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="273" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="273" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="286" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="286" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="286" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="286" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="286" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="286" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.12"/><rect x="286" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="299" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="299" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="299" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="299" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.3"/><rect x="299" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="299" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="299" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="312" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="312" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="312" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="312" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="312" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.55"/><rect x="312" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="312" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="325" y="0" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="325" y="13" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="325" y="26" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="325" y="39" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/><rect x="325" y="52" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="325" y="65" width="11" height="11" rx="1" fill="#28D7E5" opacity="1"/><rect x="325" y="78" width="11" height="11" rx="1" fill="#28D7E5" opacity="0.8"/></svg>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:#C0BCB7;">Jan 2026</span>
+        <span style="font-family:'Space Mono',monospace;font-size:9px;color:#C0BCB7;">Jul 2026</span>
       </div>
     </div>
     <a href="#" style="display:inline-flex;align-items:center;gap:4px;margin-top:16px;font-size:13px;color:#111;">View full activity →</a>
@@ -431,5 +499,8 @@
 </footer>
 
 </x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {}
+</script>
 </body>
 </html>

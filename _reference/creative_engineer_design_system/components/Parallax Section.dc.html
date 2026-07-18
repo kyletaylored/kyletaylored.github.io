@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Space Grotesk', sans-serif; color: #111; }
+  .parallax-section { position: relative; overflow: hidden; }
+  .parallax-art { position: absolute; inset: 0; pointer-events: none; will-change: transform; }
+  .content-layer { position: relative; z-index: 10; }
+</style>
+</helmet>
+
+<!-- ═══════════════════════════════════════════
+     PARALLAX SECTION COMPONENT SHOWCASE
+     All variants stacked for reference.
+     Each section is self-contained.
+═══════════════════════════════════════════ -->
+
+<!-- ─── VARIANT A: DARK HERO — full Memphis explosion ─── -->
+<div id="variant-a" class="parallax-section" style="background:#111;padding:100px 64px;min-height:480px;" data-parallax="A">
+  <!-- Parallax art layer — JS moves this on scroll -->
+  <div class="parallax-art" id="art-a" style="transform:translateY(0px);">
+    <!-- Pink circle — top right bleeding off -->
+    <div style="position:absolute;right:-40px;top:-60px;width:240px;height:240px;border-radius:50%;background:#F44D8A;"></div>
+    <!-- Teal triangle — tall, behind circle -->
+    <div style="position:absolute;right:120px;top:-30px;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:380px solid #28D7E5;z-index:0;opacity:0.9;"></div>
+    <!-- Yellow circle — lower right -->
+    <div style="position:absolute;right:360px;bottom:30px;width:100px;height:100px;border-radius:50%;background:#FFD54A;"></div>
+    <!-- Diagonal teal bar — top-left area -->
+    <div style="position:absolute;left:-20px;top:80px;width:260px;height:12px;background:#28D7E5;transform:rotate(-18deg);transform-origin:left center;opacity:0.5;"></div>
+    <!-- Blue diamond — top center -->
+    <div style="position:absolute;left:44%;top:24px;width:18px;height:18px;background:#348BFF;transform:rotate(45deg);"></div>
+    <!-- Dot grid — top right -->
+    <div style="position:absolute;right:300px;top:16px;"><svg width="100" height="100"><defs><pattern id="dg_pa" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#444"/></pattern></defs><rect width="100" height="100" fill="url(#dg_pa)"/></svg></div>
+    <!-- Outline ring — bottom right -->
+    <div style="position:absolute;right:60px;bottom:40px;width:90px;height:90px;border-radius:50%;border:3px solid #2A2A2A;"></div>
+    <!-- Hazard strip — vertical left edge -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:7px;overflow:hidden;"><svg width="7" height="100%" preserveAspectRatio="none"><defs><pattern id="hvpa" x="0" y="0" width="7" height="14" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#FFD54A" opacity="0.5"/><rect y="7" width="7" height="7" fill="#222"/></pattern></defs><rect width="7" height="100%" fill="url(#hvpa)"/></svg></div>
+    <!-- Crosshair -->
+    <div style="position:absolute;right:220px;top:50%;transform:translateY(-50%);font-size:40px;font-weight:200;color:#333;line-height:1;">+</div>
+    <!-- Slash marks + square bottom-left -->
+    <div style="position:absolute;left:28px;bottom:28px;display:flex;align-items:center;gap:8px;">
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:#444;letter-spacing:6px;">/ / / /</span>
+      <div style="width:10px;height:10px;background:#FFD54A;opacity:0.6;"></div>
+    </div>
+    <!-- Small pink diamond — mid-left -->
+    <div style="position:absolute;left:14px;top:45%;width:10px;height:10px;background:#F44D8A;transform:rotate(45deg);"></div>
+    <!-- Diagonal yellow accent bar bottom -->
+    <div style="position:absolute;right:180px;bottom:50px;width:120px;height:10px;background:#FFD54A;transform:rotate(-20deg);opacity:0.7;"></div>
+  </div>
+  <!-- Content -->
+  <div class="content-layer" style="max-width:600px;">
+    <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:20px;">VARIANT A · DARK HERO</div>
+    <h2 style="font-size:56px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FAF8F3;margin:0 0 20px;">Section heading goes here.</h2>
+    <p style="font-size:16px;color:#A8A49F;line-height:1.65;margin:0 0 32px;max-width:480px;">Subtext for context. Use this for hero sections, major CTAs, or any full-bleed dark panel that needs drama.</p>
+    <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;">ACTION BUTTON →</a>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F44D8A;z-index:11;"></div>
+</div>
+
+<!-- ─── VARIANT B: LIGHT — dot grid + scattered shapes ─── -->
+<div id="variant-b" class="parallax-section" style="background:#FAF8F3;padding:100px 64px;min-height:400px;" data-parallax="B">
+  <div class="parallax-art" id="art-b" style="transform:translateY(0px);">
+    <!-- Teal circle — top right, subtle -->
+    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:#28D7E5;opacity:0.12;"></div>
+    <!-- Yellow circle — bottom left -->
+    <div style="position:absolute;left:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:#FFD54A;opacity:0.18;"></div>
+    <!-- Diagonal pink bar top-right -->
+    <div style="position:absolute;right:-20px;top:50px;width:240px;height:7px;background:#F44D8A;transform:rotate(18deg);transform-origin:right;opacity:0.4;"></div>
+    <!-- Dot grid — full right half -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:45%;"><svg width="100%" height="100%"><defs><pattern id="dg_pb" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#111" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(#dg_pb)"/></svg></div>
+    <!-- Outline ring center -->
+    <div style="position:absolute;right:180px;top:50%;transform:translateY(-50%);width:120px;height:120px;border-radius:50%;border:2px solid #E0DDDA;"></div>
+    <!-- Blue diamond -->
+    <div style="position:absolute;right:140px;top:30px;width:14px;height:14px;background:#348BFF;transform:rotate(45deg);opacity:0.6;"></div>
+    <!-- Crosshair top-left -->
+    <div style="position:absolute;left:36px;top:36px;font-size:32px;font-weight:200;color:#DDD;line-height:1;">+</div>
+    <!-- Tiny pink diamond -->
+    <div style="position:absolute;left:160px;bottom:36px;width:8px;height:8px;background:#F44D8A;transform:rotate(45deg);opacity:0.5;"></div>
+    <!-- Teal diagonal bar bottom -->
+    <div style="position:absolute;left:200px;bottom:40px;width:160px;height:6px;background:#28D7E5;transform:rotate(-12deg);opacity:0.3;"></div>
+  </div>
+  <div class="content-layer" style="max-width:560px;">
+    <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#F25A4C;margin-bottom:20px;">VARIANT B · LIGHT</div>
+    <h2 style="font-size:48px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#111;margin:0 0 18px;">A section that breathes.</h2>
+    <p style="font-size:16px;color:#6B6860;line-height:1.65;margin:0 0 32px;max-width:460px;">Subtle art on light backgrounds. Good for about, writing, and feature sections. Art stays in place while content scrolls.</p>
+    <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;border:2px solid #111;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;">LEARN MORE →</a>
+  </div>
+</div>
+
+<!-- ─── VARIANT C: SPLIT — art fills right column ─── -->
+<div id="variant-c" class="parallax-section" style="background:#111;min-height:420px;" data-parallax="C">
+  <div style="display:grid;grid-template-columns:1fr 1fr;height:420px;">
+    <!-- Left: content -->
+    <div class="content-layer" style="padding:64px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:10;">
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#28D7E5;margin-bottom:20px;">VARIANT C · SPLIT</div>
+      <h2 style="font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FAF8F3;margin:0 0 16px;">Content left. Art right.</h2>
+      <p style="font-size:15px;color:#A8A49F;line-height:1.65;margin:0 0 32px;">Great for feature sections, project showcases, or any moment where you want the art to be the right-hand image.</p>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#28D7E5;border:2px solid #28D7E5;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#111;align-self:flex-start;">EXPLORE →</a>
+    </div>
+    <!-- Right: pure art panel with parallax -->
+    <div class="parallax-art" id="art-c" style="position:relative;transform:translateY(0px);overflow:hidden;">
+      <!-- Large yellow circle — center right bleeding -->
+      <div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:220px;height:220px;border-radius:50%;background:#FFD54A;"></div>
+      <!-- Teal triangle — top-right corner -->
+      <div style="position:absolute;right:80px;top:-20px;width:0;height:0;border-left:80px solid transparent;border-right:80px solid transparent;border-bottom:200px solid #28D7E5;opacity:0.8;"></div>
+      <!-- Pink circle — lower left of panel -->
+      <div style="position:absolute;left:-20px;bottom:-20px;width:140px;height:140px;border-radius:50%;background:#F44D8A;opacity:0.9;"></div>
+      <!-- Dot grid overlay -->
+      <div style="position:absolute;inset:0;"><svg width="100%" height="100%"><defs><pattern id="dg_pc" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#222"/></pattern></defs><rect width="100%" height="100%" fill="url(#dg_pc)"/></svg></div>
+      <!-- Crosshair center -->
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:60px;font-weight:200;color:#333;line-height:1;z-index:2;">+</div>
+      <!-- Blue diamond -->
+      <div style="position:absolute;left:40px;top:40px;width:16px;height:16px;background:#348BFF;transform:rotate(45deg);z-index:3;"></div>
+      <!-- Hazard stripe bottom -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:6px;overflow:hidden;"><svg width="100%" height="6" preserveAspectRatio="none"><defs><pattern id="hzpc" x="0" y="0" width="12" height="6" patternUnits="userSpaceOnUse"><polygon points="0,6 6,0 12,0 6,6" fill="#FFD54A"/><polygon points="6,6 12,0 18,0 12,6" fill="#111"/></pattern></defs><rect width="100%" height="6" fill="url(#hzpc)"/></svg></div>
+      <!-- Slash marks -->
+      <div style="position:absolute;left:20px;bottom:20px;display:flex;align-items:center;gap:5px;z-index:4;"><span style="font-family:'Space Mono',monospace;font-size:12px;color:#444;letter-spacing:5px;">/ / /</span><div style="width:8px;height:8px;background:#FFD54A;opacity:0.6;"></div></div>
+      <!-- Vertical left divider -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:#1E1E1E;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── VARIANT D: TEAL BG — inverted palette ─── -->
+<div id="variant-d" class="parallax-section" style="background:#28D7E5;padding:80px 64px;min-height:360px;" data-parallax="D">
+  <div class="parallax-art" id="art-d" style="transform:translateY(0px);">
+    <!-- Dark circle — top right -->
+    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:#111;opacity:0.15;"></div>
+    <!-- White triangle — bottom left -->
+    <div style="position:absolute;left:-20px;bottom:-20px;width:0;height:0;border-left:100px solid transparent;border-right:100px solid transparent;border-bottom:160px solid #FAF8F3;opacity:0.2;"></div>
+    <!-- Pink circle — mid right -->
+    <div style="position:absolute;right:120px;top:50%;transform:translateY(-50%);width:100px;height:100px;border-radius:50%;background:#F44D8A;opacity:0.6;"></div>
+    <!-- Dot grid dark -->
+    <div style="position:absolute;right:0;top:0;bottom:0;width:40%;"><svg width="100%" height="100%"><defs><pattern id="dg_pd" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#111" opacity="0.15"/></pattern></defs><rect width="100%" height="100%" fill="url(#dg_pd)"/></svg></div>
+    <!-- Diagonal black bar -->
+    <div style="position:absolute;left:-10px;top:60px;width:200px;height:8px;background:#111;transform:rotate(-15deg);transform-origin:left;opacity:0.2;"></div>
+    <!-- Crosshair -->
+    <div style="position:absolute;right:240px;top:30px;font-size:36px;font-weight:200;color:rgba(0,0,0,0.15);line-height:1;">+</div>
+    <!-- Slash marks -->
+    <div style="position:absolute;right:28px;bottom:28px;display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:11px;color:rgba(0,0,0,0.25);letter-spacing:5px;">/ / /</span><div style="width:7px;height:7px;background:#111;opacity:0.2;"></div></div>
+  </div>
+  <div class="content-layer" style="max-width:640px;">
+    <div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:20px;">VARIANT D · TEAL ACCENT</div>
+    <h2 style="font-size:48px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#111;margin:0 0 18px;">Inverted. Still bold.</h2>
+    <p style="font-size:16px;color:rgba(0,0,0,0.55);line-height:1.65;margin:0 0 32px;max-width:460px;">Teal background for feature callouts or CTA panels. The art uses dark + pink shapes to keep contrast high.</p>
+    <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#111;border:2px solid #111;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#FAF8F3;">GET STARTED →</a>
+  </div>
+</div>
+
+<!-- PARALLAX SCRIPT -->
+<script>
+  (function() {
+    const sections = document.querySelectorAll('[data-parallax]');
+    let ticking = false;
+    function update() {
+      sections.forEach(sec => {
+        const art = sec.querySelector('.parallax-art');
+        if (!art) return;
+        const rect = sec.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = (vh - rect.top) / (vh + rect.height); // 0 top → 1 bottom
+        const shift = (progress - 0.5) * 80; // ±40px
+        art.style.transform = `translateY(${shift}px)`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+</script>
+
+</x-dc>
+</body>
+</html>

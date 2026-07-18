@@ -7,6 +7,19 @@ import site from '../data/site.json';
 
 const currentYear = new Date().getFullYear();
 
+// Plain `currentColor` icons on the footer's bg-ink read poorly wherever
+// the footer's decorative shapes pass behind them — a colored box per
+// platform (same "icon in a colored square" language as the site's brand
+// mark elsewhere) fixes contrast regardless of what's behind it.
+const socialStyles: Record<string, { bg: string; fg: string }> = {
+	github: { bg: 'bg-bg', fg: 'text-ink' },
+	youtube: { bg: 'bg-red', fg: 'text-white' },
+	instagram: { bg: 'bg-pink', fg: 'text-white' },
+	tiktok: { bg: 'bg-teal', fg: 'text-ink' },
+	linkedin: { bg: 'bg-blue', fg: 'text-white' },
+	threads: { bg: 'bg-yellow', fg: 'text-ink' },
+};
+
 const footerNavLinks = [
 	{ label: 'Projects', href: '/projects' },
 	{ label: 'Articles', href: '/articles' },
@@ -51,18 +64,25 @@ const footerNavLinks = [
 					))
 				}
 			</nav>
-			<div class="flex gap-4">
+			<div class="flex gap-2.5">
 				{
-					site.socialLinks.map((link) => (
-						<a
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-bg transition-colors hover:text-teal"
-						>
-							<SocialIcon platform={link.platform} />
-						</a>
-					))
+					site.socialLinks.map((link) => {
+						const style = socialStyles[link.platform] ?? { bg: 'bg-bg', fg: 'text-ink' };
+						return (
+							<a
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class:list={[
+									'flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-80',
+									style.bg,
+									style.fg,
+								]}
+							>
+								<SocialIcon platform={link.platform} size="16px" />
+							</a>
+						);
+					})
 				}
 			</div>
 		</div>

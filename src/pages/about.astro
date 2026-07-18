@@ -81,69 +81,71 @@ const stack = [
 ---
 
 <BaseLayout title={entry.data.seo.metaTitle ?? entry.data.title} description={entry.data.description}>
-	<section class="grid min-h-[560px] overflow-hidden bg-ink md:grid-cols-2">
-		<div class="relative z-[2] flex flex-col justify-center px-6 py-16 md:px-12 lg:py-20">
-			<div class="pointer-events-none absolute -bottom-10 -left-10 opacity-[0.08]">
-				<Circle color="var(--color-teal)" size="160px" />
-			</div>
-			<div class="relative text-xs font-semibold tracking-widest text-teal uppercase mb-6">Creative Engineer</div>
-			<h1 class="relative mb-6 text-6xl leading-[0.95] font-bold tracking-tighter text-bg md:text-7xl">
-				Kyle<br />Taylor<span class="text-pink">.</span>
-			</h1>
-			<p class="relative mb-9 max-w-sm text-base leading-relaxed text-muted-light">
-				I build software, AI systems, and physical things — then write about them. Everything I make is
-				open.
-			</p>
-			<div class="relative flex flex-wrap gap-2.5">
-				<Button href="/lab" variant="primary">See the Lab &rarr;</Button>
-				<Button href="https://github.com/kyletaylored" variant="dark" target="_blank" rel="noopener noreferrer">
-					GitHub &rsaquo;
-				</Button>
-			</div>
-		</div>
-
-		<div class="relative flex items-center justify-center overflow-hidden bg-[#0D0D0D] p-8 md:p-14">
-			<div class="pointer-events-none absolute -right-8 -top-8 h-44 w-44 rounded-full bg-pink opacity-15"></div>
-			<div class="pointer-events-none absolute bottom-5 left-5">
-				<Triangle color="var(--color-yellow)" size="86px" />
-			</div>
-			<div class="pointer-events-none absolute bottom-16 right-8 opacity-20">
-				<Diamond color="var(--color-blue)" size="40px" />
-			</div>
-			<div class="pointer-events-none absolute left-10 top-10 opacity-[0.07]">
-				<DotGrid width="60px" height="60px" />
-			</div>
-
-			<div class="relative z-[2] flex flex-col items-center">
-				<div class="flex h-40 w-40 items-center justify-center overflow-hidden rounded-md border-2 border-border-dark bg-surface-dark">
-					<svg width="100%" height="100%" viewBox="0 0 160 160">
-						<defs>
-							<pattern id="about-avatar-grid" width="16" height="16" patternUnits="userSpaceOnUse">
-								<path d="M 16 0 L 0 0 0 16" fill="none" stroke="#2A2A2A" stroke-width="0.5" />
-							</pattern>
-						</defs>
-						<rect width="160" height="160" fill="#111" />
-						<rect width="160" height="160" fill="url(#about-avatar-grid)" />
-						<circle cx="80" cy="64" r="32" fill="none" stroke="#28D7E5" stroke-width="1" stroke-dasharray="4,3" />
-						<circle cx="80" cy="64" r="20" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" />
-						<rect x="44" y="104" width="72" height="48" rx="4" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" stroke-dasharray="4,3" />
-						<text x="80" y="133" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#28D7E5" opacity="0.5">PHOTO</text>
-						<line x1="20" y1="80" x2="140" y2="80" stroke="#2A2A2A" stroke-width="0.5" />
-					</svg>
+	<section class="relative overflow-hidden bg-ink">
+		<div class="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2 md:gap-16 md:px-12 md:py-20">
+			<div class="relative z-[2] flex flex-col justify-center">
+				<div class="pointer-events-none absolute -bottom-10 -left-10 opacity-[0.08]">
+					<Circle color="var(--color-teal)" size="160px" />
 				</div>
-				<div class="w-[200px] border border-t-0 border-border-dark bg-[#0D0D0D] px-4.5 py-4 font-mono text-[11px] leading-loose">
-					<div class="grid grid-cols-[auto_1fr] gap-x-2.5">
-						<span class="text-teal">name</span><span class="text-bg">Kyle Taylor</span>
-						<span class="text-teal">role</span><span class="text-bg">Creative Engineer</span>
-						<span class="text-teal">based</span><span class="text-bg">Dallas–Fort Worth, TX</span>
-						<span class="text-teal">open</span><span class="text-bg">to: collab</span>
+				<div class="relative text-xs font-semibold tracking-widest text-teal uppercase mb-6">Solutions Engineer</div>
+				<h1 class="relative mb-6 text-6xl leading-[0.95] font-bold tracking-tighter text-bg md:text-7xl">
+					Kyle<br />Taylor<span class="text-pink">.</span>
+				</h1>
+				<p class="relative mb-9 max-w-sm text-base leading-relaxed text-muted-light">
+					I build software, AI systems, and physical things — then write about them. Everything I make is
+					open.
+				</p>
+				<div class="relative flex flex-wrap gap-2.5">
+					<Button href="/lab" variant="primary">See the Lab &rarr;</Button>
+					<Button href="https://github.com/kyletaylored" variant="dark" target="_blank" rel="noopener noreferrer">
+						GitHub &rsaquo;
+					</Button>
+				</div>
+			</div>
+
+			<div class="relative flex items-center justify-center overflow-hidden rounded-md border border-border-dark bg-[#0D0D0D] p-8 md:p-14">
+				<div class="pointer-events-none absolute -right-8 -top-8 h-44 w-44 rounded-full bg-pink opacity-15"></div>
+				<div class="pointer-events-none absolute bottom-5 left-5">
+					<Triangle color="var(--color-yellow)" size="86px" />
+				</div>
+				<div class="pointer-events-none absolute bottom-16 right-8 opacity-20">
+					<Diamond color="var(--color-blue)" size="40px" />
+				</div>
+				<div class="pointer-events-none absolute left-10 top-10 opacity-[0.07]">
+					<DotGrid width="60px" height="60px" />
+				</div>
+
+				<div class="relative z-[2] flex flex-col items-center">
+					<div class="flex h-40 w-40 items-center justify-center overflow-hidden rounded-md border-2 border-border-dark bg-surface-dark">
+						<svg width="100%" height="100%" viewBox="0 0 160 160">
+							<defs>
+								<pattern id="about-avatar-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+									<path d="M 16 0 L 0 0 0 16" fill="none" stroke="#2A2A2A" stroke-width="0.5" />
+								</pattern>
+							</defs>
+							<rect width="160" height="160" fill="#111" />
+							<rect width="160" height="160" fill="url(#about-avatar-grid)" />
+							<circle cx="80" cy="64" r="32" fill="none" stroke="#28D7E5" stroke-width="1" stroke-dasharray="4,3" />
+							<circle cx="80" cy="64" r="20" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" />
+							<rect x="44" y="104" width="72" height="48" rx="4" fill="#1E1E1E" stroke="#28D7E5" stroke-width="0.75" stroke-dasharray="4,3" />
+							<text x="80" y="133" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#28D7E5" opacity="0.5">PHOTO</text>
+							<line x1="20" y1="80" x2="140" y2="80" stroke="#2A2A2A" stroke-width="0.5" />
+						</svg>
 					</div>
-					<div class="mt-2.5 flex gap-1.5">
-						<span class="h-2.5 w-2.5 rounded-full bg-teal"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-pink"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-yellow"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-blue"></span>
-						<span class="h-2.5 w-2.5 rounded-full bg-red"></span>
+					<div class="w-[200px] border border-t-0 border-border-dark bg-[#0D0D0D] px-4.5 py-4 font-mono text-[11px] leading-loose">
+						<div class="grid grid-cols-[auto_1fr] gap-x-2.5">
+							<span class="text-teal">name</span><span class="text-bg">Kyle Taylor</span>
+							<span class="text-teal">role</span><span class="text-bg">Solutions Engineer</span>
+							<span class="text-teal">based</span><span class="text-bg">Dallas–Fort Worth, TX</span>
+							<span class="text-teal">open</span><span class="text-bg">to: collab</span>
+						</div>
+						<div class="mt-2.5 flex gap-1.5">
+							<span class="h-2.5 w-2.5 rounded-full bg-teal"></span>
+							<span class="h-2.5 w-2.5 rounded-full bg-pink"></span>
+							<span class="h-2.5 w-2.5 rounded-full bg-yellow"></span>
+							<span class="h-2.5 w-2.5 rounded-full bg-blue"></span>
+							<span class="h-2.5 w-2.5 rounded-full bg-red"></span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -163,7 +165,7 @@ const stack = [
 				</div>
 				<div class="grid grid-cols-[auto_1fr] gap-x-2.5 gap-y-1 font-mono text-[11px] leading-loose">
 					<span class="text-teal">name</span><span class="text-ink">Kyle Taylor</span>
-					<span class="text-teal">role</span><span class="text-ink">Creative Eng.</span>
+					<span class="text-teal">role</span><span class="text-ink">Solutions Eng.</span>
 					<span class="text-teal">status</span><span class="text-pink">building</span>
 					<span class="text-teal">mood</span><span class="text-yellow">caffeinated</span>
 				</div>
