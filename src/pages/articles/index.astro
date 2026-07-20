@@ -10,7 +10,7 @@ const articles = (await getCollection('articles', ({ data }) => !data.draft)).so
 );
 ---
 
-<BaseLayout title="Articles" description="Engineering journal — writeups, notes, and deep dives.">
+<BaseLayout title="Articles" description="Engineering journal — writeups, notes, and deep dives." image="/og/articles.png">
 	<PageHeader
 		eyebrow="Engineering Journal"
 		title="Articles"

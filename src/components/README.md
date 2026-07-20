@@ -100,7 +100,19 @@ is the actual authoring surface for this content, not a build script.
 
 `src/pages/og/[...slug].png.ts` generates the fallback share image for any
 article/project/lab entry without a `heroImage`/`seo.ogImage` (see the
-media gotcha above). It used to use `astro-og-canvas`, which was replaced
+media gotcha above). Standalone pages (home, about, contact, and the
+projects/articles/lab index pages) aren't content-collection entries, so
+they never hit that fallback chain — `src/pages/og/[page].png.ts` covers
+those instead, reusing the same satori/resvg pipeline and the shared
+color tokens + decorative-shape spec from `src/lib/bannerColors.ts` /
+`src/lib/bannerArt.ts` (see also `src/pages/design/banners/[variant].png.ts`),
+just without the kicker-pill/byline row article cards have. Each of those
+6 pages passes `image="/og/<page>.png"` into `BaseLayout` to wire it up —
+add a new page here (`pages` map + the `BaseLayout` `image` prop) any
+time a new standalone route is added, or it'll silently ship with no
+social preview image at all.
+
+It used to use `astro-og-canvas`, which was replaced
 because its layout model (one title block + one description block over a
 background) can't reproduce `ui_kits/banners/Social Banners.dc.html`'s real
 layout — brand row, category pill, byline + date/read-time row, decorative

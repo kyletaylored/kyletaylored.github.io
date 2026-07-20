@@ -30,7 +30,7 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 }[];
 ---
 
-<BaseLayout title={site.siteTitle} description={site.siteDescription}>
+<BaseLayout title={site.siteTitle} description={site.siteDescription} image="/og/home.png">
 	<ParallaxSection variant="dark" eyebrow="Build weird things.">
 		<Fragment slot="heading">
 			<h1 class="mb-6 text-5xl leading-[1.0] font-bold tracking-tight text-bg md:text-7xl">
