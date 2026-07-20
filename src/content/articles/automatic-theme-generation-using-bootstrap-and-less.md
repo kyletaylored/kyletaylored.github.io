@@ -1,8 +1,10 @@
 ---
 title: Automatic Theme Generation using Bootstrap and LESS
-description: "Using Bootstrap and LESS to automatically generate Drupal themes, cutting down the time it takes to build one from scratch."
+description: Using Bootstrap and LESS to automatically generate Drupal themes,
+  cutting down the time it takes to build one from scratch.
 pubDate: 2015-10-14
 updatedDate: 2026-07-17
+heroImage: /uploads/automating-theme-development.png
 category: Web Development
 tags:
   - drupal
