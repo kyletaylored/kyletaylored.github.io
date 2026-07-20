@@ -20,12 +20,13 @@ const description = entry.collection === 'projects' ? entry.data.summary : entry
 const category =
 	entry.collection === 'projects' ? entry.data.status : entry.collection === 'lab' ? entry.data.labCategory : entry.data.category;
 
-// Same fallback chain already used for <head> og:image tags
-// (ArticleLayout.astro, ProjectLayout.astro, lab/[...slug].astro): a
-// manual override, then the entry's own hero image, then the generated
-// satori/resvg card (src/pages/og/[...slug].png.ts) — always resolves to
-// a real image, so cards never fall back to a bare gradient placeholder.
-const ogFallback = seo.ogImage ?? heroImage ?? `/og/${entry.collection}/${entry.id}.png`;
+// A manual override or the entry's own hero image wins if set. Otherwise,
+// unlike the <head> og:image fallback chain (which points at the full
+// 1200x630 article-share card from og/[...slug].png.ts), this falls back
+// to a *textless* square teaser image (og/teaser/[...slug].png.ts) —
+// reusing the text-heavy share card here used to crop title text off
+// mid-word on the smaller/squarer teaser aspect ratios (jam.dev issue #4).
+const ogFallback = seo.ogImage ?? heroImage ?? `/og/teaser/${entry.collection}/${entry.id}.png`;
 
 const hrefBase = entry.collection === 'articles' ? 'articles' : entry.collection === 'projects' ? 'projects' : 'lab';
 

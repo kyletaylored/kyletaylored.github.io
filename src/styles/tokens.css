@@ -36,6 +36,31 @@
 	--font-body: 'Space Grotesk', system-ui, sans-serif;
 	--font-mono: 'Space Mono', ui-monospace, monospace;
 
+	/*
+	 * Site-wide font size bump (jam.dev issue #2 — text read too small
+	 * relative to the design comps). This overrides Tailwind's OWN default
+	 * --text-* scale, which is what every `text-sm`/`text-lg`/etc utility
+	 * class actually reads from — NOT the `--text-*` custom properties in
+	 * tokens/typography.css. Those live on plain `:root`, outside any
+	 * `@theme` block, so they were never wired into Tailwind's utility
+	 * generator; they're inert today. (Copying their exact values here
+	 * wouldn't fix this issue anyway — that scale is smaller than
+	 * Tailwind's own default at the xs/sm/base end, which is the opposite
+	 * of what's needed.) Line-heights are left at Tailwind's defaults;
+	 * they still read fine a few px up.
+	 */
+	--text-xs: 0.8125rem;
+	--text-sm: 0.9375rem;
+	--text-base: 1.0625rem;
+	--text-lg: 1.1875rem;
+	--text-xl: 1.375rem;
+	--text-2xl: 1.625rem;
+	--text-3xl: 2rem;
+	--text-4xl: 2.5rem;
+	--text-5xl: 3.25rem;
+	--text-6xl: 4rem;
+	--text-7xl: 4.75rem;
+
 	--spacing-1: var(--space-1);
 	--spacing-2: var(--space-2);
 	--spacing-3: var(--space-3);

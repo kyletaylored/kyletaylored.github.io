@@ -9,6 +9,7 @@ import ArticleTeaserCard from '../components/ArticleTeaserCard.astro';
 import ParallaxSection from '../components/ParallaxSection.astro';
 import FloatingArtPanel from '../components/decor/FloatingArtPanel.astro';
 import site from '../data/site.json';
+import { AUTHOR_GRAVATAR_HASH, AUTHOR_NAME } from '../consts';
 
 const categories = [
 	{ href: '/projects', label: 'Projects', desc: 'Things I\'ve built, from idea to shipped.', icon: '>_', mono: true, color: 'var(--color-teal)' },
@@ -101,6 +102,35 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 					</a>
 				))
 			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-12 md:px-12">
+		<div class="grid items-center gap-10 md:grid-cols-[280px_1fr] md:gap-14">
+			<div class="relative mx-auto w-full max-w-[280px]">
+				<div class="pointer-events-none absolute -top-3 -right-3 h-full w-full rounded-md bg-teal opacity-20"></div>
+				<img
+					src={`https://www.gravatar.com/avatar/${AUTHOR_GRAVATAR_HASH}?s=480&d=identicon`}
+					alt={AUTHOR_NAME}
+					width="480"
+					height="480"
+					class="relative aspect-square w-full rounded-md border-2 border-border-dark bg-surface-dark object-cover"
+				/>
+			</div>
+			<div>
+				<div class="mb-4 flex items-center gap-2 text-xs font-bold tracking-wide text-red uppercase">
+					<span class="h-1.5 w-1.5 rounded-full bg-red"></span>
+					A Little About Me
+				</div>
+				<p class="mb-5 max-w-xl text-lg leading-relaxed text-ink">
+					I've been making things since before I knew what to call it — taking apart electronics I
+					shouldn't have, writing scripts to automate things that probably didn't need automating.
+					These days it's software, AI systems, and hardware, but the instinct hasn't changed.
+				</p>
+				<a href="/about" class="inline-flex items-center gap-1.5 text-sm font-semibold text-teal">
+					More about me &rarr;
+				</a>
+			</div>
 		</div>
 	</section>
 

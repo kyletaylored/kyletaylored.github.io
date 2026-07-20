@@ -36,10 +36,10 @@ My other favorite plugin is vagrant-autonetwork, which manages local IP addresse
 
 One of our core products is a distribution called Open Enterprise, a base profile for content marketing that is built on Drupal 7. While the basic hosting requirements between D7 and D8 are minimal, there are a few gotchas that you can work through.
 
-- Disable composer build (drupalbuildcomposerproject)If you’re using D7, you most likely aren’t using composer – so don’t bother with the build process.
-- Disable Drupal build (drupalinstallsite)If you’re dealing with a shared codebase (like a Github repo or project on Pantheon / Acquia), then put all of your client projects in one direct and link that using synced folders.
-- Downgrade PHP (phpversion)While Drupal 7 core works fine out of the box with PHP 7.x, there can be some deprecation issues with contrib modules. If you run into anything, downgrade this to 5.6.
-- Downgrade Solr (solrversion)If your project requires Search API Solr and runs on Drupal 7, you will need to downgrade your Solr version to 5.4.1 as the default 5.5.x which is not supported. There are more fixes to this specific issue, but this is the first step.
+- Disable composer build (`drupal_build_composer_project`) — If you're using D7, you most likely aren't using composer, so don't bother with the build process.
+- Disable Drupal build (`drupal_install_site`) — If you're dealing with a shared codebase (like a GitHub repo or project on Pantheon / Acquia), then put all of your client projects in one directory and link that using synced folders.
+- Downgrade PHP (`php_version`) — While Drupal 7 core works fine out of the box with PHP 7.x, there can be some deprecation issues with contrib modules. If you run into anything, downgrade this to 5.6.
+- Downgrade Solr (`solr_version`) — If your project requires Search API Solr and runs on Drupal 7, you will need to downgrade your Solr version to 5.4.1, as the default 5.5.x is not supported. There are more fixes to this specific issue, but this is the first step.
 
 **Resource Management**
 
@@ -52,68 +52,57 @@ One solution to this is to share a single VM instance when you have multiple, si
 1. Use a grouped directory to store all of your similar projects, then sync that to your DrupalVM instance.
 
 ```yaml
-vagrantsyncedfolders:
-  – localpath: /Users/developer/websites
-    destination: /var/[www/websites](http://www/websites)
-    type: nfs
-    create: true
+vagrant_synced_folders:
+  - local_path: /Users/developer/websites
+    destination: /var/www/websites
+    type: nfs
+    create: true
 ```
 
 2. Create a custom variable to use throughout the YAML configuration for this new path.
 
- Custom path for websites directory.
+```yaml
+# Custom path for websites directory.
+websites_path: "/var/www/websites"
+```
 
-websitespath: “/var/[www/websites](http://www/websites)”
+3. Using the new variable, set up all your projects under the `apache_vhosts` variable.
 
-3. Using the new variable, set up all your projects under the apachevhosts variable.
+```yaml
+# Apache VirtualHosts.
+apache_vhosts:
+  - servername: "project.{{ drupal_domain }}"
+    documentroot: "{{ websites_path }}/project"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
+  - servername: "multisite.{{ drupal_domain }}"
+    serveralias: "multisite1.{{ drupal_domain }} multisite2.{{ drupal_domain }}"
+    documentroot: "{{ websites_path }}/multisite/docroot"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
+```
 
- Apache VirtualHosts.
+4. Add your databases to the list (you only need the database name), and for simplicity's sake you can set the primary Drupal database user to have access to ALL databases (i.e., use `*.*` for privileges).
 
-apachevhosts:
+```yaml
+# MySQL databases and users.
+mysql_databases:
+  - name: "{{ drupal_db_name }}"
+  - name: "{{ drupal_db_name }}_project"
+  - name: "{{ drupal_db_name }}_multisite"
+  - name: "{{ drupal_db_name }}_multisite1"
+  - name: "{{ drupal_db_name }}_multisite2"
 
-  – servername: “project.{{ drupaldomain }}”
-
-    documentroot: “{{ websitespath }}/project”
-
-    extraparameters: “{{ apachevhostphpfpmparameters }}”
-
-  – servername: “multisite.{{ drupaldomain }}”
-
-    serveralias: “multisite1.{{ drupaldomain }} multisite2.{{ drupaldomain }}”
-
-    documentroot: “{{ websitespath }}/multisite/docroot”
-
-    extraparameters: “{{ apachevhostphpfpmparameters }}”
-
-4. Add your databases to the list (you only need the database name), and for simplicity sake you can set the primary Drupal database user to have access to ALL databases (i.e., use . for privileges).
-
- MySQL databases and users.
-
-mysqldatabases:
-
-  – name: “{{ drupaldbname }}”
-
-  – name: “{{ drupaldbname }}project”
-
-  – name: “{{ drupaldbname }}multisite”
-
-  – name: “{{ drupaldbname }}multisite1”
-
-  – name: “{{ drupaldbname }}multisite2”
-
-mysqlusers:
-
-  – name: “{{ drupaldbuser }}”
-
-    host: “%”
-
-    password: “{{ drupaldbpassword }}”
-
-    priv: “.:ALL”
+mysql_users:
+  - name: "{{ drupal_db_user }}"
+    host: "%"
+    password: "{{ drupal_db_password }}"
+    priv: "*.*:ALL"
+```
 
 5. (optional) Set your SSH Home variable to your custom project path variable.
 
-sshhome: “{{ websitespath }}”
+```yaml
+ssh_home: "{{ websites_path }}"
+```
 
 **SED Scripting**
 

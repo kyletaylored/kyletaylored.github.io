@@ -1,0 +1,90 @@
+---
+// Private, unlinked reference page — NOT real site content. Showcases
+// every ArticleTeaserCard variant (component, not a comp file — there's no
+// single "cards" .dc.html; this documents components/cards/ArticleCard.dc.html
+// as actually implemented) at real size with real content, so the
+// available card types/layouts/sizes are visible in one place instead of
+// only discoverable by grepping usage sites. Added alongside the jam.dev
+// "generated banner for teaser images" fix — see ArticleTeaserCard.astro's
+// ogFallback comment for that bug. Excluded from the sitemap
+// (astro.config.mjs's sitemap filter) and from Pagefind
+// (data-pagefind-ignore below). Not linked from any nav — reach it by
+// typing the URL directly.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleTeaserCard from '../../components/ArticleTeaserCard.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const projects = await getCollection('projects');
+const lab = await getCollection('lab');
+
+const featuredExample = articles[0];
+const compactExamples = articles.slice(1, 4);
+const verticalExamples = [articles[4], projects[0], lab[0]].filter(Boolean);
+const overlayExample = articles[5];
+---
+
+<BaseLayout title="Card System" description="Private card component reference." noindex={true}>
+	<div data-pagefind-ignore class="px-6 py-12 md:px-12">
+		<div class="mx-auto mb-12 max-w-3xl">
+			<h1 class="mb-2 text-2xl font-bold text-ink">Card System</h1>
+			<p class="text-sm text-muted">
+				Every <code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">ArticleTeaserCard</code> variant,
+				at real size, with real content. All 4 variants accept <code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">articles</code>,
+				<code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">projects</code>, or
+				<code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">lab</code> entries. When an entry has no
+				<code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">heroImage</code>/<code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">seo.ogImage</code>
+				(true of nearly everything below), the image shown is a generated, textless teaser image
+				(<code class="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">/og/teaser/&lt;collection&gt;/&lt;id&gt;.png</code>)
+				— not the full 1200×630 article-share card, which used to get cropped illegibly at these smaller
+				aspect ratios. Not linked anywhere; not in the sitemap.
+			</p>
+		</div>
+
+		<div class="mx-auto flex max-w-6xl flex-col gap-16">
+			<section>
+				<div class="mb-4 font-mono text-xs text-muted">
+					variant="featured" — aspect-video image, "Featured" pill (top-right), full padded content block.
+					Used: /lab "Latest Writing" hero slot, homepage "Featured Projects" grid.
+				</div>
+				<div class="max-w-md">
+					<ArticleTeaserCard entry={featuredExample} variant="featured" />
+				</div>
+			</section>
+
+			<section>
+				<div class="mb-4 font-mono text-xs text-muted">
+					variant="compact" (default) — fixed 96×96 square thumbnail + flex-1 text row. The thumbnail is a
+					real square (not grid-row-stretched) specifically so it never depends on neighboring content's
+					height. Used: /lab "Latest Writing" list, homepage "Latest Articles".
+				</div>
+				<div class="flex max-w-md flex-col gap-3">
+					{compactExamples.map((a) => <ArticleTeaserCard entry={a} variant="compact" />)}
+				</div>
+			</section>
+
+			<section>
+				<div class="mb-4 font-mono text-xs text-muted">
+					variant="vertical" — aspect-video image with a category/status pill overlaid bottom-left, content
+					below. Works across all 3 collections (pill shows category/status/labCategory). Used: /articles
+					index grid.
+				</div>
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+					{verticalExamples.map((entry) => <ArticleTeaserCard entry={entry} variant="vertical" />)}
+				</div>
+			</section>
+
+			<section>
+				<div class="mb-4 font-mono text-xs text-muted">
+					variant="overlay" — full-bleed 16:7 image, text overlaid via a bottom gradient scrim. Built and
+					available; not wired up anywhere yet (a natural fit for a future "post of the week" spot).
+				</div>
+				<div class="max-w-2xl">
+					<ArticleTeaserCard entry={overlayExample} variant="overlay" />
+				</div>
+			</section>
+		</div>
+	</div>
+</BaseLayout>

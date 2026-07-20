@@ -12,11 +12,13 @@ Starting with a quick run down, whenever you use a Views search page, you base i
 
 … derp. Nothing. The reason the facets don’t show up is because there isn’t a search query being run on that page, and I don’t want to have to make another search view page for a landing page, and blah blah blah. It gets ugly. So what are the other options? Well, the most popular fix was something I call "faux facets". We basically create a regular block view of taxonomy terms for whatever vocabulary I’m indexing, and then rewrite the URLs with the equivalent search URL, which may look something like this: 
 
-http://example.com/content-section/search?f\[0\]=field\_category%3A36
+```
+http://example.com/content-section/search?f[0]=field_category%3A36
+```
 
 That’s a bucket of fun if I’ve ever seen it. Now I have to style the thing to look just like the facet block I already have, it might not have the same count number as the facet, and it’s very frustrating. Luckily, we now have something up our sleeve – the Facet Block display.
 
-\[insert screenshot of options\]
+*[insert screenshot of options]*
 
 We can create a Facet Block display on our current search view, give it a name, tell it which search page we want it to redirect to, and what Facet field information (like a Category taxonomy) we want to display. And the best part is, we can put this anywhere we want! No more random view pages or faux facet taxonomy blocks, we can use the data given to us by the search index.
 

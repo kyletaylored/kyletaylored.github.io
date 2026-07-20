@@ -87,46 +87,51 @@ const autoJsonLd = {
 			)
 		}
 
-		<div class="relative mx-auto w-full max-w-[760px]">
-			<div class="mb-6 flex items-center gap-2">
-				<a href="/articles" class="text-xs font-medium tracking-wide text-muted uppercase">Articles</a>
-				<span class="text-border-dark">&rsaquo;</span>
-				<span class="text-xs font-medium tracking-wide text-teal uppercase">{category}</span>
-			</div>
-
-			<h1 class="mb-6 text-4xl leading-[1.05] font-bold tracking-tight text-bg md:text-5xl">{title}</h1>
-			<p class="mb-9 max-w-[580px] text-lg leading-relaxed text-muted-light">{description}</p>
-
-			<div class="flex flex-wrap items-center gap-4 md:gap-5">
-				<div class="flex items-center gap-2.5">
-					<img
-						src={`https://www.gravatar.com/avatar/${AUTHOR_GRAVATAR_HASH}?s=64&d=identicon`}
-						alt=""
-						width="32"
-						height="32"
-						class="h-8 w-8 flex-shrink-0 rounded-sm"
-					/>
-					<div class="text-sm font-semibold text-bg">{AUTHOR_NAME}</div>
+		{/* Outer wrapper matches the body's `mx-auto max-w-6xl` container below
+		(not its own independently-centered narrower box) so the two sections'
+		left edges line up — only the inner block caps reading width. */}
+		<div class="relative mx-auto w-full max-w-6xl">
+			<div class="max-w-[760px]">
+				<div class="mb-6 flex items-center gap-2">
+					<a href="/articles" class="text-xs font-medium tracking-wide text-muted uppercase">Articles</a>
+					<span class="text-border-dark">&rsaquo;</span>
+					<span class="text-xs font-medium tracking-wide text-teal uppercase">{category}</span>
 				</div>
-				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
-				<div class="font-mono text-[11px] text-muted"><FormattedDate date={pubDate} /></div>
-				{
-					updatedDate && (
-						<div class="font-mono text-[11px] text-muted">
-							updated <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
-				<div class="font-mono text-[11px] text-muted">{readingTime} min read</div>
-				<div class="flex flex-wrap gap-1.5 sm:ml-auto">
+
+				<h1 class="mb-6 text-4xl leading-[1.05] font-bold tracking-tight text-bg md:text-5xl">{title}</h1>
+				<p class="mb-9 max-w-[580px] text-lg leading-relaxed text-muted-light">{description}</p>
+
+				<div class="flex flex-wrap items-center gap-4 md:gap-5">
+					<div class="flex items-center gap-2.5">
+						<img
+							src={`https://www.gravatar.com/avatar/${AUTHOR_GRAVATAR_HASH}?s=64&d=identicon`}
+							alt=""
+							width="32"
+							height="32"
+							class="h-8 w-8 flex-shrink-0 rounded-sm"
+						/>
+						<div class="text-sm font-semibold text-bg">{AUTHOR_NAME}</div>
+					</div>
+					<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
+					<div class="font-mono text-[11px] text-muted"><FormattedDate date={pubDate} /></div>
 					{
-						tags.map((tag) => (
-							<span class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted">
-								{tag}
-							</span>
-						))
+						updatedDate && (
+							<div class="font-mono text-[11px] text-muted">
+								updated <FormattedDate date={updatedDate} />
+							</div>
+						)
 					}
+					<div class="hidden h-8 w-px bg-border-dark sm:block"></div>
+					<div class="font-mono text-[11px] text-muted">{readingTime} min read</div>
+					<div class="flex flex-wrap gap-1.5 sm:ml-auto">
+						{
+							tags.map((tag) => (
+								<span class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted">
+									{tag}
+								</span>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</div>
