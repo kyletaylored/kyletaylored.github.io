@@ -1,0 +1,38 @@
+---
+// Lazy-loaded YouTube embed for article bodies (MDX only — see the
+// media/embeds gotcha in README.md; plain .md files can't import
+// components). Mirrors ImageGallery.astro's figure/figcaption
+// conventions (not-prose, rounded-md, red-dot caption) so a video reads
+// as the same "media block" as an image gallery, just with a 16:9 iframe
+// instead of a <Picture>. Uses youtube-nocookie.com — no tracking cookie
+// is set until the viewer actually presses play.
+interface Props {
+	id: string;
+	title: string;
+	caption?: string;
+}
+
+const { id, title, caption } = Astro.props;
+---
+
+<figure class="not-prose my-10">
+	<div class="aspect-video overflow-hidden rounded-md bg-ink">
+		<iframe
+			class="h-full w-full"
+			src={`https://www.youtube-nocookie.com/embed/${id}`}
+			title={title}
+			loading="lazy"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			referrerpolicy="strict-origin-when-cross-origin"
+			allowfullscreen
+		/>
+	</div>
+	{
+		(caption ?? title) && (
+			<figcaption class="mt-2.5 flex items-baseline gap-2">
+				<span class="mb-0.5 h-[3px] w-[3px] flex-shrink-0 rounded-full bg-red" />
+				<span class="text-xs text-muted italic">{caption ?? title}</span>
+			</figcaption>
+		)
+	}
+</figure>
