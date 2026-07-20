@@ -1,16 +1,24 @@
 ---
 // "Floating Art Panel — Mid-Section" from guidelines/Art Blocks.dc.html —
 // "goes between content columns in a 2-up layout... creates visual
-// rhythm between sections without a full dark hero." Meant to sit in a
-// narrow middle column on light (#FAF8F3) backgrounds; hidden below `md`
-// since there's no side-by-side layout to break up on mobile.
+// rhythm between sections without a full dark hero." No sizing/position
+// classes are hardcoded here (beyond the base `relative overflow-hidden`
+// every shape needs a positioned ancestor for) — the caller decides
+// whether this renders as its own column or as a low-opacity background
+// layer behind other content (see homepage's "Latest Articles").
 import Triangle from './Triangle.astro';
 import Circle from './Circle.astro';
 import Diamond from './Diamond.astro';
 import DotGrid from './DotGrid.astro';
+
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<div class="relative hidden h-[240px] w-full overflow-hidden md:block">
+<div class:list={['relative overflow-hidden', className]}>
 	<div class="pointer-events-none absolute left-0 top-2.5 opacity-20">
 		<DotGrid width="50px" height="50px" />
 	</div>

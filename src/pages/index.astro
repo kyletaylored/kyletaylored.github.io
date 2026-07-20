@@ -154,27 +154,28 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 		)
 	}
 
-	<section class="mx-auto grid max-w-6xl gap-4 px-6 py-12 md:px-12 lg:grid-cols-[1fr_140px_1fr]">
+	<section class="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:px-12 lg:grid-cols-[1fr_1.6fr]">
 		<div>
 			<SectionHeader label="GitHub Activity" linkText={null} />
 			<GitHubContributionGraph weeks={contributionWeeks} profileUrl="https://github.com/kyletaylored" />
 		</div>
 
-		<FloatingArtPanel />
-
-		<div>
-			<SectionHeader label="Latest Articles" linkText="View all articles" linkHref="/articles" />
-			{
-				latestArticles.length > 0 ? (
-					<div class="flex flex-col gap-3">
-						{latestArticles.map((a) => (
-							<ArticleTeaserCard entry={a} variant="compact" />
-						))}
-					</div>
-				) : (
-					<p class="text-sm text-muted">No articles published yet.</p>
-				)
-			}
+		<div class="relative overflow-hidden">
+			<FloatingArtPanel class="pointer-events-none absolute inset-0 hidden opacity-[0.15] md:block" />
+			<div class="relative">
+				<SectionHeader label="Latest Articles" linkText="View all articles" linkHref="/articles" />
+				{
+					latestArticles.length > 0 ? (
+						<div class="flex flex-col gap-3">
+							{latestArticles.map((a) => (
+								<ArticleTeaserCard entry={a} variant="compact" />
+							))}
+						</div>
+					) : (
+						<p class="text-sm text-muted">No articles published yet.</p>
+					)
+				}
+			</div>
 		</div>
 	</section>
 </BaseLayout>
