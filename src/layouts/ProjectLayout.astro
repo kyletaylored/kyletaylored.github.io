@@ -309,26 +309,30 @@ const autoJsonLd = {
 		</div>
 
 		<aside data-pagefind-ignore class="flex flex-col gap-6 lg:sticky lg:top-20">
-			<div class="rounded-md border border-border bg-white p-5">
-				<div class="mb-4 text-[11px] font-bold tracking-wide text-ink uppercase">Links</div>
-				<div class="flex flex-col gap-2">
-					{links.source && (
-						<a href={links.source} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-border bg-bg px-3 py-2.5 text-xs font-semibold text-ink">
-							&#8853; GitHub repo &rarr;
-						</a>
-					)}
-					{links.demo && (
-						<a href={links.demo} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-teal bg-teal px-3 py-2.5 text-xs font-semibold text-ink">
-							&#9654; Live demo &rarr;
-						</a>
-					)}
-					{links.company && (
-						<a href={links.company} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-border bg-bg px-3 py-2.5 text-xs font-semibold text-ink">
-							&#8853; Company site &rarr;
-						</a>
-					)}
-				</div>
-			</div>
+			{
+				(links.source || links.demo || links.company) && (
+					<div class="rounded-md border border-border bg-white p-5">
+						<div class="mb-4 text-[11px] font-bold tracking-wide text-ink uppercase">Links</div>
+						<div class="flex flex-col gap-2">
+							{links.source && (
+								<a href={links.source} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-border bg-bg px-3 py-2.5 text-xs font-semibold text-ink">
+									&#8853; GitHub repo &rarr;
+								</a>
+							)}
+							{links.demo && (
+								<a href={links.demo} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-teal bg-teal px-3 py-2.5 text-xs font-semibold text-ink">
+									&#9654; Live demo &rarr;
+								</a>
+							)}
+							{links.company && (
+								<a href={links.company} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 border border-border bg-bg px-3 py-2.5 text-xs font-semibold text-ink">
+									&#8853; Company site &rarr;
+								</a>
+							)}
+						</div>
+					</div>
+				)
+			}
 
 			{
 				stack.length > 0 && (
