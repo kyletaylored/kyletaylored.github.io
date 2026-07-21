@@ -85,18 +85,20 @@ export function CommandPalette({ navEntries, demoEntries }: Props) {
 	}, [query]);
 
 	return (
-		<CommandDialog open={open} onOpenChange={setOpen}>
+		<CommandDialog open={open} onOpenChange={setOpen} shouldFilter={false}>
 			<CommandInput placeholder="Search or jump to..." value={query} onValueChange={setQuery} />
 			<CommandList>
 				<CommandEmpty>No results found.</CommandEmpty>
-				<CommandGroup heading="Navigate">
-					{navEntries.map((entry) => (
-						<CommandItem key={entry.href} onSelect={() => (window.location.href = entry.href)}>
-							{entry.label}
-						</CommandItem>
-					))}
-				</CommandGroup>
-				{demoEntries.length > 0 && (
+				{!query && (
+					<CommandGroup heading="Navigate">
+						{navEntries.map((entry) => (
+							<CommandItem key={entry.href} onSelect={() => (window.location.href = entry.href)}>
+								{entry.label}
+							</CommandItem>
+						))}
+					</CommandGroup>
+				)}
+				{!query && demoEntries.length > 0 && (
 					<CommandGroup heading="Launch Demo">
 						{demoEntries.map((entry) => (
 							<CommandItem

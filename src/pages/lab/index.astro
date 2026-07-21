@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
-import TerminalWindow from '../../components/lab/TerminalWindow.astro';
+import LabStatsPanel from '../../components/lab/LabStatsPanel.astro';
 import ArticleTeaserCard from '../../components/ArticleTeaserCard.astro';
 import HeroArt from '../../components/decor/HeroArt.astro';
 import LightSectionArt from '../../components/decor/LightSectionArt.astro';
@@ -29,6 +29,25 @@ const allEntries = [...entries].sort((a, b) => b.data.pubDate.valueOf() - a.data
 const latestArticles = (await getCollection('articles', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4);
+
+function relativeTime(date: Date): string {
+	const diffDays = Math.floor((Date.now() - date.valueOf()) / 86_400_000);
+	if (diffDays <= 0) return 'today';
+	if (diffDays === 1) return '1 day ago';
+	if (diffDays < 30) return `${diffDays} days ago`;
+	const diffMonths = Math.floor(diffDays / 30);
+	if (diffMonths < 12) return `${diffMonths} month${diffMonths > 1 ? 's' : ''} ago`;
+	const diffYears = Math.floor(diffMonths / 12);
+	return `${diffYears} year${diffYears > 1 ? 's' : ''} ago`;
+}
+
+const categoryStats = categories.map((cat) => ({
+	label: cat.label,
+	color: cat.color,
+	count: allEntries.filter((e) => e.data.labCategory === cat.key).length,
+}));
+const maxCategoryCount = Math.max(1, ...categoryStats.map((c) => c.count));
+const latestEntry = allEntries[0];
 ---
 
 <BaseLayout title="Maker Lab" description="A playground for ideas, experiments, and side projects." image="/og/lab.png">
@@ -65,25 +84,13 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 				</div>
 			</div>
 
-			<TerminalWindow title="~ lab">
-				<span class="text-teal">~ lab $</span> neofetch
-				{'\n\n'}
-				<span class="text-teal">OS</span>          kyletaylor.dev OS
-				{'\n'}
-				<span class="text-teal">Shell</span>       zsh
-				{'\n'}
-				<span class="text-teal">Editor</span>      VS Code
-				{'\n'}
-				<span class="text-teal">Lang</span>        TypeScript
-				{'\n'}
-				<span class="text-teal">Framework</span>   Astro
-				{'\n'}
-				<span class="text-teal">Uptime</span>      24/7
-				{'\n'}
-				<span class="text-teal">Location</span>    The Lab
-				{'\n\n'}
-				<span class="text-teal">~ lab $</span>
-			</TerminalWindow>
+			<LabStatsPanel
+				total={allEntries.length}
+				categories={categoryStats}
+				maxCount={maxCategoryCount}
+				latestTitle={latestEntry?.data.title}
+				latestRelative={latestEntry ? relativeTime(latestEntry.data.pubDate) : undefined}
+			/>
 		</div>
 	</section>
 
@@ -192,7 +199,16 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 	</section>
 
 	<script>
-		const filterButtons = document.querySelectorAll<HTMLElement>('[data-lab-filter]');
+		// [data-lab-filter] is shared by 3 different kinds of elements: the hero
+		// CTAs, the "Explore the Lab" tiles, and the actual filter pills in the
+		// "Everything in the Lab" section — all three should filter the grid and
+		// smooth-scroll on click, but only the pills are meant to visually show
+		// which filter is active. Toggling the active/inactive classes on ALL of
+		// them (not just `filterPills`) used to also restyle the hero CTAs —
+		// stripping their teal/dark button treatment down to a plain gray-border
+		// "pill" look any time the active filter wasn't theirs (i.e. almost always).
+		const allFilterTriggers = document.querySelectorAll<HTMLElement>('[data-lab-filter]');
+		const filterPills = document.querySelectorAll<HTMLElement>('#lab-grid button[data-lab-filter]');
 		const cards = document.querySelectorAll<HTMLElement>('[data-lab-card]');
 		const emptyState = document.getElementById('lab-empty');
 		const validKeys = new Set(['experiments', 'tools', 'playground', 'ai', 'hardware']);
@@ -204,7 +220,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 				card.style.display = match ? '' : 'none';
 				if (match) visibleCount++;
 			});
-			filterButtons.forEach((btn) => {
+			filterPills.forEach((btn) => {
 				const active = btn.dataset.labFilter === key;
 				btn.classList.toggle('border-teal', active);
 				btn.classList.toggle('bg-teal/10', active);
@@ -214,7 +230,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 			if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
 		}
 
-		filterButtons.forEach((btn) => {
+		allFilterTriggers.forEach((btn) => {
 			btn.addEventListener('click', (e) => {
 				e.preventDefault();
 				const key = btn.dataset.labFilter ?? 'all';

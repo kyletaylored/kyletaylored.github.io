@@ -1,0 +1,63 @@
+---
+// Lab hero's right-side panel — replaces a second copy of TerminalWindow
+// (which just repeated the homepage's neofetch-style hero panel verbatim).
+// Same dark "window chrome" framing as TerminalWindow for visual
+// consistency, but the content is real, live data from the lab collection
+// (total count, per-category breakdown, most recent entry) instead of
+// hardcoded shell output, so it can't drift out of date.
+interface CategoryStat {
+	label: string;
+	count: number;
+	color: string;
+}
+
+interface Props {
+	total: number;
+	categories: CategoryStat[];
+	maxCount: number;
+	latestTitle?: string;
+	latestRelative?: string;
+}
+
+const { total, categories, maxCount, latestTitle, latestRelative } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-md border border-border-dark bg-black font-mono">
+	<div class="flex items-center gap-1.5 bg-surface-dark px-3 py-2">
+		<span class="h-2.5 w-2.5 rounded-full bg-red"></span>
+		<span class="h-2.5 w-2.5 rounded-full bg-yellow"></span>
+		<span class="h-2.5 w-2.5 rounded-full bg-teal"></span>
+		<span class="ml-2 text-[13px] text-muted-light">~ lab/stats</span>
+	</div>
+	<div class="p-5">
+		<div class="mb-5 flex items-baseline justify-between">
+			<span class="text-xs tracking-wide text-muted uppercase">Experiments</span>
+			<span class="text-3xl font-bold text-bg">{total}</span>
+		</div>
+		<div class="mb-5 flex flex-col gap-2.5">
+			{
+				categories.map((cat) => (
+					<div class="flex items-center gap-2.5">
+						<span class="w-20 flex-shrink-0 truncate text-[11px] text-muted-light">{cat.label}</span>
+						<div class="h-1.5 flex-1 rounded-full bg-border-dark">
+							<div
+								class="h-1.5 rounded-full"
+								style={{ width: `${maxCount > 0 ? (cat.count / maxCount) * 100 : 0}%`, background: cat.color }}
+							/>
+						</div>
+						<span class="w-3 flex-shrink-0 text-right text-[11px] text-muted-light">{cat.count}</span>
+					</div>
+				))
+			}
+		</div>
+		{
+			latestTitle && (
+				<div class="border-t border-border-dark pt-3.5">
+					<div class="mb-1 text-[11px] tracking-wide text-muted uppercase">Latest</div>
+					<div class="truncate text-sm font-semibold text-bg">{latestTitle}</div>
+					{latestRelative && <div class="text-[11px] text-muted-light">{latestRelative}</div>}
+				</div>
+			)
+		}
+	</div>
+</div>

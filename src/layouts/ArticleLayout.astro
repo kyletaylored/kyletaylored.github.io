@@ -80,7 +80,10 @@ const autoJsonLd = {
 					<div class="pointer-events-none absolute right-10 top-10 hidden opacity-20 md:block">
 						<Triangle color="var(--color-yellow)" size="70px" />
 					</div>
-					<div class="pointer-events-none absolute left-6 bottom-5 hidden font-mono text-base tracking-[6px] text-border-dark md:block">
+					<div
+						data-pagefind-ignore
+						class="pointer-events-none absolute left-6 bottom-5 hidden font-mono text-base tracking-[6px] text-border-dark md:block"
+					>
 						/ / / /
 					</div>
 				</>
@@ -142,7 +145,7 @@ const autoJsonLd = {
 	<div class="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:px-12 md:py-16 lg:grid-cols-[1fr_280px] lg:items-start lg:gap-20">
 		{
 			toc.length > 0 && (
-				<div class="rounded-md border border-border bg-white p-4 lg:hidden">
+				<div data-pagefind-ignore class="rounded-md border border-border bg-white p-4 lg:hidden">
 					<div class="mb-2.5 text-[11px] font-bold tracking-wide text-ink uppercase">Contents</div>
 					<div class="flex flex-col gap-1.5">
 						{toc.map((h, i) => (
@@ -159,14 +162,14 @@ const autoJsonLd = {
 		<article class="prose min-w-0">
 			<Content />
 
-			<div class="mt-12 border-t border-border pt-12">
+			<div data-pagefind-ignore class="mt-12 border-t border-border pt-12">
 				<div class="mb-3 text-xs font-bold tracking-widest text-muted uppercase">Continue reading</div>
 				<p class="mb-5 text-sm text-muted">More articles and notes are on the way.</p>
 				<Button href="/articles" variant="primary">View All Articles &rarr;</Button>
 			</div>
 		</article>
 
-		<aside class="hidden flex-col gap-8 lg:sticky lg:top-20 lg:flex">
+		<aside data-pagefind-ignore class="hidden flex-col gap-8 lg:sticky lg:top-20 lg:flex">
 			{
 				toc.length > 0 && (
 					<div class="rounded-md border border-border bg-white p-5">

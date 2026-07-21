@@ -239,7 +239,7 @@ const autoJsonLd = {
 
 			{
 				relatedArticles.length > 0 && (
-					<div>
+					<div data-pagefind-ignore>
 						<div class="mb-5 flex items-center gap-2 text-xs font-bold tracking-wide uppercase">
 							<span class="h-1.5 w-1.5 rounded-full bg-red" />Related Write-ups
 						</div>
@@ -256,7 +256,7 @@ const autoJsonLd = {
 			}
 		</div>
 
-		<aside class="flex flex-col gap-6 lg:sticky lg:top-20">
+		<aside data-pagefind-ignore class="flex flex-col gap-6 lg:sticky lg:top-20">
 			<div class="rounded-md border border-border bg-white p-5">
 				<div class="mb-4 text-[11px] font-bold tracking-wide text-ink uppercase">Links</div>
 				<div class="flex flex-col gap-2">
