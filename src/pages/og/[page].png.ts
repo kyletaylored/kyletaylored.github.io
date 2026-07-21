@@ -37,6 +37,10 @@ const pages: Record<string, SitePageData> = {
 	projects: { title: 'Projects', description: "Methodology, source code, and live demos for everything I've built." },
 	articles: { title: 'Articles', description: "Writeups, notes, and deep dives on what I'm building." },
 	lab: { title: 'Maker Lab', description: 'A playground for ideas, experiments, and side projects.' },
+	design: {
+		title: 'Design System',
+		description: "How this site's design system came together — tokens, components, and patterns, shown through the real thing rather than static mockups.",
+	},
 };
 
 const decorShapes: Shape[] = [
