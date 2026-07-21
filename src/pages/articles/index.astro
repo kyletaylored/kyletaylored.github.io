@@ -23,6 +23,11 @@ const PAGE_SIZE = 9;
 	<div class="relative mx-auto max-w-6xl overflow-hidden px-6 py-12 md:px-12">
 		<LightSectionArt />
 
+		<div id="tag-filter-banner" class="relative mb-4 hidden items-center gap-2 text-xs text-muted">
+			Filtering by tag <span id="tag-filter-value" class="font-semibold text-ink"></span>
+			<a href="/articles" id="tag-filter-clear" class="text-teal hover:underline">&times; Clear</a>
+		</div>
+
 		<div class="relative mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 			<div class="flex flex-wrap gap-2">
 				<button type="button" data-article-filter="all" class="border border-teal bg-teal/10 px-4 py-2 text-xs font-semibold whitespace-nowrap">
@@ -50,7 +55,13 @@ const PAGE_SIZE = 9;
 		<div id="article-grid" class="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{
 				articles.map((a) => (
-					<div data-article-card data-category={a.data.category} data-date={a.data.pubDate.valueOf()} data-title={a.data.title.toLowerCase()}>
+					<div
+						data-article-card
+						data-category={a.data.category}
+						data-date={a.data.pubDate.valueOf()}
+						data-title={a.data.title.toLowerCase()}
+						data-tags={a.data.tags.map((t) => t.toLowerCase()).join('|')}
+					>
 						<ArticleTeaserCard entry={a} variant="vertical" />
 					</div>
 				))
@@ -71,10 +82,22 @@ const PAGE_SIZE = 9;
 	const sortSelect = document.getElementById('article-sort') as HTMLSelectElement | null;
 	const emptyState = document.getElementById('article-empty');
 	const pagination = document.getElementById('article-pagination');
+	const tagBanner = document.getElementById('tag-filter-banner');
+	const tagBannerValue = document.getElementById('tag-filter-value');
 
 	let activeFilter = 'all';
 	let activeSort = 'newest';
 	let currentPage = 1;
+	// Set by clicking a tag on an article page (?tag=drupal) — an AND on top
+	// of the category pills, not a replacement for them. Cleared via the
+	// banner's "Clear" link, which is just a plain link back to /articles.
+	const activeTag = new URLSearchParams(location.search).get('tag');
+
+	if (activeTag && tagBanner && tagBannerValue) {
+		tagBannerValue.textContent = activeTag;
+		tagBanner.classList.remove('hidden');
+		tagBanner.classList.add('flex');
+	}
 
 	function sortCards(list: HTMLElement[]): HTMLElement[] {
 		const sorted = [...list];
@@ -123,7 +146,11 @@ const PAGE_SIZE = 9;
 	}
 
 	function render() {
-		const filtered = cards.filter((card) => activeFilter === 'all' || card.dataset.category === activeFilter);
+		const filtered = cards.filter((card) => {
+			const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+			const matchesTag = !activeTag || (card.dataset.tags ?? '').split('|').includes(activeTag.toLowerCase());
+			return matchesCategory && matchesTag;
+		});
 		const sorted = sortCards(filtered);
 
 		// Reorder in the DOM so sorted order matches visual (grid) order.

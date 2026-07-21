@@ -130,9 +130,12 @@ const autoJsonLd = {
 					<div class="flex flex-wrap gap-1.5 sm:ml-auto">
 						{
 							tags.map((tag) => (
-								<span class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted">
+								<a
+									href={`/articles?tag=${encodeURIComponent(tag)}`}
+									class="rounded-full border border-border-dark px-2.5 py-0.5 text-[11px] text-muted transition-colors hover:border-teal hover:text-teal"
+								>
 									{tag}
-								</span>
+								</a>
 							))
 						}
 					</div>
@@ -192,7 +195,12 @@ const autoJsonLd = {
 				<div class="flex flex-wrap gap-1.5">
 					{
 						tags.map((tag) => (
-							<span class="rounded-full border border-border px-2.5 py-0.5 text-[11px] text-muted">{tag}</span>
+							<a
+								href={`/articles?tag=${encodeURIComponent(tag)}`}
+								class="rounded-full border border-border px-2.5 py-0.5 text-[11px] text-muted transition-colors hover:border-teal hover:text-teal"
+							>
+								{tag}
+							</a>
 						))
 					}
 				</div>
