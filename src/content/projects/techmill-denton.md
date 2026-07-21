@@ -5,7 +5,10 @@ pubDate: 2018-03-01
 status: active
 kind: role
 role: "Co-Founder & President"
+brandColor: "#DCA155"
 tags: ["nonprofit", "community", "tech education"]
+links:
+  company: "https://www.techmill.co"
 stack: []
 featured: false
 features:
