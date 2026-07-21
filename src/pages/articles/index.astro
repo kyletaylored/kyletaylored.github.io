@@ -8,6 +8,10 @@ import LightSectionArt from '../../components/decor/LightSectionArt.astro';
 const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const categories = [...new Set(articles.map((a) => a.data.category))].sort();
+
+const PAGE_SIZE = 9;
 ---
 
 <BaseLayout title="Articles" description="Engineering journal — writeups, notes, and deep dives." image="/og/articles.png">
@@ -18,8 +22,147 @@ const articles = (await getCollection('articles', ({ data }) => !data.draft)).so
 	/>
 	<div class="relative mx-auto max-w-6xl overflow-hidden px-6 py-12 md:px-12">
 		<LightSectionArt />
-		<div class="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{articles.map((a) => <ArticleTeaserCard entry={a} variant="vertical" />)}
+
+		<div class="relative mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+			<div class="flex flex-wrap gap-2">
+				<button type="button" data-article-filter="all" class="border border-teal bg-teal/10 px-4 py-2 text-xs font-semibold whitespace-nowrap">
+					All
+				</button>
+				{
+					categories.map((cat) => (
+						<button type="button" data-article-filter={cat} class="border border-border bg-white px-4 py-2 text-xs font-semibold whitespace-nowrap">
+							{cat}
+						</button>
+					))
+				}
+			</div>
+			<label class="flex items-center gap-2 text-xs font-semibold text-muted">
+				Sort
+				<select id="article-sort" class="border border-border bg-white px-3 py-2 text-xs font-semibold text-ink">
+					<option value="newest">Newest first</option>
+					<option value="oldest">Oldest first</option>
+					<option value="title-asc">Title A–Z</option>
+					<option value="title-desc">Title Z–A</option>
+				</select>
+			</label>
 		</div>
+
+		<div id="article-grid" class="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				articles.map((a) => (
+					<div data-article-card data-category={a.data.category} data-date={a.data.pubDate.valueOf()} data-title={a.data.title.toLowerCase()}>
+						<ArticleTeaserCard entry={a} variant="vertical" />
+					</div>
+				))
+			}
+		</div>
+		<p id="article-empty" class="hidden text-sm text-muted">No articles match this filter.</p>
+
+		<nav id="article-pagination" aria-label="Articles pagination" class="relative mt-8 flex flex-wrap items-center justify-center gap-2"></nav>
 	</div>
 </BaseLayout>
+
+<script>
+	const PAGE_SIZE = 9;
+
+	const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-article-card]'));
+	const grid = document.getElementById('article-grid');
+	const filterButtons = Array.from(document.querySelectorAll<HTMLElement>('[data-article-filter]'));
+	const sortSelect = document.getElementById('article-sort') as HTMLSelectElement | null;
+	const emptyState = document.getElementById('article-empty');
+	const pagination = document.getElementById('article-pagination');
+
+	let activeFilter = 'all';
+	let activeSort = 'newest';
+	let currentPage = 1;
+
+	function sortCards(list: HTMLElement[]): HTMLElement[] {
+		const sorted = [...list];
+		switch (activeSort) {
+			case 'oldest':
+				sorted.sort((a, b) => Number(a.dataset.date) - Number(b.dataset.date));
+				break;
+			case 'title-asc':
+				sorted.sort((a, b) => (a.dataset.title ?? '').localeCompare(b.dataset.title ?? ''));
+				break;
+			case 'title-desc':
+				sorted.sort((a, b) => (b.dataset.title ?? '').localeCompare(a.dataset.title ?? ''));
+				break;
+			default:
+				sorted.sort((a, b) => Number(b.dataset.date) - Number(a.dataset.date));
+		}
+		return sorted;
+	}
+
+	function renderPagination(totalPages: number) {
+		if (!pagination) return;
+		pagination.innerHTML = '';
+		if (totalPages <= 1) return;
+
+		function makeButton(label: string, page: number, disabled = false, active = false) {
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.textContent = label;
+			btn.className = active
+				? 'border border-teal bg-teal/10 px-3.5 py-2 text-xs font-semibold'
+				: 'border border-border bg-white px-3.5 py-2 text-xs font-semibold transition-colors hover:border-teal disabled:pointer-events-none disabled:opacity-40';
+			btn.disabled = disabled;
+			btn.addEventListener('click', () => {
+				currentPage = page;
+				render();
+				grid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+			return btn;
+		}
+
+		pagination.appendChild(makeButton('← Prev', currentPage - 1, currentPage === 1));
+		for (let i = 1; i <= totalPages; i++) {
+			pagination.appendChild(makeButton(String(i), i, false, i === currentPage));
+		}
+		pagination.appendChild(makeButton('Next →', currentPage + 1, currentPage === totalPages));
+	}
+
+	function render() {
+		const filtered = cards.filter((card) => activeFilter === 'all' || card.dataset.category === activeFilter);
+		const sorted = sortCards(filtered);
+
+		// Reorder in the DOM so sorted order matches visual (grid) order.
+		sorted.forEach((card) => grid?.appendChild(card));
+
+		const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+		currentPage = Math.min(currentPage, totalPages);
+		const start = (currentPage - 1) * PAGE_SIZE;
+		const end = start + PAGE_SIZE;
+		const visible = new Set(sorted.slice(start, end));
+
+		cards.forEach((card) => {
+			card.style.display = visible.has(card) ? '' : 'none';
+		});
+
+		if (emptyState) emptyState.classList.toggle('hidden', sorted.length > 0);
+		renderPagination(totalPages);
+	}
+
+	filterButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			activeFilter = btn.dataset.articleFilter ?? 'all';
+			currentPage = 1;
+			filterButtons.forEach((b) => {
+				const active = b === btn;
+				b.classList.toggle('border-teal', active);
+				b.classList.toggle('bg-teal/10', active);
+				b.classList.toggle('border-border', !active);
+				b.classList.toggle('bg-white', !active);
+			});
+			render();
+		});
+	});
+
+	sortSelect?.addEventListener('change', () => {
+		activeSort = sortSelect.value;
+		currentPage = 1;
+		render();
+	});
+
+	render();
+</script>
