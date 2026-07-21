@@ -106,7 +106,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 						</div>
 						<div>
 							<div class="mb-1.5 text-[11px] font-bold tracking-wide uppercase">{cat.label}</div>
-							<div class="text-[11px] leading-relaxed text-muted">{cat.desc}</div>
+							<div class="text-sm leading-relaxed text-muted">{cat.desc}</div>
 						</div>
 						<div class="mt-auto text-sm">&rarr;</div>
 					</a>
@@ -121,7 +121,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 				</div>
 				<div>
 					<div class="mb-1.5 text-[11px] font-bold tracking-wide uppercase">Articles</div>
-					<div class="text-[11px] leading-relaxed text-muted">Writing and write-ups.</div>
+					<div class="text-sm leading-relaxed text-muted">Writing and write-ups.</div>
 				</div>
 				<div class="mt-auto text-sm">&rarr;</div>
 			</a>
@@ -176,7 +176,7 @@ const latestArticles = (await getCollection('articles', ({ data }) => !data.draf
 									</span>
 								</div>
 							</div>
-							<div class="line-clamp-2 text-xs leading-relaxed text-muted">{item.data.description}</div>
+							<div class="line-clamp-2 text-sm leading-relaxed text-muted">{item.data.description}</div>
 							<a
 								href={`/lab/${item.id}/`}
 								class="self-start border border-border px-3 py-1 text-[10px] font-semibold whitespace-nowrap"

@@ -61,7 +61,7 @@ const directLinks = [
 
 			{
 				FORMSPREE_FORM_ID === 'REPLACE_ME' && (
-					<p class="mb-6 border border-yellow bg-yellow/10 px-4 py-3 text-xs text-muted">
+					<p class="mb-6 border border-yellow bg-yellow/10 px-4 py-3 text-sm text-muted">
 						Form isn't wired up to Formspree yet — set FORMSPREE_FORM_ID in src/consts.ts.
 					</p>
 				)
@@ -132,7 +132,7 @@ const directLinks = [
 					>
 						Send message &rarr;
 					</button>
-					<span class="text-xs text-muted-light">Usually replies within 2–3 days.</span>
+					<span class="text-sm text-muted-light">Usually replies within 2–3 days.</span>
 				</div>
 			</form>
 
@@ -209,7 +209,7 @@ const directLinks = [
 								<span class="pt-0.5 font-mono text-[10px] text-muted-light">{String(i + 1).padStart(2, '0')}</span>
 								<div>
 									<div class="mb-0.5 text-xs font-semibold">{item.title}</div>
-									<div class="text-xs leading-relaxed text-muted">{item.desc}</div>
+									<div class="text-sm leading-relaxed text-muted">{item.desc}</div>
 								</div>
 							</div>
 						))

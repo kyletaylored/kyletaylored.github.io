@@ -1,0 +1,341 @@
+---
+// Private, unlinked design-system reference page — NOT real site content.
+// Based on _reference/creative_engineer_design_system/Design Reference.dc.html,
+// but every swatch/sample below renders through the ACTUAL component/token
+// (Button.astro, decor/*, SectionHeader, etc.) rather than the comp's
+// hardcoded hex values, so this page stays honest if a token or component
+// ever drifts from the comp. Excluded from the sitemap (astro.config.mjs's
+// sitemap filter) and from Pagefind (data-pagefind-ignore below). Not
+// linked from any nav — reach it by typing the URL directly.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ActivityFeed from '../../components/ActivityFeed.astro';
+import TerminalWindow from '../../components/lab/TerminalWindow.astro';
+import { Badge } from '../../components/ui/badge';
+import Circle from '../../components/decor/Circle.astro';
+import Triangle from '../../components/decor/Triangle.astro';
+import Diamond from '../../components/decor/Diamond.astro';
+import DotGrid from '../../components/decor/DotGrid.astro';
+import HazardStripe from '../../components/decor/HazardStripe.astro';
+import CrosshairMark from '../../components/decor/CrosshairMark.astro';
+import DiagonalBar from '../../components/decor/DiagonalBar.astro';
+import HeroArt from '../../components/decor/HeroArt.astro';
+import FloatingArtPanel from '../../components/decor/FloatingArtPanel.astro';
+import LightSectionArt from '../../components/decor/LightSectionArt.astro';
+
+const colors = [
+	{ name: 'Background', varName: '--color-bg', hex: '#FAF8F3', class: 'bg-bg border border-border' },
+	{ name: 'Black', varName: '--color-black', hex: '#111111', class: 'bg-ink' },
+	{ name: 'Teal', varName: '--color-teal', hex: '#28D7E5', class: 'bg-teal' },
+	{ name: 'Pink', varName: '--color-pink', hex: '#F44D8A', class: 'bg-pink' },
+	{ name: 'Yellow', varName: '--color-yellow', hex: '#FFD54A', class: 'bg-yellow' },
+	{ name: 'Blue', varName: '--color-blue', hex: '#348BFF', class: 'bg-blue' },
+	{ name: 'Red', varName: '--color-red', hex: '#F25A4C', class: 'bg-red' },
+];
+
+const accentUsage = [
+	{ label: 'Teal — Primary', color: 'text-teal', desc: 'CTAs, highlights, logo, active nav, code terminal' },
+	{ label: 'Pink — Secondary', color: 'text-pink', desc: 'Inline emphasis, separator bars, footer CTA' },
+	{ label: 'Yellow — Tertiary', color: 'text-yellow', desc: 'Decorative shapes, hazard stripes' },
+	{ label: 'Red — Status', color: 'text-red', desc: 'Section dot, new-item labels, error states' },
+];
+
+const typeScale = [
+	{ meta: "Tailwind text-7xl · 700 · site's largest heading", el: 'h1', class: 'text-7xl font-bold leading-[1.0] tracking-tight', text: 'Welcome to the Lab.' },
+	{ meta: 'Tailwind text-5xl · 700', el: 'div', class: 'text-5xl font-bold leading-[1.05] tracking-tight', text: 'Building AI systems.' },
+	{ meta: 'Tailwind text-3xl · 700', el: 'div', class: 'text-3xl font-bold leading-[1.15]', text: 'Featured Projects' },
+	{ meta: 'Tailwind text-sm · 700 · wide · caps', el: 'div', class: 'text-sm font-bold tracking-[0.1em] uppercase', text: 'Explore the Lab · Featured Experiments' },
+	{ meta: 'Tailwind text-lg · 400 · body copy', el: 'p', class: 'text-lg leading-relaxed text-ink max-w-xl', text: 'Body text — clear, readable. Used in article body, card descriptions, and general prose content.' },
+];
+
+const spacingScale = [
+	{ varName: '--space-1', px: 4 },
+	{ varName: '--space-2', px: 8 },
+	{ varName: '--space-4', px: 16 },
+	{ varName: '--space-6', px: 24 },
+	{ varName: '--space-8', px: 32 },
+	{ varName: '--space-12', px: 48 },
+	{ varName: '--space-20', px: 80 },
+	{ varName: '--space-24', px: 96 },
+];
+
+const activityItems = [
+	{ type: 'experiment' as const, title: 'New Experiment', description: 'Added Neural Texture Synthesis', time: '2h ago' },
+	{ type: 'git' as const, title: 'Git Push', description: 'Pushed 3 commits to flow-fields', time: '5h ago' },
+	{ type: 'tool' as const, title: 'New Tool', description: 'Added QR Code Generator', time: '1d ago' },
+];
+---
+
+<BaseLayout title="Design System" description="Private design-system reference." noindex={true}>
+	<div data-pagefind-ignore>
+		<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
+			<HeroArt />
+			<div class="relative mx-auto max-w-6xl">
+				<div class="mb-4 text-xs font-semibold tracking-widest text-teal uppercase">Creative Engineer Design System</div>
+				<h1 class="mb-4 text-6xl font-bold leading-[1.0] tracking-tight text-bg md:text-7xl">Design System<span class="text-pink">.</span></h1>
+				<p class="max-w-2xl text-base text-muted-light">
+					Tokens, typography, color, components, and patterns — every sample below renders through the real
+					component or CSS token, not a hardcoded value, so this page can't silently drift from the site.
+				</p>
+			</div>
+		</section>
+		<div class="h-1 bg-pink"></div>
+
+		<div class="mx-auto max-w-6xl px-6 md:px-12">
+			<!-- COLOR PALETTE -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Color Palette" linkText={null} />
+				<div class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+					{colors.map((c) => (
+						<div>
+							<div class:list={['mb-2 h-20 rounded-md', c.class]}></div>
+							<div class="text-sm font-semibold text-ink">{c.name}</div>
+							<div class="font-mono text-xs text-muted">{c.hex}</div>
+							<div class="mt-0.5 font-mono text-[10px] text-muted-light">{c.varName}</div>
+						</div>
+					))}
+				</div>
+				<div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+					{accentUsage.map((a) => (
+						<div class="rounded-md border border-border bg-white p-3.5">
+							<div class:list={['mb-1 text-[10px] font-bold tracking-wide uppercase', a.color]}>{a.label}</div>
+							<div class="text-xs leading-relaxed text-muted">{a.desc}</div>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- TYPOGRAPHY -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Typography" linkText={null} />
+				<div class="flex flex-col">
+					{typeScale.map((t) => (
+						<div class="grid grid-cols-1 gap-3 border-b border-surface py-5 last:border-b-0 md:grid-cols-[160px_1fr] md:items-baseline">
+							<div class="font-mono text-[10px] leading-relaxed text-muted-light">{t.meta}</div>
+							<div class:list={[t.class]}>{t.text}</div>
+						</div>
+					))}
+					<div class="grid grid-cols-1 gap-3 py-5 md:grid-cols-[160px_1fr] md:items-baseline">
+						<div class="font-mono text-[10px] leading-relaxed text-muted-light">Space Mono · 400 · terminal</div>
+						<div class="font-mono text-sm leading-loose text-teal">
+							~ lab $ neofetch{'\n'}
+							<span class="text-bg">OS kyletaylor.dev OS · Shell zsh · Editor VS Code</span>
+						</div>
+					</div>
+				</div>
+				<p class="mt-6 max-w-2xl text-xs leading-relaxed text-muted">
+					Note: <code class="rounded bg-surface px-1.5 py-0.5 font-mono">tokens/typography.css</code>'s own
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">--text-*</code> custom properties (xs
+					through 6xl) aren't wired into Tailwind's utility generator — they live on plain <code class="rounded bg-surface px-1.5 py-0.5 font-mono">:root</code>,
+					outside any <code class="rounded bg-surface px-1.5 py-0.5 font-mono">@theme</code> block. The scale
+					actually driving every <code class="rounded bg-surface px-1.5 py-0.5 font-mono">text-*</code> class
+					above is the override in <code class="rounded bg-surface px-1.5 py-0.5 font-mono">src/styles/tokens.css</code>'s
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">@theme</code> block.
+				</p>
+			</section>
+
+			<!-- BUTTONS -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Buttons" linkText={null} />
+				<div class="flex flex-col gap-4">
+					<div class="flex flex-wrap items-center gap-3">
+						<Button href="#" variant="primary">Browse Experiments &rarr;</Button>
+						<Button href="#" variant="secondary">View All Tools &rsaquo;</Button>
+					</div>
+					<div class="flex flex-wrap items-center gap-3 bg-ink p-5">
+						<Button href="#" variant="dark-solid">Browse Experiments &rarr;</Button>
+						<Button href="#" variant="dark">View on GitHub &rarr;</Button>
+					</div>
+				</div>
+			</section>
+
+			<!-- TAGS & BADGES -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Tags &amp; Badges" linkText={null} />
+				<div class="flex flex-col gap-4">
+					<div class="flex flex-wrap items-center gap-2">
+						<span class="w-20 font-mono text-[10px] text-muted-light">In use</span>
+						<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted">webgl</span>
+						<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted">audio</span>
+						<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted">esp32</span>
+					</div>
+					<div class="flex flex-wrap items-center gap-2">
+						<span class="w-20 font-mono text-[10px] text-muted-light">ui/badge.tsx</span>
+						<Badge variant="teal">teal</Badge>
+						<Badge variant="pink">pink</Badge>
+						<Badge variant="yellow">yellow</Badge>
+						<Badge variant="blue">blue</Badge>
+						<Badge variant="outline">outline</Badge>
+					</div>
+				</div>
+				<p class="mt-4 max-w-2xl text-xs leading-relaxed text-muted">
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">ui/badge.tsx</code> is built and styled but
+					not used anywhere yet — every tag/pill on the live site today is the hand-written
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">&lt;span&gt;</code> pattern shown above it.
+				</p>
+			</section>
+
+			<!-- CARDS -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Cards" linkText="Full card system →" linkHref="/design/cards" />
+				<p class="max-w-2xl text-sm leading-relaxed text-muted">
+					Every <code class="rounded bg-surface px-1.5 py-0.5 font-mono">ArticleTeaserCard</code> variant
+					(featured, compact, vertical, overlay) at real size with real content lives at
+					<a href="/design/cards" class="text-teal">/design/cards</a>. <code class="rounded bg-surface px-1.5 py-0.5 font-mono">ui/card.tsx</code>
+					(a plain Card/CardHeader/CardContent primitive set) is also built but, like Badge, not used
+					anywhere yet — every card grid on the live site is hand-rolled markup instead.
+				</p>
+			</section>
+
+			<!-- DECORATIVE SHAPES & PATTERNS -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Decorative Shapes &amp; Patterns" linkText={null} />
+				<div class="flex flex-wrap gap-10">
+					<div>
+						<div class="mb-4 font-mono text-[10px] text-muted-light">Geometric</div>
+						<div class="flex items-end gap-6">
+							<div class="flex flex-col items-center gap-2">
+								<Circle color="var(--color-pink)" size="56px" />
+								<span class="text-[10px] text-muted-light">Circle</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<Triangle color="var(--color-teal)" size="56px" />
+								<span class="text-[10px] text-muted-light">Triangle</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<Diamond color="var(--color-blue)" size="24px" />
+								<span class="text-[10px] text-muted-light">Diamond</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<DiagonalBar color="var(--color-yellow)" width="56px" height="18px" />
+								<span class="text-[10px] text-muted-light">Diagonal</span>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="mb-4 font-mono text-[10px] text-muted-light">Patterns</div>
+						<div class="flex items-end gap-6">
+							<div class="flex flex-col items-center gap-2">
+								<DotGrid width="60px" height="60px" color="var(--color-ink)" />
+								<span class="text-[10px] text-muted-light">Dot grid</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<div class="overflow-hidden rounded-sm"><HazardStripe width="60px" height="24px" /></div>
+								<span class="text-[10px] text-muted-light">Hazard</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<span class="font-mono text-2xl tracking-[4px] text-muted">/ / /</span>
+								<span class="text-[10px] text-muted-light">Slash marks</span>
+							</div>
+							<div class="flex flex-col items-center gap-2">
+								<CrosshairMark color="var(--color-ink)" size="32px" />
+								<span class="text-[10px] text-muted-light">Crosshair</span>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="mb-4 font-mono text-[10px] text-muted-light">Icon boxes</div>
+						<div class="flex items-center gap-2.5">
+							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-ink">
+								<span class="font-mono text-base font-bold text-teal">&gt;_</span>
+							</div>
+							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-ink">
+								<span class="font-mono text-sm text-pink">&lt;/&gt;</span>
+							</div>
+							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-ink">
+								<span class="text-xl text-yellow">⬡</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="mt-6 max-w-2xl text-xs leading-relaxed text-muted">
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">CrosshairMark</code> and
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">DiagonalBar</code> are unused in real
+					compositions (<code class="rounded bg-surface px-1.5 py-0.5 font-mono">HeroArt</code> hand-rolls its
+					own <code class="rounded bg-surface px-1.5 py-0.5 font-mono">+</code>/slash-marks instead) — see
+					components/README.md for why (wrong shape / hardcoded angle, not a bug).
+				</p>
+			</section>
+
+			<!-- COMPOSED ART -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Composed Art" linkText={null} />
+				<div class="flex flex-col gap-6">
+					<div>
+						<div class="mb-2 font-mono text-[10px] text-muted-light">HeroArt — dark hero sections</div>
+						<div class="relative h-[220px] overflow-hidden rounded-md bg-ink">
+							<HeroArt />
+						</div>
+					</div>
+					<div class="grid gap-6 md:grid-cols-2">
+						<div>
+							<div class="mb-2 font-mono text-[10px] text-muted-light">LightSectionArt — light sections, right-edge only</div>
+							<div class="relative h-[180px] overflow-hidden rounded-md border border-border bg-bg">
+								<LightSectionArt />
+							</div>
+						</div>
+						<div>
+							<div class="mb-2 font-mono text-[10px] text-muted-light">FloatingArtPanel — mid-section rhythm</div>
+							<div class="relative h-[180px] overflow-hidden rounded-md border border-border bg-bg">
+								<FloatingArtPanel class="h-full" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION HEADER PATTERN -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Section Header Pattern" linkText={null} />
+				<div class="flex max-w-2xl flex-col gap-1">
+					<SectionHeader label="Explore the Lab" linkText="View all experiments" linkHref="#" />
+					<SectionHeader label="Latest Tools" linkText="View all tools" linkHref="#" />
+				</div>
+			</section>
+
+			<!-- ACTIVITY FEED -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Activity Feed" linkText={null} />
+				<div class="max-w-xl">
+					<ActivityFeed items={activityItems} />
+				</div>
+				<p class="mt-4 max-w-2xl text-xs leading-relaxed text-muted">
+					Kept as a reference implementation — the homepage replaced this with
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">GitHubContributionGraph.astro</code>, and
+					<code class="rounded bg-surface px-1.5 py-0.5 font-mono">/lab</code> dropped it outright.
+				</p>
+			</section>
+
+			<!-- TERMINAL WINDOW -->
+			<section class="border-b border-border py-12">
+				<SectionHeader label="Terminal Window" linkText={null} />
+				<div class="max-w-md">
+					<TerminalWindow title="~ kyletaylored.com">
+						<span class="text-teal">~ $</span> whoami
+						{'\n\n'}
+						<span class="text-teal">Name</span> Kyle Taylor
+						{'\n'}
+						<span class="text-teal">Role</span> Solutions Engineer
+						{'\n\n'}
+						<span class="text-teal">~ $</span>
+					</TerminalWindow>
+				</div>
+			</section>
+
+			<!-- SPACING SCALE -->
+			<section class="py-12">
+				<SectionHeader label="Spacing Scale" linkText={null} />
+				<div class="flex flex-col gap-2">
+					{spacingScale.map((s) => (
+						<div class="grid grid-cols-[120px_1fr_50px] items-center gap-4">
+							<div class="font-mono text-[10px] text-muted-light">{s.varName} · {s.px}px</div>
+							<div class="h-3 rounded-sm bg-teal" style={{ width: `${s.px}px` }}></div>
+							<div class="text-[10px] text-muted">{s.px}px</div>
+						</div>
+					))}
+				</div>
+			</section>
+		</div>
+	</div>
+</BaseLayout>
