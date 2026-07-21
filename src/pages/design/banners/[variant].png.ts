@@ -44,15 +44,18 @@ const articleDate = latestArticle
 
 function buildContent(key: BannerKey): unknown {
 	switch (key) {
-		case 'linkedin':
+		case 'linkedin-left':
+		case 'linkedin-right': {
+			const side = key === 'linkedin-left' ? { left: '64px' } : { right: '64px' };
 			return div(
-				{ position: 'absolute', left: '64px', top: '50%', transform: 'translateY(-50%)', flexDirection: 'column' },
+				{ position: 'absolute', ...side, top: '50%', transform: 'translateY(-50%)', flexDirection: 'column', alignItems: key === 'linkedin-right' ? 'flex-end' : 'flex-start' },
 				[
 					div({ alignItems: 'center', gap: '10px', marginBottom: '14px' }, [brandMark(28), span({ fontSize: '12px', fontWeight: 600, letterSpacing: '2px', color: MUTED, textTransform: 'uppercase' }, site.brandLabel)]),
 					div({ fontSize: '52px', fontWeight: 700, lineHeight: 1.0, letterSpacing: '-1px', color: BG, marginBottom: '10px' }, [site.siteTitle, span({ color: PINK }, '.')]),
 					span({ fontFamily: 'Space Mono', fontSize: '16px', color: MUTED_DARK }, 'kyletaylored.com'),
 				],
 			);
+		}
 		case 'github':
 			return div({ position: 'absolute', left: 0, top: 0, width: '1280px', height: '640px' }, [
 				div({ position: 'absolute', left: 0, top: 0, bottom: 0, width: '520px', backgroundColor: '#0D0D0D', flexDirection: 'column' }, [

@@ -25,7 +25,8 @@ const readingTime = latestArticle
 	? Math.max(1, Math.round((latestArticle.body ?? '').trim().split(/\s+/).filter(Boolean).length / 200))
 	: 1;
 
-const linkedin = BANNER_SPECS.linkedin;
+const linkedinLeft = BANNER_SPECS['linkedin-left'];
+const linkedinRight = BANNER_SPECS['linkedin-right'];
 const github = BANNER_SPECS.github;
 const email = BANNER_SPECS.email;
 const squareHome = BANNER_SPECS['square-home'];
@@ -46,15 +47,37 @@ const squareArticle = BANNER_SPECS['square-article'];
 		<div class="mx-auto flex max-w-[1600px] flex-col gap-16">
 			<div>
 				<div class="mb-3 flex items-center justify-between font-mono text-xs text-muted">
-					<span>{linkedin.dims} — {linkedin.label}</span>
-					<a href="/design/banners/linkedin.png" download class="font-sans text-xs font-semibold text-teal hover:underline">↓ Download PNG</a>
+					<span>{linkedinLeft.dims} — {linkedinLeft.label}</span>
+					<a href="/design/banners/linkedin-left.png" download class="font-sans text-xs font-semibold text-teal hover:underline">↓ Download PNG</a>
 				</div>
+				<p class="mb-3 text-xs text-muted">Use this variant if LinkedIn's circular profile photo (bottom-left of the cover) doesn't overlap your text.</p>
 				<div class="relative flex h-[396px] w-[1584px] items-center overflow-hidden bg-ink px-16">
-					<Fragment set:html={shapesToHtml(linkedin.shapes)} />
+					<Fragment set:html={shapesToHtml(linkedinLeft.shapes)} />
 					<div class="relative">
 						<div class="mb-3.5 flex items-center gap-2.5">
 							<div class="flex h-7 w-7 items-center justify-center rounded-sm bg-teal text-sm font-bold text-ink">K</div>
 							<span class="text-xs font-semibold tracking-widest text-muted uppercase">{site.brandLabel}</span>
+						</div>
+						<div class="mb-2.5 text-5xl font-bold tracking-tight text-bg">
+							{site.siteTitle}<span class="text-pink">.</span>
+						</div>
+						<div class="font-mono text-base text-muted-light">kyletaylored.com</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div class="mb-3 flex items-center justify-between font-mono text-xs text-muted">
+					<span>{linkedinRight.dims} — {linkedinRight.label}</span>
+					<a href="/design/banners/linkedin-right.png" download class="font-sans text-xs font-semibold text-teal hover:underline">↓ Download PNG</a>
+				</div>
+				<p class="mb-3 text-xs text-muted">Use this variant instead — content sits on the right, clear of the profile photo overlay.</p>
+				<div class="relative flex h-[396px] w-[1584px] items-center justify-end overflow-hidden bg-ink px-16">
+					<Fragment set:html={shapesToHtml(linkedinRight.shapes)} />
+					<div class="relative text-right">
+						<div class="mb-3.5 flex items-center justify-end gap-2.5">
+							<span class="text-xs font-semibold tracking-widest text-muted uppercase">{site.brandLabel}</span>
+							<div class="flex h-7 w-7 items-center justify-center rounded-sm bg-teal text-sm font-bold text-ink">K</div>
 						</div>
 						<div class="mb-2.5 text-5xl font-bold tracking-tight text-bg">
 							{site.siteTitle}<span class="text-pink">.</span>

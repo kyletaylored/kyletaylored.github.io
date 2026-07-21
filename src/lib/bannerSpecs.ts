@@ -7,7 +7,7 @@
 import type { Shape } from './bannerArt';
 import { TEAL, PINK, YELLOW, BLUE, INK } from './bannerColors';
 
-export type BannerKey = 'linkedin' | 'github' | 'email' | 'square-home' | 'square-article';
+export type BannerKey = 'linkedin-left' | 'linkedin-right' | 'github' | 'email' | 'square-home' | 'square-article';
 
 export interface BannerSpec {
 	key: BannerKey;
@@ -26,28 +26,64 @@ function bottomBar(width: number): Shape {
 	return { kind: 'bar', left: 0, bottom: 0, width, height: 4, color: PINK, rotate: 0 };
 }
 
+// Horizontally flips a shape's position (and, for rotated shapes, negates
+// the angle so the rotation mirrors too) — used to derive the "content on
+// the right" LinkedIn banner from the "content on the left" one, since
+// LinkedIn's circular profile photo overlaps the bottom-left of the cover
+// banner and would otherwise sit right on top of left-aligned text.
+function mirrorShape(shape: Shape): Shape {
+	const { left, right, ...rest } = shape;
+	const flipped: Shape = {
+		...rest,
+		...(right !== undefined ? { left: right } : {}),
+		...(left !== undefined ? { right: left } : {}),
+	};
+	if ('rotate' in flipped && typeof flipped.rotate === 'number') {
+		flipped.rotate = -flipped.rotate;
+	}
+	return flipped;
+}
+
+function mirrorShapes(shapes: Shape[]): Shape[] {
+	return shapes.map(mirrorShape);
+}
+
+const linkedinLeftShapes: Shape[] = [
+	{ kind: 'circle', left: -40, bottom: -40, size: 220, color: YELLOW },
+	{ kind: 'bar', left: -30, top: 60, width: 420, height: 14, color: TEAL, rotate: -8, opacity: 0.7 },
+	{ kind: 'dotgrid', left: 160, top: 0, width: 220, height: 396, color: DARK_LINE, spacing: 14 },
+	{ kind: 'diamond', left: 720, top: 40, size: 22, color: BLUE },
+	{ kind: 'crosshair', left: 860, top: 150, size: 46, color: DARK_GRID },
+	{ kind: 'hazard', left: 700, top: 0, width: 14, height: 396, colorA: YELLOW, colorB: '#1E1E1E', opacity: 0.3 },
+	{ kind: 'triangle', right: 250, top: -20, width: 170, height: 150, color: TEAL, opacity: 0.5 },
+	{ kind: 'circle', right: -60, top: -60, size: 260, color: PINK },
+	{ kind: 'ring', right: 60, bottom: 40, size: 100, border: 3, color: DARK_GRID },
+	{ kind: 'diamond', right: 100, top: 40, size: 16, color: PINK, opacity: 0.7 },
+	{ kind: 'slashes', right: 40, bottom: 32, color: DARK_LINE, dotColor: YELLOW },
+	bottomBar(1584),
+];
+
 export const BANNER_SPECS: Record<BannerKey, BannerSpec> = {
-	linkedin: {
-		key: 'linkedin',
-		label: 'LinkedIn Profile Banner',
+	'linkedin-left': {
+		key: 'linkedin-left',
+		label: 'LinkedIn Profile Banner — Content Left',
 		dims: '1584 × 396',
 		width: 1584,
 		height: 396,
 		background: INK,
-		shapes: [
-			{ kind: 'circle', left: -40, bottom: -40, size: 220, color: YELLOW },
-			{ kind: 'bar', left: -30, top: 60, width: 420, height: 14, color: TEAL, rotate: -8, opacity: 0.7 },
-			{ kind: 'dotgrid', left: 160, top: 0, width: 220, height: 396, color: DARK_LINE, spacing: 14 },
-			{ kind: 'diamond', left: 720, top: 40, size: 22, color: BLUE },
-			{ kind: 'crosshair', left: 860, top: 150, size: 46, color: DARK_GRID },
-			{ kind: 'hazard', left: 700, top: 0, width: 14, height: 396, colorA: YELLOW, colorB: '#1E1E1E', opacity: 0.3 },
-			{ kind: 'triangle', right: 250, top: -20, width: 170, height: 150, color: TEAL, opacity: 0.5 },
-			{ kind: 'circle', right: -60, top: -60, size: 260, color: PINK },
-			{ kind: 'ring', right: 60, bottom: 40, size: 100, border: 3, color: DARK_GRID },
-			{ kind: 'diamond', right: 100, top: 40, size: 16, color: PINK, opacity: 0.7 },
-			{ kind: 'slashes', right: 40, bottom: 32, color: DARK_LINE, dotColor: YELLOW },
-			bottomBar(1584),
-		],
+		shapes: linkedinLeftShapes,
+	},
+	'linkedin-right': {
+		key: 'linkedin-right',
+		label: 'LinkedIn Profile Banner — Content Right',
+		dims: '1584 × 396',
+		width: 1584,
+		height: 396,
+		background: INK,
+		// LinkedIn's profile photo overlaps the bottom-left of the banner —
+		// use this variant instead of linkedin-left whenever that would
+		// otherwise sit on top of the text.
+		shapes: mirrorShapes(linkedinLeftShapes),
 	},
 	github: {
 		key: 'github',
@@ -126,4 +162,4 @@ export const BANNER_SPECS: Record<BannerKey, BannerSpec> = {
 	},
 };
 
-export const BANNER_ORDER: BannerKey[] = ['linkedin', 'github', 'email', 'square-home', 'square-article'];
+export const BANNER_ORDER: BannerKey[] = ['linkedin-left', 'linkedin-right', 'github', 'email', 'square-home', 'square-article'];
