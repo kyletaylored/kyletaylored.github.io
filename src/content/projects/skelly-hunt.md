@@ -30,7 +30,7 @@ lessons:
 seo: {}
 ---
 
-Skelly Hunt is an NFC scavenger hunt platform I built for Denton's annual Halloween event, run through TechMill Denton — physical checkpoints, a live leaderboard, and infrastructure that costs nothing to run at event scale.
+Skelly Hunt is a personal project — an NFC scavenger hunt platform I built for Denton's annual Halloween event — physical checkpoints, a live leaderboard, and infrastructure that costs nothing to run at event scale.
 
 Participants tap an NFC card (or scan a QR code) at locations around town — no app install. ESP32 terminals at physical checkpoints read the cards and show real-time feedback; everything else — the API, the admin dashboard, the leaderboard — runs on Cloudflare's free tier, with Datadog RUM and OpenTelemetry wired in for observability across the browser, API, and firmware.
 

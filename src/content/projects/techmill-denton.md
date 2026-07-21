@@ -23,10 +23,6 @@ features:
     description: "TechMill's community overlapped heavily with Denton's Startup Weekend events, which I also helped facilitate."
     icon: "▶"
     href: "/articles/3rd-annual-startup-weekend-denton/"
-  - title: "Skelly Hunt"
-    description: "TechMill's current flagship event — an open-source NFC scavenger hunt run every Halloween around Denton."
-    icon: "⬡"
-    href: "/projects/skelly-hunt/"
 lessons:
   - title: "Starting something is easier than sustaining it"
     description: "Running a volunteer org long-term is a different problem than getting it off the ground — and a much harder one."
@@ -39,4 +35,4 @@ TechMill Denton is a local tech nonprofit I helped co-found — a volunteer coll
 
 Most of what TechMill did overlapped with the broader Denton startup scene I was already part of through Startup Weekend and Startup Digest — open-data collaborations, community meetups, and events aimed at making it easier for people to get into tech without a traditional CS background.
 
-Most of TechMill's regular programming is currently in a holding pattern — the one exception is Skelly Hunt, the annual Halloween scavenger hunt, which is still actively running and developed each year.
+TechMill is currently in a holding pattern rather than actively running events — the entity's still around in case we bring it back.
