@@ -44,6 +44,10 @@ jobs:
             echo "GH_ACTIVITY_TOKEN not set, skipping activity fetch"
           fi
 
+      - name: Compute short SHA
+        id: short_sha
+        run: echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
       - name: Build with Astro
         env:
           GTM_ID: ${{ secrets.GTM_ID }}
@@ -52,7 +56,7 @@ jobs:
           DATADOG_RUM_SITE: ${{ secrets.DATADOG_RUM_SITE }}
           DATADOG_RUM_SERVICE: ${{ secrets.DATADOG_RUM_SERVICE }}
           DATADOG_RUM_ENV: production
-          DATADOG_RUM_VERSION: ${{ github.sha }}
+          DATADOG_RUM_VERSION: ${{ steps.short_sha.outputs.sha }}
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
           DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
         run: |
