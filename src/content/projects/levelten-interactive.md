@@ -9,7 +9,7 @@ role: "Senior Drupal Developer"
 brandColor: "#2E5485"
 tags: ["drupal", "web development"]
 links:
-  company: "https://leveltengroup.com"
+  company: "https://getlevelten.com"
 stack: ["Drupal", "PHP", "jQuery", "Rackspace", "Pantheon", "Acquia"]
 featured: false
 features:
@@ -30,4 +30,6 @@ seo: {}
 
 I started at LevelTen as a Developer Intern in 2012 and stayed on as a Senior Drupal Developer through 2018 — building custom modules, features, and themes for client websites, and shipping everything from backend work to production releases on Rackspace, Pantheon, and Acquia.
 
-Somewhere in there I wrote a few blog posts about the jQuery Masonry library that got enough traction that a Packt Publishing editor reached out about turning one into a short book. Around the same time, a research project from my last semester at UNT pulled me into Denton's startup community, which is where the DrawAttention side project (and most of what I still do outside of work) traces back to.
+I also wrote a lot — dozens of posts on LevelTen's blog covering Drupal hosting comparisons, performance tuning, DrupalVM, Display Suite, and whatever else I'd just spent a week debugging. A few are still up here: [Automatic Theme Generation using Bootstrap and LESS](/articles/automatic-theme-generation-using-bootstrap-and-less/), [Best Bang for No Bucks – A Comparison of Free Drupal Hosting Platforms](/articles/best-bang-for-no-bucks-a-comparison-of-free-drupal-hosting-platforms/) and its follow-up [The Golden Toolbox](/articles/the-golden-toolbox-drupal-hosting-platform-features/), [Facet Blocks – The Unknown Hero](/articles/facet-blocks-the-unknown-hero/), [Fighting Field Labels with Display Suite Extras](/articles/fighting-field-labels-with-display-suite-extras/), [Managing your DrupalVM Environment](/articles/managing-your-drupalvm-environment-vagrant-plugins-and-sed-scripts/), and [My Top 5 Favorite Drupal Development Workflow Tricks](/articles/my-top-5-favorite-drupal-development-workflow-tricks/). Enough people read the jQuery Masonry ones that a Packt Publishing editor reached out about turning one into a short book.
+
+Around the same time, a research project from my last semester at UNT pulled me into Denton's startup community, which is where the DrawAttention side project (and most of what I still do outside of work) traces back to.
