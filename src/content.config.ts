@@ -38,12 +38,22 @@ const projects = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			status: z.enum(['active', 'archived', 'concept']).default('active'),
+			// 'role' entries represent a job/company era rather than a single
+			// piece of software — `title` becomes the company name, `role` is
+			// the job title, and `brandColor` tints the page's accent shapes
+			// instead of the default teal/pink. `features` becomes "notable
+			// work built there" (each optionally linking out via `href`) and
+			// `lessons` becomes what that role taught. See components/README.md.
+			kind: z.enum(['project', 'role']).default('project'),
+			role: z.string().optional(),
+			brandColor: z.string().optional(),
 			tags: z.array(z.string()).default([]),
 			links: z
 				.object({
 					caseStudy: z.string().optional(),
 					source: z.string().url().optional(),
 					demo: z.string().url().optional(),
+					company: z.string().url().optional(),
 				})
 				.default({}),
 			stack: z.array(z.string()).default([]),
@@ -63,6 +73,10 @@ const projects = defineCollection({
 						icon: z.string().optional(),
 						title: z.string(),
 						description: z.string(),
+						// Plain string, not `.url()` — a "notable work" link may point
+						// at a relative in-site path (e.g. an article write-up) as
+						// easily as an external URL.
+						href: z.string().optional(),
 					}),
 				)
 				.default([]),

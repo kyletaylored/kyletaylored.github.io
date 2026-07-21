@@ -97,6 +97,21 @@ content:
         options:
           values: [active, archived, concept]
         default: active
+      - name: kind
+        label: Kind
+        description: "'Role' represents a job/company era instead of a single piece of software — title becomes the company name, and Role/Brand Color below apply."
+        type: select
+        options:
+          values: [project, role]
+        default: project
+      - name: role
+        label: Job Title
+        description: Only used when Kind is "role", e.g. "Senior Sales Engineer".
+        type: string
+      - name: brandColor
+        label: Brand Color
+        description: Hex color (e.g. #632CA6) used to accent-tint the page when Kind is "role". Leave blank to use the site's default teal/pink accents.
+        type: string
       - name: tags
         label: Tags
         description: Also used as SEO keywords automatically — no need to duplicate them elsewhere.
@@ -109,6 +124,7 @@ content:
           - { name: caseStudy, label: Case Study URL, type: string }
           - { name: source, label: Source Code URL, type: string }
           - { name: demo, label: Live Demo URL, type: string }
+          - { name: company, label: Company Site URL, type: string, description: "Only used when Kind is \"role\"." }
       - name: stack
         label: Tech Stack
         type: string
@@ -129,12 +145,14 @@ content:
           - { name: version, label: Version, type: string }
       - name: features
         label: Features
+        description: "When Kind is \"role\", this becomes the \"notable work built there\" list — set href to link out to the real project/write-up."
         type: object
         list: true
         fields:
-          - { name: icon, label: Icon, type: string }
+          - { name: icon, label: Icon, type: string, description: "A literal character, e.g. ★ or ◆ — not an HTML entity like &#9733;, which won't decode here." }
           - { name: title, label: Title, type: string }
           - { name: description, label: Description, type: text }
+          - { name: href, label: Link URL, type: string }
       - name: lessons
         label: What I Learned
         type: object
