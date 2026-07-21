@@ -7,7 +7,14 @@
 import type { Shape } from './bannerArt';
 import { TEAL, PINK, YELLOW, BLUE, INK } from './bannerColors';
 
-export type BannerKey = 'linkedin-left' | 'linkedin-right' | 'github' | 'email' | 'square-home' | 'square-article';
+export type BannerKey =
+	| 'linkedin-left'
+	| 'linkedin-right'
+	| 'linkedin-centered'
+	| 'github'
+	| 'email'
+	| 'square-home'
+	| 'square-article';
 
 export interface BannerSpec {
 	key: BannerKey;
@@ -63,6 +70,20 @@ const linkedinLeftShapes: Shape[] = [
 	bottomBar(1584),
 ];
 
+// Symmetric, corner-anchored composition (opposite-corner color pairs, dot
+// grids as inward texture) that keeps the whole center of the canvas clear
+// — this variant's content is centered rather than left/right-aligned, so
+// nothing should bleed toward the middle the way the left/right shapes do.
+const linkedinCenteredShapes: Shape[] = [
+	{ kind: 'circle', left: -60, top: -60, size: 220, color: YELLOW, opacity: 0.85 },
+	{ kind: 'circle', right: -60, bottom: -60, size: 220, color: PINK, opacity: 0.85 },
+	{ kind: 'triangle', left: -20, bottom: -30, width: 150, height: 130, color: TEAL, opacity: 0.5 },
+	{ kind: 'diamond', right: -10, top: -10, size: 90, color: BLUE, opacity: 0.5 },
+	{ kind: 'dotgrid', left: 60, bottom: 40, width: 100, height: 100, color: DARK_LINE },
+	{ kind: 'dotgrid', right: 60, top: 40, width: 100, height: 100, color: DARK_LINE },
+	bottomBar(1584),
+];
+
 export const BANNER_SPECS: Record<BannerKey, BannerSpec> = {
 	'linkedin-left': {
 		key: 'linkedin-left',
@@ -84,6 +105,18 @@ export const BANNER_SPECS: Record<BannerKey, BannerSpec> = {
 		// use this variant instead of linkedin-left whenever that would
 		// otherwise sit on top of the text.
 		shapes: mirrorShapes(linkedinLeftShapes),
+	},
+	'linkedin-centered': {
+		key: 'linkedin-centered',
+		label: 'LinkedIn Profile Banner — Centered',
+		dims: '1584 × 396',
+		width: 1584,
+		height: 396,
+		background: INK,
+		// Uses brandLabel ("Kyle Taylor") as the big centered name with
+		// siteSubtitle smaller underneath, instead of the long siteTitle —
+		// avoids fighting siteTitle's own wrapping in a centered layout.
+		shapes: linkedinCenteredShapes,
 	},
 	github: {
 		key: 'github',
@@ -162,4 +195,12 @@ export const BANNER_SPECS: Record<BannerKey, BannerSpec> = {
 	},
 };
 
-export const BANNER_ORDER: BannerKey[] = ['linkedin-left', 'linkedin-right', 'github', 'email', 'square-home', 'square-article'];
+export const BANNER_ORDER: BannerKey[] = [
+	'linkedin-left',
+	'linkedin-right',
+	'linkedin-centered',
+	'github',
+	'email',
+	'square-home',
+	'square-article',
+];

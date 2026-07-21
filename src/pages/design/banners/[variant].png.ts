@@ -56,6 +56,14 @@ function buildContent(key: BannerKey): unknown {
 				],
 			);
 		}
+		case 'linkedin-centered':
+			return div(
+				{ position: 'absolute', left: 0, top: 0, width: '1584px', height: '396px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' },
+				[
+					div({ fontSize: '64px', fontWeight: 700, lineHeight: 1.0, letterSpacing: '-1px', color: BG }, [site.brandLabel, span({ color: PINK }, '.')]),
+					span({ fontFamily: 'Space Mono', fontSize: '18px', color: MUTED_DARK, marginTop: '14px' }, site.siteSubtitle),
+				],
+			);
 		case 'github':
 			return div({ position: 'absolute', left: 0, top: 0, width: '1280px', height: '640px' }, [
 				div({ position: 'absolute', left: 0, top: 0, bottom: 0, width: '520px', backgroundColor: '#0D0D0D', flexDirection: 'column' }, [

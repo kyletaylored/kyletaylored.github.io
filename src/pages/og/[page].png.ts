@@ -3,7 +3,7 @@ import { Resvg } from '@resvg/resvg-js';
 import { getEntry } from 'astro:content';
 import site from '../../data/site.json';
 import { shapesToSatori, type Shape } from '../../lib/bannerArt';
-import { TEAL, PINK, INK, BG, MUTED_DARK } from '../../lib/bannerColors';
+import { TEAL, PINK, YELLOW, BLUE, INK, BG, MUTED_DARK } from '../../lib/bannerColors';
 
 // Build-time share image for the site's standalone pages (home, about,
 // contact, and the projects/articles/lab index pages) — these aren't
@@ -43,9 +43,23 @@ const pages: Record<string, SitePageData> = {
 	},
 };
 
+// Same "Hero Art — Circle + Triangle Cluster" composition as
+// decor/HeroArt.astro (the canonical dark-hero decoration used across the
+// live site), ported to satori Shape objects — these standalone-page OG
+// cards were previously using their own much sparser 2-shape, low-opacity
+// set instead of matching the real site's decorative language.
+const DARK_GRID = '#2A2A2A';
+
 const decorShapes: Shape[] = [
-	{ kind: 'circle', right: -40, top: -40, size: 260, color: TEAL, opacity: 0.15 },
-	{ kind: 'diamond', right: 40, bottom: -60, size: 160, color: PINK, opacity: 0.12 },
+	{ kind: 'circle', right: -30, top: -40, size: 180, color: PINK, opacity: 0.9 },
+	{ kind: 'triangle', right: 80, top: -10, width: 170, height: 170, color: TEAL, opacity: 0.9 },
+	{ kind: 'circle', right: 260, bottom: 20, size: 80, color: YELLOW, opacity: 0.9 },
+	{ kind: 'diamond', right: 20, top: 100, size: 24, color: BLUE, opacity: 0.9 },
+	{ kind: 'dotgrid', right: 80, top: 20, width: 70, height: 70, color: DARK_GRID },
+	{ kind: 'crosshair', right: 20, bottom: 40, size: 28, color: DARK_GRID },
+	{ kind: 'slashes', left: 20, bottom: 20, color: DARK_GRID, dotColor: YELLOW },
+	{ kind: 'ring', right: 160, bottom: 20, size: 60, border: 2, color: DARK_GRID },
+	{ kind: 'hazard', right: 60, bottom: 60, width: 80, height: 18, colorA: YELLOW, colorB: '#1E1E1E', opacity: 0.9 },
 ];
 
 async function fetchFont(family: string, weight: number): Promise<ArrayBuffer> {
