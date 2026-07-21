@@ -1,12 +1,13 @@
 ---
-// Private, unlinked design-system reference page — NOT real site content.
-// Based on _reference/creative_engineer_design_system/Design Reference.dc.html,
-// but every swatch/sample below renders through the ACTUAL component/token
+// Public "how this site was designed" story page — real site content,
+// indexed by the sitemap and Pagefind. Based on
+// _reference/creative_engineer_design_system/Design Reference.dc.html, but
+// every swatch/sample below renders through the ACTUAL component/token
 // (Button.astro, decor/*, SectionHeader, etc.) rather than the comp's
 // hardcoded hex values, so this page stays honest if a token or component
-// ever drifts from the comp. Excluded from the sitemap (astro.config.mjs's
-// sitemap filter) and from Pagefind (data-pagefind-ignore below). Not
-// linked from any nav — reach it by typing the URL directly.
+// ever drifts from the comp. Its subpages (/design/banners, /design/cards,
+// the PNG export routes) stay private utilities — see astro.config.mjs's
+// sitemap filter and each subpage's own data-pagefind-ignore.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/Button.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
@@ -65,24 +66,72 @@ const activityItems = [
 	{ type: 'git' as const, title: 'Git Push', description: 'Pushed 3 commits to flow-fields', time: '5h ago' },
 	{ type: 'tool' as const, title: 'New Tool', description: 'Added QR Code Generator', time: '1d ago' },
 ];
+
+const subpages = [
+	{
+		href: '/design/banners',
+		label: 'Banners',
+		desc: 'LinkedIn, GitHub, email, and square social banners at real pixel size, each with a high-res PNG download.',
+		icon: '⬡',
+		color: 'var(--color-teal)',
+	},
+	{
+		href: '/design/cards',
+		label: 'Cards',
+		desc: 'Every ArticleTeaserCard variant — featured, compact, vertical, overlay — at real size with real content.',
+		icon: '</>',
+		mono: true,
+		color: 'var(--color-pink)',
+	},
+];
 ---
 
-<BaseLayout title="Design System" description="Private design-system reference." noindex={true}>
-	<div data-pagefind-ignore>
-		<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
-			<HeroArt />
-			<div class="relative mx-auto max-w-6xl">
-				<div class="mb-4 text-xs font-semibold tracking-widest text-teal uppercase">Creative Engineer Design System</div>
-				<h1 class="mb-4 text-6xl font-bold leading-[1.0] tracking-tight text-bg md:text-7xl">Design System<span class="text-pink">.</span></h1>
-				<p class="max-w-2xl text-base text-muted-light">
-					Tokens, typography, color, components, and patterns — every sample below renders through the real
-					component or CSS token, not a hardcoded value, so this page can't silently drift from the site.
-				</p>
+<BaseLayout
+	title="Design System"
+	description="How this site's design system came together — tokens, components, and patterns, shown through the real thing rather than static mockups."
+>
+	<section class="relative overflow-hidden bg-ink px-6 py-16 md:px-12 md:py-20">
+		<HeroArt />
+		<div class="relative mx-auto max-w-6xl">
+			<div class="mb-4 text-xs font-semibold tracking-widest text-teal uppercase">The story behind the site</div>
+			<h1 class="mb-4 text-6xl font-bold leading-[1.0] tracking-tight text-bg md:text-7xl">Design System<span class="text-pink">.</span></h1>
+			<p class="max-w-2xl text-base leading-relaxed text-muted-light">
+				This site started from a set of Memphis/Bauhaus-inspired comps — colors, type, shapes, a handful of
+				component mockups. What's below isn't a copy of those comps: every swatch, button, and pattern
+				renders through the actual component or CSS token running on the live site, so this page can't
+				quietly drift out of sync with reality. Two living subpages branch off from it too — see below.
+			</p>
+		</div>
+	</section>
+	<div class="h-1 bg-pink"></div>
+
+	<div class="mx-auto max-w-6xl px-6 md:px-12">
+		<!-- SUBPAGES -->
+		<section class="border-b border-border py-12">
+			<SectionHeader label="Explore" linkText={null} />
+			<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+				{
+					subpages.map((page) => (
+						<a
+							href={page.href}
+							class="flex cursor-pointer flex-col gap-3 rounded-md border border-border bg-white p-5 transition-colors hover:border-teal"
+						>
+							<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-ink">
+								<span class:list={['text-lg font-bold', page.mono && 'font-mono']} style={{ color: page.color }}>
+									{page.icon}
+								</span>
+							</div>
+							<div>
+								<div class="mb-1.5 text-xs font-bold tracking-wide uppercase">{page.label}</div>
+								<div class="text-sm leading-relaxed text-muted">{page.desc}</div>
+							</div>
+							<div class="mt-auto text-base">&rarr;</div>
+						</a>
+					))
+				}
 			</div>
 		</section>
-		<div class="h-1 bg-pink"></div>
 
-		<div class="mx-auto max-w-6xl px-6 md:px-12">
 			<!-- COLOR PALETTE -->
 			<section class="border-b border-border py-12">
 				<SectionHeader label="Color Palette" linkText={null} />
@@ -347,5 +396,4 @@ const activityItems = [
 				</div>
 			</section>
 		</div>
-	</div>
 </BaseLayout>

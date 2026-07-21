@@ -42,12 +42,26 @@ export default defineConfig({
     integrations: [
         mdx(),
         sitemap({
-            // /design/* are private export utilities (see /design/banners),
-            // not real site content — keep them out of the sitemap.
-            filter: (page) => !page.includes('/design/'),
+            // /design itself is a real, public "how this site was designed"
+            // story page — index it. Its subpaths (banners export, card
+            // gallery, PNG downloads) stay private utilities, excluded here.
+            filter: (page) => {
+                const path = new URL(page).pathname;
+                if (path === '/design' || path === '/design/') return true;
+                return !path.startsWith('/design/');
+            },
         }),
         react(),
     ],
+    redirects: {
+        // Common convention crawlers/humans guess by default — the real
+        // sitemap is @astrojs/sitemap's generated index file. Static hosts
+        // (GitHub Pages) can't do a real 301 here, so this is a client-side
+        // redirect page rather than an HTTP redirect; robots.txt's own
+        // `Sitemap:` line (the mechanism search engines actually use) already
+        // points crawlers at /sitemap-index.xml directly.
+        '/sitemap.xml': '/sitemap-index.xml',
+    },
     vite: {
         plugins: vitePlugins,
         build: {

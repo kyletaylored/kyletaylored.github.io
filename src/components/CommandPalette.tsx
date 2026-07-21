@@ -7,6 +7,7 @@ import {
 	CommandItem,
 	CommandList,
 } from '@/components/ui/command';
+import { Badge } from '@/components/ui/badge';
 
 interface NavEntry {
 	label: string;
@@ -20,9 +21,20 @@ interface DemoEntry {
 
 interface PagefindResult {
 	url: string;
-	meta: { title?: string };
+	meta: { title?: string; type?: string };
 	excerpt: string;
 }
+
+// Matches the homepage/Lab category-tile colors (Projects=teal,
+// Articles=pink, Lab=yellow) so a result's type badge reads consistently
+// with the rest of the site — see BaseLayout.astro's `pageType` prop, which
+// is what actually writes `type` into Pagefind's index (data-pagefind-meta).
+const TYPE_BADGE_VARIANT: Record<string, 'teal' | 'pink' | 'yellow' | 'blue' | 'outline'> = {
+	Project: 'teal',
+	Article: 'pink',
+	Lab: 'yellow',
+	Page: 'outline',
+};
 
 interface Props {
 	navEntries: NavEntry[];
@@ -114,7 +126,12 @@ export function CommandPalette({ navEntries, demoEntries }: Props) {
 					<CommandGroup heading="Search results">
 						{results.map((result) => (
 							<CommandItem key={result.url} onSelect={() => (window.location.href = result.url)}>
-								{result.meta?.title ?? result.url}
+								<span className="flex-1 truncate">{result.meta?.title ?? result.url}</span>
+								{result.meta?.type && (
+									<Badge variant={TYPE_BADGE_VARIANT[result.meta.type] ?? 'outline'} className="ml-2 flex-shrink-0">
+										{result.meta.type}
+									</Badge>
+								)}
 							</CommandItem>
 						))}
 					</CommandGroup>

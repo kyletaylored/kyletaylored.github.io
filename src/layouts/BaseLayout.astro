@@ -6,6 +6,8 @@ import Header from '../components/Header.astro';
 import { CommandPalette } from '../components/CommandPalette';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
+type PageType = 'Article' | 'Project' | 'Lab' | 'Page';
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -14,6 +16,7 @@ interface Props {
 	canonicalUrl?: string;
 	noindex?: boolean;
 	jsonLd?: Record<string, unknown>;
+	pageType?: PageType;
 }
 
 const {
@@ -24,6 +27,7 @@ const {
 	canonicalUrl,
 	noindex = false,
 	jsonLd,
+	pageType = 'Page',
 } = Astro.props;
 
 const navEntries = [
@@ -33,6 +37,7 @@ const navEntries = [
 	{ label: 'Lab', href: '/lab' },
 	{ label: 'About', href: '/about' },
 	{ label: 'Contact', href: '/contact' },
+	{ label: 'Design System', href: '/design' },
 ];
 
 const demoEntries = (await getCollection('projects'))
@@ -70,6 +75,11 @@ const demoEntries = (await getCollection('projects'))
 			<Header />
 		</div>
 		<main data-pagefind-body>
+			<span
+				hidden
+				data-pagefind-filter={`type:${pageType}`}
+				data-pagefind-meta={`type:${pageType}`}
+			/>
 			<slot />
 		</main>
 		<div data-pagefind-ignore>
