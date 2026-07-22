@@ -19,9 +19,9 @@ const categories = [
 	{ href: '/about', label: 'About', desc: 'Who I am and what I\'m up to.', icon: '◈', color: 'var(--color-blue)' },
 ];
 
-const featuredProjects = (await getCollection('projects', ({ data }) => data.featured))
+const recentProjects = (await getCollection('projects'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 5);
+	.slice(0, 8);
 
 const latestArticles = (await getCollection('articles', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -174,15 +174,38 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 	</ParallaxSection>
 
 	{
-		featuredProjects.length > 0 && (
+		recentProjects.length > 0 && (
 			<section class="mx-auto max-w-6xl px-6 py-12 md:px-12">
-				<SectionHeader label="Featured Projects" linkText="View all projects" linkHref="/projects" />
-				<div class="flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0 lg:grid-cols-5">
-					{featuredProjects.map((p) => (
-						<div class="w-[220px] flex-shrink-0 sm:w-auto">
-							<ArticleTeaserCard entry={p} variant="featured" />
-						</div>
-					))}
+				<SectionHeader label="Recent Projects" linkText="View all projects" linkHref="/projects" />
+				<div class="relative">
+					<div
+						id="recent-projects-track"
+						class="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+					>
+						{
+							recentProjects.map((p) => (
+								<div class="w-[220px] flex-shrink-0 snap-start">
+									<ArticleTeaserCard entry={p} variant="featured" />
+								</div>
+							))
+						}
+					</div>
+					<button
+						type="button"
+						id="recent-projects-prev"
+						aria-label="Previous projects"
+						class="absolute top-1/2 left-0 hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-pink text-lg text-white shadow-md transition-opacity hover:bg-pink/80 disabled:pointer-events-none disabled:opacity-0 sm:flex"
+					>
+						&larr;
+					</button>
+					<button
+						type="button"
+						id="recent-projects-next"
+						aria-label="Next projects"
+						class="absolute top-1/2 right-0 hidden h-9 w-9 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-pink text-lg text-white shadow-md transition-opacity hover:bg-pink/80 disabled:pointer-events-none disabled:opacity-0 sm:flex"
+					>
+						&rarr;
+					</button>
 				</div>
 			</section>
 		)
@@ -213,3 +236,22 @@ const contributionWeeks = (await import('../data/contributions.json')).default a
 		</div>
 	</section>
 </BaseLayout>
+
+<script>
+	const track = document.getElementById('recent-projects-track');
+	const prevBtn = document.getElementById('recent-projects-prev') as HTMLButtonElement | null;
+	const nextBtn = document.getElementById('recent-projects-next') as HTMLButtonElement | null;
+
+	if (track && prevBtn && nextBtn) {
+		function updateButtons() {
+			const maxScroll = track!.scrollWidth - track!.clientWidth;
+			prevBtn!.disabled = track!.scrollLeft <= 4;
+			nextBtn!.disabled = track!.scrollLeft >= maxScroll - 4;
+		}
+
+		prevBtn.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: 'smooth' }));
+		nextBtn.addEventListener('click', () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: 'smooth' }));
+		track.addEventListener('scroll', updateButtons, { passive: true });
+		updateButtons();
+	}
+</script>
